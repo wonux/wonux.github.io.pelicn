@@ -1,0 +1,461 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Wonux Blog</title>
+		<meta name="description" content="">
+		<meta name="author" content="Ace King">
+
+		<link rel="stylesheet" href="http://wonux.github.io/theme/css/foundation.css" />
+		<link rel="stylesheet" href="http://wonux.github.io/theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="http://wonux.github.io/theme/css/custom.css" />
+
+
+		<script src="http://wonux.github.io/theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Wonux&nbsp;Blog</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href="http://wonux.github.io">Home</a></li>
+						<li><label>Categories</label></li>
+							<li ><a href="http://wonux.github.io/category/arch.html">Arch</a></li>
+							<li ><a href="http://wonux.github.io/category/freebsd.html">FreeBSD</a></li>
+							<li class="active"><a href="http://wonux.github.io/category/gentoo.html">Gentoo</a></li>
+							<li ><a href="http://wonux.github.io/category/unixlinux.html">UNIX/LINUX</a></li>
+
+						<li><label>Links</label></li>
+							<li><a href="http://getpelican.com/">Pelican</a></li>
+							<li><a href="http://python.org/">Python.org</a></li>
+							<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+							<li><a href="#">You can modify those links in your config file</a></li>
+
+						<li><label>Tags</label></li>
+							<li><a href="http://wonux.github.io/tag/account.html">account</a></li>
+							<li><a href="http://wonux.github.io/tag/apps.html">apps</a></li>
+							<li><a href="http://wonux.github.io/tag/arch.html">arch</a></li>
+							<li><a href="http://wonux.github.io/tag/blog.html">blog</a></li>
+							<li><a href="http://wonux.github.io/tag/bugs.html">bugs</a></li>
+							<li><a href="http://wonux.github.io/tag/chroot.html">chroot</a></li>
+							<li><a href="http://wonux.github.io/tag/clock.html">clock</a></li>
+							<li><a href="http://wonux.github.io/tag/console.html">console</a></li>
+							<li><a href="http://wonux.github.io/tag/disk.html">disk</a></li>
+							<li><a href="http://wonux.github.io/tag/emerge.html">emerge</a></li>
+							<li><a href="http://wonux.github.io/tag/faq.html">faq</a></li>
+							<li><a href="http://wonux.github.io/tag/file-system.html">file system</a></li>
+							<li><a href="http://wonux.github.io/tag/fstab.html">fstab</a></li>
+							<li><a href="http://wonux.github.io/tag/gcc.html">gcc</a></li>
+							<li><a href="http://wonux.github.io/tag/gentoo.html">gentoo</a></li>
+							<li><a href="http://wonux.github.io/tag/git.html">git</a></li>
+							<li><a href="http://wonux.github.io/tag/handbook.html">handbook</a></li>
+							<li><a href="http://wonux.github.io/tag/hexo.html">hexo</a></li>
+							<li><a href="http://wonux.github.io/tag/linux.html">linux</a></li>
+							<li><a href="http://wonux.github.io/tag/locale.html">locale</a></li>
+							<li><a href="http://wonux.github.io/tag/lxde.html">lxde</a></li>
+							<li><a href="http://wonux.github.io/tag/man.html">man</a></li>
+							<li><a href="http://wonux.github.io/tag/markdown.html">markdown</a></li>
+							<li><a href="http://wonux.github.io/tag/mirrors.html">mirrors</a></li>
+							<li><a href="http://wonux.github.io/tag/mount.html">mount</a></li>
+							<li><a href="http://wonux.github.io/tag/mpc.html">mpc</a></li>
+							<li><a href="http://wonux.github.io/tag/mpd.html">mpd</a></li>
+							<li><a href="http://wonux.github.io/tag/music.html">music</a></li>
+							<li><a href="http://wonux.github.io/tag/network.html">network</a></li>
+							<li><a href="http://wonux.github.io/tag/ntfs.html">ntfs</a></li>
+							<li><a href="http://wonux.github.io/tag/openbox.html">openbox</a></li>
+							<li><a href="http://wonux.github.io/tag/package.html">package</a></li>
+							<li><a href="http://wonux.github.io/tag/pacman.html">pacman</a></li>
+							<li><a href="http://wonux.github.io/tag/partition.html">partition</a></li>
+							<li><a href="http://wonux.github.io/tag/paste.html">paste</a></li>
+							<li><a href="http://wonux.github.io/tag/pelican.html">pelican</a></li>
+							<li><a href="http://wonux.github.io/tag/permission.html">permission</a></li>
+							<li><a href="http://wonux.github.io/tag/portage.html">portage</a></li>
+							<li><a href="http://wonux.github.io/tag/ports.html">ports</a></li>
+							<li><a href="http://wonux.github.io/tag/process.html">process</a></li>
+							<li><a href="http://wonux.github.io/tag/rescue.html">rescue</a></li>
+							<li><a href="http://wonux.github.io/tag/shell.html">shell</a></li>
+							<li><a href="http://wonux.github.io/tag/slice.html">slice</a></li>
+							<li><a href="http://wonux.github.io/tag/time.html">time</a></li>
+							<li><a href="http://wonux.github.io/tag/tty.html">tty</a></li>
+							<li><a href="http://wonux.github.io/tag/unix.html">unix</a></li>
+							<li><a href="http://wonux.github.io/tag/use.html">use</a></li>
+							<li><a href="http://wonux.github.io/tag/wireless.html">wireless</a></li>
+							<li><a href="http://wonux.github.io/tag/wpa2.html">wpa2</a></li>
+							<li><a href="http://wonux.github.io/tag/xorg.html">xorg</a></li>
+
+						<li><label>Monthly Archives</label></li>
+									<li><a href="/posts/2015/06/index.html">June 2015 (2)</a></li>
+									<li><a href="/posts/2015/05/index.html">May 2015 (4)</a></li>
+									<li><a href="/posts/2015/04/index.html">April 2015 (8)</a></li>
+									<li><a href="/posts/2015/01/index.html">January 2015 (3)</a></li>
+									<li><a href="/posts/2014/12/index.html">December 2014 (1)</a></li>
+									<li><a href="/posts/2014/11/index.html">November 2014 (13)</a></li>
+									<li><a href="/posts/2014/10/index.html">October 2014 (4)</a></li>
+									<li><a href="/posts/2014/09/index.html">September 2014 (3)</a></li>
+									<li><a href="/posts/2014/06/index.html">June 2014 (4)</a></li>
+									<li><a href="/posts/2014/05/index.html">May 2014 (1)</a></li>
+
+						<li><label>Social</label></li>
+							<li><a href="https://github.com/wonux">github</a></li>
+							<li><a href="http://weibo.com/wonux">weibo</a></li>
+					</ul>
+			      
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="http://wonux.github.io/">Wonux Blog</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li ><a href="http://wonux.github.io/category/arch.html">Arch</a></li>
+								<li ><a href="http://wonux.github.io/category/freebsd.html">FreeBSD</a></li>
+								<li class="active"><a href="http://wonux.github.io/category/gentoo.html">Gentoo</a></li>
+								<li ><a href="http://wonux.github.io/category/unixlinux.html">UNIX/LINUX</a></li>
+						</ul>
+                        <ul class="right">                                                                                                                                           
+                                                                                                          
+····                                                                                                                                       
+                                     <li><a href="http://wonux.github.io/pages/about.html">About</a></li>                                    
+                                                                                                                                          
+                                                                                                                                             
+                        </ul>  
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+<section id="content" class="article-content">
+  <article>
+		<div class="entry-content" id="article-content">
+          <div class="content-title">
+	        <h2>Gentoo本地化设置--时区、时钟、字体、中文环境</h2>
+	        <h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Mon 30 June 2014. Tags: <a href="http://wonux.github.io/tag/locale.html">locale</a>, </h6>
+		  </div>
+		  
+             <div class="panel-default" style="width: 30%; float: right; margin: 20px 5px 5px 20px; border: 1px solid aliceblue; background: rgb(230, 243, 255) none repeat scroll 0% 0%; padding: 5px;">
+                <div class="panel-heading">
+                <h6>目录:</h6>
+                </div>
+                <div class="panel-boy">
+                <div class="toc">
+<ul>
+<li><a href="#_1">时区</a></li>
+<li><a href="#_2">硬件时钟</a></li>
+<li><a href="#_3">安装中文字体</a></li>
+<li><a href="#locale">生成指定的Locale</a></li>
+<li><a href="#locale_1">设置一个Locale显示中文</a></li>
+</ul>
+</div>
+                </div>
+             </div>
+	  
+	       <div class="artile">
+           
+<h2 id="_1">时区</h2>
+<p>你需要选择时区让系统知道你的地理位置，以保持正确的时间。在/usr/share/zoneinfo中查找你的时区。然后在/etc/conf.d/clock中设置时区。请忽略/usr/share/zoneinfo/Etc/GMT*时区，因为它们的名字并不表示所指的地区。比如，GMT-8实际上是GMT+8。
+设置时区信息：</p>
+<div class="highlight"><pre><span class="code-line"><span></span>ls /usr/share/zoneinfo</span>
+<span class="code-line">echo "Asia/Shanghai" &gt; /etc/timezone</span>
+<span class="code-line">emerge --config sys-libs/timezone-data</span>
+</pre></div>
+<blockquote>
+<p>注意: 你可以做一个用户级的设置，在shell的rc文件（如bash的.bash_profile）中将TZ变量的值设为/usr/share/zoneinfo下的任何东西。本案例中TZ="Asia/Shanghai"。</p>
+</blockquote>
+<h2 id="_2">硬件时钟</h2>
+<p>Gentoo Linux安装过程中，大多数情况下硬件时钟都是被设成UTC（或GMT，格林威治标准时间），而时区则定为实际的本地时间。如果出于某种原因，你需要将硬件时钟设为非UTC，那么你就要编辑/etc/conf.d/hwclock，将CLOCK的值由UTC改为local。</p>
+<div class="highlight"><pre><span class="code-line"><span></span>CLOCK="UTC"</span>
+<span class="code-line">或</span>
+<span class="code-line">CLOCK="local"</span>
+</pre></div>
+<h2 id="_3">安装中文字体</h2>
+<p>推荐开源文泉驿自由字体</p>
+<div class="highlight"><pre><span class="code-line"><span></span>emerge wqy-zenhei （文泉驿正黑）</span>
+<span class="code-line">emerge wqy-microhei （文泉驿微米黑）</span>
+</pre></div>
+<h2 id="locale">生成指定的Locale</h2>
+<p>可能你在系统中只要用到一个或者两个locale。你可以在/etc/locale.gen中指定所需的的locale。
+中文有很多种编码，最流行的就是UTF8和GBK。我们推荐客户使用UTF8编码，因为这是国际标准，能兼容任何语言的编码。</p>
+<p>添加locale到<code>/etc/locale.gen</code></p>
+<div class="highlight"><pre><span class="code-line"><span></span>nano -w /etc/locale.gen</span>
+</pre></div>
+<blockquote>
+<p>en_US ISO-8859-1
+en_US.UTF-8 UTF-8
+zh_CB.UTF-8 UTF-8</p>
+</blockquote>
+<p>下一步是执行<code>locale-gen</code>。它会生成/etc/locale.gen文件中指定的所有locale。</p>
+<div class="highlight"><pre><span class="code-line"><span></span>locale-gen</span>
+</pre></div>
+<p>你可以通过执行locale -a来检验所选的locale是否可用。 </p>
+<div class="highlight"><pre><span class="code-line"><span></span>locale -a</span>
+</pre></div>
+<h2 id="locale_1">设置一个Locale显示中文</h2>
+<ul>
+<li>在<code>/etc/env.d/02locale</code>中设置全局默认的系统locale</li>
+</ul>
+<blockquote>
+<p>LANG="zh_CN.UTF-8"
+LC_COLLATE="C"</p>
+</blockquote>
+<ul>
+<li>在~/.bashrc中设置用户级的系统locale</li>
+</ul>
+<blockquote>
+<p>export LANG="zh_CN.UTF-8"
+export LC_COLLATE="C"</p>
+</blockquote>
+<ul>
+<li>更新系统全局默认的locale：</li>
+</ul>
+<p>设置好正确的locale后，一定要更新环境变量使系统知道所做的更改：</p>
+<div class="highlight"><pre><span class="code-line"><span></span>env-update &amp;&amp; source /etc/profile</span>
+</pre></div>
+<ul>
+<li>更新特定用户的locale：</li>
+</ul>
+<div class="highlight"><pre><span class="code-line"><span></span>source ~/.bashrc</span>
+</pre></div>
+<p>更新环境后，你需要按下Ctrl-Alt-Backspace杀死X服务器，登出，然后以用户身份登入。
+现在，检验一下所做的更改是否已经生效了：</p>
+<div class="highlight"><pre><span class="code-line"><span></span>locale</span>
+</pre></div>
+<blockquote>
+<p>注：<em>另一种系统配置方式是保留默认的C locale，同时要能够表现UTF-8字符。
+这种选择可以通过使用下述设置来实现：LC_CTYPE=zh_CN.UTF-8</em></p>
+</blockquote>
+          </div>
+   </article>
+</section>		
+
+
+<hr/>
+<div class="related_posts">
+    <ul>
+       <h5>猜你喜欢：</h5>
+	   <li><a href="http://wonux.github.io/gentoo-locale.html">Gentoo本地化中文设置--Locale系统介绍</a></li>
+    </ul>
+
+</div>
+
+<div class="row">
+	<div class="small-12 columns">
+		<h3>Comments</h3>
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_shortname = 'wonux';
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	</div>
+</div>
+
+<!--
+<div class="neighors">
+ <ul>
+     <li>
+         <a href="http://wonux.github.io/gentoo-udev-netware.html">
+             Gentoo解决Udev升级的网卡重命名问题
+         </a>
+     </li>
+     <li>
+         <a href="http://wonux.github.io/gentoo-gcc-invalid.html">
+             gcc-config:Active gcc profile is invalid解决办法
+         </a>
+     </li>
+</ul>
+<ul>
+     <li>
+         <a href="http://wonux.github.io/gentoo-udev-netware.html">
+             Gentoo解决Udev升级的网卡重命名问题
+         </a>
+     </li>
+     <li>
+         <a href="http://wonux.github.io/gentoo-gcc-invalid.html">
+             gcc-config:Active gcc profile is invalid解决办法
+         </a>
+     </li>
+ </ul>
+</div>
+--> 
+
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns" id="sidebar">
+							<section>
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="http://getpelican.com/">Pelican</a></li>
+									<li><a href="http://python.org/">Python.org</a></li>
+									<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+									<li><a href="#">You can modify those links in your config file</a></li>
+								</ul>
+							</div>
+
+							<div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/emerge.html" class="tag-4">emerge</a></li>
+									<li><a href="/tag/man.html" class="tag-4">man</a></li>
+									<li><a href="/tag/pacman.html" class="tag-4">pacman</a></li>
+									<li><a href="/tag/partition.html" class="tag-4">partition</a></li>
+									<li><a href="/tag/openbox.html" class="tag-4">openbox</a></li>
+									<li><a href="/tag/disk.html" class="tag-4">disk</a></li>
+									<li><a href="/tag/portage.html" class="tag-3">portage</a></li>
+									<li><a href="/tag/shell.html" class="tag-4">shell</a></li>
+									<li><a href="/tag/chroot.html" class="tag-4">chroot</a></li>
+									<li><a href="/tag/permission.html" class="tag-4">permission</a></li>
+									<li><a href="/tag/mpc.html" class="tag-4">mpc</a></li>
+									<li><a href="/tag/slice.html" class="tag-4">slice</a></li>
+									<li><a href="/tag/bugs.html" class="tag-2">bugs</a></li>
+									<li><a href="/tag/pelican.html" class="tag-3">pelican</a></li>
+									<li><a href="/tag/gcc.html" class="tag-4">gcc</a></li>
+									<li><a href="/tag/xorg.html" class="tag-1">xorg</a></li>
+									<li><a href="/tag/markdown.html" class="tag-2">markdown</a></li>
+									<li><a href="/tag/ports.html" class="tag-4">ports</a></li>
+									<li><a href="/tag/arch.html" class="tag-3">arch</a></li>
+									<li><a href="/tag/apps.html" class="tag-4">apps</a></li>
+									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
+									<li><a href="/tag/mount.html" class="tag-4">mount</a></li>
+									<li><a href="/tag/lxde.html" class="tag-4">lxde</a></li>
+									<li><a href="/tag/process.html" class="tag-4">process</a></li>
+									<li><a href="/tag/music.html" class="tag-4">music</a></li>
+									<li><a href="/tag/hexo.html" class="tag-4">hexo</a></li>
+									<li><a href="/tag/tty.html" class="tag-4">tty</a></li>
+									<li><a href="/tag/faq.html" class="tag-4">faq</a></li>
+									<li><a href="/tag/blog.html" class="tag-2">blog</a></li>
+									<li><a href="/tag/mpd.html" class="tag-4">mpd</a></li>
+									<li><a href="/tag/wpa2.html" class="tag-4">wpa2</a></li>
+									<li><a href="/tag/use.html" class="tag-4">use</a></li>
+									<li><a href="/tag/console.html" class="tag-4">console</a></li>
+									<li><a href="/tag/locale.html" class="tag-3">locale</a></li>
+									<li><a href="/tag/time.html" class="tag-4">time</a></li>
+									<li><a href="/tag/handbook.html" class="tag-1">handbook</a></li>
+									<li><a href="/tag/fstab.html" class="tag-4">fstab</a></li>
+									<li><a href="/tag/gentoo.html" class="tag-1">gentoo</a></li>
+									<li><a href="/tag/mirrors.html" class="tag-4">mirrors</a></li>
+									<li><a href="/tag/file-system.html" class="tag-4">file system</a></li>
+									<li><a href="/tag/paste.html" class="tag-4">paste</a></li>
+									<li><a href="/tag/git.html" class="tag-4">git</a></li>
+									<li><a href="/tag/clock.html" class="tag-4">clock</a></li>
+									<li><a href="/tag/wireless.html" class="tag-4">wireless</a></li>
+									<li><a href="/tag/unix.html" class="tag-1">unix</a></li>
+									<li><a href="/tag/ntfs.html" class="tag-4">ntfs</a></li>
+									<li><a href="/tag/account.html" class="tag-4">account</a></li>
+									<li><a href="/tag/network.html" class="tag-1">network</a></li>
+									<li><a href="/tag/rescue.html" class="tag-4">rescue</a></li>
+									<li><a href="/tag/package.html" class="tag-4">package</a></li>
+								</ul>
+							</div>
+
+							<div class="panel">
+								<h5>Monthly Archives</h5>
+								<ul class="side-nav">
+											<li><a href="/posts/2015/06/index.html">June 2015 (2)</a></li>
+											<li><a href="/posts/2015/05/index.html">May 2015 (4)</a></li>
+											<li><a href="/posts/2015/04/index.html">April 2015 (8)</a></li>
+											<li><a href="/posts/2015/01/index.html">January 2015 (3)</a></li>
+											<li><a href="/posts/2014/12/index.html">December 2014 (1)</a></li>
+											<li><a href="/posts/2014/11/index.html">November 2014 (13)</a></li>
+											<li><a href="/posts/2014/10/index.html">October 2014 (4)</a></li>
+											<li><a href="/posts/2014/09/index.html">September 2014 (3)</a></li>
+											<li><a href="/posts/2014/06/index.html">June 2014 (4)</a></li>
+											<li><a href="/posts/2014/05/index.html">May 2014 (1)</a></li>
+								</ul>
+							</div>
+
+							<div class="panel">
+								<h5>Social</h5>
+								<ul class="side-nav">
+									<li><a href="https://github.com/wonux">github</a></li>
+									<li><a href="http://weibo.com/wonux">weibo</a></li>
+								</ul>
+							</div>
+                            </section>
+        <div class="panel" id="affix-toc">
+            <div class="panel-heading">
+			<h5>Contents</h5>
+            </div>
+            <div class="panel-boy">
+            <div class="toc">
+<ul>
+<li><a href="#_1">时区</a></li>
+<li><a href="#_2">硬件时钟</a></li>
+<li><a href="#_3">安装中文字体</a></li>
+<li><a href="#locale">生成指定的Locale</a></li>
+<li><a href="#locale_1">设置一个Locale显示中文</a></li>
+</ul>
+</div>
+            </div>
+        </div>
+					  </aside>
+					<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<hr/>
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="http://wonux.github.io/theme/js/jquery.js"></script>
+		<script src="http://wonux.github.io/theme/js/foundation.min.js"></script>
+		<script>
+		$(document).foundation();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,554 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Wonux Blog</title>
+		<meta name="description" content="">
+		<meta name="author" content="Ace King">
+
+		<link rel="stylesheet" href="http://wonux.github.io/theme/css/foundation.css" />
+		<link rel="stylesheet" href="http://wonux.github.io/theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="http://wonux.github.io/theme/css/custom.css" />
+
+
+		<script src="http://wonux.github.io/theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Wonux&nbsp;Blog</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href="http://wonux.github.io">Home</a></li>
+						<li><label>Categories</label></li>
+							<li ><a href="http://wonux.github.io/category/arch.html">Arch</a></li>
+							<li ><a href="http://wonux.github.io/category/freebsd.html">FreeBSD</a></li>
+							<li class="active"><a href="http://wonux.github.io/category/gentoo.html">Gentoo</a></li>
+							<li ><a href="http://wonux.github.io/category/unixlinux.html">UNIX/LINUX</a></li>
+
+						<li><label>Links</label></li>
+							<li><a href="http://getpelican.com/">Pelican</a></li>
+							<li><a href="http://python.org/">Python.org</a></li>
+							<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+							<li><a href="#">You can modify those links in your config file</a></li>
+
+						<li><label>Tags</label></li>
+							<li><a href="http://wonux.github.io/tag/account.html">account</a></li>
+							<li><a href="http://wonux.github.io/tag/apps.html">apps</a></li>
+							<li><a href="http://wonux.github.io/tag/arch.html">arch</a></li>
+							<li><a href="http://wonux.github.io/tag/blog.html">blog</a></li>
+							<li><a href="http://wonux.github.io/tag/bugs.html">bugs</a></li>
+							<li><a href="http://wonux.github.io/tag/chroot.html">chroot</a></li>
+							<li><a href="http://wonux.github.io/tag/clock.html">clock</a></li>
+							<li><a href="http://wonux.github.io/tag/console.html">console</a></li>
+							<li><a href="http://wonux.github.io/tag/disk.html">disk</a></li>
+							<li><a href="http://wonux.github.io/tag/emerge.html">emerge</a></li>
+							<li><a href="http://wonux.github.io/tag/faq.html">faq</a></li>
+							<li><a href="http://wonux.github.io/tag/file-system.html">file system</a></li>
+							<li><a href="http://wonux.github.io/tag/fstab.html">fstab</a></li>
+							<li><a href="http://wonux.github.io/tag/gcc.html">gcc</a></li>
+							<li><a href="http://wonux.github.io/tag/gentoo.html">gentoo</a></li>
+							<li><a href="http://wonux.github.io/tag/git.html">git</a></li>
+							<li><a href="http://wonux.github.io/tag/handbook.html">handbook</a></li>
+							<li><a href="http://wonux.github.io/tag/hexo.html">hexo</a></li>
+							<li><a href="http://wonux.github.io/tag/linux.html">linux</a></li>
+							<li><a href="http://wonux.github.io/tag/locale.html">locale</a></li>
+							<li><a href="http://wonux.github.io/tag/lxde.html">lxde</a></li>
+							<li><a href="http://wonux.github.io/tag/man.html">man</a></li>
+							<li><a href="http://wonux.github.io/tag/markdown.html">markdown</a></li>
+							<li><a href="http://wonux.github.io/tag/mirrors.html">mirrors</a></li>
+							<li><a href="http://wonux.github.io/tag/mount.html">mount</a></li>
+							<li><a href="http://wonux.github.io/tag/mpc.html">mpc</a></li>
+							<li><a href="http://wonux.github.io/tag/mpd.html">mpd</a></li>
+							<li><a href="http://wonux.github.io/tag/music.html">music</a></li>
+							<li><a href="http://wonux.github.io/tag/network.html">network</a></li>
+							<li><a href="http://wonux.github.io/tag/ntfs.html">ntfs</a></li>
+							<li><a href="http://wonux.github.io/tag/openbox.html">openbox</a></li>
+							<li><a href="http://wonux.github.io/tag/package.html">package</a></li>
+							<li><a href="http://wonux.github.io/tag/pacman.html">pacman</a></li>
+							<li><a href="http://wonux.github.io/tag/partition.html">partition</a></li>
+							<li><a href="http://wonux.github.io/tag/paste.html">paste</a></li>
+							<li><a href="http://wonux.github.io/tag/pelican.html">pelican</a></li>
+							<li><a href="http://wonux.github.io/tag/permission.html">permission</a></li>
+							<li><a href="http://wonux.github.io/tag/portage.html">portage</a></li>
+							<li><a href="http://wonux.github.io/tag/ports.html">ports</a></li>
+							<li><a href="http://wonux.github.io/tag/process.html">process</a></li>
+							<li><a href="http://wonux.github.io/tag/rescue.html">rescue</a></li>
+							<li><a href="http://wonux.github.io/tag/shell.html">shell</a></li>
+							<li><a href="http://wonux.github.io/tag/slice.html">slice</a></li>
+							<li><a href="http://wonux.github.io/tag/time.html">time</a></li>
+							<li><a href="http://wonux.github.io/tag/tty.html">tty</a></li>
+							<li><a href="http://wonux.github.io/tag/unix.html">unix</a></li>
+							<li><a href="http://wonux.github.io/tag/use.html">use</a></li>
+							<li><a href="http://wonux.github.io/tag/wireless.html">wireless</a></li>
+							<li><a href="http://wonux.github.io/tag/wpa2.html">wpa2</a></li>
+							<li><a href="http://wonux.github.io/tag/xorg.html">xorg</a></li>
+
+						<li><label>Monthly Archives</label></li>
+									<li><a href="/posts/2015/06/index.html">June 2015 (2)</a></li>
+									<li><a href="/posts/2015/01/index.html">January 2015 (3)</a></li>
+									<li><a href="/posts/2014/11/index.html">November 2014 (9)</a></li>
+									<li><a href="/posts/2014/10/index.html">October 2014 (1)</a></li>
+									<li><a href="/posts/2014/09/index.html">September 2014 (1)</a></li>
+									<li><a href="/posts/2014/06/index.html">June 2014 (2)</a></li>
+									<li><a href="/posts/2014/05/index.html">May 2014 (1)</a></li>
+
+						<li><label>Social</label></li>
+							<li><a href="https://github.com/wonux">github</a></li>
+							<li><a href="http://weibo.com/wonux">weibo</a></li>
+					</ul>
+			      
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="http://wonux.github.io/">Wonux Blog</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li ><a href="http://wonux.github.io/category/arch.html">Arch</a></li>
+								<li ><a href="http://wonux.github.io/category/freebsd.html">FreeBSD</a></li>
+								<li class="active"><a href="http://wonux.github.io/category/gentoo.html">Gentoo</a></li>
+								<li ><a href="http://wonux.github.io/category/unixlinux.html">UNIX/LINUX</a></li>
+						</ul>
+                        <ul class="right">                                                                                                                                           
+                                                                                                          
+····                                                                                                                                       
+                                     <li><a href="http://wonux.github.io/pages/about.html">About</a></li>                                    
+                                                                                                                                          
+                                                                                                                                             
+                        </ul>  
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+							<div class="row">
+								<div class="small-12 columns">
+									<h2>Category: Gentoo</h2>
+								</div>
+							</div>
+
+<article>
+	<h3><a href="http://wonux.github.io/gentoo-dual-network.html">Gentoo双网卡同时启用上内外网</a></h3>
+	<h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Tue 16 June 2015. Tags: <a href="http://wonux.github.io/tag/network.html">network</a>, </h6>
+	
+<blockquote>
+<p>引言：本文配置网络通过 <a href="">OpenRC/netifrc</a> 方法（net.*scritps）配置。
+外网网卡：enp3s4
+内网网卡：enp2s0
+- 外网地址（通过路由器）
+IP： 192.168.1.10
+掩码： 255.255.255.0 
+网关： 192.168.1.1
+- 内网地址 
+IP： 172.14.255.27
+掩码： 255.255.0.0
+网关： 172.14.0.1</p>
+</blockquote>
+<p>1、分别设置网卡IP，默认网关设置外网网关。
+编辑<code>/etc ...</code></p>
+		<p class="continue"><a href="http://wonux.github.io/gentoo-dual-network.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
+	<h3><a href="http://wonux.github.io/gentoo-network-method.html">Gentoo网络管理方法</a></h3>
+	<h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Mon 15 June 2015. Tags: <a href="http://wonux.github.io/tag/network.html">network</a>, <a href="http://wonux.github.io/tag/gentoo.html">gentoo</a>, </h6>
+	
+<h3 id="openrcnetifrc">OpenRC/netifrc</h3>
+<p>Netifrc is a collection of modules created to configure and manage network interfaces via individual, per-interface scripts located in the /etc/init.d/ directory.
+Enable Gentoo's network stack (<a href="https://wiki.gentoo.org/wiki/Netifrc">net.* scripts</a>).</p>
+<h4 id="_1">检测网卡名字</h4>
+<div class="highlight"><pre><span class="code-line"><span></span>ifconfig -a</span>
+<span class="code-line">or</span>
+<span class="code-line">ls /sys/class/net</span>
+</pre></div>
+<h4 id="_2">添加网卡</h4>
+<p>通过<code>net.lo</code>链接</p>
+<div class="highlight"><pre><span class="code-line"><span></span>ln -s /etc/init ...</span></pre></div>
+		<p class="continue"><a href="http://wonux.github.io/gentoo-network-method.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
+	<h3><a href="http://wonux.github.io/gentoo-handbook-xorg.html">Gentoo Linux 中文手册（五） -- 安装X桌面环境</a></h3>
+	<h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Mon 05 January 2015. Tags: <a href="http://wonux.github.io/tag/gentoo.html">gentoo</a>, <a href="http://wonux.github.io/tag/handbook.html">handbook</a>, </h6>
+	
+<h2 id="x">安装X桌面环境：</h2>
+<h3 id="xorg">安装Xorg：</h3>
+<ul>
+<li>检测显卡信息：</li>
+</ul>
+<div class="highlight"><pre><span class="code-line"><span></span>dmesg | grep video</span>
+<span class="code-line">lspci  | grep -i VGA</span>
+</pre></div>
+<ul>
+<li>配置INPUT_DEVICE、VIDEO_CARDS变量：</li>
+</ul>
+<p>在安装Xorg之前，你需要在/etc/portage/make.conf文件中设置两个重要的变量。</p>
+<div class="highlight"><pre><span class="code-line"><span></span>    (For mouse, keyboard, and Synaptics touchpad support)</span>
+<span class="code-line">    INPUT_DEVICE="evdev  synaptics"   </span>
+<span class="code-line">    （对nVidia显卡）</span>
+<span class="code-line">    VIDEO_CARDS="nvidia"</span>
+<span class="code-line">    （或，对ATI Radeon显卡）</span>
+<span class="code-line">    VIDEO_CARDS="radeon"</span>
+<span class="code-line">    （VMware虚拟机）</span>
+<span class="code-line">    VIDEO_CARDS="vmware"</span>
+<span class="code-line">    （VirtualBox虚拟机）</span>
+<span class="code-line">    VIDEO_CARDS="virtualbox"</span>
+</pre></div>
+<ul>
+<li>安装xorg-server“</li>
+</ul>
+<div class="highlight"><pre><span class="code-line"><span></span>emerge -pv xorg-drivers</span>
+</pre></div>
+<p>First of all, make ...</p>
+		<p class="continue"><a href="http://wonux.github.io/gentoo-handbook-xorg.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
+	<h3><a href="http://wonux.github.io/gentoo-handbook-alsa.html">Gentoo Linux 中文手册（四） -- 声卡设置</a></h3>
+	<h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Mon 05 January 2015. Tags: <a href="http://wonux.github.io/tag/gentoo.html">gentoo</a>, <a href="http://wonux.github.io/tag/handbook.html">handbook</a>, </h6>
+	
+<h3 id="_1">硬件检测</h3>
+<p>To choose the right driver, first detect the used audio controller. You can use lspci for this task: </p>
+<div class="highlight"><pre><span class="code-line"><span></span>lspci | grep -i audio</span>
+</pre></div>
+<h3 id="_2">内核配置</h3>
+<p>You need to activate the following kernel options: </p>
+<div class="highlight"><pre><span class="code-line"><span></span>Device Drivers ---&gt;</span>
+<span class="code-line">    Sound ---&gt;</span>
+<span class="code-line">        &lt;*&gt; Sound card Support</span>
+<span class="code-line">            &lt;*&gt; Advanced Linux Sound Architecture ---&gt;</span>
+<span class="code-line">                [*]   PCI sound devices  ---&gt;</span>
+<span class="code-line"></span>
+<span class="code-line">                      Select the driver for your ...</span></pre></div>
+		<p class="continue"><a href="http://wonux.github.io/gentoo-handbook-alsa.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
+	<h3><a href="http://wonux.github.io/gentoo-wpa-supplicant.html">Gentoo 无线网络配置 wpa_supplicant</a></h3>
+	<h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Sun 04 January 2015. Tags: <a href="http://wonux.github.io/tag/wireless.html">wireless</a>, <a href="http://wonux.github.io/tag/wpa2.html">wpa2</a>, <a href="http://wonux.github.io/tag/network.html">network</a>, </h6>
+	
+<h3 id="_1">安装</h3>
+<p>安装<code>net-wireless/wpa_supplicant</code>包</p>
+<div class="highlight"><pre><span class="code-line"><span></span>emerge --ask wpa_supplicant </span>
+</pre></div>
+<h3 id="_2">配置</h3>
+<p>Set for Gentoo net.* scrips，tell the network script to use wpa_supplicant.
+<code>File/etc/conf.d/net</code></p>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="n">modules_wlan0</span>=<span class="s">"wpa_supplicant"</span></span>
+<span class="code-line"><span class="c c-Singleline"># 因为wpa_supplicant还不能很好的自动侦测驱动，所以需要我们为其指定正在使用的驱动。</span></span>
+<span class="code-line"><span class="n">wpa_supplicant_wlan0</span>=<span class="s">"-Dnl80211"</span></span>
+<span class="code-line"><span class="n">config_wlan0</span>=<span class="s">"dhcp"</span></span>
+</pre></div>
+<p><code>/etc/wpa_supplicant/wpa_supplicant.conf</code></p>
+<div class="highlight"><pre><span class="code-line"><span></span># Allow users in the 'wheel' group to control wpa_supplicant</span>
+<span class="code-line">ctrl_interface=DIR=/var ...</span></pre></div>
+		<p class="continue"><a href="http://wonux.github.io/gentoo-wpa-supplicant.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
+	<h3><a href="http://wonux.github.io/gentoo-locale.html">Gentoo本地化中文设置--Locale系统介绍</a></h3>
+	<h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Thu 20 November 2014. Tags: <a href="http://wonux.github.io/tag/locale.html">locale</a>, </h6>
+	
+<h3 id="locale">locale是什么？</h3>
+<p>一份Locale是一组信息的集合，大多数程序利用它来确定特定的国家和语言设置。这些locale以及它们包含的数据是系统库的一部分，可以在大多数系统中的/usr/share/locale目录下找到。locale的名称通常命名为ab_CD的形式，其中ab是两个（或三个）字母的语言代号（在ISO-639中指定），CD是两个字母的国家代号（在ISO-3166中指定）。一些变量常常附加在locale名称的后面，例如en_GB.UTF-8或de_DE@euro。</p>
+<h3 id="locale_1">locale环境变量</h3>
+<p>Locale的设置保存在环境变量中。典型情况下设置在<code>/etc/env.d/02locale</code>（系统全局设置）和 <code>~/.bashrc</code>（特定用户设置）文件中。这些变量分别决定locale各方面的设置，下面的表格给出了具体说明。所有变量都会取一个前述ab_CD格式的locale名称作为值。
+locale把按照所涉及到的文化传统的各个方面分成12个大类，这12个大类分别是：</p>
+<div class="highlight"><pre><span class="code-line"><span></span>    语言符号及其分类(LC_CTYPE)  </span>
+<span class="code-line">    数字(LC_NUMERIC)  </span>
+<span class="code-line">    比较和排序习惯(LC_COLLATE)  </span>
+<span class="code-line">    时间显示格式(LC_TIME)  </span>
+<span class="code-line">    货币单位(LC_MONETARY)  </span>
+<span class="code-line">    信息主要是提示信息,错误信息, 状态信息, 标题 ...</span></pre></div>
+		<p class="continue"><a href="http://wonux.github.io/gentoo-locale.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
+	<h3><a href="http://wonux.github.io/gentoo-preserved-libs.html">Gentoo:!!! existing preserved libs问题</a></h3>
+	<h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Thu 20 November 2014. Tags: <a href="http://wonux.github.io/tag/bugs.html">bugs</a>, </h6>
+	
+<h2 id="_1">问题描述</h2>
+<div class="highlight"><pre><span class="code-line"><span></span>!!! existing preserved libs:</span>
+<span class="code-line">&gt;&gt;&gt; package: media-libs/libmng-2.0.2-r1</span>
+<span class="code-line"> *  - /usr/lib/libmng.so.1</span>
+<span class="code-line"> *  - /usr/lib/libmng.so.1.0.0</span>
+<span class="code-line"> *      used by /opt/kingsoft/wps-office/office6/qt/plugins/imageformats/libqmng.so (app-office/wps-office-9.1.0.4751_alpha15)</span>
+<span class="code-line">&gt;&gt;&gt; package: media-libs/lcms-1.19-r2</span>
+<span class="code-line"> *  - /usr/lib/liblcms.so.1</span>
+<span class="code-line"> *  - /usr/lib/liblcms.so ...</span></pre></div>
+		<p class="continue"><a href="http://wonux.github.io/gentoo-preserved-libs.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
+	<h3><a href="http://wonux.github.io/gentoo-emerge.html">Emerge常用命令</a></h3>
+	<h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Thu 20 November 2014. Tags: <a href="http://wonux.github.io/tag/emerge.html">emerge</a>, <a href="http://wonux.github.io/tag/portage.html">portage</a>, </h6>
+	
+<p><strong> 查看依赖关系 </strong>
+--pretend（-p）
+-pv    #查看包含doc USE flag，来查看是否下载了文档。</p>
+<p><strong> 搜索软件包信息 </strong>
+查询软件包名称
+--search（-s）
+查询软件包描述：
+--searchdesc (-S)
+查看软件更新记录
+--changelog (-l)    #与 --pretend 并用，显示所有将更新套件的变更纪录。 </p>
+<p><strong> 下载源码 </strong>
+只下载源码(以及它所依赖的)
+--fetchonly(-f)
+-fp    #查看从哪下的源码</p>
+<p><strong> 更新软件 </strong>
+--update (-u)    #更新套件到最近的版本
+--upgradeonly (-U)    #更新套件，但不更新会导致版本号码降低的套件</p>
+<p><strong> 卸载软件 </strong>
+--unmerge（-C）
+移除不影响系统功能的软件
+--clean (-c)
+卸载可以移除的依赖（清理系统）
+--depclean
+(深度清理)</p>
+<blockquote>
+<p>常用参数：
+交互询问
+--ask ...</p></blockquote>
+		<p class="continue"><a href="http://wonux.github.io/gentoo-emerge.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
+	<h3><a href="http://wonux.github.io/gentoo-ntfs.html">Gentoo挂载Windowntfs的NTFS分区</a></h3>
+	<h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Thu 20 November 2014. Tags: <a href="http://wonux.github.io/tag/ntfs.html">ntfs</a>, <a href="http://wonux.github.io/tag/mount.html">mount</a>, </h6>
+	
+<h3 id="_1">内核需要开启的选项</h3>
+<div class="highlight"><pre><span class="code-line"><span></span>File systems ---&gt;</span>
+<span class="code-line">    &lt;*&gt; FUSE (Filesystem in Userspace) support</span>
+</pre></div>
+<h3 id="ntfs-3g">使用NTFS-3G</h3>
+<p>NTFS-3G是一个由Tuxera公司开发并维护的开源项目，目的是为Linux提供NTFS分区的的驱动程序。它可以安全且快速地读写 Windows 系统的 NTFS 分区，而不用担心数据丢失。</p>
+<ul>
+<li>安装软件包：</li>
+</ul>
+<div class="highlight"><pre><span class="code-line"><span></span>emerge -pv sys-fs/ntfs3g</span>
+</pre></div>
+<ul>
+<li>临时挂载NTFS分区</li>
+</ul>
+<p>可以使用下面的命令以读写方式临时装载一个NTFS分区到装载点</p>
+<div class="highlight"><pre><span class="code-line"><span></span>mount  -t ntfs-3g &lt;NTFS Partition&gt;  &lt;Mount Point&gt;</span>
+</pre></div>
+<ul>
+<li>系统启动时挂载NTFS分区</li>
+</ul>
+<p>编辑<code>/etc/fstab</code></p>
+<div class="highlight"><pre><span class="code-line"><span></span>vi /etc/fstab</span>
+</pre></div>
+<p>在文件最后增加如下格式的行</p>
+<blockquote>
+<p><ntfs partition=""> <mount point="">  ntfs-3g  defaults  0  0</mount></ntfs></p>
+</blockquote>
+<p>保存文件后重启系统或简单的执行下面的命令，即可装载NTFS分区到指定的装载点</p>
+<div class="highlight"><pre><span class="code-line"><span></span>mount  -a</span>
+</pre></div>
+		<p class="continue"><a href="http://wonux.github.io/gentoo-ntfs.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
+	<h3><a href="http://wonux.github.io/gentoo-network.html">Gentoo网络设置</a></h3>
+	<h6>Written by <a href="http://wonux.github.io/author/ace-king.html">Ace King</a> in <a href="http://wonux.github.io/category/gentoo.html">Gentoo</a> on Thu 20 November 2014. Tags: <a href="http://wonux.github.io/tag/network.html">network</a>, </h6>
+	
+<h2 id="_1">网卡识别配置</h2>
+<p>要开始配置你的网卡，你首先需要告诉Gentoo RC系统你的网卡。
+可以用ifconfig命令查看自己网卡名字：</p>
+<div class="highlight"><pre><span class="code-line"><span></span>ifconfig -a</span>
+</pre></div>
+<blockquote>
+<p>网卡名字（如eth0）的识别是通过在/etc/init.d目录里建立一个指向net.lo的符号链接来实现。</p>
+</blockquote>
+<div class="highlight"><pre><span class="code-line"><span></span>cd /etc/init.d</span>
+<span class="code-line">ln -s net.lo net.eth0</span>
+</pre></div>
+<h2 id="_2">启动和停止网络脚本</h2>
+<div class="highlight"><pre><span class="code-line"><span></span>/etc/init.d/net.eth0 start</span>
+<span class="code-line">/etc/init.d/net.eth0 stop</span>
+<span class="code-line">rc-update add net.eth0 default  #设置开机启动eth0</span>
+</pre></div>
+<h2 id="_3">网络配置</h2>
+<h3 id="_4">命令方式（临时配置，重启后失效）：</h3>
+<p>设置网络包括了三个步骤：</p>
+<ul>
+<li>使用ifconfig配置ip地址：</li>
+</ul>
+<div class="highlight"><pre><span class="code-line"><span></span>ifconfig ...</span></pre></div>
+		<p class="continue"><a href="http://wonux.github.io/gentoo-network.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+
+<div class="row" style="margin-bottom: -1.25em;">
+	<div class="small-12 columns text-center">
+		<div class="pagination-centered">
+			<ul class="pagination">
+				<li class="arrow unavailable"><a href="#">&larr; Previous</a></li>
+				<li class="current"><a href="http://wonux.github.io/category/gentoo.html">1</a></li>
+				<li class=""><a href="http://wonux.github.io/category/gentoo2.html">2</a></li>
+				<li class="arrow"><a href="http://wonux.github.io/category/gentoo2.html">Next &rarr;</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns" id="sidebar">
+							<section>
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="http://getpelican.com/">Pelican</a></li>
+									<li><a href="http://python.org/">Python.org</a></li>
+									<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+									<li><a href="#">You can modify those links in your config file</a></li>
+								</ul>
+							</div>
+
+							<div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/emerge.html" class="tag-4">emerge</a></li>
+									<li><a href="/tag/man.html" class="tag-4">man</a></li>
+									<li><a href="/tag/pacman.html" class="tag-4">pacman</a></li>
+									<li><a href="/tag/partition.html" class="tag-4">partition</a></li>
+									<li><a href="/tag/openbox.html" class="tag-4">openbox</a></li>
+									<li><a href="/tag/disk.html" class="tag-4">disk</a></li>
+									<li><a href="/tag/portage.html" class="tag-3">portage</a></li>
+									<li><a href="/tag/shell.html" class="tag-4">shell</a></li>
+									<li><a href="/tag/chroot.html" class="tag-4">chroot</a></li>
+									<li><a href="/tag/permission.html" class="tag-4">permission</a></li>
+									<li><a href="/tag/mpc.html" class="tag-4">mpc</a></li>
+									<li><a href="/tag/slice.html" class="tag-4">slice</a></li>
+									<li><a href="/tag/bugs.html" class="tag-2">bugs</a></li>
+									<li><a href="/tag/pelican.html" class="tag-3">pelican</a></li>
+									<li><a href="/tag/gcc.html" class="tag-4">gcc</a></li>
+									<li><a href="/tag/xorg.html" class="tag-1">xorg</a></li>
+									<li><a href="/tag/markdown.html" class="tag-2">markdown</a></li>
+									<li><a href="/tag/ports.html" class="tag-4">ports</a></li>
+									<li><a href="/tag/arch.html" class="tag-3">arch</a></li>
+									<li><a href="/tag/apps.html" class="tag-4">apps</a></li>
+									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
+									<li><a href="/tag/mount.html" class="tag-4">mount</a></li>
+									<li><a href="/tag/lxde.html" class="tag-4">lxde</a></li>
+									<li><a href="/tag/process.html" class="tag-4">process</a></li>
+									<li><a href="/tag/music.html" class="tag-4">music</a></li>
+									<li><a href="/tag/hexo.html" class="tag-4">hexo</a></li>
+									<li><a href="/tag/tty.html" class="tag-4">tty</a></li>
+									<li><a href="/tag/faq.html" class="tag-4">faq</a></li>
+									<li><a href="/tag/blog.html" class="tag-2">blog</a></li>
+									<li><a href="/tag/mpd.html" class="tag-4">mpd</a></li>
+									<li><a href="/tag/wpa2.html" class="tag-4">wpa2</a></li>
+									<li><a href="/tag/use.html" class="tag-4">use</a></li>
+									<li><a href="/tag/console.html" class="tag-4">console</a></li>
+									<li><a href="/tag/locale.html" class="tag-3">locale</a></li>
+									<li><a href="/tag/time.html" class="tag-4">time</a></li>
+									<li><a href="/tag/handbook.html" class="tag-1">handbook</a></li>
+									<li><a href="/tag/fstab.html" class="tag-4">fstab</a></li>
+									<li><a href="/tag/gentoo.html" class="tag-1">gentoo</a></li>
+									<li><a href="/tag/mirrors.html" class="tag-4">mirrors</a></li>
+									<li><a href="/tag/file-system.html" class="tag-4">file system</a></li>
+									<li><a href="/tag/paste.html" class="tag-4">paste</a></li>
+									<li><a href="/tag/git.html" class="tag-4">git</a></li>
+									<li><a href="/tag/clock.html" class="tag-4">clock</a></li>
+									<li><a href="/tag/wireless.html" class="tag-4">wireless</a></li>
+									<li><a href="/tag/unix.html" class="tag-1">unix</a></li>
+									<li><a href="/tag/ntfs.html" class="tag-4">ntfs</a></li>
+									<li><a href="/tag/account.html" class="tag-4">account</a></li>
+									<li><a href="/tag/network.html" class="tag-1">network</a></li>
+									<li><a href="/tag/rescue.html" class="tag-4">rescue</a></li>
+									<li><a href="/tag/package.html" class="tag-4">package</a></li>
+								</ul>
+							</div>
+
+							<div class="panel">
+								<h5>Monthly Archives</h5>
+								<ul class="side-nav">
+											<li><a href="/posts/2015/06/index.html">June 2015 (2)</a></li>
+											<li><a href="/posts/2015/01/index.html">January 2015 (3)</a></li>
+											<li><a href="/posts/2014/11/index.html">November 2014 (9)</a></li>
+											<li><a href="/posts/2014/10/index.html">October 2014 (1)</a></li>
+											<li><a href="/posts/2014/09/index.html">September 2014 (1)</a></li>
+											<li><a href="/posts/2014/06/index.html">June 2014 (2)</a></li>
+											<li><a href="/posts/2014/05/index.html">May 2014 (1)</a></li>
+								</ul>
+							</div>
+
+							<div class="panel">
+								<h5>Social</h5>
+								<ul class="side-nav">
+									<li><a href="https://github.com/wonux">github</a></li>
+									<li><a href="http://weibo.com/wonux">weibo</a></li>
+								</ul>
+							</div>
+                            </section>
+					  </aside>
+					<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<hr/>
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="http://wonux.github.io/theme/js/jquery.js"></script>
+		<script src="http://wonux.github.io/theme/js/foundation.min.js"></script>
+		<script>
+		$(document).foundation();
+		</script>
+	</body>
+</html>
