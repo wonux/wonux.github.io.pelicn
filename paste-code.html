@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Ace King" />
+        <meta name="copyright" content="Ace King" />
+
+        <meta name="description" content="软件作用¶ 直接把管道里面的文字内容传到网站上面，然后反馈一个地址可以读取内容。 主要介绍wgetpaste： 用法¶ 1cat /etc/portage/make.conf | wgetpaste 常见问题¶ 因为pastebin服务源无法访问导致出错。 解决办法： - 列出可用的pastebin服务 1wgetpaste -S Services supported: (case sensitive): Name: Url: *bpaste http://bpaste.net ca http://pastebin.ca/ codepad http://codepad.org/ dpaste http://dpaste.com/ gists https://api.github.com/gists lugons https://paste ...
+" />
+        <meta name="twitter:creator" content="@wonux">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="paste, apps, UNIX/LINUX, " />
+
+<meta property="og:title" content="直接 Paste 代码到网络上 "/>
+<meta property="og:url" content="http://wonux.github.io/paste-code" />
+<meta property="og:description" content="软件作用¶ 直接把管道里面的文字内容传到网站上面，然后反馈一个地址可以读取内容。 主要介绍wgetpaste： 用法¶ 1cat /etc/portage/make.conf | wgetpaste 常见问题¶ 因为pastebin服务源无法访问导致出错。 解决办法： - 列出可用的pastebin服务 1wgetpaste -S Services supported: (case sensitive): Name: Url: *bpaste http://bpaste.net ca http://pastebin.ca/ codepad http://codepad.org/ dpaste http://dpaste.com/ gists https://api.github.com/gists lugons https://paste ..." />
+<meta property="og:site_name" content="Wonux Blog" />
+<meta property="og:article:author" content="Ace King" />
+<meta property="og:article:published_time" content="2014-09-16T10:18:00+08:00" />
+<meta property="" content="2014-11-05T08:28:00+08:00" />
+<meta name="twitter:title" content="直接 Paste 代码到网络上 ">
+<meta name="twitter:description" content="软件作用¶ 直接把管道里面的文字内容传到网站上面，然后反馈一个地址可以读取内容。 主要介绍wgetpaste： 用法¶ 1cat /etc/portage/make.conf | wgetpaste 常见问题¶ 因为pastebin服务源无法访问导致出错。 解决办法： - 列出可用的pastebin服务 1wgetpaste -S Services supported: (case sensitive): Name: Url: *bpaste http://bpaste.net ca http://pastebin.ca/ codepad http://codepad.org/ dpaste http://dpaste.com/ gists https://api.github.com/gists lugons https://paste ...">
+<meta property="og:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>直接 Paste 代码到网络上  · Wonux Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?7aeecf36">
+        <link rel="shortcut icon" href="http://wonux.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://wonux.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://wonux.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://wonux.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://wonux.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://wonux.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://wonux.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://wonux.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://wonux.github.io/"><span class=site-name><span style="color:black;">Wonux</span> <span style="color:#AA1032;">Blog</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://wonux.github.io">Home</a></li>
+                            <li ><a href="http://wonux.github.io/about">About</a></li>
+                            <li ><a href="http://wonux.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://wonux.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://wonux.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://wonux.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://wonux.github.io/paste-code"> 直接 Paste&nbsp;代码到网络上  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#_1">软件作用</a></li>
+<li><a href="#_2">用法</a></li>
+<li><a href="#_3">常见问题</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h4 id="_1">软件作用<a class="headerlink" href="#_1" title="Permanent link">¶</a></h4>
+<p>直接把管道里面的文字内容传到网站上面，然后反馈一个地址可以读取内容。 主要介绍wgetpaste：</p>
+<h4 id="_2">用法<a class="headerlink" href="#_2" title="Permanent link">¶</a></h4>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>cat /etc/portage/make.conf | wgetpaste
+</pre></div>
+</td></tr></table>
+<h4 id="_3">常见问题<a class="headerlink" href="#_3" title="Permanent link">¶</a></h4>
+<p>因为pastebin服务源无法访问导致出错。</p>
+<p>解决办法：
+- 列出可用的pastebin服务</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>wgetpaste -S
+</pre></div>
+</td></tr></table>
+<p>Services supported: (case sensitive):</p>
+<table>
+<thead>
+<tr>
+<th>Name:</th>
+<th>Url:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*bpaste</td>
+<td>http://bpaste.net</td>
+</tr>
+<tr>
+<td>ca</td>
+<td>http://pastebin.ca/</td>
+</tr>
+<tr>
+<td>codepad</td>
+<td>http://codepad.org/</td>
+</tr>
+<tr>
+<td>dpaste</td>
+<td>http://dpaste.com/</td>
+</tr>
+<tr>
+<td>gists</td>
+<td>https://api.github.com/gists</td>
+</tr>
+<tr>
+<td>lugons</td>
+<td>https://paste.lugons.org/</td>
+</tr>
+<tr>
+<td>poundpython</td>
+<td>http://paste.pound-python.org/</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>默认使用bpate</p>
+</blockquote>
+<ul>
+<li>使用可用的pastebin服务，如dpaste</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>cat /etc /portage/make.conf | wgetpaste  -s dpaste
+</pre></div>
+</td></tr></table>
+            <section>
+    <p id="post-share-links">
+    Like this post? Share on:
+    <a href="http://twitter.com/home?status=%E7%9B%B4%E6%8E%A5%20Paste%C2%A0%E4%BB%A3%E7%A0%81%E5%88%B0%E7%BD%91%E7%BB%9C%E4%B8%8A%20http%3A//wonux.github.io/paste-code" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/paste-code" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/paste-code" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=%E7%9B%B4%E6%8E%A5%20Paste%C2%A0%E4%BB%A3%E7%A0%81%E5%88%B0%E7%BD%91%E7%BB%9C%E4%B8%8A&amp;body=http%3A//wonux.github.io/paste-code" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            <section>
+<p id="comment-message">So what do you think? Leave your comments below: </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://wonux.github.io/paste-code#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'wonux';
+        var disqus_identifier = 'http://wonux.github.io/paste-code';
+    var disqus_url = 'http://wonux.github.io/paste-code';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://wonux.github.io/mpc-mpd" title="Previous: MPC+MPD+Conky听音乐">MPC+MPD+Conky听音乐</a></li>
+                <li class="next-article"><a href="http://wonux.github.io/arch-mirrors" title="Next: Arch下载官方镜像列表Official mirrors">Arch下载官方镜像列表Official mirrors</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-09-16T10:18:00+08:00">Sep 16, 2014</time>
+
+<h4>Last Updated</h4>
+<time datetime="2014-11-05T08:28:00+08:00">Nov 5, 2014</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="http://wonux.github.io/categories.html#unixlinux-ref">UNIX/LINUX</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://wonux.github.io/tags.html#apps-ref">apps
+                    <span>1</span>
+</a></li>
+                <li><a href="http://wonux.github.io/tags.html#paste-ref">paste
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Stay in Touch</h4>
+    <a href="http://twitter.com/" title="My Twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/wonux" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="mailto:wonux@qq.com" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+<!-- Begin MailChimp Signup Form -->
+<div id="mc-embed-signup">
+<form action="empty" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<h4>Get Monthly Updates</h4>
+<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your email..." required>
+<div class="clear"><input type="submit" value="Send me Free updates" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Wonux Blog "</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://weibo.com/wonux" property="cc:attributionName" rel="cc:attributionURL">Ace King</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'wonux';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

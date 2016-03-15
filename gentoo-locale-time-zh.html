@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Ace King" />
+        <meta name="copyright" content="Ace King" />
+
+        <meta name="description" content="时区¶ 你需要选择时区让系统知道你的地理位置，以保持正确的时间。在/usr/share/zoneinfo中查找你的时区。然后在/etc/conf.d/clock中设置时区。请忽略/usr/share/zoneinfo/Etc/GMT*时区，因为它们的名字并不表示所指的地区。比如，GMT-8实际上是GMT+8。 设置时区信息： 1 2 3ls /usr/share/zoneinfo echo &#34;Asia/Shanghai&#34; &gt; /etc/timezone emerge --config sys-libs/timezone-data 注意: 你可以做一个用户级的设置，在shell的rc文件（如bash的.bash_profile）中将TZ变量的值设为 ...
+" />
+        <meta name="twitter:creator" content="@wonux">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="locale, Gentoo, " />
+
+<meta property="og:title" content="Gentoo本地化设置—时区、时钟、字体、中文环境 "/>
+<meta property="og:url" content="http://wonux.github.io/gentoo-locale-time-zh" />
+<meta property="og:description" content="时区¶ 你需要选择时区让系统知道你的地理位置，以保持正确的时间。在/usr/share/zoneinfo中查找你的时区。然后在/etc/conf.d/clock中设置时区。请忽略/usr/share/zoneinfo/Etc/GMT*时区，因为它们的名字并不表示所指的地区。比如，GMT-8实际上是GMT+8。 设置时区信息： 1 2 3ls /usr/share/zoneinfo echo &#34;Asia/Shanghai&#34; &gt; /etc/timezone emerge --config sys-libs/timezone-data 注意: 你可以做一个用户级的设置，在shell的rc文件（如bash的.bash_profile）中将TZ变量的值设为 ..." />
+<meta property="og:site_name" content="Wonux Blog" />
+<meta property="og:article:author" content="Ace King" />
+<meta property="og:article:published_time" content="2014-06-30T11:21:00+08:00" />
+<meta property="" content="2015-01-05T16:37:00+08:00" />
+<meta name="twitter:title" content="Gentoo本地化设置—时区、时钟、字体、中文环境 ">
+<meta name="twitter:description" content="时区¶ 你需要选择时区让系统知道你的地理位置，以保持正确的时间。在/usr/share/zoneinfo中查找你的时区。然后在/etc/conf.d/clock中设置时区。请忽略/usr/share/zoneinfo/Etc/GMT*时区，因为它们的名字并不表示所指的地区。比如，GMT-8实际上是GMT+8。 设置时区信息： 1 2 3ls /usr/share/zoneinfo echo &#34;Asia/Shanghai&#34; &gt; /etc/timezone emerge --config sys-libs/timezone-data 注意: 你可以做一个用户级的设置，在shell的rc文件（如bash的.bash_profile）中将TZ变量的值设为 ...">
+<meta property="og:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>Gentoo本地化设置—时区、时钟、字体、中文环境  · Wonux Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?7aeecf36">
+        <link rel="shortcut icon" href="http://wonux.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://wonux.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://wonux.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://wonux.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://wonux.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://wonux.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://wonux.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://wonux.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://wonux.github.io/"><span class=site-name><span style="color:black;">Wonux</span> <span style="color:#AA1032;">Blog</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://wonux.github.io">Home</a></li>
+                            <li ><a href="http://wonux.github.io/about">About</a></li>
+                            <li ><a href="http://wonux.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://wonux.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://wonux.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://wonux.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://wonux.github.io/gentoo-locale-time-zh"> Gentoo本地化设置&#8212;时区、时钟、字体、中文环境  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#_1">时区</a></li>
+<li><a href="#_2">硬件时钟</a></li>
+<li><a href="#_3">安装中文字体</a></li>
+<li><a href="#locale">生成指定的Locale</a></li>
+<li><a href="#locale_1">设置一个Locale显示中文</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h2 id="_1">时区<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>你需要选择时区让系统知道你的地理位置，以保持正确的时间。在/usr/share/zoneinfo中查找你的时区。然后在/etc/conf.d/clock中设置时区。请忽略/usr/share/zoneinfo/Etc/<span class="caps">GMT</span>*时区，因为它们的名字并不表示所指的地区。比如，<span class="caps">GMT</span>-8实际上是<span class="caps">GMT</span>+8。 设置时区信息：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>ls /usr/share/zoneinfo
+echo "Asia/Shanghai" &gt; /etc/timezone
+emerge --config sys-libs/timezone-data
+</pre></div>
+</td></tr></table>
+<blockquote>
+<p>注意: 你可以做一个用户级的设置，在shell的rc文件（如bash的.bash_profile）中将<span class="caps">TZ</span>变量的值设为/usr/share/zoneinfo下的任何东西。本案例中<span class="caps">TZ</span>=”Asia/Shanghai”。</p>
+</blockquote>
+<h2 id="_2">硬件时钟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>Gentoo Linux安装过程中，大多数情况下硬件时钟都是被设成<span class="caps">UTC</span>（或<span class="caps">GMT</span>，格林威治标准时间），而时区则定为实际的本地时间。如果出于某种原因，你需要将硬件时钟设为非<span class="caps">UTC</span>，那么你就要编辑/etc/conf.d/hwclock，将<span class="caps">CLOCK</span>的值由<span class="caps">UTC</span>改为local。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>CLOCK="UTC"
+或
+CLOCK="local"
+</pre></div>
+</td></tr></table>
+<h2 id="_3">安装中文字体<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p>推荐开源文泉驿自由字体</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>emerge wqy-zenhei （文泉驿正黑）
+emerge wqy-microhei （文泉驿微米黑）
+</pre></div>
+</td></tr></table>
+<h2 id="locale">生成指定的Locale<a class="headerlink" href="#locale" title="Permanent link">¶</a></h2>
+<p>可能你在系统中只要用到一个或者两个locale。你可以在/etc/locale.gen中指定所需的的locale。
+中文有很多种编码，最流行的就是<span class="caps">UTF8</span>和<span class="caps">GBK</span>。我们推荐客户使用<span class="caps">UTF8</span>编码，因为这是国际标准，能兼容任何语言的编码。</p>
+<p>添加locale到<code>/etc/locale.gen</code></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>nano -w /etc/locale.gen
+</pre></div>
+</td></tr></table>
+<blockquote>
+<p>en_US <span class="caps">ISO</span>-8859-1
+en_US.<span class="caps">UTF</span>-8 <span class="caps">UTF</span>-8
+zh_CB.<span class="caps">UTF</span>-8 <span class="caps">UTF</span>-8</p>
+</blockquote>
+<p>下一步是执行<code>locale-gen</code>。它会生成/etc/locale.gen文件中指定的所有locale。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>locale-gen
+</pre></div>
+</td></tr></table>
+<p>你可以通过执行locale -a来检验所选的locale是否可用。 </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>locale -a
+</pre></div>
+</td></tr></table>
+<h2 id="locale_1">设置一个Locale显示中文<a class="headerlink" href="#locale_1" title="Permanent link">¶</a></h2>
+<ul>
+<li>在<code>/etc/env.d/02locale</code>中设置全局默认的系统locale</li>
+</ul>
+<blockquote>
+<p><span class="caps">LANG</span>=”zh_CN.<span class="caps">UTF</span>-8” LC_COLLATE=”C”</p>
+</blockquote>
+<ul>
+<li>在~/.bashrc中设置用户级的系统locale</li>
+</ul>
+<blockquote>
+<p>export <span class="caps">LANG</span>=”zh_CN.<span class="caps">UTF</span>-8”
+export LC_COLLATE=”C”</p>
+</blockquote>
+<ul>
+<li>更新系统全局默认的locale：</li>
+</ul>
+<p>设置好正确的locale后，一定要更新环境变量使系统知道所做的更改：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>env-update &amp;&amp; source /etc/profile
+</pre></div>
+</td></tr></table>
+<ul>
+<li>更新特定用户的locale：</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>source ~/.bashrc
+</pre></div>
+</td></tr></table>
+<p>更新环境后，你需要按下Ctrl-Alt-Backspace杀死X服务器，登出，然后以用户身份登入。 现在，检验一下所做的更改是否已经生效了：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>locale
+</pre></div>
+</td></tr></table>
+<blockquote>
+<p>注：<em>另一种系统配置方式是保留默认的C locale，同时要能够表现<span class="caps">UTF</span>-8字符。
+这种选择可以通过使用下述设置来实现：LC_CTYPE=zh_CN.<span class="caps">UTF</span>-8</em></p>
+</blockquote>
+            <section>
+    <p id="post-share-links">
+    Like this post? Share on:
+    <a href="http://twitter.com/home?status=Gentoo%E6%9C%AC%E5%9C%B0%E5%8C%96%E8%AE%BE%E7%BD%AE%E2%80%94%E6%97%B6%E5%8C%BA%E3%80%81%E6%97%B6%E9%92%9F%E3%80%81%E5%AD%97%E4%BD%93%E3%80%81%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83%20http%3A//wonux.github.io/gentoo-locale-time-zh" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/gentoo-locale-time-zh" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/gentoo-locale-time-zh" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=Gentoo%E6%9C%AC%E5%9C%B0%E5%8C%96%E8%AE%BE%E7%BD%AE%E2%80%94%E6%97%B6%E5%8C%BA%E3%80%81%E6%97%B6%E9%92%9F%E3%80%81%E5%AD%97%E4%BD%93%E3%80%81%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83&amp;body=http%3A//wonux.github.io/gentoo-locale-time-zh" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            <section>
+<p id="comment-message">So what do you think? Leave your comments below: </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://wonux.github.io/gentoo-locale-time-zh#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'wonux';
+        var disqus_identifier = 'http://wonux.github.io/gentoo-locale-time-zh';
+    var disqus_url = 'http://wonux.github.io/gentoo-locale-time-zh';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Keep Reading</h2>
+<ul class="related-posts-list">
+<li><a href="http://wonux.github.io/gentoo-locale" title="Gentoo本地化中文设置—Locale系统介绍">Gentoo本地化中文设置—Locale系统介绍</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://wonux.github.io/gentoo-udev-netware" title="Previous: Gentoo解决Udev升级的网卡重命名问题">Gentoo解决Udev升级的网卡重命名问题</a></li>
+                <li class="next-article"><a href="http://wonux.github.io/gentoo-gcc-invalid" title="Next: gcc-config:Active gcc profile is invalid解决办法">gcc-config:Active gcc profile is invalid解决办法</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-06-30T11:21:00+08:00">Jun 30, 2014</time>
+
+<h4>Last Updated</h4>
+<time datetime="2015-01-05T16:37:00+08:00">Jan 5, 2015</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="http://wonux.github.io/categories.html#gentoo-ref">Gentoo</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://wonux.github.io/tags.html#locale-ref">locale
+                    <span>2</span>
+</a></li>
+            </ul>
+<h4>Stay in Touch</h4>
+    <a href="http://twitter.com/" title="My Twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/wonux" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="mailto:wonux@qq.com" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+<!-- Begin MailChimp Signup Form -->
+<div id="mc-embed-signup">
+<form action="empty" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<h4>Get Monthly Updates</h4>
+<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your email..." required>
+<div class="clear"><input type="submit" value="Send me Free updates" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Wonux Blog "</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://weibo.com/wonux" property="cc:attributionName" rel="cc:attributionURL">Ace King</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'wonux';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
