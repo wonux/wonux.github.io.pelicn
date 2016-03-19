@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Ace King" />
+        <meta name="copyright" content="Ace King" />
+
+        <meta name="description" content="" />
+        <meta name="twitter:creator" content="@wonux">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="gentoo, locale, Gentoo, " />
+
+<meta property="og:title" content="Gentoo本地化中文设置—Locale系统介绍 "/>
+<meta property="og:url" content="http://wonux.github.io/gentoo-locale" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="Wonux Blog" />
+<meta property="og:article:author" content="Ace King" />
+<meta property="og:article:published_time" content="2014-11-20T16:21:00+08:00" />
+<meta property="" content="2015-01-05T16:35:00+08:00" />
+<meta name="twitter:title" content="Gentoo本地化中文设置—Locale系统介绍 ">
+<meta name="twitter:description" content="">
+<meta property="og:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>Gentoo本地化中文设置—Locale系统介绍  · Wonux Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?7aeecf36">
+        <link rel="shortcut icon" href="http://wonux.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://wonux.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://wonux.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://wonux.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://wonux.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://wonux.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://wonux.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://wonux.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://wonux.github.io/"><span class=site-name><span style="color:black;">Wonux</span> <span style="color:#AA1032;">Blog</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://wonux.github.io">Home</a></li>
+                            <li ><a href="http://wonux.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://wonux.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://wonux.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://wonux.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://wonux.github.io/gentoo-locale"> Gentoo本地化中文设置&#8212;Locale系统介绍  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#locale">locale是什么？</a></li>
+<li><a href="#locale_1">locale环境变量</a></li>
+<li><a href="#locale_2">怎样设定locale呢？</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <hr/>
+
+<h3 id="locale">locale是什么？<a class="headerlink" href="#locale" title="Permanent link">¶</a></h3>
+<p>一份Locale是一组信息的集合，大多数程序利用它来确定特定的国家和语言设置。这些locale以及它们包含的数据是系统库的一部分，可以在大多数系统中的/usr/share/locale目录下找到。locale的名称通常命名为ab_CD的形式，其中ab是两个（或三个）字母的语言代号（在<span class="caps">ISO</span>-639中指定），<span class="caps">CD</span>是两个字母的国家代号（在<span class="caps">ISO</span>-3166中指定）。一些变量常常附加在locale名称的后面，例如en_GB.<span class="caps">UTF</span>-8或de_DE@euro。</p>
+<h3 id="locale_1">locale环境变量<a class="headerlink" href="#locale_1" title="Permanent link">¶</a></h3>
+<p>Locale的设置保存在环境变量中。典型情况下设置在<code>/etc/env.d/02locale</code>（系统全局设置）和 <code>~/.bashrc</code>（特定用户设置）文件中。这些变量分别决定locale各方面的设置，下面的表格给出了具体说明。所有变量都会取一个前述ab_CD格式的locale名称作为值。 locale把按照所涉及到的文化传统的各个方面分成12个大类，这12个大类分别是：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    语言符号及其分类(LC_CTYPE)  
+    数字(LC_NUMERIC)  
+    比较和排序习惯(LC_COLLATE)  
+    时间显示格式(LC_TIME)  
+    货币单位(LC_MONETARY)  
+    信息主要是提示信息,错误信息, 状态信息, 标题, 标签, 按钮和菜单等(LC_MESSAGES)  
+    姓名书写方式(LC_NAME)  
+    地址书写方式(LC_ADDRESS)  
+    电话号码书写方式(LC_TELEPHONE)  
+    度量衡表达方式(LC_MEASUREMENT)  
+    默认纸张尺寸大小(LC_PAPER)  
+    对locale自身包含信息的概述(LC_IDENTIFICATION)。  
+</pre></div>
+</td></tr></table>
+<p>其中，与中文输入关系最密切的就是<strong>LC_CTYPE,LC_CTYPE</strong>规定了系统内有效的字符以及这些字符的分类，诸如什么是大写字母，小写字母，大小写转换，标点符号、可打印字符和其他的字符属性等方面。而locale定义zh_CN中最最重要的一项就是定义了汉字(Class “hanzi”)这一个大类，当然也是用Unicode描述的，这就让中文字符在Linux系统中成为合法的有效字符，而且不论它们是用什么字符集编码的。
+在en_US的locale定义中，并没有定义汉字，所以汉字不是有效字符。所以如果要输入中文必须使用支持中文的locale，也就是zh_XX，如zh_CN，zh_TW，zh_HK等等。
+另外非常重要的一点就是这些分类是彼此独立的，也就是说LC_CTYPE，LC_COLLATE和 LC_MESSAGES等等分类彼此之间是独立的，可以根据用户的需要设定成不同的值。这一点对很多用户是有利的，甚至是必须的。例如，我就需要一个能够输入中文的英文环境，所以我可以把LC_CTYPE设定成。</p>
+<h3 id="locale_2">怎样设定locale呢？<a class="headerlink" href="#locale_2" title="Permanent link">¶</a></h3>
+<p>设定locale就是设定12大类的locale分类属性，即 12个<code>LC_*</code>。除了这12个变量可以设定以外，为了简便起见，还有两个变量：<code>LC_ALL</code>和<code>LANG</code>。它们之间有一个优先级的关系：</p>
+<blockquote>
+<p><code>LC_ALL</code> &gt; <code>LC_*</code> &gt; <code>LANG</code></p>
+</blockquote>
+<p>可以这么说，LC_ALL是最上级设定或者强制设定，而<span class="caps">LANG</span>是默认设定值。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>1.如果你设定了LC_ALL＝zh_CN.UTF-8，那么不管LC_*和LANG设定成什么值，它们都会被强制服从LC_ALL的设定，成为 zh_CN.UTF-8。  
+2.假如你设定了LANG＝zh_CN.UTF-8，而其他的LC_*=en_US.UTF-8，并且没有设定LC_ALL的话，那么系统的locale设定以LC_*=en_US.UTF-8。  
+3.假如你设定了LANG＝zh_CN.UTF-8，而其他的LC_*，和LC_ALL均未设定的话，系统会将LC_*设定成默认值，也就是LANG的值 zh_CN.UTF-8 。  
+4.假如你设定了LANG＝zh_CN.UTF-8，而其他的LC_CTYPE=en_US.UTF-8，其他的LC_*，和LC_ALL均未设定的话，那么系统的locale设定将是：LC_CTYPE=en_US.UTF-8，其余的 LC_COLLATE，LC_MESSAGES等等均会采用默认值，也就是LANG的值，也就是LC_COLLATE＝LC_MESSAGES＝……＝ LC_PAPER＝LANG＝zh_CN.UTF-8。  
+</pre></div>
+</td></tr></table>
+<p>所以，locale是这样设定的：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>1.如果你需要一个纯中文的系统的话，设定LC_ALL= zh_CN.XXXX，或者LANG= zh_CN.XXXX都可以，当然你可以两个都设定，但正如上面所讲，LC_ALL的值将复盖所有其他的locale设定，不要作无用功。  
+2.如果你只想要一个可以输入中文的环境，而保持菜单、标题，系统信息等等为英文界面，那么只需要设定LC_CTYPE＝zh_CN.XXXX，LANG= en_US.XXXX就可以了。这样LC_CTYPE＝zh_CN.XXXX，而LC_COLLATE＝LC_MESSAGES＝……＝ LC_PAPER＝LANG＝en_US.XXXX。  
+3.假如你高兴的话，可以把12个LC_*一一设定成你需要的值，打造一个古灵精怪的系统：LC_CTYPE＝zh_CN.GBK/GBK(使用中文编码内码GBK字符集)；LC_NUMERIC=en_GB.ISO-8859-1(使用大不列颠的数字系统)LC_MEASUREMEN=de_DE.ISO-8859-15@euro(德国的度量衡使用ISO-8859-15字符集)罗马的地址书写方式，美国的纸张设定……。估计没人这么干吧。  
+4.假如你什么也不做的话，也就是LC_ALL，LANG和LC_*均不指定特定值的话，系统将采用POSIX作为lcoale，  
+</pre></div>
+</td></tr></table>
+<blockquote>
+<p>警告: LC_ALL设置之后不可被覆写，因此强烈反对使用。除非作测试请不要使用它，并且决不要把它设置在启动文件中。</p>
+</blockquote>
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="http://twitter.com/home?status=Gentoo%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE%E2%80%94Locale%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D%20http%3A//wonux.github.io/gentoo-locale" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/gentoo-locale" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/gentoo-locale" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=Gentoo%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE%E2%80%94Locale%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D&amp;body=http%3A//wonux.github.io/gentoo-locale" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            <section>
+<p id="comment-message">Comments Below: </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://wonux.github.io/gentoo-locale#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'wonux';
+        var disqus_identifier = 'http://wonux.github.io/gentoo-locale';
+    var disqus_url = 'http://wonux.github.io/gentoo-locale';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Keep Reading</h2>
+<ul class="related-posts-list">
+<li><a href="http://wonux.github.io/gentoo-handbook-xorg" title="Gentoo安装详解（四）— 安装X桌面环境">Gentoo安装详解（四）— 安装X桌面环境</a></li>
+<li><a href="http://wonux.github.io/gentoo-handbook-alsa" title="Gentoo安装详解（五）—声卡设置">Gentoo安装详解（五）—声卡设置</a></li>
+<li><a href="http://wonux.github.io/gentoo-localization" title="Gentoo本地化设置—时区、时钟、字体、中文环境">Gentoo本地化设置—时区、时钟、字体、中文环境</a></li>
+<li><a href="http://wonux.github.io/gentoo-gcc-invalid" title="gcc-config:Active gcc profile is invalid 解决办法">gcc-config:Active gcc profile is invalid 解决办法</a></li>
+<li><a href="http://wonux.github.io/gentoo-arch-apps" title="Gentoo/Arch常用软件列表">Gentoo/Arch常用软件列表</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://wonux.github.io/gentoo-grub-theme" title="Previous: Gentoo启动菜单设置：使用官方LiveDVD Grub主题">Gentoo启动菜单设置：使用官方LiveDVD Grub主题</a></li>
+                <li class="next-article"><a href="http://wonux.github.io/gentoo-wpa-supplicant" title="Next: Gentoo无线网络配置 — wpa_supplicant">Gentoo无线网络配置 — wpa_supplicant</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-11-20T16:21:00+08:00">Nov 20, 2014</time>
+
+<h4>Last Updated</h4>
+<time datetime="2015-01-05T16:35:00+08:00">Jan 5, 2015</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="http://wonux.github.io/categories.html#gentoo-ref">Gentoo</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://wonux.github.io/tags.html#gentoo-ref">gentoo
+                    <span>21</span>
+</a></li>
+                <li><a href="http://wonux.github.io/tags.html#locale-ref">locale
+                    <span>2</span>
+</a></li>
+            </ul>
+<h4>Stay in Touch</h4>
+    <a href="http://weibo.com/wonux" title="My Weibo Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-weibo sidebar-social-links"></i></a>
+    <a href="https://github.com/wonux" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://douban.com/people/wonux" title="My Book Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-book sidebar-social-links"></i></a>
+    <a href="mailto:wonux@qq.com" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+<!-- Begin MailChimp Signup Form -->
+<div id="mc-embed-signup">
+<form action="empty" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<h4>Get Monthly Updates</h4>
+<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your email..." required>
+<div class="clear"><input type="submit" value="Send me Free updates" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Wonux Blog "</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://weibo.com/wonux" property="cc:attributionName" rel="cc:attributionURL">Ace King</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'wonux';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

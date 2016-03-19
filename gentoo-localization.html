@@ -12,21 +12,21 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="gentoo, handbook, Gentoo, " />
+<meta name="keywords" content="gentoo, locale, Gentoo, " />
 
-<meta property="og:title" content="Gentoo安装详解(一) — 安装基本系统 "/>
-<meta property="og:url" content="http://wonux.github.io/gentoo-handbook-base" />
+<meta property="og:title" content="Gentoo本地化设置—时区、时钟、字体、中文环境 "/>
+<meta property="og:url" content="http://wonux.github.io/gentoo-localization" />
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="Wonux Blog" />
 <meta property="og:article:author" content="Ace King" />
-<meta property="og:article:published_time" content="2014-05-04T16:48:00+08:00" />
-<meta property="" content="2015-02-11T11:24:00+08:00" />
-<meta name="twitter:title" content="Gentoo安装详解(一) — 安装基本系统 ">
+<meta property="og:article:published_time" content="2014-06-30T11:21:00+08:00" />
+<meta property="" content="2015-01-05T16:05:00+08:00" />
+<meta name="twitter:title" content="Gentoo本地化设置—时区、时钟、字体、中文环境 ">
 <meta name="twitter:description" content="">
 <meta property="og:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" />
 <meta name="twitter:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" >
 
-        <title>Gentoo安装详解(一) — 安装基本系统  · Wonux Blog
+        <title>Gentoo本地化设置—时区、时钟、字体、中文环境  · Wonux Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -72,7 +72,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="http://wonux.github.io/gentoo-handbook-base"> Gentoo安装详解(一) &#8212;&nbsp;安装基本系统  </a></h1>
+    <h1><a href="http://wonux.github.io/gentoo-localization"> Gentoo本地化设置&#8212;时区、时钟、字体、中文环境  </a></h1>
     </header>
 </div>
 
@@ -82,21 +82,11 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#_1">前期准备</a><ul>
-<li><a href="#_2">远程登录：</a></li>
-<li><a href="#_3">准备磁盘：</a></li>
-</ul>
-</li>
-<li><a href="#_4">安装系统</a><ul>
-<li><a href="#stageportage">安装stage及portage：</a></li>
-<li><a href="#_5">编译前准备：</a></li>
-</ul>
-</li>
-<li><a href="#chroot">Chroot进入新系统环境：</a><ul>
-<li><a href="#chroot_1">Chroot：</a></li>
-<li><a href="#_6">新环境配置：</a></li>
-</ul>
-</li>
+<li><a href="#_1">时区</a></li>
+<li><a href="#_2">硬件时钟</a></li>
+<li><a href="#_3">安装中文字体</a></li>
+<li><a href="#locale">生成指定的Locale</a></li>
+<li><a href="#locale_1">设置一个Locale显示中文</a></li>
 </ul>
 </div>
         </nav>
@@ -106,220 +96,99 @@
             
             <hr/>
 
-<h2 id="_1">前期准备<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<h3 id="_2">远程登录：<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
-<ul>
-<li>开启ssh服务：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/etc/init.d/sshd start
-</pre></div>
-</td></tr></table>
-<ul>
-<li>设置密码：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>passwd
-</pre></div>
-</td></tr></table>
-<p>以便使用putty、ssh client远程登录上传stage等（有时在线下载很慢，而局域网上传很快）</p>
-<h3 id="_3">准备磁盘：<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
-<ul>
-<li>分区：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>fdisk /dev/sda
-</pre></div>
-</td></tr></table>
-<blockquote>
-<p>/dev/sda1 : /boot 100M(32-100M)  设启动笔记-a
-/dev/sda2 : / 20G
-/dev/sda3 : /home 20G
- /dev/sda5 : /swap 1G (内存&lt; 512 <span class="caps">MB</span>,分区分配2倍内存大小的空间;&gt; 1024 <span class="caps">MB</span>，可以分配较少的空间甚至不需要swap 分区。)-t 82</p>
-</blockquote>
-<ul>
-<li>创建文件系统：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>mkfs.ext4 /dev/sda1
-mkfs.ext4 /dev/sda2
-mkfs.ext4 /dev/sda3
-mkswap /dev/sda5
-</pre></div>
-</td></tr></table>
-<ul>
-<li>挂载分区：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>mount /dev/sda2 /mnt/gentoo
-mkdir /mnt/gentoo/boot
-mount /dev/sda1 /mnt/gentoo/boot
-mkdir /mnt/gentoo/home
-mount /dev/sda3 /mnt/gentoo/home
-swapon /dev/sda5
-</pre></div>
-</td></tr></table>
-<h2 id="_4">安装系统<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<h3 id="stageportage">安装stage及portage：<a class="headerlink" href="#stageportage" title="Permanent link">¶</a></h3>
-<ul>
-<li>正确设置日期／时间：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>date
-</pre></div>
-</td></tr></table>
-<blockquote>
-<p>如果显示的日期／时间不正确，可以使用date MMDDhhmmYYYY命令</p>
-</blockquote>
-<ul>
-<li>下载Stage3 Tarbll：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>cd /mnt/gentoo
-links http://www.gentoo.org/main/en/mirrors.xml
-</pre></div>
-</td></tr></table>
-<p>选择国内速度较快的镜像，进入releases/x86/autobuilds/目录里。你将会看到所有适合你的计算机体系结构的stage文件（它们也可能放在各个独立的子体系名称的子目录里）。选择一个，然后按D来下载。下载完以后，再按Q退出浏览器。</p>
-<blockquote>
-<p>或使用<span class="caps">SSH</span> Secure Shell登录上传stage3文件</p>
-</blockquote>
-<ul>
-<li>解开Stage3 Tarball：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>tar xvjpf stage3-*.tar.bz2
-</pre></div>
-</td></tr></table>
-<ul>
-<li>下载Portage： 打开links（或者lynx）然后到我们的Gentoo镜像列表。选择一个离你最近的镜像，打开snapshots/目录。然后选择最新的Portage快照（portage-latest.tar.bz2）并按D来下载它。</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>links http://www.gentoo.org/main/en/mirrors.xml
-</pre></div>
-</td></tr></table>
-<blockquote>
-<p>或使用<span class="caps">SSH</span> Secure Shell登录上传portage文件</p>
-</blockquote>
-<ul>
-<li>解压Portage：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>tar -xvjf /mnt/gentoo/portage-latest.tar.bz2 -C /mnt/gentoo/usr （install a Portage snapshot）
-</pre></div>
-</td></tr></table>
-<h3 id="_5">编译前准备：<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
-<ul>
-<li>配置编译选项：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>nano -w /mnt/gentoo/etc/portage/make.conf
-</pre></div>
-</td></tr></table>
-<blockquote>
-<p><span class="caps">CFLAGS</span>=”-march=native -O2 -pipe”<br/>
-<span class="caps">CXXFLAGS</span>=”${<span class="caps">CFLAGS</span>}”  # 两个变量使用相同的设置
-<span class="caps">MAKEOPTS</span>=”-j3”  #<span class="caps">MAKEOPTS</span>定义在安装软件的时候同时可以产生并行编译的数目，<span class="caps">CPU</span>数目加一是个不错的选择</p>
-</blockquote>
-<ul>
-<li>查看cpu信息：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>cat proc/cpuinfo
-</pre></div>
-</td></tr></table>
-<ul>
-<li>选择镜像站点：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>mirrorselect -i -o &gt;&gt; /mnt/gentoo/etc/portage/make.conf
-mirrorselect -i -r -o &gt;&gt; /mnt/gentoo/etc/portage/make.conf
-</pre></div>
-</td></tr></table>
-<blockquote>
-<p><strong>Warning:</strong><a href="">app-portage/mirrorselect</a> has not been updated to handle modifying the target chrootsrepos.conf/gentoo.conf file yet. Also, the <span class="caps">SYNC</span> variable in make.conf is deprecated and no longer used by portage. This section needs to be updated, please skip for the time being…</p>
-</blockquote>
-<ul>
-<li>拷贝<span class="caps">DNS</span>信息：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>cp -L /etc/resolv.conf /mnt/gentoo/etc/
-</pre></div>
-</td></tr></table>
-<h2 id="chroot">Chroot进入新系统环境：<a class="headerlink" href="#chroot" title="Permanent link">¶</a></h2>
-<h3 id="chroot_1">Chroot：<a class="headerlink" href="#chroot_1" title="Permanent link">¶</a></h3>
-<ul>
-<li>挂载 /proc, /dev, /sys文件系统：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>mount -t proc none /mnt/gentoo/proc
-mount --rbind /dev /mnt/gentoo/dev
-mount --rbind /sys /mnt/gentoo/sys
-</pre></div>
-</td></tr></table>
-<ul>
-<li>进入新的系统环境：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">chroot /mnt/gentoo /bin/bash</span>
-<span class="x">source /etc/profile</span>
-<span class="x">export PS1="(chroot) </span><span class="p">$</span><span class="nv">PS1</span><span class="x">"</span>
-</pre></div>
-</td></tr></table>
-<h3 id="_6">新环境配置：<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
-<ul>
-<li>更新portage树：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>emerge --sync （Updating the Portage tree）
-或
-emerge-webrsync（fetch the latest portage snapshot）
-</pre></div>
-</td></tr></table>
-<ul>
-<li>选择Profile：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>eselect profile list
-eselect profile set ×
-</pre></div>
-</td></tr></table>
-<ul>
-<li>设置时区：</li>
-</ul>
+<h2 id="_1">时区<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>你需要选择时区让系统知道你的地理位置，以保持正确的时间。在/usr/share/zoneinfo中查找你的时区。然后在/etc/conf.d/clock中设置时区。请忽略/usr/share/zoneinfo/Etc/<span class="caps">GMT</span>*时区，因为它们的名字并不表示所指的地区。比如，<span class="caps">GMT</span>-8实际上是<span class="caps">GMT</span>+8。 设置时区信息：</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>ls /usr/share/zoneinfo
-echo "Europe/Brussels" &gt; /etc/timezone
+echo "Asia/Shanghai" &gt; /etc/timezone
 emerge --config sys-libs/timezone-data
 </pre></div>
 </td></tr></table>
-<ul>
-<li>设置locale：</li>
-</ul>
+<blockquote>
+<p>注意: 你可以做一个用户级的设置，在shell的rc文件（如bash的.bash_profile）中将<span class="caps">TZ</span>变量的值设为/usr/share/zoneinfo下的任何东西。本案例中<span class="caps">TZ</span>=”Asia/Shanghai”。</p>
+</blockquote>
+<h2 id="_2">硬件时钟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>Gentoo Linux安装过程中，大多数情况下硬件时钟都是被设成<span class="caps">UTC</span>（或<span class="caps">GMT</span>，格林威治标准时间），而时区则定为实际的本地时间。如果出于某种原因，你需要将硬件时钟设为非<span class="caps">UTC</span>，那么你就要编辑/etc/conf.d/hwclock，将<span class="caps">CLOCK</span>的值由<span class="caps">UTC</span>改为local。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>nano -w /etc/locale.gen
-locale-gen
-eselect locale list
-eselect locale set x
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>CLOCK="UTC"
+或
+CLOCK="local"
 </pre></div>
 </td></tr></table>
+<h2 id="_3">安装中文字体<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p>推荐开源文泉驿自由字体</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>emerge wqy-zenhei （文泉驿正黑）
+emerge wqy-microhei （文泉驿微米黑）
+</pre></div>
+</td></tr></table>
+<h2 id="locale">生成指定的Locale<a class="headerlink" href="#locale" title="Permanent link">¶</a></h2>
+<p>可能你在系统中只要用到一个或者两个locale。你可以在/etc/locale.gen中指定所需的的locale。
+中文有很多种编码，最流行的就是<span class="caps">UTF8</span>和<span class="caps">GBK</span>。我们推荐客户使用<span class="caps">UTF8</span>编码，因为这是国际标准，能兼容任何语言的编码。</p>
+<p>添加locale到<code>/etc/locale.gen</code></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>nano -w /etc/locale.gen
+</pre></div>
+</td></tr></table>
+<blockquote>
+<p>en_US <span class="caps">ISO</span>-8859-1
+en_US.<span class="caps">UTF</span>-8 <span class="caps">UTF</span>-8
+zh_CB.<span class="caps">UTF</span>-8 <span class="caps">UTF</span>-8</p>
+</blockquote>
+<p>下一步是执行<code>locale-gen</code>。它会生成/etc/locale.gen文件中指定的所有locale。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>locale-gen
+</pre></div>
+</td></tr></table>
+<p>你可以通过执行locale -a来检验所选的locale是否可用。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>locale -a
+</pre></div>
+</td></tr></table>
+<h2 id="locale_1">设置一个Locale显示中文<a class="headerlink" href="#locale_1" title="Permanent link">¶</a></h2>
 <ul>
-<li>更新环境变量：</li>
+<li>在<code>/etc/env.d/02locale</code>中设置全局默认的系统locale</li>
 </ul>
+<blockquote>
+<p><span class="caps">LANG</span>=”zh_CN.<span class="caps">UTF</span>-8” LC_COLLATE=”C”</p>
+</blockquote>
+<ul>
+<li>在~/.bashrc中设置用户级的系统locale</li>
+</ul>
+<blockquote>
+<p>export <span class="caps">LANG</span>=”zh_CN.<span class="caps">UTF</span>-8”
+export LC_COLLATE=”C”</p>
+</blockquote>
+<ul>
+<li>更新系统全局默认的locale：</li>
+</ul>
+<p>设置好正确的locale后，一定要更新环境变量使系统知道所做的更改：</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>env-update &amp;&amp; source /etc/profile
 </pre></div>
 </td></tr></table>
+<ul>
+<li>更新特定用户的locale：</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>source ~/.bashrc
+</pre></div>
+</td></tr></table>
+<p>更新环境后，你需要按下Ctrl-Alt-Backspace杀死X服务器，登出，然后以用户身份登入。 现在，检验一下所做的更改是否已经生效了：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>locale
+</pre></div>
+</td></tr></table>
+<blockquote>
+<p>注：<em>另一种系统配置方式是保留默认的C locale，同时要能够表现<span class="caps">UTF</span>-8字符。
+这种选择可以通过使用下述设置来实现：LC_CTYPE=zh_CN.<span class="caps">UTF</span>-8</em></p>
+</blockquote>
             <section>
     <p id="post-share-links">
     Share on:
-    <a href="http://twitter.com/home?status=Gentoo%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3%28%E4%B8%80%29%20%E2%80%94%C2%A0%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F%20http%3A//wonux.github.io/gentoo-handbook-base" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="http://twitter.com/home?status=Gentoo%E6%9C%AC%E5%9C%B0%E5%8C%96%E8%AE%BE%E7%BD%AE%E2%80%94%E6%97%B6%E5%8C%BA%E3%80%81%E6%97%B6%E9%92%9F%E3%80%81%E5%AD%97%E4%BD%93%E3%80%81%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83%20http%3A//wonux.github.io/gentoo-localization" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
-    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/gentoo-handbook-base" target="_blank" title="Share on Facebook">Facebook</a>
+    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/gentoo-localization" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/gentoo-handbook-base" target="_blank" title="Share on Google Plus">Google+</a>
+    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/gentoo-localization" target="_blank" title="Share on Google Plus">Google+</a>
     ❄
-    <a href="mailto:?subject=Gentoo%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3%28%E4%B8%80%29%20%E2%80%94%C2%A0%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F&amp;body=http%3A//wonux.github.io/gentoo-handbook-base" target="_blank" title="Share via Email">Email</a>
+    <a href="mailto:?subject=Gentoo%E6%9C%AC%E5%9C%B0%E5%8C%96%E8%AE%BE%E7%BD%AE%E2%80%94%E6%97%B6%E5%8C%BA%E3%80%81%E6%97%B6%E9%92%9F%E3%80%81%E5%AD%97%E4%BD%93%E3%80%81%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83&amp;body=http%3A//wonux.github.io/gentoo-localization" target="_blank" title="Share via Email">Email</a>
     </p>
 </section>
 
@@ -329,7 +198,7 @@ eselect locale set x
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="http://wonux.github.io/gentoo-handbook-base#disqus_thread">
+                href="http://wonux.github.io/gentoo-localization#disqus_thread">
                 Comments
             </a>
         </div>
@@ -339,8 +208,8 @@ eselect locale set x
                     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'wonux';
-        var disqus_identifier = 'http://wonux.github.io/gentoo-handbook-base';
-    var disqus_url = 'http://wonux.github.io/gentoo-handbook-base';
+        var disqus_identifier = 'http://wonux.github.io/gentoo-localization';
+    var disqus_url = 'http://wonux.github.io/gentoo-localization';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -362,10 +231,10 @@ eselect locale set x
 <section>
     <h2>Keep Reading</h2>
 <ul class="related-posts-list">
-<li><a href="http://wonux.github.io/gentoo-handbook-kernel" title="Gentoo安装详解（二）— 编译内核">Gentoo安装详解（二）— 编译内核</a></li>
-<li><a href="http://wonux.github.io/gentoo-handbook-configure" title="Gentoo安装详解（三）— 配置系统">Gentoo安装详解（三）— 配置系统</a></li>
 <li><a href="http://wonux.github.io/gentoo-handbook-xorg" title="Gentoo安装详解（四）— 安装X桌面环境">Gentoo安装详解（四）— 安装X桌面环境</a></li>
 <li><a href="http://wonux.github.io/gentoo-handbook-alsa" title="Gentoo安装详解（五）—声卡设置">Gentoo安装详解（五）—声卡设置</a></li>
+<li><a href="http://wonux.github.io/gentoo-gcc-invalid" title="gcc-config:Active gcc profile is invalid 解决办法">gcc-config:Active gcc profile is invalid 解决办法</a></li>
+<li><a href="http://wonux.github.io/gentoo-locale" title="Gentoo本地化中文设置—Locale系统介绍">Gentoo本地化中文设置—Locale系统介绍</a></li>
 <li><a href="http://wonux.github.io/gentoo-arch-apps" title="Gentoo/Arch常用软件列表">Gentoo/Arch常用软件列表</a></li>
 </ul>
 <hr />
@@ -373,7 +242,8 @@ eselect locale set x
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="next-article"><a href="http://wonux.github.io/gentoo-handbook-kernel" title="Next: Gentoo安装详解（二）— 编译内核">Gentoo安装详解（二）— 编译内核</a> »</li>
+                <li class="previous-article">« <a href="http://wonux.github.io/gentoo-udev-netware" title="Previous: Gentoo解决Udev升级的网卡重命名问题">Gentoo解决Udev升级的网卡重命名问题</a></li>
+                <li class="next-article"><a href="http://wonux.github.io/gentoo-gcc-invalid" title="Next: gcc-config:Active gcc profile is invalid 解决办法">gcc-config:Active gcc profile is invalid 解决办法</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -381,10 +251,10 @@ eselect locale set x
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-05-04T16:48:00+08:00">May 4, 2014</time>
+            <time pubdate="pubdate" datetime="2014-06-30T11:21:00+08:00">Jun 30, 2014</time>
 
 <h4>Last Updated</h4>
-<time datetime="2015-02-11T11:24:00+08:00">Feb 11, 2015</time>
+<time datetime="2015-01-05T16:05:00+08:00">Jan 5, 2015</time>
 
             <h4>Category</h4>
             <a class="category-link" href="http://wonux.github.io/categories.html#gentoo-ref">Gentoo</a>
@@ -393,8 +263,8 @@ eselect locale set x
                 <li><a href="http://wonux.github.io/tags.html#gentoo-ref">gentoo
                     <span>21</span>
 </a></li>
-                <li><a href="http://wonux.github.io/tags.html#handbook-ref">handbook
-                    <span>5</span>
+                <li><a href="http://wonux.github.io/tags.html#locale-ref">locale
+                    <span>2</span>
 </a></li>
             </ul>
 <h4>Stay in Touch</h4>
