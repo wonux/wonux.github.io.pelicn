@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Wonux Blog</title><link href="http://wonux.github.io/" rel="alternate"></link><link href="http://wonux.github.io/feeds/gu-zhu-wang.atom.xml" rel="self"></link><id>http://wonux.github.io/</id><updated>2015-02-11T11:24:00+08:00</updated><entry><title>Gentoo安装详解(一) — 安装基本系统</title><link href="http://wonux.github.io/gentoo-handbook-base" rel="alternate"></link><updated>2015-02-11T11:24:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-04:gentoo-handbook-base</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Wonux Blog</title><link href="http://wonux.github.io/" rel="alternate"></link><link href="http://wonux.github.io/feeds/gu-zhu-wang.atom.xml" rel="self"></link><id>http://wonux.github.io/</id><updated>2015-02-11T11:24:00+08:00</updated><entry><title>Gentoo安装详解(一) — 安装基本系统</title><link href="http://wonux.github.io/gentoo-handbook-base" rel="alternate"></link><updated>2015-02-11T11:24:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-04:gentoo-handbook-base</id><summary type="html">&lt;hr/&gt;
+
 &lt;h2 id="_1"&gt;前期准备&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="_2"&gt;远程登录：&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
@@ -112,73 +113,95 @@ links http://www.gentoo.org/main/en/mirrors.xml
 &lt;span class="caps"&gt;CXXFLAGS&lt;/span&gt;=”${&lt;span class="caps"&gt;CFLAGS&lt;/span&gt;}”  # 两个变量使用相同的设置
 &lt;span class="caps"&gt;MAKEOPTS&lt;/span&gt;=”-j3”  #&lt;span class="caps"&gt;MAKEOPTS&lt;/span&gt;定义在安装软件的时候同时可以产生并行编译的数目，&lt;span class="caps"&gt;CPU&lt;/span&gt;数目加一是个不错的选择&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;查看cpu信息：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;查看cpu信息：&lt;/li&gt;
+&lt;/ul&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat proc/cpuinfo
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;选择镜像站点：
- “`
-mirrorselect -i -o &amp;gt;&amp;gt; /mnt/gentoo/etc/portage/make.conf
-mirrorselect -i -r -o &amp;gt;&amp;gt; /mnt/gentoo/etc/portage/make.conf&lt;/li&gt;
+&lt;li&gt;选择镜像站点：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mirrorselect -i -o &amp;gt;&amp;gt; /mnt/gentoo/etc/portage/make.conf
+mirrorselect -i -r -o &amp;gt;&amp;gt; /mnt/gentoo/etc/portage/make.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt;&lt;a href=""&gt;app-portage/mirrorselect&lt;/a&gt; has not been updated to handle modifying the target chrootsrepos.conf/gentoo.conf file yet. Also, the &lt;span class="caps"&gt;SYNC&lt;/span&gt; variable in make.conf is deprecated and no longer used by portage. This section needs to be updated, please skip for the time being…&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;拷贝&lt;span class="caps"&gt;DNS&lt;/span&gt;信息：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cp -L /etc/resolv.conf /mnt/gentoo/etc/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="chroot"&gt;Chroot进入新系统环境：&lt;a class="headerlink" href="#chroot" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="chroot_1"&gt;Chroot：&lt;a class="headerlink" href="#chroot_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;挂载 /proc, /dev, /sys文件系统：&lt;/li&gt;
 &lt;/ul&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
-3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; **Warning:**[app-portage/mirrorselect]() has not been updated to handle modifying the target chrootsrepos.conf/gentoo.conf file yet. Also, the SYNC variable in make.conf is deprecated and no longer used by portage. This section needs to be updated, please skip for the time being...
-
-- 拷贝DNS信息：
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount -t proc none /mnt/gentoo/proc
+mount --rbind /dev /mnt/gentoo/dev
+mount --rbind /sys /mnt/gentoo/sys
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;cp -L /etc/resolv.conf /mnt/gentoo/etc/&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进入新的系统环境：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;chroot /mnt/gentoo /bin/bash&lt;/span&gt;
+&lt;span class="x"&gt;source /etc/profile&lt;/span&gt;
+&lt;span class="x"&gt;export PS1="(chroot) &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PS1&lt;/span&gt;&lt;span class="x"&gt;"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_6"&gt;新环境配置：&lt;a class="headerlink" href="#_6" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;更新portage树：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge --sync （Updating the Portage tree）
+或
+emerge-webrsync（fetch the latest portage snapshot）
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;选择Profile：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;eselect profile list
+eselect profile set ×
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;设置时区：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ls /usr/share/zoneinfo
+echo "Europe/Brussels" &amp;gt; /etc/timezone
+emerge --config sys-libs/timezone-data
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;设置locale：&lt;/li&gt;
+&lt;/ul&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
 3
-4
-5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;## Chroot进入新系统环境：
-
-### Chroot：
-
-- 挂载 /proc, /dev, /sys文件系统：
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;mount -t proc none /mnt/gentoo/proc
-mount —rbind /dev /mnt/gentoo/dev
-mount —rbind /sys /mnt/gentoo/sys&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 进入新的系统环境：
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;chroot /mnt/gentoo /bin/bash
-source /etc/profile
-export &lt;span class="caps"&gt;PS1&lt;/span&gt;=”(chroot) $&lt;span class="caps"&gt;PS1&lt;/span&gt;”&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2
-3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;### 新环境配置：
-
-- 更新portage树：
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;emerge —sync （Updating the Portage tree）
-或
-emerge-webrsync（fetch the latest portage snapshot）&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 选择Profile：
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;eselect profile list
-eselect profile set ×&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 设置时区：
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;ls /usr/share/zoneinfo
-echo “Europe/Brussels” &amp;gt; /etc/timezone
-emerge —config sys-libs/timezone-data&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 设置locale：
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;nano -w /etc/locale.gen
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nano -w /etc/locale.gen
 locale-gen
 eselect locale list
-eselect locale set x&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 更新环境变量：
+eselect locale set x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;env-update &amp;amp;&amp;amp; source /etc/profile “`&lt;/p&gt;</summary><category term="gentoo"></category><category term="handbook"></category></entry></feed>
+&lt;ul&gt;
+&lt;li&gt;更新环境变量：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;env-update &amp;amp;&amp;amp; source /etc/profile
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="handbook"></category></entry></feed>
