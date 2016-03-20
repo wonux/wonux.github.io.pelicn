@@ -12,20 +12,21 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="gentoo, arch, apps, Gentoo, " />
+<meta name="keywords" content="arch, mirrors, Arch, " />
 
-<meta property="og:title" content="Gentoo/Arch常用软件列表 "/>
-<meta property="og:url" content="http://wonux.github.io/gentoo-arch-apps.html" />
+<meta property="og:title" content="Arch下载官方镜像列表Official mirrors "/>
+<meta property="og:url" content="http://wonux.github.io/arch-mirrors.html" />
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="Wonux Blog" />
 <meta property="og:article:author" content="孤逐王" />
-<meta property="og:article:published_time" content="2016-02-24T14:30:00+08:00" />
-<meta name="twitter:title" content="Gentoo/Arch常用软件列表 ">
+<meta property="og:article:published_time" content="2014-10-08T13:29:00+08:00" />
+<meta property="" content="2015-02-10T17:08:00+08:00" />
+<meta name="twitter:title" content="Arch下载官方镜像列表Official mirrors ">
 <meta name="twitter:description" content="">
 <meta property="og:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" />
 <meta name="twitter:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" >
 
-        <title>Gentoo/Arch常用软件列表  · Wonux Blog
+        <title>Arch下载官方镜像列表Official mirrors  · Wonux Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -74,7 +75,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="http://wonux.github.io/gentoo-arch-apps.html"> Gentoo/Arch常用软件列表  </a></h1>
+    <h1><a href="http://wonux.github.io/arch-mirrors.html"> Arch下载官方镜像列表Official&nbsp;mirrors  </a></h1>
     </header>
 </div>
 
@@ -83,7 +84,12 @@
         <nav>
         <h4>Contents</h4>
         <div class="toc">
-<ul></ul>
+<ul>
+<li><a href="#official-mirrors">Official mirrors</a><ul>
+<li><a href="#_1">手动下载镜像列表</a></li>
+</ul>
+</li>
+</ul>
 </div>
         </nav>
     </div>
@@ -91,194 +97,23 @@
 
             
             
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87</pre></div></td><td class="code"><div class="highlight"><pre><span></span>## Desktop Environment
-### GNOME
-### KDE
-### LXDE
-### Xfce
-
-## Window Managers
-### dwm
-[x11-wm/dwm]  [dmenu]    
-euse --enable savedconfig
-ln -s /etc/portage/savedconfig/x11-wm/dwm-6.1 /etc/portage/savedconfig/x11-wm/dwm-6.1.h
-### Awesome
-### openbox
-x11-wm/openbox
-[obconf]  [obmenu]  [tint2]  [dmenu_run]
-.config/openbox/
-autostart  menu.xml  rc.xml
-
-## Taskbars/Panels
-### lxpanel
-### tint2
-[tint2]  [volumeicon]
-.config/tint2/tint2rc
-### wbar
-
-## Desktop Utilities
-### File Managers
-#### vifm
-#### xfe
-#### dolphin
-#### thunar
-#### pcmanfm
-
-### Clipboard Managers
-
-### Terminal Emulators
-#### rxvt-unicode
-[x11-terms/rxvt-unicode]  [xorg-xrdb]  [x11-misc/xsel]  [x11-misc/xclip]  [x11-misc/urxvt-perls]
-.Xresources  
-.xinitrc == [[ -f ~/.Xresources ]] &amp;&amp; xrdb -merge ~/.Xresources  
-urxvtd --quiet --opendisplay --fork  ==  urxvtc
-#### tilda
-#### sakura
-#### xfce4-terminal
-#### konsole
-#### yakuake
-#### lxterminal
-
-## Network Management
-### dhcpcd
-### wpa_supplicant
-### networkmanager
-### netctl
-
-## Internet
-### Email Clients
-### P2P
-#### rtorrent
-
-### Web Browsers
-#### firefox
-#### chromium
-#### midori
-
-## Multimedia
-### Audio
-#### MPD
-#### moc
-
-### Video
-#### mplayer
-
-### Image Viewers
-#### xfe
-#### xfi
-
-## Documents
-### Editors
-#### vim
-
-### Document Readers
-#### zathura
-#### apvlv
-#### mupdf
-
-### Office Suites
-#### wps-office
+<h3 id="official-mirrors">Official mirrors<a class="headerlink" href="#official-mirrors" title="Permanent link">¶</a></h3>
+<p>The official Arch Linux mirror list is available from the <code>pacman-mirrorlist</code> package. To get an even more up-to-date list of mirrors, use the Pacman Mirror List Generator page on the main site.</p>
+<h4 id="_1">手动下载镜像列表<a class="headerlink" href="#_1" title="Permanent link">¶</a></h4>
+<p>有时因为系统镜像列表丢失或可读性不强，我们需要从官方网站下载按地区分类的镜像列表，很简单，执行如下命令：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
 </pre></div>
 </td></tr></table>
-<p>参考：
-<a href="https://wiki.gentoo.org/wiki/Rxvt-unicode">https://wiki.gentoo.org/wiki/Rxvt-unicode</a>
-<a href="https://wiki.archlinux.org/index.php/Rxvt-unicode">https://wiki.archlinux.org/index.php/Rxvt-unicode</a></p>
             <section>
     <p id="post-share-links">
     Share on:
-    <a href="http://twitter.com/home?status=Gentoo/Arch%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%88%97%E8%A1%A8%20http%3A//wonux.github.io/gentoo-arch-apps.html" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="http://twitter.com/home?status=Arch%E4%B8%8B%E8%BD%BD%E5%AE%98%E6%96%B9%E9%95%9C%E5%83%8F%E5%88%97%E8%A1%A8Official%C2%A0mirrors%20http%3A//wonux.github.io/arch-mirrors.html" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
-    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/gentoo-arch-apps.html" target="_blank" title="Share on Facebook">Facebook</a>
+    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/arch-mirrors.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/gentoo-arch-apps.html" target="_blank" title="Share on Google Plus">Google+</a>
+    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/arch-mirrors.html" target="_blank" title="Share on Google Plus">Google+</a>
     ❄
-    <a href="mailto:?subject=Gentoo/Arch%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%88%97%E8%A1%A8&amp;body=http%3A//wonux.github.io/gentoo-arch-apps.html" target="_blank" title="Share via Email">Email</a>
+    <a href="mailto:?subject=Arch%E4%B8%8B%E8%BD%BD%E5%AE%98%E6%96%B9%E9%95%9C%E5%83%8F%E5%88%97%E8%A1%A8Official%C2%A0mirrors&amp;body=http%3A//wonux.github.io/arch-mirrors.html" target="_blank" title="Share via Email">Email</a>
     </p>
 </section>
 
@@ -288,7 +123,7 @@ urxvtd --quiet --opendisplay --fork  ==  urxvtc
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="http://wonux.github.io/gentoo-arch-apps.html#disqus_thread">
+                href="http://wonux.github.io/arch-mirrors.html#disqus_thread">
                 Comments
             </a>
         </div>
@@ -298,8 +133,8 @@ urxvtd --quiet --opendisplay --fork  ==  urxvtc
                     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'wonux';
-        var disqus_identifier = 'http://wonux.github.io/gentoo-arch-apps.html';
-    var disqus_url = 'http://wonux.github.io/gentoo-arch-apps.html';
+        var disqus_identifier = 'http://wonux.github.io/arch-mirrors.html';
+    var disqus_url = 'http://wonux.github.io/arch-mirrors.html';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -321,19 +156,19 @@ urxvtd --quiet --opendisplay --fork  ==  urxvtc
 <section>
     <h2>Keep Reading</h2>
 <ul class="related-posts-list">
-<li><a href="http://wonux.github.io/gentoo-localization.html" title="Gentoo本地化设置—时区、时钟、字体、中文环境">Gentoo本地化设置—时区、时钟、字体、中文环境</a></li>
-<li><a href="http://wonux.github.io/arch-fcitx.html" title="Arch安装fcitx">Arch安装fcitx</a></li>
-<li><a href="http://wonux.github.io/gentoo-use.html" title="Gentoo/Funtoo USE标记介绍">Gentoo/Funtoo USE标记介绍</a></li>
-<li><a href="http://wonux.github.io/gentoo-ntfs.html" title="Gentoo挂载Windowntfs的NTFS分区">Gentoo挂载Windowntfs的NTFS分区</a></li>
-<li><a href="http://wonux.github.io/apps-musicbox.html" title="Shell终端收听音乐—豆瓣FM命令行版">Shell终端收听音乐—豆瓣FM命令行版</a></li>
+<li><a href="http://wonux.github.io/arch-xorg.html" title="Arch最小化安装X">Arch最小化安装X</a></li>
+<li><a href="http://wonux.github.io/arch-xorg-lxde.html" title="ArchLinux最小化安装LXDE桌面环境">ArchLinux最小化安装LXDE桌面环境</a></li>
+<li><a href="http://wonux.github.io/arch-handbook.html" title="ArchLinux安装详解">ArchLinux安装详解</a></li>
+<li><a href="http://wonux.github.io/arch-pacman.html" title="Arch软件管理 — Pacman常用命令">Arch软件管理 — Pacman常用命令</a></li>
+<li><a href="http://wonux.github.io/gentoo-arch-apps.html" title="Gentoo/Arch常用软件列表">Gentoo/Arch常用软件列表</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="http://wonux.github.io/arch-kde.html" title="Previous: Arch安装KDE5">Arch安装KDE5</a></li>
-                <li class="next-article"><a href="http://wonux.github.io/apps-doubanfm.html" title="Next: Shell终端收听音乐—豆瓣FM命令行版">Shell终端收听音乐—豆瓣FM命令行版</a> »</li>
+                <li class="previous-article">« <a href="http://wonux.github.io/gentoo-gcc-invalid.html" title="Previous: gcc-config:Active gcc profile is invalid 解决办法">gcc-config:Active gcc profile is invalid 解决办法</a></li>
+                <li class="next-article"><a href="http://wonux.github.io/arch-handbook.html" title="Next: ArchLinux安装详解">ArchLinux安装详解</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -341,19 +176,20 @@ urxvtd --quiet --opendisplay --fork  ==  urxvtc
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2016-02-24T14:30:00+08:00">Feb 24, 2016</time>
+            <time pubdate="pubdate" datetime="2014-10-08T13:29:00+08:00">Oct 8, 2014</time>
+
+<h4>Last Updated</h4>
+<time datetime="2015-02-10T17:08:00+08:00">Feb 10, 2015</time>
+
             <h4>Category</h4>
-            <a class="category-link" href="http://wonux.github.io/categories.html#gentoo-ref">Gentoo</a>
+            <a class="category-link" href="http://wonux.github.io/categories.html#arch-ref">Arch</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="http://wonux.github.io/tags.html#apps-ref">apps
-                    <span>3</span>
-</a></li>
                 <li><a href="http://wonux.github.io/tags.html#arch-ref">arch
                     <span>10</span>
 </a></li>
-                <li><a href="http://wonux.github.io/tags.html#gentoo-ref">gentoo
-                    <span>21</span>
+                <li><a href="http://wonux.github.io/tags.html#mirrors-ref">mirrors
+                    <span>1</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
