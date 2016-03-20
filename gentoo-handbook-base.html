@@ -4,8 +4,8 @@
         <meta charset="utf-8"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Ace King" />
-        <meta name="copyright" content="Ace King" />
+        <meta name="author" content="孤逐王" />
+        <meta name="copyright" content="孤逐王" />
 
         <meta name="description" content="" />
         <meta name="twitter:creator" content="@wonux">
@@ -15,10 +15,10 @@
 <meta name="keywords" content="gentoo, handbook, Gentoo, " />
 
 <meta property="og:title" content="Gentoo安装详解(一) — 安装基本系统 "/>
-<meta property="og:url" content="http://wonux.github.io/gentoo-handbook-base" />
+<meta property="og:url" content="http://wonux.github.io/gentoo-handbook-base.html" />
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="Wonux Blog" />
-<meta property="og:article:author" content="Ace King" />
+<meta property="og:article:author" content="孤逐王" />
 <meta property="og:article:published_time" content="2014-05-04T16:48:00+08:00" />
 <meta property="" content="2015-02-11T11:24:00+08:00" />
 <meta name="twitter:title" content="Gentoo安装详解(一) — 安装基本系统 ">
@@ -30,7 +30,7 @@
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?7aeecf36">
+<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?93135f3f">
         <link rel="shortcut icon" href="http://wonux.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
         <link rel="icon" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link rel="apple-touch-icon" href="http://wonux.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
@@ -41,12 +41,14 @@
         <link rel="apple-touch-icon" sizes="120x120" href="http://wonux.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="144x144" href="http://wonux.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="152x152" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <script src="http://code.jquery.com/jquery.min.js"></script>
     </head>
-    <body>
+    <body class="tex2jax_ignore">
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
+                    <div class="span1"></div>
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -56,6 +58,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
                             <li ><a href="http://wonux.github.io">Home</a></li>
+                            <li ><a href="http://wonux.github.io/about.html">About</a></li>
                             <li ><a href="http://wonux.github.io/categories.html">Categories</a></li>
                             <li ><a href="http://wonux.github.io/tags.html">Tags</a></li>
                             <li ><a href="http://wonux.github.io/archives.html">Archives</a></li>
@@ -72,7 +75,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="http://wonux.github.io/gentoo-handbook-base"> Gentoo安装详解(一) &#8212;&nbsp;安装基本系统  </a></h1>
+    <h1><a href="http://wonux.github.io/gentoo-handbook-base.html"> Gentoo安装详解(一) &#8212;&nbsp;安装基本系统  </a></h1>
     </header>
 </div>
 
@@ -84,17 +87,11 @@
 <ul>
 <li><a href="#_1">前期准备</a><ul>
 <li><a href="#_2">远程登录：</a></li>
-<li><a href="#_3">准备磁盘：</a></li>
-</ul>
-</li>
-<li><a href="#_4">安装系统</a><ul>
-<li><a href="#stageportage">安装stage及portage：</a></li>
-<li><a href="#_5">编译前准备：</a></li>
 </ul>
 </li>
 <li><a href="#chroot">Chroot进入新系统环境：</a><ul>
 <li><a href="#chroot_1">Chroot：</a></li>
-<li><a href="#_6">新环境配置：</a></li>
+<li><a href="#_3">新环境配置：</a></li>
 </ul>
 </li>
 </ul>
@@ -104,8 +101,7 @@
     <div class="span8 article-content">
 
             
-            <hr/>
-
+            
 <h2 id="_1">前期准备<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <h3 id="_2">远程登录：<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
 <ul>
@@ -115,120 +111,118 @@
 </pre></div>
 </td></tr></table>
 <ul>
-<li>设置密码：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>passwd
-</pre></div>
-</td></tr></table>
-<p>以便使用putty、ssh client远程登录上传stage等（有时在线下载很慢，而局域网上传很快）</p>
-<h3 id="_3">准备磁盘：<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
-<ul>
-<li>分区：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>fdisk /dev/sda
-</pre></div>
-</td></tr></table>
-<blockquote>
-<p>/dev/sda1 : /boot 100M(32-100M)  设启动笔记-a
-/dev/sda2 : / 20G
-/dev/sda3 : /home 20G
- /dev/sda5 : /swap 1G (内存&lt; 512 <span class="caps">MB</span>,分区分配2倍内存大小的空间;&gt; 1024 <span class="caps">MB</span>，可以分配较少的空间甚至不需要swap 分区。)-t 82</p>
-</blockquote>
-<ul>
-<li>创建文件系统：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>mkfs.ext4 /dev/sda1
-mkfs.ext4 /dev/sda2
-mkfs.ext4 /dev/sda3
-mkswap /dev/sda5
-</pre></div>
-</td></tr></table>
-<ul>
-<li>挂载分区：</li>
+<li>设置密码：
+ “` passwd</li>
 </ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>以便使用putty、ssh client远程登录上传stage等（有时在线下载很慢，而局域网上传很快）
+
+### 准备磁盘：
+
+- 分区：
+</pre></div>
+</td></tr></table>
+<p>fdisk /dev/sda</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>mount /dev/sda2 /mnt/gentoo
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; /dev/sda1 : /boot 100M(32-100M)  设启动笔记-a
+/dev/sda2 : / 20G
+/dev/sda3 : /home 20G
+ /dev/sda5 : /swap 1G (内存&lt; 512 MB,分区分配2倍内存大小的空间;&gt; 1024 MB，可以分配较少的空间甚至不需要swap 分区。)-t 82
+
+- 创建文件系统：
+</pre></div>
+</td></tr></table>
+<p>mkfs.ext4 /dev/sda1
+mkfs.ext4 /dev/sda2
+mkfs.ext4 /dev/sda3
+mkswap /dev/sda5</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>- 挂载分区：
+</pre></div>
+</td></tr></table>
+<p>mount /dev/sda2 /mnt/gentoo
 mkdir /mnt/gentoo/boot
 mount /dev/sda1 /mnt/gentoo/boot
 mkdir /mnt/gentoo/home
 mount /dev/sda3 /mnt/gentoo/home
-swapon /dev/sda5
-</pre></div>
-</td></tr></table>
-<h2 id="_4">安装系统<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<h3 id="stageportage">安装stage及portage：<a class="headerlink" href="#stageportage" title="Permanent link">¶</a></h3>
-<ul>
-<li>正确设置日期／时间：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>date
-</pre></div>
-</td></tr></table>
-<blockquote>
-<p>如果显示的日期／时间不正确，可以使用date MMDDhhmmYYYY命令</p>
-</blockquote>
-<ul>
-<li>下载Stage3 Tarbll：</li>
-</ul>
+swapon /dev/sda5</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>cd /mnt/gentoo
-links http://www.gentoo.org/main/en/mirrors.xml
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>## 安装系统
+
+### 安装stage及portage：
+
+- 正确设置日期／时间：
 </pre></div>
 </td></tr></table>
-<p>选择国内速度较快的镜像，进入releases/x86/autobuilds/目录里。你将会看到所有适合你的计算机体系结构的stage文件（它们也可能放在各个独立的子体系名称的子目录里）。选择一个，然后按D来下载。下载完以后，再按Q退出浏览器。</p>
-<blockquote>
-<p>或使用<span class="caps">SSH</span> Secure Shell登录上传stage3文件</p>
-</blockquote>
-<ul>
-<li>解开Stage3 Tarball：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>tar xvjpf stage3-*.tar.bz2
-</pre></div>
-</td></tr></table>
-<ul>
-<li>下载Portage： 打开links（或者lynx）然后到我们的Gentoo镜像列表。选择一个离你最近的镜像，打开snapshots/目录。然后选择最新的Portage快照（portage-latest.tar.bz2）并按D来下载它。</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>links http://www.gentoo.org/main/en/mirrors.xml
-</pre></div>
-</td></tr></table>
-<blockquote>
-<p>或使用<span class="caps">SSH</span> Secure Shell登录上传portage文件</p>
-</blockquote>
-<ul>
-<li>解压Portage：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>tar -xvjf /mnt/gentoo/portage-latest.tar.bz2 -C /mnt/gentoo/usr （install a Portage snapshot）
-</pre></div>
-</td></tr></table>
-<h3 id="_5">编译前准备：<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
-<ul>
-<li>配置编译选项：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>nano -w /mnt/gentoo/etc/portage/make.conf
-</pre></div>
-</td></tr></table>
-<blockquote>
-<p><span class="caps">CFLAGS</span>=”-march=native -O2 -pipe”<br/>
-<span class="caps">CXXFLAGS</span>=”${<span class="caps">CFLAGS</span>}”  # 两个变量使用相同的设置
-<span class="caps">MAKEOPTS</span>=”-j3”  #<span class="caps">MAKEOPTS</span>定义在安装软件的时候同时可以产生并行编译的数目，<span class="caps">CPU</span>数目加一是个不错的选择</p>
-</blockquote>
-<ul>
-<li>查看cpu信息：</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>cat proc/cpuinfo
-</pre></div>
-</td></tr></table>
-<ul>
-<li>选择镜像站点：</li>
-</ul>
+<p>date</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>mirrorselect -i -o &gt;&gt; /mnt/gentoo/etc/portage/make.conf
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; 如果显示的日期／时间不正确，可以使用date MMDDhhmmYYYY命令
+
+- 下载Stage3 Tarbll：
+</pre></div>
+</td></tr></table>
+<p>cd /mnt/gentoo
+links http://www.gentoo.org/main/en/mirrors.xml</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>选择国内速度较快的镜像，进入releases/x86/autobuilds/目录里。你将会看到所有适合你的计算机体系结构的stage文件（它们也可能放在各个独立的子体系名称的子目录里）。选择一个，然后按D来下载。下载完以后，再按Q退出浏览器。
+&gt; 或使用SSH Secure Shell登录上传stage3文件
+
+- 解开Stage3 Tarball：
+</pre></div>
+</td></tr></table>
+<p>tar xvjpf stage3-*.tar.bz2</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>- 下载Portage：
+打开links（或者lynx）然后到我们的Gentoo镜像列表。选择一个离你最近的镜像，打开snapshots/目录。然后选择最新的Portage快照（portage-latest.tar.bz2）并按D来下载它。
+</pre></div>
+</td></tr></table>
+<p>links http://www.gentoo.org/main/en/mirrors.xml</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; 或使用SSH Secure Shell登录上传portage文件
+
+- 解压Portage：
+</pre></div>
+</td></tr></table>
+<p>tar -xvjf /mnt/gentoo/portage-latest.tar.bz2 -C /mnt/gentoo/usr （install a Portage snapshot）</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>### 编译前准备：
+
+- 配置编译选项：
+</pre></div>
+</td></tr></table>
+<p>nano -w /mnt/gentoo/etc/portage/make.conf</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; CFLAGS="-march=native -O2 -pipe"  
+CXXFLAGS="<span class="cp">${</span><span class="n">CFLAGS</span><span class="cp">}</span>"  # 两个变量使用相同的设置
+MAKEOPTS="-j3"  #MAKEOPTS定义在安装软件的时候同时可以产生并行编译的数目，CPU数目加一是个不错的选择
+
+查看cpu信息：
+</pre></div>
+</td></tr></table>
+<p>cat proc/cpuinfo</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>- 选择镜像站点：
+ ```
+mirrorselect -i -o &gt;&gt; /mnt/gentoo/etc/portage/make.conf
 mirrorselect -i -r -o &gt;&gt; /mnt/gentoo/etc/portage/make.conf
 </pre></div>
 </td></tr></table>
@@ -263,7 +257,7 @@ mount --rbind /sys /mnt/gentoo/sys
 <span class="x">export PS1="(chroot) </span><span class="p">$</span><span class="nv">PS1</span><span class="x">"</span>
 </pre></div>
 </td></tr></table>
-<h3 id="_6">新环境配置：<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<h3 id="_3">新环境配置：<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <ul>
 <li>更新portage树：</li>
 </ul>
@@ -313,13 +307,13 @@ eselect locale set x
             <section>
     <p id="post-share-links">
     Share on:
-    <a href="http://twitter.com/home?status=Gentoo%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3%28%E4%B8%80%29%20%E2%80%94%C2%A0%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F%20http%3A//wonux.github.io/gentoo-handbook-base" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="http://twitter.com/home?status=Gentoo%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3%28%E4%B8%80%29%20%E2%80%94%C2%A0%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F%20http%3A//wonux.github.io/gentoo-handbook-base.html" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
-    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/gentoo-handbook-base" target="_blank" title="Share on Facebook">Facebook</a>
+    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/gentoo-handbook-base.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/gentoo-handbook-base" target="_blank" title="Share on Google Plus">Google+</a>
+    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/gentoo-handbook-base.html" target="_blank" title="Share on Google Plus">Google+</a>
     ❄
-    <a href="mailto:?subject=Gentoo%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3%28%E4%B8%80%29%20%E2%80%94%C2%A0%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F&amp;body=http%3A//wonux.github.io/gentoo-handbook-base" target="_blank" title="Share via Email">Email</a>
+    <a href="mailto:?subject=Gentoo%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3%28%E4%B8%80%29%20%E2%80%94%C2%A0%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F&amp;body=http%3A//wonux.github.io/gentoo-handbook-base.html" target="_blank" title="Share via Email">Email</a>
     </p>
 </section>
 
@@ -329,7 +323,7 @@ eselect locale set x
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="http://wonux.github.io/gentoo-handbook-base#disqus_thread">
+                href="http://wonux.github.io/gentoo-handbook-base.html#disqus_thread">
                 Comments
             </a>
         </div>
@@ -339,8 +333,8 @@ eselect locale set x
                     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'wonux';
-        var disqus_identifier = 'http://wonux.github.io/gentoo-handbook-base';
-    var disqus_url = 'http://wonux.github.io/gentoo-handbook-base';
+        var disqus_identifier = 'http://wonux.github.io/gentoo-handbook-base.html';
+    var disqus_url = 'http://wonux.github.io/gentoo-handbook-base.html';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -362,18 +356,18 @@ eselect locale set x
 <section>
     <h2>Keep Reading</h2>
 <ul class="related-posts-list">
-<li><a href="http://wonux.github.io/gentoo-handbook-kernel" title="Gentoo安装详解（二）— 编译内核">Gentoo安装详解（二）— 编译内核</a></li>
-<li><a href="http://wonux.github.io/gentoo-handbook-configure" title="Gentoo安装详解（三）— 配置系统">Gentoo安装详解（三）— 配置系统</a></li>
-<li><a href="http://wonux.github.io/gentoo-handbook-xorg" title="Gentoo安装详解（四）— 安装X桌面环境">Gentoo安装详解（四）— 安装X桌面环境</a></li>
-<li><a href="http://wonux.github.io/gentoo-handbook-alsa" title="Gentoo安装详解（五）—声卡设置">Gentoo安装详解（五）—声卡设置</a></li>
-<li><a href="http://wonux.github.io/gentoo-arch-apps" title="Gentoo/Arch常用软件列表">Gentoo/Arch常用软件列表</a></li>
+<li><a href="http://wonux.github.io/gentoo-handbook-kernel.html" title="Gentoo安装详解（二）— 编译内核">Gentoo安装详解（二）— 编译内核</a></li>
+<li><a href="http://wonux.github.io/gentoo-handbook-configure.html" title="Gentoo安装详解（三）— 配置系统">Gentoo安装详解（三）— 配置系统</a></li>
+<li><a href="http://wonux.github.io/gentoo-handbook-xorg.html" title="Gentoo安装详解（四）— 安装X桌面环境">Gentoo安装详解（四）— 安装X桌面环境</a></li>
+<li><a href="http://wonux.github.io/gentoo-handbook-alsa.html" title="Gentoo安装详解（五）—声卡设置">Gentoo安装详解（五）—声卡设置</a></li>
+<li><a href="http://wonux.github.io/gentoo-udev-netware.html" title="Gentoo解决Udev升级的网卡重命名问题">Gentoo解决Udev升级的网卡重命名问题</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="next-article"><a href="http://wonux.github.io/gentoo-handbook-kernel" title="Next: Gentoo安装详解（二）— 编译内核">Gentoo安装详解（二）— 编译内核</a> »</li>
+                <li class="next-article"><a href="http://wonux.github.io/gentoo-handbook-kernel.html" title="Next: Gentoo安装详解（二）— 编译内核">Gentoo安装详解（二）— 编译内核</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -397,7 +391,7 @@ eselect locale set x
                     <span>5</span>
 </a></li>
             </ul>
-<h4>Stay in Touch</h4>
+<h4>Contact</h4>
     <a href="http://weibo.com/wonux" title="My Weibo Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-weibo sidebar-social-links"></i></a>
     <a href="https://github.com/wonux" title="My Github Profile" class="sidebar-social-links" target="_blank">
@@ -406,15 +400,6 @@ eselect locale set x
     <i class="fa fa-book sidebar-social-links"></i></a>
     <a href="mailto:wonux@qq.com" title="My Email Address" class="sidebar-social-links" target="_blank">
     <i class="fa fa-envelope sidebar-social-links"></i></a>
-<!-- Begin MailChimp Signup Form -->
-<div id="mc-embed-signup">
-<form action="empty" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-<h4>Get Monthly Updates</h4>
-<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your email..." required>
-<div class="clear"><input type="submit" value="Send me Free updates" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-</form>
-</div>
-<!--End mc_embed_signup-->
         </div>
         </section>
 </div>
@@ -432,8 +417,7 @@ eselect locale set x
         <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
     </ul>
 </div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</footer>            <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
             {

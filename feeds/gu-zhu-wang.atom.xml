@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Wonux Blog</title><link href="http://wonux.github.io/" rel="alternate"></link><link href="http://wonux.github.io/feeds/gu-zhu-wang.atom.xml" rel="self"></link><id>http://wonux.github.io/</id><updated>2016-02-24T14:30:00+08:00</updated><entry><title>Gentoo/Arch常用软件列表</title><link href="http://wonux.github.io/gentoo-arch-apps" rel="alternate"></link><updated>2016-02-24T14:30:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2016-02-24:gentoo-arch-apps</id><summary type="html">&lt;hr/&gt;
-
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Wonux Blog</title><link href="http://wonux.github.io/" rel="alternate"></link><link href="http://wonux.github.io/feeds/gu-zhu-wang.atom.xml" rel="self"></link><id>http://wonux.github.io/</id><updated>2016-02-24T14:30:00+08:00</updated><entry><title>Gentoo/Arch常用软件列表</title><link href="http://wonux.github.io/gentoo-arch-apps.html" rel="alternate"></link><updated>2016-02-24T14:30:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-02-24:gentoo-arch-apps.html</id><summary type="html">
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
  3
@@ -178,8 +177,7 @@ urxvtd --quiet --opendisplay --fork  ==  urxvtc
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;参考：
 &lt;a href="https://wiki.gentoo.org/wiki/Rxvt-unicode"&gt;https://wiki.gentoo.org/wiki/Rxvt-unicode&lt;/a&gt;
-&lt;a href="https://wiki.archlinux.org/index.php/Rxvt-unicode"&gt;https://wiki.archlinux.org/index.php/Rxvt-unicode&lt;/a&gt;&lt;/p&gt;</summary><category term="gentoo"></category><category term="arch"></category><category term="apps"></category></entry><entry><title>Gentoo解决windows txt文件中文乱码问题 — 文件编码介绍</title><link href="http://wonux.github.io/gentoo-file-encode" rel="alternate"></link><updated>2015-12-10T09:30:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2015-12-10:gentoo-file-encode</id><summary type="html">&lt;hr/&gt;
-
+&lt;a href="https://wiki.archlinux.org/index.php/Rxvt-unicode"&gt;https://wiki.archlinux.org/index.php/Rxvt-unicode&lt;/a&gt;&lt;/p&gt;</summary><category term="gentoo"></category><category term="arch"></category><category term="apps"></category></entry><entry><title>Gentoo解决windows txt文件中文乱码问题 — 文件编码介绍</title><link href="http://wonux.github.io/gentoo-file-encode.html" rel="alternate"></link><updated>2015-12-10T09:30:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-10:gentoo-file-encode.html</id><summary type="html">
 &lt;h3 id="linuxwindows"&gt;Linux与Windows系统语言编码区别&lt;a class="headerlink" href="#linuxwindows" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;在Linux操作系统下，我们有时打开在windows下的txt文件，发现在windows下能正常显示的txt文件出现了中文乱码。 出现这种情况的原因为两种操作系统的中文字符编码方式（压缩方式）不同，在windows环境中中文字符编码一般为gbk，而在linux环境中为utf8，这就导致了在windows下能正常显示txt文件在linux环境下打开呈现了乱码状态。&lt;/p&gt;
 &lt;h3 id="_1"&gt;系统编码设置&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -284,21 +282,31 @@ enca -L zh_CN -x gbk hello.txt     ###将文件编码转换为"gbk"编码
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;enca&lt;/code&gt;有一个好处,如果文件本来就是你要转换的那种编码，它不会报错，还是会print出结果来， 而”iconv”则会报错。&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="gentoo"></category><category term="bugs"></category><category term="i18n"></category></entry><entry><title>Gentoo双网卡同时启用上内外网</title><link href="http://wonux.github.io/gentoo-dual-network" rel="alternate"></link><updated>2015-06-16T07:30:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2015-06-16:gentoo-dual-network</id><summary type="html">&lt;hr/&gt;
-
+&lt;/blockquote&gt;</summary><category term="gentoo"></category><category term="bugs"></category><category term="i18n"></category></entry><entry><title>Gentoo双网卡同时启用上内外网</title><link href="http://wonux.github.io/gentoo-dual-network.html" rel="alternate"></link><updated>2015-06-16T07:30:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-06-16:gentoo-dual-network.html</id><summary type="html">
 &lt;blockquote&gt;
-&lt;p&gt;引言：本文配置网络通过 &lt;a href=""&gt;OpenRC/netifrc&lt;/a&gt; 方法（net.*scritps）配置。
-外网网卡：enp3s4
+&lt;p&gt;引言：本文配置网络通过 &lt;a href=""&gt;OpenRC/netifrc&lt;/a&gt; 方法（net.*scritps）配置。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;外网网卡：enp3s4
 内网网卡：enp2s0
 - 外网地址（通过路由器）
-&lt;span class="caps"&gt;IP&lt;/span&gt;： 192.168.1.10
+IP： 192.168.1.10
 掩码： 255.255.255.0
 网关： 192.168.1.1
 - 内网地址
-&lt;span class="caps"&gt;IP&lt;/span&gt;： 172.14.255.27
+IP： 172.14.255.27
 掩码： 255.255.0.0
-网关： 172.14.0.1&lt;/p&gt;
-&lt;/blockquote&gt;
+网关： 172.14.0.1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;1、分别设置网卡&lt;span class="caps"&gt;IP&lt;/span&gt;，默认网关设置外网网关。
 编辑&lt;code&gt;/etc/conf.d/net&lt;/code&gt;文件&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
@@ -307,8 +315,7 @@ enca -L zh_CN -x gbk hello.txt     ###将文件编码转换为"gbk"编码
 routes_enp3s4="default via 192.168.1.1"
 config_enp2s0="172.14.255.27/16"
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="network"></category></entry><entry><title>Gentoo网络管理方法总结</title><link href="http://wonux.github.io/gentoo-network-method" rel="alternate"></link><updated>2015-06-15T15:30:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2015-06-15:gentoo-network-method</id><summary type="html">&lt;hr/&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="network"></category></entry><entry><title>Gentoo网络管理方法总结</title><link href="http://wonux.github.io/gentoo-network-method.html" rel="alternate"></link><updated>2015-06-15T15:30:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-06-15:gentoo-network-method.html</id><summary type="html">
 &lt;h3 id="openrcnetifrc"&gt;OpenRC/netifrc&lt;a class="headerlink" href="#openrcnetifrc" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Netifrc is a collection of modules created to configure and manage network interfaces via individual, per-interface scripts located in the /etc/init.d/ directory.
 Enable Gentoo’s network stack (&lt;a href="https://wiki.gentoo.org/wiki/Netifrc"&gt;net.* scripts&lt;/a&gt;).&lt;/p&gt;
@@ -367,8 +374,7 @@ It’s a good idea to use dhclient from &lt;a href=""&gt;net-misc/dhcp&lt;/a&gt;
 &lt;a href="https://wiki.gentoo.org/wiki/Network_management_using_DHCPCD/OpenRC_message"&gt;Network_management_using_DHCPCD/OpenRC_message&lt;/a&gt;
 &lt;a href="https://wiki.gentoo.org/wiki/Netifrc"&gt;Netifrc &lt;/a&gt;
 &lt;a href="https://wiki.gentoo.org/wiki/Network_management_using_DHCPCD"&gt;Network management using &lt;span class="caps"&gt;DHCPCD&lt;/span&gt; &lt;/a&gt;
-&lt;a href="https://wiki.gentoo.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt;&lt;/p&gt;</summary><category term="gentoo"></category><category term="network"></category></entry><entry><title>Gentoo无线网络配置 — wpa_supplicant</title><link href="http://wonux.github.io/gentoo-wpa-supplicant" rel="alternate"></link><updated>2015-02-10T13:39:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2015-01-04:gentoo-wpa-supplicant</id><summary type="html">&lt;hr/&gt;
-
+&lt;a href="https://wiki.gentoo.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt;&lt;/p&gt;</summary><category term="gentoo"></category><category term="network"></category></entry><entry><title>Gentoo无线网络配置 — wpa_supplicant</title><link href="http://wonux.github.io/gentoo-wpa-supplicant.html" rel="alternate"></link><updated>2015-02-10T13:39:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-01-04:gentoo-wpa-supplicant.html</id><summary type="html">
 &lt;h3 id="_1"&gt;安装&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;安装&lt;code&gt;net-wireless/wpa_supplicant&lt;/code&gt;包&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge --ask wpa_supplicant
@@ -518,8 +524,7 @@ ln -s net.lo net.wlan0
 #开机启动
 rc-update add wlan0 default
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="network"></category><category term="wireless"></category><category term="wpa2"></category></entry><entry><title>Gentoo本地化中文设置—Locale系统介绍</title><link href="http://wonux.github.io/gentoo-locale" rel="alternate"></link><updated>2015-01-05T16:35:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-locale</id><summary type="html">&lt;hr/&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="network"></category><category term="wireless"></category><category term="wpa2"></category></entry><entry><title>Gentoo本地化中文设置—Locale系统介绍</title><link href="http://wonux.github.io/gentoo-locale.html" rel="alternate"></link><updated>2015-01-05T16:35:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-locale.html</id><summary type="html">
 &lt;h3 id="locale"&gt;locale是什么？&lt;a class="headerlink" href="#locale" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;一份Locale是一组信息的集合，大多数程序利用它来确定特定的国家和语言设置。这些locale以及它们包含的数据是系统库的一部分，可以在大多数系统中的/usr/share/locale目录下找到。locale的名称通常命名为ab_CD的形式，其中ab是两个（或三个）字母的语言代号（在&lt;span class="caps"&gt;ISO&lt;/span&gt;-639中指定），&lt;span class="caps"&gt;CD&lt;/span&gt;是两个字母的国家代号（在&lt;span class="caps"&gt;ISO&lt;/span&gt;-3166中指定）。一些变量常常附加在locale名称的后面，例如en_GB.&lt;span class="caps"&gt;UTF&lt;/span&gt;-8或de_DE@euro。&lt;/p&gt;
 &lt;h3 id="locale_1"&gt;locale环境变量&lt;a class="headerlink" href="#locale_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -579,8 +584,7 @@ rc-update add wlan0 default
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;blockquote&gt;
 &lt;p&gt;警告: LC_ALL设置之后不可被覆写，因此强烈反对使用。除非作测试请不要使用它，并且决不要把它设置在启动文件中。&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="gentoo"></category><category term="locale"></category></entry><entry><title>Gentoo启动菜单设置：使用官方LiveDVD Grub主题</title><link href="http://wonux.github.io/gentoo-grub-theme" rel="alternate"></link><updated>2014-11-20T15:21:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-grub-theme</id><summary type="html">&lt;hr/&gt;
-
+&lt;/blockquote&gt;</summary><category term="gentoo"></category><category term="locale"></category></entry><entry><title>Gentoo启动菜单设置：使用官方LiveDVD Grub主题</title><link href="http://wonux.github.io/gentoo-grub-theme.html" rel="alternate"></link><updated>2014-11-20T15:21:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-grub-theme.html</id><summary type="html">
 &lt;h3 id="gentoo-grub"&gt;设置Gentoo Grub启动主题&lt;a class="headerlink" href="#gentoo-grub" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;拷贝官方LiveDVD grub主题：&lt;/li&gt;
@@ -605,8 +609,7 @@ rc-update add wlan0 default
 &lt;p&gt;系统自动检测存在的操作系统和主题。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;span class="caps"&gt;OK&lt;/span&gt;，重启系统&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="gentoo"></category><category term="grub"></category></entry><entry><title>Gentoo !!! existing preserved libs问题</title><link href="http://wonux.github.io/gentoo-preserved-libs" rel="alternate"></link><updated>2014-11-20T14:01:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-preserved-libs</id><summary type="html">&lt;hr/&gt;
-
+&lt;/ul&gt;</summary><category term="gentoo"></category><category term="grub"></category></entry><entry><title>Gentoo !!! existing preserved libs问题</title><link href="http://wonux.github.io/gentoo-preserved-libs.html" rel="alternate"></link><updated>2014-11-20T14:01:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-preserved-libs.html</id><summary type="html">
 &lt;h2 id="_1"&gt;问题描述&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
@@ -667,8 +670,7 @@ emerge @preserved-rebuild
 &lt;li&gt;先卸载引起preserved libs的软件包（记得—depclean）&lt;/li&gt;
 &lt;li&gt;@preserved-rebuild&lt;/li&gt;
 &lt;li&gt;重新安装软件&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="gentoo"></category><category term="bugs"></category></entry><entry><title>Gentoo挂载Windowntfs的NTFS分区</title><link href="http://wonux.github.io/gentoo-ntfs" rel="alternate"></link><updated>2014-11-21T13:56:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-ntfs</id><summary type="html">&lt;hr/&gt;
-
+&lt;/ul&gt;</summary><category term="gentoo"></category><category term="bugs"></category></entry><entry><title>Gentoo挂载Windowntfs的NTFS分区</title><link href="http://wonux.github.io/gentoo-ntfs.html" rel="alternate"></link><updated>2014-11-21T13:56:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-ntfs.html</id><summary type="html">
 &lt;h3 id="_1"&gt;内核需要开启的选项&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;File systems ---&amp;gt;
@@ -704,8 +706,7 @@ emerge @preserved-rebuild
 &lt;p&gt;保存文件后重启系统或简单的执行下面的命令，即可装载&lt;span class="caps"&gt;NTFS&lt;/span&gt;分区到指定的装载点&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount  -a
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="ntfs"></category></entry><entry><title>Gentoo网络配置</title><link href="http://wonux.github.io/gentoo-network" rel="alternate"></link><updated>2014-11-20T10:07:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-network</id><summary type="html">&lt;hr/&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="ntfs"></category></entry><entry><title>Gentoo网络配置</title><link href="http://wonux.github.io/gentoo-network.html" rel="alternate"></link><updated>2014-11-20T10:07:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-network.html</id><summary type="html">
 &lt;h2 id="_1"&gt;网卡识别配置&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;要开始配置你的网卡，你首先需要告诉Gentoo &lt;span class="caps"&gt;RC&lt;/span&gt;系统你的网卡。 可以用ifconfig命令查看自己网卡名字：&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ifconfig -a
@@ -802,12 +803,11 @@ nameserver 202.99.166.4
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ping www.baidu.com
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;如果能ping通，&lt;span class="caps"&gt;DNS&lt;/span&gt;设置无误。&lt;/p&gt;</summary><category term="gentoo"></category><category term="network"></category></entry><entry><title>Gentoo/Funtoo USE标记介绍</title><link href="http://wonux.github.io/gentoo-use" rel="alternate"></link><updated>2015-02-10T17:27:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-use</id><summary type="html">&lt;hr/&gt;
-
+&lt;p&gt;如果能ping通，&lt;span class="caps"&gt;DNS&lt;/span&gt;设置无误。&lt;/p&gt;</summary><category term="gentoo"></category><category term="network"></category></entry><entry><title>Gentoo/Funtoo USE标记介绍</title><link href="http://wonux.github.io/gentoo-use.html" rel="alternate"></link><updated>2015-02-10T17:27:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-use.html</id><summary type="html">
 &lt;h3 id="gentoofuntoo-use"&gt;Gentoo/Funtoo &lt;span class="caps"&gt;USE&lt;/span&gt;标记&lt;a class="headerlink" href="#gentoofuntoo-use" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;span class="caps"&gt;USE&lt;/span&gt;的简单理解如下：一个软件不只包含软件本身，还包括其组件，如，文档，插件，&lt;span class="caps"&gt;GUI&lt;/span&gt;支持等。&lt;span class="caps"&gt;USE&lt;/span&gt;就是用来标记是否要安装软件的同时安装这些组件。&lt;/p&gt;
 &lt;h3 id="use"&gt;声明&lt;span class="caps"&gt;USE&lt;/span&gt;标记&lt;a class="headerlink" href="#use" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;所有&lt;span class="caps"&gt;USE&lt;/span&gt;标记都声明在&lt;span class="caps"&gt;USE&lt;/span&gt;变量里面。 默认的&lt;span class="caps"&gt;USE&lt;/span&gt;设定，在make.defaults文件（你的profile的一部分）里声明。&lt;/p&gt;
+&lt;p&gt;所有&lt;span class="caps"&gt;USE&lt;/span&gt;标记都声明在&lt;span class="caps"&gt;USE&lt;/span&gt;变量里面。默认的&lt;span class="caps"&gt;USE&lt;/span&gt;设定，在make.defaults文件（你的profile的一部分）里声明。&lt;/p&gt;
 &lt;h4 id="use_1"&gt;全局&lt;span class="caps"&gt;USE&lt;/span&gt;标记&lt;a class="headerlink" href="#use_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;不要通过修改make.defaults文件里的&lt;span class="caps"&gt;USE&lt;/span&gt;变量来满足你的需要：在升级Portage的时候，这个文件将会被破坏（被覆盖）。
 要改变这个默认设置，你需要在&lt;span class="caps"&gt;USE&lt;/span&gt;变量里添加或移去关键字。这是通过在&lt;code&gt;/etc/make.conf&lt;/code&gt;里定义&lt;span class="caps"&gt;USE&lt;/span&gt;全局变量来实现的。
@@ -828,12 +828,15 @@ nameserver 202.99.166.4
 &lt;/blockquote&gt;
 &lt;h4 id="use_5"&gt;&lt;span class="caps"&gt;USE&lt;/span&gt;标记颜色&lt;a class="headerlink" href="#use_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;emerge命令显示时，不同&lt;strong&gt;颜色&lt;/strong&gt;&lt;span class="caps"&gt;USE&lt;/span&gt;标记的意义:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;红色&lt;/em&gt; 代表这次emerge用到的&lt;span class="caps"&gt;USE&lt;/span&gt;标记
-&lt;em&gt;黄色&lt;/em&gt; 表示从上次更新后该标记被增加、删除或者Masked
-&lt;em&gt;蓝色&lt;/em&gt; 前面带-表示这次emerge屏蔽掉的&lt;span class="caps"&gt;USE&lt;/span&gt;标记
-&lt;em&gt;绿色&lt;/em&gt; 的是你本次编译添加的新&lt;span class="caps"&gt;USE&lt;/span&gt;标记，或者去掉的&lt;span class="caps"&gt;USE&lt;/span&gt;标记。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*红色* 代表这次emerge用到的USE标记
+*黄色* 表示从上次更新后该标记被增加、删除或者Masked
+*蓝色* 前面带-表示这次emerge屏蔽掉的USE标记
+*绿色* 的是你本次编译添加的新USE标记，或者去掉的USE标记。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;h4 id="use_6"&gt;包特有的&lt;span class="caps"&gt;USE&lt;/span&gt;标记&lt;a class="headerlink" href="#use_6" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;查看特定包可用&lt;span class="caps"&gt;USE&lt;/span&gt;标记&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge -pv xxx
@@ -846,8 +849,7 @@ nameserver 202.99.166.4
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;参考：
 http://en.gentoo-wiki.com/wiki/Portage
-http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=2&amp;amp;chap=1 http://www.gentoo.org/dyn/use-index.xml&lt;/p&gt;</summary><category term="gentoo"></category><category term="portage"></category><category term="use"></category></entry><entry><title>Gentoo Xorg:Failed to load module “……” 问题</title><link href="http://wonux.github.io/gentoo-xorg-failed" rel="alternate"></link><updated>2014-12-22T14:12:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-10-24:gentoo-xorg-failed</id><summary type="html">&lt;hr/&gt;
-
+http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=2&amp;amp;chap=1 http://www.gentoo.org/dyn/use-index.xml&lt;/p&gt;</summary><category term="gentoo"></category><category term="portage"></category><category term="use"></category></entry><entry><title>Gentoo Xorg:Failed to load module “……” 问题</title><link href="http://wonux.github.io/gentoo-xorg-failed.html" rel="alternate"></link><updated>2014-12-22T14:12:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-24:gentoo-xorg-failed.html</id><summary type="html">
 &lt;h3 id="_1"&gt;错误描述：&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;安装完xorg-server后，startx启动桌面环境，出现缺少模块错误。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -872,8 +874,7 @@ http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=2&amp;amp;chap=1 ht
 Calculating dependencies  … done!
 [ebuild   R    ] x11-base/xorg-drivers-1.15  INPUT_DEVICES=”evdev keyboard mouse -acecad -aiptek -elographics -fpit -hyperpen -joystick -mutouch -penmount -synaptics -tslib -vmmouse -void -wacom” VIDEO_CARDS=”intel -apm -ast -chips -cirrus -dummy -epson -fbdev -fglrx (-freedreno) -geode -glint -i128 -i740 -mach64 -mga -modesetting -neomagic -nouveau -nv -nvidia (-omap) (-omapfb) -qxl -r128 -radeon -radeonsi -rendition -s3virge -savage -siliconmotion -sisusb (-sunbw2) (-suncg14) (-suncg3) (-suncg6) (-sunffb) (-sunleo) (-suntcx) -tdfx -tga -trident -tseng -v4l -vesa -via -virtualbox -vmware (-voodoo)” 0 kB&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;在VIDEO_CARDS中添加modesetting,fbdev,vesa即可。&lt;/p&gt;</summary><category term="gentoo"></category><category term="bugs"></category><category term="xorg"></category></entry><entry><title>gcc-config:Active gcc profile is invalid 解决办法</title><link href="http://wonux.github.io/gentoo-gcc-invalid" rel="alternate"></link><updated>2014-11-14T17:36:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-09-02:gentoo-gcc-invalid</id><summary type="html">&lt;hr/&gt;
-
+&lt;p&gt;在VIDEO_CARDS中添加modesetting,fbdev,vesa即可。&lt;/p&gt;</summary><category term="gentoo"></category><category term="bugs"></category><category term="xorg"></category></entry><entry><title>gcc-config:Active gcc profile is invalid 解决办法</title><link href="http://wonux.github.io/gentoo-gcc-invalid.html" rel="alternate"></link><updated>2014-11-14T17:36:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-09-02:gentoo-gcc-invalid.html</id><summary type="html">
 &lt;h3 id="_1"&gt;错误描述&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Gentoo软件安装错误,提示：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -909,8 +910,7 @@ Calculating dependencies  … done!
 &lt;blockquote&gt;
 &lt;p&gt;Switching native-compiler to i686-pc-linux-gnu-4.6.3 …
 Regenerating /etc/ld.so.cache…                                      [ ok ]&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="gentoo"></category><category term="bugs"></category><category term="gcc"></category></entry><entry><title>Gentoo本地化设置—时区、时钟、字体、中文环境</title><link href="http://wonux.github.io/gentoo-localization" rel="alternate"></link><updated>2015-01-05T16:05:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-06-30:gentoo-localization</id><summary type="html">&lt;hr/&gt;
-
+&lt;/blockquote&gt;</summary><category term="gentoo"></category><category term="bugs"></category><category term="gcc"></category></entry><entry><title>Gentoo本地化设置—时区、时钟、字体、中文环境</title><link href="http://wonux.github.io/gentoo-localization.html" rel="alternate"></link><updated>2015-01-05T16:05:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-06-30:gentoo-localization.html</id><summary type="html">
 &lt;h2 id="_1"&gt;时区&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;你需要选择时区让系统知道你的地理位置，以保持正确的时间。在/usr/share/zoneinfo中查找你的时区。然后在/etc/conf.d/clock中设置时区。请忽略/usr/share/zoneinfo/Etc/&lt;span class="caps"&gt;GMT&lt;/span&gt;*时区，因为它们的名字并不表示所指的地区。比如，&lt;span class="caps"&gt;GMT&lt;/span&gt;-8实际上是&lt;span class="caps"&gt;GMT&lt;/span&gt;+8。 设置时区信息：&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
@@ -993,8 +993,7 @@ export LC_COLLATE=”C”&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;注：&lt;em&gt;另一种系统配置方式是保留默认的C locale，同时要能够表现&lt;span class="caps"&gt;UTF&lt;/span&gt;-8字符。
 这种选择可以通过使用下述设置来实现：LC_CTYPE=zh_CN.&lt;span class="caps"&gt;UTF&lt;/span&gt;-8&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="gentoo"></category><category term="locale"></category></entry><entry><title>Gentoo解决Udev升级的网卡重命名问题</title><link href="http://wonux.github.io/gentoo-udev-netware" rel="alternate"></link><updated>2014-06-30T10:40:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-06-30:gentoo-udev-netware</id><summary type="html">&lt;hr/&gt;
-
+&lt;/blockquote&gt;</summary><category term="gentoo"></category><category term="locale"></category></entry><entry><title>Gentoo解决Udev升级的网卡重命名问题</title><link href="http://wonux.github.io/gentoo-udev-netware.html" rel="alternate"></link><updated>2014-06-30T10:40:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-06-30:gentoo-udev-netware.html</id><summary type="html">
 &lt;h2 id="_1"&gt;问题描述：&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;配置网络时，很多新手运行ifconfig命令查看网卡时，会发现我们熟悉的eth0网卡没有了，或是发现一些不规则命名的东东，不错，那就是你的网卡。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1015,7 +1014,7 @@ export LC_COLLATE=”C”&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;使用原来的网卡名字eth0,重置udev的rules：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;方法一： 在kernel命令行选项里使用net.ifnames=0 方法二：新建空文件文件/etc/udev/rules.d/80-net-name-slot.rules或注释掉里面内容&lt;/p&gt;
+&lt;p&gt;方法一： 在kernel命令行选项里使用net.ifnames=0 ; 方法二：新建空文件文件/etc/udev/rules.d/80-net-name-slot.rules或注释掉里面内容&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
@@ -1039,8 +1038,7 @@ cd /etc/init.d
 ln -s net.lo net.enp0s3
 rc-update add net.enp0s3 default #使用新名字
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="bugs"></category><category term="network"></category></entry><entry><title>Gentoo解决Windows双系统时间不同步的问题</title><link href="http://wonux.github.io/gentoo-handbook-clock" rel="alternate"></link><updated>2014-11-20T14:05:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-06:gentoo-handbook-clock</id><summary type="html">&lt;hr/&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="bugs"></category><category term="network"></category></entry><entry><title>Gentoo解决Windows双系统时间不同步的问题</title><link href="http://wonux.github.io/gentoo-handbook-clock.html" rel="alternate"></link><updated>2014-11-20T14:05:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-05-06:gentoo-handbook-clock.html</id><summary type="html">
 &lt;blockquote&gt;
 &lt;p&gt;升级后的gentoo不再使用/etc/conf.d/clock，而是使用/etc/conf.d/hwclock来设置和时间相关了。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1072,8 +1070,7 @@ rc-update add net.enp0s3 default #使用新名字
 &lt;p&gt;显示硬件时间则是：&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hwclock --show
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="clock"></category></entry><entry><title>Gentoo安装详解（五）—声卡设置</title><link href="http://wonux.github.io/gentoo-handbook-alsa" rel="alternate"></link><updated>2015-02-11T11:54:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-05:gentoo-handbook-alsa</id><summary type="html">&lt;hr/&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="clock"></category></entry><entry><title>Gentoo安装详解（五）—声卡设置</title><link href="http://wonux.github.io/gentoo-handbook-alsa.html" rel="alternate"></link><updated>2015-02-11T11:54:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-05:gentoo-handbook-alsa.html</id><summary type="html">
 &lt;h3 id="_1"&gt;硬件检测&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;To choose the right driver, first detect the used audio controller. You can use lspci for this task:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;lspci | grep -i audio
@@ -1137,8 +1134,7 @@ rc-update add net.enp0s3 default #使用新名字
 &lt;p&gt;If everything above is perfect, you should now be able to test your sound card and your speakers. We will use the speaker-test command line tool from package media-sound/alsa-utils (this should already be installed as per our previous recommendation).&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;speaker-test -t wav -c 2
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="handbook"></category><category term="alsa"></category></entry><entry><title>Gentoo安装详解（四）— 安装X桌面环境</title><link href="http://wonux.github.io/gentoo-handbook-xorg" rel="alternate"></link><updated>2015-05-14T11:03:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-05:gentoo-handbook-xorg</id><summary type="html">&lt;hr/&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="handbook"></category><category term="alsa"></category></entry><entry><title>Gentoo安装详解（四）— 安装X桌面环境</title><link href="http://wonux.github.io/gentoo-handbook-xorg.html" rel="alternate"></link><updated>2015-05-14T11:03:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-05-05:gentoo-handbook-xorg.html</id><summary type="html">
 &lt;h2 id="x"&gt;安装X桌面环境：&lt;a class="headerlink" href="#x" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="xorg"&gt;安装Xorg：&lt;a class="headerlink" href="#xorg" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
@@ -1368,8 +1364,7 @@ Openbox 在匹配窗口的 name、class 及 role 时，可以使用通配符 * �
 参考另一篇文章: &lt;a href=""&gt;openbox设置透明效果&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="dwm"&gt;dwm&lt;a class="headerlink" href="#dwm" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;</summary><category term="gentoo"></category><category term="handbook"></category><category term="xorg"></category></entry><entry><title>Gentoo安装详解（三）— 配置系统</title><link href="http://wonux.github.io/gentoo-handbook-configure" rel="alternate"></link><updated>2015-05-08T11:54:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-04:gentoo-handbook-configure</id><summary type="html">&lt;hr/&gt;
-
+&lt;h4 id="dwm"&gt;dwm&lt;a class="headerlink" href="#dwm" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;</summary><category term="gentoo"></category><category term="handbook"></category><category term="xorg"></category></entry><entry><title>Gentoo安装详解（三）— 配置系统</title><link href="http://wonux.github.io/gentoo-handbook-configure.html" rel="alternate"></link><updated>2015-05-08T11:54:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-05-04:gentoo-handbook-configure.html</id><summary type="html">
 &lt;h2 id="_1"&gt;配置系统&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="_2"&gt;系统信息：&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
@@ -1538,8 +1533,7 @@ umount -l /mnt/gentoo/dev{/shm,/pts,}
 umount -l /mnt/gentoo{/boot,/proc,}
 reboot
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="handbook"></category></entry><entry><title>Gentoo安装详解（二）— 编译内核</title><link href="http://wonux.github.io/gentoo-handbook-kernel" rel="alternate"></link><updated>2015-05-08T10:44:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-04:gentoo-handbook-kernel</id><summary type="html">&lt;hr/&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="handbook"></category></entry><entry><title>Gentoo安装详解（二）— 编译内核</title><link href="http://wonux.github.io/gentoo-handbook-kernel.html" rel="alternate"></link><updated>2015-05-08T10:44:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-05-04:gentoo-handbook-kernel.html</id><summary type="html">
 &lt;h2 id="_1"&gt;编译内核：&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;安装内核源码：&lt;/li&gt;
@@ -1605,8 +1599,7 @@ make install  #使用make install
 &lt;p&gt;一旦genkernel运行完成，一个包括全部模块和initrd的内核将被建立。在后面配置引导程序时我们将会用到这个内核和initrd。请记下内核和initrd的名字，因为您将在配置引导程序的时候用到他们(Grub Legacy使用)。initrd将会在启动真正的系统前自动识别硬件（如同安装光盘一样）。&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ls /boot/kernel* /boot/initramfs*
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="handbook"></category><category term="kernel"></category></entry><entry><title>Gentoo安装详解(一) — 安装基本系统</title><link href="http://wonux.github.io/gentoo-handbook-base" rel="alternate"></link><updated>2015-02-11T11:24:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-04:gentoo-handbook-base</id><summary type="html">&lt;hr/&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="handbook"></category><category term="kernel"></category></entry><entry><title>Gentoo安装详解(一) — 安装基本系统</title><link href="http://wonux.github.io/gentoo-handbook-base.html" rel="alternate"></link><updated>2015-02-11T11:24:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-05-04:gentoo-handbook-base.html</id><summary type="html">
 &lt;h2 id="_1"&gt;前期准备&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="_2"&gt;远程登录：&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
@@ -1616,120 +1609,118 @@ make install  #使用make install
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;设置密码：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;passwd
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;以便使用putty、ssh client远程登录上传stage等（有时在线下载很慢，而局域网上传很快）&lt;/p&gt;
-&lt;h3 id="_3"&gt;准备磁盘：&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;分区：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;fdisk /dev/sda
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;/dev/sda1 : /boot 100M(32-100M)  设启动笔记-a
-/dev/sda2 : / 20G
-/dev/sda3 : /home 20G
- /dev/sda5 : /swap 1G (内存&amp;lt; 512 &lt;span class="caps"&gt;MB&lt;/span&gt;,分区分配2倍内存大小的空间;&amp;gt; 1024 &lt;span class="caps"&gt;MB&lt;/span&gt;，可以分配较少的空间甚至不需要swap 分区。)-t 82&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;创建文件系统：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2
-3
-4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkfs.ext4 /dev/sda1
-mkfs.ext4 /dev/sda2
-mkfs.ext4 /dev/sda3
-mkswap /dev/sda5
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;挂载分区：&lt;/li&gt;
+&lt;li&gt;设置密码：
+ “` passwd&lt;/li&gt;
 &lt;/ul&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
 3
 4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;以便使用putty、ssh client远程登录上传stage等（有时在线下载很慢，而局域网上传很快）
+
+### 准备磁盘：
+
+- 分区：
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;fdisk /dev/sda&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
 5
-6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount /dev/sda2 /mnt/gentoo
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; /dev/sda1 : /boot 100M(32-100M)  设启动笔记-a
+/dev/sda2 : / 20G
+/dev/sda3 : /home 20G
+ /dev/sda5 : /swap 1G (内存&amp;lt; 512 MB,分区分配2倍内存大小的空间;&amp;gt; 1024 MB，可以分配较少的空间甚至不需要swap 分区。)-t 82
+
+- 创建文件系统：
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;mkfs.ext4 /dev/sda1
+mkfs.ext4 /dev/sda2
+mkfs.ext4 /dev/sda3
+mkswap /dev/sda5&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 挂载分区：
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;mount /dev/sda2 /mnt/gentoo
 mkdir /mnt/gentoo/boot
 mount /dev/sda1 /mnt/gentoo/boot
 mkdir /mnt/gentoo/home
 mount /dev/sda3 /mnt/gentoo/home
-swapon /dev/sda5
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;h2 id="_4"&gt;安装系统&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id="stageportage"&gt;安装stage及portage：&lt;a class="headerlink" href="#stageportage" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;正确设置日期／时间：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;date
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果显示的日期／时间不正确，可以使用date MMDDhhmmYYYY命令&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;下载Stage3 Tarbll：&lt;/li&gt;
-&lt;/ul&gt;
+swapon /dev/sda5&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /mnt/gentoo
-links http://www.gentoo.org/main/en/mirrors.xml
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;## 安装系统
+
+### 安装stage及portage：
+
+- 正确设置日期／时间：
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;选择国内速度较快的镜像，进入releases/x86/autobuilds/目录里。你将会看到所有适合你的计算机体系结构的stage文件（它们也可能放在各个独立的子体系名称的子目录里）。选择一个，然后按D来下载。下载完以后，再按Q退出浏览器。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;或使用&lt;span class="caps"&gt;SSH&lt;/span&gt; Secure Shell登录上传stage3文件&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;解开Stage3 Tarball：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tar xvjpf stage3-*.tar.bz2
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;下载Portage： 打开links（或者lynx）然后到我们的Gentoo镜像列表。选择一个离你最近的镜像，打开snapshots/目录。然后选择最新的Portage快照（portage-latest.tar.bz2）并按D来下载它。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;links http://www.gentoo.org/main/en/mirrors.xml
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;或使用&lt;span class="caps"&gt;SSH&lt;/span&gt; Secure Shell登录上传portage文件&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;解压Portage：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tar -xvjf /mnt/gentoo/portage-latest.tar.bz2 -C /mnt/gentoo/usr （install a Portage snapshot）
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;h3 id="_5"&gt;编译前准备：&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;配置编译选项：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nano -w /mnt/gentoo/etc/portage/make.conf
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;span class="caps"&gt;CFLAGS&lt;/span&gt;=”-march=native -O2 -pipe”&lt;br/&gt;
-&lt;span class="caps"&gt;CXXFLAGS&lt;/span&gt;=”${&lt;span class="caps"&gt;CFLAGS&lt;/span&gt;}”  # 两个变量使用相同的设置
-&lt;span class="caps"&gt;MAKEOPTS&lt;/span&gt;=”-j3”  #&lt;span class="caps"&gt;MAKEOPTS&lt;/span&gt;定义在安装软件的时候同时可以产生并行编译的数目，&lt;span class="caps"&gt;CPU&lt;/span&gt;数目加一是个不错的选择&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;查看cpu信息：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat proc/cpuinfo
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;选择镜像站点：&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;date&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mirrorselect -i -o &amp;gt;&amp;gt; /mnt/gentoo/etc/portage/make.conf
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; 如果显示的日期／时间不正确，可以使用date MMDDhhmmYYYY命令
+
+- 下载Stage3 Tarbll：
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;cd /mnt/gentoo
+links http://www.gentoo.org/main/en/mirrors.xml&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;选择国内速度较快的镜像，进入releases/x86/autobuilds/目录里。你将会看到所有适合你的计算机体系结构的stage文件（它们也可能放在各个独立的子体系名称的子目录里）。选择一个，然后按D来下载。下载完以后，再按Q退出浏览器。
+&amp;gt; 或使用SSH Secure Shell登录上传stage3文件
+
+- 解开Stage3 Tarball：
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;tar xvjpf stage3-*.tar.bz2&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 下载Portage：
+打开links（或者lynx）然后到我们的Gentoo镜像列表。选择一个离你最近的镜像，打开snapshots/目录。然后选择最新的Portage快照（portage-latest.tar.bz2）并按D来下载它。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;links http://www.gentoo.org/main/en/mirrors.xml&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; 或使用SSH Secure Shell登录上传portage文件
+
+- 解压Portage：
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;tar -xvjf /mnt/gentoo/portage-latest.tar.bz2 -C /mnt/gentoo/usr （install a Portage snapshot）&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;### 编译前准备：
+
+- 配置编译选项：
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;nano -w /mnt/gentoo/etc/portage/make.conf&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; CFLAGS="-march=native -O2 -pipe"  
+CXXFLAGS="&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;CFLAGS&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;"  # 两个变量使用相同的设置
+MAKEOPTS="-j3"  #MAKEOPTS定义在安装软件的时候同时可以产生并行编译的数目，CPU数目加一是个不错的选择
+
+查看cpu信息：
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;cat proc/cpuinfo&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 选择镜像站点：
+ ```
+mirrorselect -i -o &amp;gt;&amp;gt; /mnt/gentoo/etc/portage/make.conf
 mirrorselect -i -r -o &amp;gt;&amp;gt; /mnt/gentoo/etc/portage/make.conf
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -1764,7 +1755,7 @@ mount --rbind /sys /mnt/gentoo/sys
 &lt;span class="x"&gt;export PS1="(chroot) &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PS1&lt;/span&gt;&lt;span class="x"&gt;"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;h3 id="_6"&gt;新环境配置：&lt;a class="headerlink" href="#_6" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="_3"&gt;新环境配置：&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;更新portage树：&lt;/li&gt;
 &lt;/ul&gt;

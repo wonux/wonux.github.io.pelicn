@@ -4,8 +4,8 @@
         <meta charset="utf-8"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Ace King" />
-        <meta name="copyright" content="Ace King" />
+        <meta name="author" content="孤逐王" />
+        <meta name="copyright" content="孤逐王" />
 
         <meta name="description" content="" />
         <meta name="twitter:creator" content="@wonux">
@@ -15,10 +15,10 @@
 <meta name="keywords" content="gentoo, locale, Gentoo, " />
 
 <meta property="og:title" content="Gentoo本地化中文设置—Locale系统介绍 "/>
-<meta property="og:url" content="http://wonux.github.io/gentoo-locale" />
+<meta property="og:url" content="http://wonux.github.io/gentoo-locale.html" />
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="Wonux Blog" />
-<meta property="og:article:author" content="Ace King" />
+<meta property="og:article:author" content="孤逐王" />
 <meta property="og:article:published_time" content="2014-11-20T16:21:00+08:00" />
 <meta property="" content="2015-01-05T16:35:00+08:00" />
 <meta name="twitter:title" content="Gentoo本地化中文设置—Locale系统介绍 ">
@@ -30,7 +30,7 @@
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?7aeecf36">
+<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?93135f3f">
         <link rel="shortcut icon" href="http://wonux.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
         <link rel="icon" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link rel="apple-touch-icon" href="http://wonux.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
@@ -41,12 +41,14 @@
         <link rel="apple-touch-icon" sizes="120x120" href="http://wonux.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="144x144" href="http://wonux.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="152x152" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <script src="http://code.jquery.com/jquery.min.js"></script>
     </head>
-    <body>
+    <body class="tex2jax_ignore">
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
+                    <div class="span1"></div>
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -56,6 +58,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
                             <li ><a href="http://wonux.github.io">Home</a></li>
+                            <li ><a href="http://wonux.github.io/about.html">About</a></li>
                             <li ><a href="http://wonux.github.io/categories.html">Categories</a></li>
                             <li ><a href="http://wonux.github.io/tags.html">Tags</a></li>
                             <li ><a href="http://wonux.github.io/archives.html">Archives</a></li>
@@ -72,7 +75,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="http://wonux.github.io/gentoo-locale"> Gentoo本地化中文设置&#8212;Locale系统介绍  </a></h1>
+    <h1><a href="http://wonux.github.io/gentoo-locale.html"> Gentoo本地化中文设置&#8212;Locale系统介绍  </a></h1>
     </header>
 </div>
 
@@ -92,8 +95,7 @@
     <div class="span8 article-content">
 
             
-            <hr/>
-
+            
 <h3 id="locale">locale是什么？<a class="headerlink" href="#locale" title="Permanent link">¶</a></h3>
 <p>一份Locale是一组信息的集合，大多数程序利用它来确定特定的国家和语言设置。这些locale以及它们包含的数据是系统库的一部分，可以在大多数系统中的/usr/share/locale目录下找到。locale的名称通常命名为ab_CD的形式，其中ab是两个（或三个）字母的语言代号（在<span class="caps">ISO</span>-639中指定），<span class="caps">CD</span>是两个字母的国家代号（在<span class="caps">ISO</span>-3166中指定）。一些变量常常附加在locale名称的后面，例如en_GB.<span class="caps">UTF</span>-8或de_DE@euro。</p>
 <h3 id="locale_1">locale环境变量<a class="headerlink" href="#locale_1" title="Permanent link">¶</a></h3>
@@ -157,13 +159,13 @@
             <section>
     <p id="post-share-links">
     Share on:
-    <a href="http://twitter.com/home?status=Gentoo%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE%E2%80%94Locale%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D%20http%3A//wonux.github.io/gentoo-locale" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="http://twitter.com/home?status=Gentoo%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE%E2%80%94Locale%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D%20http%3A//wonux.github.io/gentoo-locale.html" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
-    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/gentoo-locale" target="_blank" title="Share on Facebook">Facebook</a>
+    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/gentoo-locale.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/gentoo-locale" target="_blank" title="Share on Google Plus">Google+</a>
+    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/gentoo-locale.html" target="_blank" title="Share on Google Plus">Google+</a>
     ❄
-    <a href="mailto:?subject=Gentoo%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE%E2%80%94Locale%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D&amp;body=http%3A//wonux.github.io/gentoo-locale" target="_blank" title="Share via Email">Email</a>
+    <a href="mailto:?subject=Gentoo%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE%E2%80%94Locale%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D&amp;body=http%3A//wonux.github.io/gentoo-locale.html" target="_blank" title="Share via Email">Email</a>
     </p>
 </section>
 
@@ -173,7 +175,7 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="http://wonux.github.io/gentoo-locale#disqus_thread">
+                href="http://wonux.github.io/gentoo-locale.html#disqus_thread">
                 Comments
             </a>
         </div>
@@ -183,8 +185,8 @@
                     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'wonux';
-        var disqus_identifier = 'http://wonux.github.io/gentoo-locale';
-    var disqus_url = 'http://wonux.github.io/gentoo-locale';
+        var disqus_identifier = 'http://wonux.github.io/gentoo-locale.html';
+    var disqus_url = 'http://wonux.github.io/gentoo-locale.html';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -206,19 +208,19 @@
 <section>
     <h2>Keep Reading</h2>
 <ul class="related-posts-list">
-<li><a href="http://wonux.github.io/gentoo-handbook-xorg" title="Gentoo安装详解（四）— 安装X桌面环境">Gentoo安装详解（四）— 安装X桌面环境</a></li>
-<li><a href="http://wonux.github.io/gentoo-handbook-alsa" title="Gentoo安装详解（五）—声卡设置">Gentoo安装详解（五）—声卡设置</a></li>
-<li><a href="http://wonux.github.io/gentoo-localization" title="Gentoo本地化设置—时区、时钟、字体、中文环境">Gentoo本地化设置—时区、时钟、字体、中文环境</a></li>
-<li><a href="http://wonux.github.io/gentoo-gcc-invalid" title="gcc-config:Active gcc profile is invalid 解决办法">gcc-config:Active gcc profile is invalid 解决办法</a></li>
-<li><a href="http://wonux.github.io/gentoo-arch-apps" title="Gentoo/Arch常用软件列表">Gentoo/Arch常用软件列表</a></li>
+<li><a href="http://wonux.github.io/gentoo-handbook-base.html" title="Gentoo安装详解(一) — 安装基本系统">Gentoo安装详解(一) — 安装基本系统</a></li>
+<li><a href="http://wonux.github.io/gentoo-handbook-clock.html" title="Gentoo解决Windows双系统时间不同步的问题">Gentoo解决Windows双系统时间不同步的问题</a></li>
+<li><a href="http://wonux.github.io/gentoo-udev-netware.html" title="Gentoo解决Udev升级的网卡重命名问题">Gentoo解决Udev升级的网卡重命名问题</a></li>
+<li><a href="http://wonux.github.io/gentoo-localization.html" title="Gentoo本地化设置—时区、时钟、字体、中文环境">Gentoo本地化设置—时区、时钟、字体、中文环境</a></li>
+<li><a href="http://wonux.github.io/gentoo-network-method.html" title="Gentoo网络管理方法总结">Gentoo网络管理方法总结</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="http://wonux.github.io/gentoo-grub-theme" title="Previous: Gentoo启动菜单设置：使用官方LiveDVD Grub主题">Gentoo启动菜单设置：使用官方LiveDVD Grub主题</a></li>
-                <li class="next-article"><a href="http://wonux.github.io/gentoo-wpa-supplicant" title="Next: Gentoo无线网络配置 — wpa_supplicant">Gentoo无线网络配置 — wpa_supplicant</a> »</li>
+                <li class="previous-article">« <a href="http://wonux.github.io/gentoo-grub-theme.html" title="Previous: Gentoo启动菜单设置：使用官方LiveDVD Grub主题">Gentoo启动菜单设置：使用官方LiveDVD Grub主题</a></li>
+                <li class="next-article"><a href="http://wonux.github.io/gentoo-wpa-supplicant.html" title="Next: Gentoo无线网络配置 — wpa_supplicant">Gentoo无线网络配置 — wpa_supplicant</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -242,7 +244,7 @@
                     <span>2</span>
 </a></li>
             </ul>
-<h4>Stay in Touch</h4>
+<h4>Contact</h4>
     <a href="http://weibo.com/wonux" title="My Weibo Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-weibo sidebar-social-links"></i></a>
     <a href="https://github.com/wonux" title="My Github Profile" class="sidebar-social-links" target="_blank">
@@ -251,15 +253,6 @@
     <i class="fa fa-book sidebar-social-links"></i></a>
     <a href="mailto:wonux@qq.com" title="My Email Address" class="sidebar-social-links" target="_blank">
     <i class="fa fa-envelope sidebar-social-links"></i></a>
-<!-- Begin MailChimp Signup Form -->
-<div id="mc-embed-signup">
-<form action="empty" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-<h4>Get Monthly Updates</h4>
-<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your email..." required>
-<div class="clear"><input type="submit" value="Send me Free updates" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-</form>
-</div>
-<!--End mc_embed_signup-->
         </div>
         </section>
 </div>
@@ -277,8 +270,7 @@
         <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
     </ul>
 </div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</footer>            <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
             {
