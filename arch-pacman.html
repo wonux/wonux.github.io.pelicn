@@ -30,7 +30,7 @@
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?93135f3f">
+<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?1697810b">
         <link rel="shortcut icon" href="http://wonux.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
         <link rel="icon" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link rel="apple-touch-icon" href="http://wonux.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
@@ -41,6 +41,7 @@
         <link rel="apple-touch-icon" sizes="120x120" href="http://wonux.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="144x144" href="http://wonux.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="152x152" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="http://wonux.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Wonux Blog - Full Atom Feed" />
         <script src="http://code.jquery.com/jquery.min.js"></script>
     </head>
     <body class="tex2jax_ignore">
@@ -104,26 +105,47 @@
 <code>pacman -Syu</code>
 如果你已经使用<code>pacman -Sy</code>将本地的包数据库与远程的仓库进行了同步，也可以只执行：<code>pacman -Su</code></p>
 <h3 id="_2">安装包<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
-<p>➔ <code>pacman -S</code> ：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>➔ pacman -S：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，
 只需以空格分隔包名即可。
-➔ <code>pacman -Sy</code> ：与上面命令不同的是，该命令将在同步包数据库后再执行安装。
-➔ <code>pacman -Sv</code> ：在显示一些操作信息后执行安装。
-➔ <code>pacman -U</code>：安装本地包，其扩展名为 pkg.tar.gz。
-➔ <code>pacman -U http://www.example.com/repo/example.pkg.tar.xz</code> 安装一个远程包（不在 pacman 配置的源里面）</p>
+➔ pacman -Sy：与上面命令不同的是，该命令将在同步包数据库后再执行安装。
+➔ pacman -Sv：在显示一些操作信息后执行安装。
+➔ pacman -U：安装本地包，其扩展名为 pkg.tar.gz。
+➔ pacman -U http://www.example.com/repo/example.pkg.tar.xz 安装一个远程包（不在 pacman 配置的源里面）
+</pre></div>
+</td></tr></table>
 <h3 id="_3">删除包<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
-<p>➔ <code>pacman -R</code> ：该命令将只删除包，保留其全部已经安装的依赖关系
-➔ <code>pacman -Rs</code> ：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系
-➔ <code>pacman -Rsc</code> ：在删除包的同时，删除所有依赖这个软件包的程序
-➔ <code>pacman -Rd</code>：在删除包时不检查依赖。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>➔ pacman -R ：该命令将只删除包，保留其全部已经安装的依赖关系
+➔ pacman -Rs ：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系
+➔ pacman -Rsc ：在删除包的同时，删除所有依赖这个软件包的程序
+➔ pacman -Rd：在删除包时不检查依赖。
+</pre></div>
+</td></tr></table>
 <h3 id="_4">搜索包<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
-<p>➔ <code>pacman -Ss</code> 关键字：在仓库中搜索含关键字的包。
-➔ <code>pacman -Qs</code> 关键字： 搜索已安装的包。
-➔ <code>pacman -Qi</code> 包名：查看有关包的详尽信息。
-➔ <code>pacman -Ql</code> 包名：列出该包的文件。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>➔ pacman -Ss 关键字：在仓库中搜索含关键字的包。
+➔ pacman -Qs 关键字： 搜索已安装的包。
+➔ pacman -Qi 包名：查看有关包的详尽信息。
+➔ pacman -Ql 包名：列出该包的文件。
+</pre></div>
+</td></tr></table>
 <h3 id="_5">其他用法<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
-<p>➔ <code>pacman -Sw</code> 包名：只下载包，不安装。
-➔ <code>pacman -Sc</code>：清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/ 目录。
-➔ <code>pacman -Scc</code>：清理所有的缓存文件。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>➔ pacman -Sw 包名：只下载包，不安装。
+➔ pacman -Sc：清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/ 目录。
+➔ pacman -Scc：清理所有的缓存文件。
+</pre></div>
+</td></tr></table>
             <section>
     <p id="post-share-links">
     Share on:
@@ -178,8 +200,8 @@
 <ul class="related-posts-list">
 <li><a href="http://wonux.github.io/arch-xorg.html" title="Arch最小化安装X">Arch最小化安装X</a></li>
 <li><a href="http://wonux.github.io/arch-xorg-lxde.html" title="ArchLinux最小化安装LXDE桌面环境">ArchLinux最小化安装LXDE桌面环境</a></li>
-<li><a href="http://wonux.github.io/arch-mirrors.html" title="Arch下载官方镜像列表Official mirrors">Arch下载官方镜像列表Official mirrors</a></li>
 <li><a href="http://wonux.github.io/arch-handbook.html" title="ArchLinux安装详解">ArchLinux安装详解</a></li>
+<li><a href="http://wonux.github.io/arch-wireless.html" title="Arch无线网络网络管理">Arch无线网络网络管理</a></li>
 <li><a href="http://wonux.github.io/gentoo-arch-apps.html" title="Gentoo/Arch常用软件列表">Gentoo/Arch常用软件列表</a></li>
 </ul>
 <hr />

@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Wonux Blog</title><link href="http://wonux.github.io/" rel="alternate"></link><link href="http://wonux.github.io/feeds/arch.atom.xml" rel="self"></link><id>http://wonux.github.io/</id><updated>2016-02-03T15:03:00+08:00</updated><entry><title>Arch安装KDE5</title><link href="http://wonux.github.io/arch-kde.html" rel="alternate"></link><updated>2016-02-02T11:22:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-25:arch-kde.html</id><summary type="html">
+&lt;h2 id="plasma-desktop"&gt;plasma desktop&lt;a class="headerlink" href="#plasma-desktop" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Install the &lt;code&gt;plasma-meta&lt;/code&gt; meta-package or the &lt;code&gt;plasma&lt;/code&gt; group. Alternatively, for a more minimal Plasma installation, install the &lt;code&gt;plasma-desktop&lt;/code&gt; package.&lt;/p&gt;
+&lt;h2 id="sddm"&gt;sddm&lt;a class="headerlink" href="#sddm" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Simple Desktop Display Manager (&lt;span class="caps"&gt;SDDM&lt;/span&gt;) is the preferred &lt;a href="https://wiki.archlinux.org/index.php/Display_manager"&gt;display manager&lt;/a&gt; for &lt;a href="https://wiki.archlinux.org/index.php/KDE"&gt;&lt;span class="caps"&gt;KDE&lt;/span&gt;&lt;/a&gt; Plasma desktop.&lt;/p&gt;
+&lt;h3 id="install-sddm"&gt;Install sddm&lt;a class="headerlink" href="#install-sddm" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S sddm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="configuration"&gt;Configuration&lt;a class="headerlink" href="#configuration" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span class="caps"&gt;SDDM&lt;/span&gt; defaults to using systemd-logind for session management.&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sddm --example-config &amp;gt; /etc/sddm.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="loading-sddm"&gt;Loading sddm&lt;a class="headerlink" href="#loading-sddm" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;systemctl start sddm
+systemctl enable sddm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="arch"></category><category term="xorg"></category><category term="kde"></category></entry><entry><title>Arch无线网络网络管理</title><link href="http://wonux.github.io/arch-wireless.html" rel="alternate"></link><updated>2016-02-02T11:32:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-22:arch-wireless.html</id><summary type="html">
+&lt;h3 id="wifi-menu-dhcpcd"&gt;wifi-menu脚本 + dhcpcd&lt;a class="headerlink" href="#wifi-menu-dhcpcd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;</summary><category term="arch"></category><category term="network"></category><category term="wireless"></category></entry><entry><title>Arch软件管理 — Pacman常用命令</title><link href="http://wonux.github.io/arch-pacman.html" rel="alternate"></link><updated>2015-02-10T17:03:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-22:arch-pacman.html</id><summary type="html">
+&lt;p&gt;Pacman是Arch Linux 的包管理器。它将一个简单的二进制包格式和易用的构建系统结合了起来。不管软件包是来自官方的 Arch 库还是用户自己创建，Pacman 都能方便得管理。&lt;/p&gt;
+&lt;h3 id="_1"&gt;更新系统&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;在 Archlinux 中，使用一条命令即可对整个系统进行更新：
+&lt;code&gt;pacman -Syu&lt;/code&gt;
+如果你已经使用&lt;code&gt;pacman -Sy&lt;/code&gt;将本地的包数据库与远程的仓库进行了同步，也可以只执行：&lt;code&gt;pacman -Su&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="_2"&gt;安装包&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➔ pacman -S：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，
+只需以空格分隔包名即可。
+➔ pacman -Sy：与上面命令不同的是，该命令将在同步包数据库后再执行安装。
+➔ pacman -Sv：在显示一些操作信息后执行安装。
+➔ pacman -U：安装本地包，其扩展名为 pkg.tar.gz。
+➔ pacman -U http://www.example.com/repo/example.pkg.tar.xz 安装一个远程包（不在 pacman 配置的源里面）
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_3"&gt;删除包&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➔ pacman -R ：该命令将只删除包，保留其全部已经安装的依赖关系
+➔ pacman -Rs ：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系
+➔ pacman -Rsc ：在删除包的同时，删除所有依赖这个软件包的程序
+➔ pacman -Rd：在删除包时不检查依赖。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;搜索包&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➔ pacman -Ss 关键字：在仓库中搜索含关键字的包。
+➔ pacman -Qs 关键字： 搜索已安装的包。
+➔ pacman -Qi 包名：查看有关包的详尽信息。
+➔ pacman -Ql 包名：列出该包的文件。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_5"&gt;其他用法&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➔ pacman -Sw 包名：只下载包，不安装。
+➔ pacman -Sc：清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/ 目录。
+➔ pacman -Scc：清理所有的缓存文件。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="arch"></category><category term="pacman"></category></entry><entry><title>Arch声卡配置</title><link href="http://wonux.github.io/arch-alsa.html" rel="alternate"></link><updated>2016-02-03T15:03:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-11:arch-alsa.html</id><summary type="html">
+&lt;h3 id="alsa-utilities"&gt;&lt;span class="caps"&gt;ALSA&lt;/span&gt; Utilities&lt;a class="headerlink" href="#alsa-utilities" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Install the &lt;code&gt;alsa-utils&lt;/code&gt; package. This contains (among other utilities) the &lt;code&gt;alsamixer&lt;/code&gt; and &lt;code&gt;amixer&lt;/code&gt; utilities.&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S alsa-utils
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="unmuting-the-channels"&gt;Unmuting the channels&lt;a class="headerlink" href="#unmuting-the-channels" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span class="caps"&gt;ALSA&lt;/span&gt; by default has all channels muted, all of which will need to be unmuted manually. This can be done using amixer:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;amixer sset Master unmute
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;This can alternatively be done using alsamixer:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alsamixer
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="test-your-changes"&gt;Test your changes&lt;a class="headerlink" href="#test-your-changes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;speaker-test -c 2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="user-privileges"&gt;User privileges&lt;a class="headerlink" href="#user-privileges" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Usually, local users have permission to play audio and change mixer levels.
+To allow remote users to use &lt;span class="caps"&gt;ALSA&lt;/span&gt;, you need to &lt;a href="https://wiki.archlinux.org/index.php/Users_and_groups#Group_management"&gt;add&lt;/a&gt; those users to the audio group.&lt;/p&gt;
+&lt;p&gt;参考：&lt;a href="https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture"&gt;https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture&lt;/a&gt;&lt;/p&gt;</summary><category term="arch"></category><category term="alsa"></category></entry><entry><title>Arch安装fcitx</title><link href="http://wonux.github.io/arch-fcitx.html" rel="alternate"></link><updated>2015-12-11T16:03:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-11:arch-fcitx.html</id><summary type="html">
+&lt;h3 id="fcitxgtkqt"&gt;安装fcitx,安装gtk、qt模块。&lt;a class="headerlink" href="#fcitxgtkqt" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[root@Arctux ~]# pacman -S fcitx-im
+:: There are 4 members in group fcitx-im:
+:: Repository community
+   1) fcitx  2) fcitx-gtk2  3) fcitx-gtk3  4) fcitx-qt4
+Enter a selection (default=all):
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="fcitx"&gt;安装fcitx配置工具&lt;a class="headerlink" href="#fcitx" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[root@ARCH ~]# pacman -S fcitx-configtool
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="xinitrcgtkqt"&gt;&lt;code&gt;.xinitrc&lt;/code&gt;文件添加gtk、qt支持&lt;a class="headerlink" href="#xinitrcgtkqt" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="arch"></category><category term="fcitx"></category></entry><entry><title>ArchLinux安装详解</title><link href="http://wonux.github.io/arch-handbook.html" rel="alternate"></link><updated>2014-12-26T16:01:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-10:arch-handbook.html</id><summary type="html">
+&lt;h2 id="_1"&gt;选择安装方式&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="cdusb-arch"&gt;&lt;span class="caps"&gt;CD&lt;/span&gt;/&lt;span class="caps"&gt;USB&lt;/span&gt; Arch启动盘安装&lt;a class="headerlink" href="#cdusb-arch" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;使用Arch启动盘比较简单方便，没有额外设置，直接阅读下一步。
+&lt;span class="caps"&gt;USB&lt;/span&gt; flash installation media&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;启动盘制作： &lt;a href="https://wiki.archlinux.org/index.php/USB_flash_installation_media"&gt;&lt;span class="caps"&gt;USB&lt;/span&gt; flash installation media&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="linuxarch"&gt;从已经存在的Linux系统中安装（非Arch类）&lt;a class="headerlink" href="#linuxarch" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;从已经存在的非Arch系统环境中安装arch，本质上是搭建引导过程中可以运行&lt;code&gt;arch-install-scripts&lt;/code&gt; 脚本(包括&lt;code&gt;pacstrap&lt;/code&gt;和&lt;code&gt;arch-chroot&lt;/code&gt;命令) 的系统环境。&lt;/p&gt;
+&lt;h4 id="arch-chroot"&gt;创建Arch chroot环境&lt;a class="headerlink" href="#arch-chroot" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;1、推荐使用&lt;code&gt;bootstrap&lt;/code&gt;镜像&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;### Download the bootstrap image from a mirror：
+ [root@GENTOO ~] curl -O http://mirrors.kernel.org/archlinux/iso/2015.10.01/archlinux-bootstrap-2015.10.01-x86_64.tar.gz
+### Extract the tarball:
+ [root@GENTOO ~] cd /tmp# tar xzf &amp;lt;path-to-bootstrap-image&amp;gt;/archlinux-bootstrap-2015.10.01-x86_64.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;2、编辑&lt;code&gt;/tmp/root.x86_64/etc/pacman.d/mirrorlist&lt;/code&gt;本件，选择镜像源 3、进入chroot环境&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/tmp/root.x86_64/bin/arch-chroot /tmp/root.x86_64/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="arch-chroot_1"&gt;使用Arch chroot环境&lt;a class="headerlink" href="#arch-chroot_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;1、初始化pacman keyring&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# pacman-key --init
+# pacman-key --populate archlinux
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;2、编辑&lt;code&gt;/etc/pacman.d/mirrorlist&lt;/code&gt;本件，选择镜像源 3、更新软件列表&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# pacman -Syyu
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;4、安装系统
+Arch Chroot环境已经具备，继续下面的步骤，选择安装需要的系统&lt;code&gt;base&lt;/code&gt;, &lt;code&gt;base-devel&lt;/code&gt;, &lt;code&gt;parted&lt;/code&gt;等.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;a href="https://wiki.archlinux.org/index.php/Install_from_existing_Linux"&gt;https://wiki.archlinux.org/index.php/Install_from_existing_Linux&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="_2"&gt;准备&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="_3"&gt;准备磁盘分区&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;新建并格式化分区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;至少准备一个足够大的/分区，如果磁盘容量足够，可以额外创建/home、/boot等。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建挂载目录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir /mnt
+mkdir /mnt/boot
+mkdir /mnt/home
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;挂载根分区和swap&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Mount the root partition on /mnt. After that, create directories for and mount any other partitions (/mnt/boot, /mnt/home, …) and activate your swap partition if you want them to be detected later by genfstab.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount /dev/sdax /mnt
+mount /dev/sdax/boot
+mount /dev/sdax/home
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;准备连接&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;有线：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;默认使用Dhcp，一般自动检测，无需设置&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;无线：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wifi-menu
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;编辑镜像列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;取消注释中国的镜像&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="_5"&gt;安装系统&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacstrap /mnt base
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="_6"&gt;配置系统&lt;a class="headerlink" href="#_6" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="fstab"&gt;fstab文件&lt;a class="headerlink" href="#fstab" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Generate an fstab file (use -U or -L to define by &lt;span class="caps"&gt;UUID&lt;/span&gt; or labels):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;genfstab -p /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="chroot"&gt;chroot&lt;a class="headerlink" href="#chroot" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;arch-chroot /mnt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="hostname"&gt;Hostname:&lt;a class="headerlink" href="#hostname" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;echo computer_name &amp;gt; /etc/hostname
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="time-zone"&gt;Time zone:&lt;a class="headerlink" href="#time-zone" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ln -sf /usr/share/zoneinfo/zone/subzone /etc/localtime
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="locale"&gt;Locale:&lt;a class="headerlink" href="#locale" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nano -w /etc/locale.gen
+locale-gen
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="password"&gt;Password:&lt;a class="headerlink" href="#password" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;passwd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="initial-ram"&gt;Initial &lt;span class="caps"&gt;RAM&lt;/span&gt;:&lt;a class="headerlink" href="#initial-ram" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkinitcpio -p linux
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="bootloader"&gt;Bootloader:&lt;a class="headerlink" href="#bootloader" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;安装grub2:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S grub
+grub-install --target=i386-pc --recheck  /dev/sda
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Dual-booting:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S os-prober
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;生成grub配置文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;grub-mkconfig -o /boot/grub/grub.cfg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_7"&gt;重启&lt;a class="headerlink" href="#_7" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exit
+reboot
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="arch"></category><category term="handbook"></category></entry><entry><title>Arch下载官方镜像列表Official mirrors</title><link href="http://wonux.github.io/arch-mirrors.html" rel="alternate"></link><updated>2015-02-10T17:08:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-08:arch-mirrors.html</id><summary type="html">
+&lt;h3 id="official-mirrors"&gt;Official mirrors&lt;a class="headerlink" href="#official-mirrors" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The official Arch Linux mirror list is available from the &lt;code&gt;pacman-mirrorlist&lt;/code&gt; package. To get an even more up-to-date list of mirrors, use the Pacman Mirror List Generator page on the main site.&lt;/p&gt;
+&lt;h4 id="_1"&gt;手动下载镜像列表&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;有时因为系统镜像列表丢失或可读性不强，我们需要从官方网站下载按地区分类的镜像列表，很简单，执行如下命令：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="arch"></category><category term="mirrors"></category></entry><entry><title>ArchLinux最小化安装LXDE桌面环境</title><link href="http://wonux.github.io/arch-xorg-lxde.html" rel="alternate"></link><updated>2015-01-04T14:02:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-06-10:arch-xorg-lxde.html</id><summary type="html">
+&lt;h3 id="lxde"&gt;安装最小化的&lt;span class="caps"&gt;LXDE&lt;/span&gt;桌面环境：&lt;a class="headerlink" href="#lxde" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S lxde-common
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="lxde-session"&gt;安装&lt;span class="caps"&gt;LXDE&lt;/span&gt; Session：&lt;a class="headerlink" href="#lxde-session" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S lxsession
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不安装这个没法登录进桌面环境&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="lxde_1"&gt;安装&lt;span class="caps"&gt;LXDE&lt;/span&gt;面板：&lt;a class="headerlink" href="#lxde_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S lxpanel
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不安装这个，进入&lt;span class="caps"&gt;LXDE&lt;/span&gt;桌面环境后什么都没有&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_1"&gt;安装窗口管理器:&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S openbox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不安装这个，既不能移动窗口，也不能最大、最小化窗口&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="lxde_2"&gt;安装&lt;span class="caps"&gt;LXDE&lt;/span&gt;环境下的终端程序:&lt;a class="headerlink" href="#lxde_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S lxterminal
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="lxde_3"&gt;安装&lt;span class="caps"&gt;LXDE&lt;/span&gt;环境下的文件管理器:&lt;a class="headerlink" href="#lxde_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S pcmanfm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_2"&gt;总结&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;根据自己需要取舍上述组件，现在我仅仅使用&lt;code&gt;openbox&lt;/code&gt;，&lt;span class="caps"&gt;DIY&lt;/span&gt;配合其他工具，超精简流畅。&lt;/p&gt;</summary><category term="arch"></category><category term="xorg"></category><category term="lxde"></category></entry><entry><title>Arch最小化安装X</title><link href="http://wonux.github.io/arch-xorg.html" rel="alternate"></link><updated>2015-01-04T13:56:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-06-10:arch-xorg.html</id><summary type="html">
+&lt;h2 id="xorg"&gt;Xorg&lt;a class="headerlink" href="#xorg" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="xorg-server"&gt;xorg-server&lt;a class="headerlink" href="#xorg-server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;安装xorg-server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S xorg-server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;可选：xorg-server-utils&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S xorg-server-utils
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Xorg-server-utils meta-package pulls in the most useful packages for certain configuration tasks, they are pointed out in the relevant sections.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="driver-installation"&gt;Driver installation&lt;a class="headerlink" href="#driver-installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;如果不知道显卡类型，请执行如下命令进行查询：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;lspci | grep VGA
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;输入下面命令，查看所有开源驱动:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -Ss xf86-video | less
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;安装显卡驱动:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;vesa：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S xf86-video-vesa
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;vesa是一个支持大部分显卡的通用驱动，不提供任何 2D 和 3D 加速功能。 要充分发挥显卡性能，请按下表安装驱动程序。推荐先使用开源驱动，这些驱动出问题的可能性较小。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class="caps"&gt;AMD&lt;/span&gt;/&lt;span class="caps"&gt;ATI&lt;/span&gt; :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S xf86-video-ati
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Intel:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S xf86-video-intel
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Nvidia:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S xf86-video-nouveau     
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="running"&gt;Running&lt;a class="headerlink" href="#running" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Display manager:
+最简单的方法是使用登录管理器 例如 &lt;span class="caps"&gt;GDM&lt;/span&gt;, &lt;span class="caps"&gt;KDM&lt;/span&gt; or SLiM.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Manually：
+如果不用登陆管理器启动 X，需要安装软件包 xorg-xinit。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S xorg-xinit
+pacman -S xorg-twm xorg-xclock xterm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;startx 和 xinit 命令将启动 X 服务器和客户端(startx 脚本是更通用命令 xinit 的前端)。为了确定要运行的客户端，startx/xinit 先在用户目录解析 ~/.xinitrc 文件，如果 ~/.xinitrc 不存在，使用默认的 /etc/X11/xinit/xinitrc, 其中默认会使用 Twm 窗口管理器，Xclock 和 Xterm（需安装 xorg-twm, xorg-xclock 和 xterm）.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;To launch the X server and clients:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;startx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="arch"></category><category term="xorg"></category></entry></feed>

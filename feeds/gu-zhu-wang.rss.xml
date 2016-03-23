@@ -286,7 +286,7 @@ urxvtd --quiet --opendisplay --fork  ==  urxvtc
 2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;systemctl start sddm
 systemctl enable sddm
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">孤逐王</dc:creator><pubDate>Tue, 02 Feb 2016 11:22:00 +0800</pubDate><guid>tag:wonux.github.io,2016-01-25:arch-kde.html</guid><category>arch</category><category>xorg</category><category>kde</category></item><item><title>Shell终端收听音乐—豆瓣FM命令行版</title><link>http://wonux.github.io/apps-musicbox.html</link><description>
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">孤逐王</dc:creator><pubDate>Tue, 02 Feb 2016 11:22:00 +0800</pubDate><guid>tag:wonux.github.io,2016-01-25:arch-kde.html</guid><category>arch</category><category>xorg</category><category>kde</category></item><item><title>Musicbox：网易云音乐命令行版本</title><link>http://wonux.github.io/apps-musicbox.html</link><description>
 &lt;h2 id="musicbox"&gt;Musicbox：网易云音乐命令行版本&lt;a class="headerlink" href="#musicbox" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;高品质网易云音乐命令行版本，简洁优雅，丝般顺滑，基于Python编写。
 这款命令行的客户端使用 Python 构建，以 mpg123 作为播放后端：&lt;/p&gt;
@@ -1020,26 +1020,47 @@ Calculating dependencies  … done!
 &lt;code&gt;pacman -Syu&lt;/code&gt;
 如果你已经使用&lt;code&gt;pacman -Sy&lt;/code&gt;将本地的包数据库与远程的仓库进行了同步，也可以只执行：&lt;code&gt;pacman -Su&lt;/code&gt;&lt;/p&gt;
 &lt;h3 id="_2"&gt;安装包&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;➔ &lt;code&gt;pacman -S&lt;/code&gt; ：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➔ pacman -S：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，
 只需以空格分隔包名即可。
-➔ &lt;code&gt;pacman -Sy&lt;/code&gt; ：与上面命令不同的是，该命令将在同步包数据库后再执行安装。
-➔ &lt;code&gt;pacman -Sv&lt;/code&gt; ：在显示一些操作信息后执行安装。
-➔ &lt;code&gt;pacman -U&lt;/code&gt;：安装本地包，其扩展名为 pkg.tar.gz。
-➔ &lt;code&gt;pacman -U http://www.example.com/repo/example.pkg.tar.xz&lt;/code&gt; 安装一个远程包（不在 pacman 配置的源里面）&lt;/p&gt;
+➔ pacman -Sy：与上面命令不同的是，该命令将在同步包数据库后再执行安装。
+➔ pacman -Sv：在显示一些操作信息后执行安装。
+➔ pacman -U：安装本地包，其扩展名为 pkg.tar.gz。
+➔ pacman -U http://www.example.com/repo/example.pkg.tar.xz 安装一个远程包（不在 pacman 配置的源里面）
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;h3 id="_3"&gt;删除包&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;➔ &lt;code&gt;pacman -R&lt;/code&gt; ：该命令将只删除包，保留其全部已经安装的依赖关系
-➔ &lt;code&gt;pacman -Rs&lt;/code&gt; ：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系
-➔ &lt;code&gt;pacman -Rsc&lt;/code&gt; ：在删除包的同时，删除所有依赖这个软件包的程序
-➔ &lt;code&gt;pacman -Rd&lt;/code&gt;：在删除包时不检查依赖。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➔ pacman -R ：该命令将只删除包，保留其全部已经安装的依赖关系
+➔ pacman -Rs ：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系
+➔ pacman -Rsc ：在删除包的同时，删除所有依赖这个软件包的程序
+➔ pacman -Rd：在删除包时不检查依赖。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;h3 id="_4"&gt;搜索包&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;➔ &lt;code&gt;pacman -Ss&lt;/code&gt; 关键字：在仓库中搜索含关键字的包。
-➔ &lt;code&gt;pacman -Qs&lt;/code&gt; 关键字： 搜索已安装的包。
-➔ &lt;code&gt;pacman -Qi&lt;/code&gt; 包名：查看有关包的详尽信息。
-➔ &lt;code&gt;pacman -Ql&lt;/code&gt; 包名：列出该包的文件。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➔ pacman -Ss 关键字：在仓库中搜索含关键字的包。
+➔ pacman -Qs 关键字： 搜索已安装的包。
+➔ pacman -Qi 包名：查看有关包的详尽信息。
+➔ pacman -Ql 包名：列出该包的文件。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;h3 id="_5"&gt;其他用法&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;➔ &lt;code&gt;pacman -Sw&lt;/code&gt; 包名：只下载包，不安装。
-➔ &lt;code&gt;pacman -Sc&lt;/code&gt;：清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/ 目录。
-➔ &lt;code&gt;pacman -Scc&lt;/code&gt;：清理所有的缓存文件。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">孤逐王</dc:creator><pubDate>Tue, 10 Feb 2015 17:03:00 +0800</pubDate><guid>tag:wonux.github.io,2014-10-22:arch-pacman.html</guid><category>arch</category><category>pacman</category></item><item><title>Arch声卡配置</title><link>http://wonux.github.io/arch-alsa.html</link><description>
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➔ pacman -Sw 包名：只下载包，不安装。
+➔ pacman -Sc：清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/ 目录。
+➔ pacman -Scc：清理所有的缓存文件。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">孤逐王</dc:creator><pubDate>Tue, 10 Feb 2015 17:03:00 +0800</pubDate><guid>tag:wonux.github.io,2014-10-22:arch-pacman.html</guid><category>arch</category><category>pacman</category></item><item><title>Arch声卡配置</title><link>http://wonux.github.io/arch-alsa.html</link><description>
 &lt;h3 id="alsa-utilities"&gt;&lt;span class="caps"&gt;ALSA&lt;/span&gt; Utilities&lt;a class="headerlink" href="#alsa-utilities" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Install the &lt;code&gt;alsa-utils&lt;/code&gt; package. This contains (among other utilities) the &lt;code&gt;alsamixer&lt;/code&gt; and &lt;code&gt;amixer&lt;/code&gt; utilities.&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pacman -S alsa-utils
@@ -2085,7 +2106,7 @@ make install  #使用make install
 &lt;p&gt;一旦genkernel运行完成，一个包括全部模块和initrd的内核将被建立。在后面配置引导程序时我们将会用到这个内核和initrd。请记下内核和initrd的名字，因为您将在配置引导程序的时候用到他们(Grub Legacy使用)。initrd将会在启动真正的系统前自动识别硬件（如同安装光盘一样）。&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ls /boot/kernel* /boot/initramfs*
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">孤逐王</dc:creator><pubDate>Fri, 08 May 2015 10:44:00 +0800</pubDate><guid>tag:wonux.github.io,2014-05-04:gentoo-handbook-kernel.html</guid><category>gentoo</category><category>handbook</category><category>kernel</category></item><item><title>Gentoo安装详解 (一) — 安装基本系统</title><link>http://wonux.github.io/gentoo-handbook-base.html</link><description>
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">孤逐王</dc:creator><pubDate>Fri, 08 May 2015 10:44:00 +0800</pubDate><guid>tag:wonux.github.io,2014-05-04:gentoo-handbook-kernel.html</guid><category>gentoo</category><category>handbook</category><category>kernel</category></item><item><title>Gentoo安装详解（一）— 安装基本系统</title><link>http://wonux.github.io/gentoo-handbook-base.html</link><description>
 &lt;h2 id="_1"&gt;前期准备&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="_2"&gt;远程登录：&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
