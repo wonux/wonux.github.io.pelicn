@@ -89,7 +89,7 @@ pacman -S python2-pip
 [4]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;github主页： &lt;a href="https://github.com/turingou/douban.fm"&gt;douban.fm&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="music"></category><category term="python"></category></entry><entry><title>Musicbox：网易云音乐命令行版本</title><link href="http://wonux.github.io/apps-musicbox.html" rel="alternate"></link><updated>2016-02-29T12:45:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-18:apps-musicbox.html</id><summary type="html">
+&lt;p&gt;github主页： &lt;a href="https://github.com/turingou/douban.fm"&gt;douban.fm&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="music"></category><category term="python"></category></entry><entry><title>Shell终端收听音乐—网易云音乐命令行版</title><link href="http://wonux.github.io/apps-musicbox.html" rel="alternate"></link><updated>2016-02-29T12:45:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-18:apps-musicbox.html</id><summary type="html">
 &lt;h2 id="musicbox"&gt;Musicbox：网易云音乐命令行版本&lt;a class="headerlink" href="#musicbox" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;高品质网易云音乐命令行版本，简洁优雅，丝般顺滑，基于Python编写。
 这款命令行的客户端使用 Python 构建，以 mpg123 作为播放后端：&lt;/p&gt;
