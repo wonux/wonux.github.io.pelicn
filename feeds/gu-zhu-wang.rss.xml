@@ -447,71 +447,102 @@ Rsync是一款通过网络备份重要数据的工具/软件。它同样是一�
 &lt;ul&gt;
 &lt;li&gt;语法&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;span class="dquo"&gt;“&lt;/span&gt;“
-rsync [&lt;span class="caps"&gt;OPTION&lt;/span&gt;] SRC_PATH/[SRC_FILE] DEST_PATH&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 选项
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync [OPTION] SRC_PATH/[SRC_FILE] DEST_PATH
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;-a 以archive模式操作、复制目录、符号连接 相当于-rlptgoD,是保留了所有人和所属组、时间戳、软链接、权限，并以递归模式运行。
+&lt;ul&gt;
+&lt;li&gt;选项&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-a 以archive模式操作、复制目录、符号连接 相当于-rlptgoD,是保留了所有人和所属组、时间戳、软链接、权限，并以递归模式运行。
 -l 是链接文件，意思是拷贝链接文件；-p 表示保持文件原有权限；-t 保持文件原有时间；-g 保持文件原有用户组；-o 保持文件原有属主；-D 相当于块设备文件；
 -r 是递归
 -z 传输时压缩；
 -P 传输进度；
 -v 传输时的进度等信息，和-P有点关系，自己试试。可以看文档；
 -e ssh的参数建立起加密的连接。
--n,—dry-run预览操作，不实际改变文件。
--u, —update仅仅进行更新，也就是跳过所有已经存在于&lt;span class="caps"&gt;DST&lt;/span&gt;，并且文件时间晚于要备份的文件。(不覆盖更新的文件)，注意两者机器的时钟的不同.
-—progress是指显示出详细的进度情况
-—existing 仅仅更新那些已经存在于&lt;span class="caps"&gt;DST&lt;/span&gt;的文件，而不备份那些新创建的文件
-—delete 删除那些&lt;span class="caps"&gt;DST&lt;/span&gt;中&lt;span class="caps"&gt;SRC&lt;/span&gt;没有的文件 —password-file=/password/path/file来指定密码文件，这样就可以在脚本中使用而无需交互式地输入验证密码了，这里需要注意的是这份密码文件权限属性要设得只有属主可读。&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2
-3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;### 常用实例
+-n,--dry-run预览操作，不实际改变文件。
+-u, --update仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。(不覆盖更新的文件)，注意两者机器的时钟的不同.
+--progress是指显示出详细的进度情况
+--existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件
+--delete 删除那些DST中SRC没有的文件
+--password-file=/password/path/file来指定密码文件，这样就可以在脚本中使用而无需交互式地输入验证密码了，这里需要注意的是这份密码文件权限属性要设得只有属主可读。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;常用实例&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;启用压缩&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -zvr /home/aceking/ /backupdir
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;保留文件和文件夹的属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -zva /home/aceking/ /backupdir
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;模拟运行查看结果，不实际操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -zvan /home/aceking/ /backupdir
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;找出文件间的不同&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -avzi /backupdir /home/aceking/ 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_5"&gt;排除文件和目录列表&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;有时候，当我们做大量同步的时候，我们可能想要从同步的文件和目录中排除一个文件和目录的列表。一般来说，像设备文件和某些系统文件，或者像临时文件或者缓存文件这类占据不必要磁盘空间的文件是不合适同步的，这类文件是我们需要排除的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建排除文件
+&lt;code&gt;--exclude-from&lt;/code&gt;参数,创建一个名为&lt;code&gt;excluded&lt;/code&gt;的文件（当然，你想取什么名都可以），将想要排除的文件夹或文件写入该文件，一行一个。例如，如果你想要对根分区进行完整的备份，你应该排除一些在启动时创建的设备目录和放置临时文件的目录：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# cat exclude
 
-- 启用压缩
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;rsync -zvr /home/aceking/ /backupdir&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 保留文件和文件夹的属性
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;rsync -zva /home/aceking/ /backupdir&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 模拟运行查看结果，不实际操作
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;rsync -zvan /home/aceking/ /backupdir&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 找出文件间的不同
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;rsync -avzi /backupdir /home/aceking/ &lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2
-3
-4
-5
-6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;### 排除文件和目录列表
+/dev/*
+/proc/*
+/sys/*
+/tmp/*
+/run/*
+/mnt/*
+/media/*
+/lost+found
 
-有时候，当我们做大量同步的时候，我们可能想要从同步的文件和目录中排除一个文件和目录的列表。一般来说，像设备文件和某些系统文件，或者像临时文件或者缓存文件这类占据不必要磁盘空间的文件是不合适同步的，这类文件是我们需要排除的。
-
-- 创建排除文件
-`--exclude-from`参数,创建一个名为`excluded`的文件（当然，你想取什么名都可以），将想要排除的文件夹或文件写入该文件，一行一个。例如，如果你想要对根分区进行完整的备份，你应该排除一些在启动时创建的设备目录和放置临时文件的目录：
+# rsync -aAXhv --exclude-from=excluded / /mnt/backup
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;h1 id="cat-exclude"&gt;cat exclude&lt;a class="headerlink" href="#cat-exclude" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;/dev/&lt;em&gt;
-/proc/&lt;/em&gt;
-/sys/&lt;em&gt;
-/tmp/&lt;/em&gt;
-/run/&lt;em&gt;
-/mnt/&lt;/em&gt;
-/media/* /lost+found&lt;/p&gt;
-&lt;h1 id="rsync-aaxhv-exclude-fromexcluded-mntbackup"&gt;rsync -aAXhv —exclude-from=excluded / /mnt/backup&lt;a class="headerlink" href="#rsync-aaxhv-exclude-fromexcluded-mntbackup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 从命令行排除文件
-`--exclude`参数,目录列表`{"/var/cache","/var/tmp"}`
+&lt;ul&gt;
+&lt;li&gt;从命令行排除文件
+&lt;code&gt;--exclude&lt;/code&gt;参数,目录列表&lt;code&gt;{"/var/cache","/var/tmp"}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -aAXhv --exclude={"/var/cache","/var/tmp"} /var /home/adrian/var
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;rsync -aAXhv —exclude={“/var/cache”,”/var/tmp”} /var /home/adrian/var “`&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">孤逐王</dc:creator><pubDate>Wed, 03 Feb 2016 17:19:00 +0800</pubDate><guid>tag:wonux.github.io,2016-01-27:apps-rsync.html</guid><category>apps</category><category>sync</category></item><item><title>Arch安装KDE5</title><link>http://wonux.github.io/arch-kde.html</link><description>
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">孤逐王</dc:creator><pubDate>Wed, 03 Feb 2016 17:19:00 +0800</pubDate><guid>tag:wonux.github.io,2016-01-27:apps-rsync.html</guid><category>apps</category><category>sync</category></item><item><title>Arch安装KDE5</title><link>http://wonux.github.io/arch-kde.html</link><description>
 &lt;h2 id="plasma-desktop"&gt;plasma desktop&lt;a class="headerlink" href="#plasma-desktop" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Install the &lt;code&gt;plasma-meta&lt;/code&gt; meta-package or the &lt;code&gt;plasma&lt;/code&gt; group. Alternatively, for a more minimal Plasma installation, install the &lt;code&gt;plasma-desktop&lt;/code&gt; package.&lt;/p&gt;
 &lt;h2 id="sddm"&gt;sddm&lt;a class="headerlink" href="#sddm" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;

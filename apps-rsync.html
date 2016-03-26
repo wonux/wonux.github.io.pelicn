@@ -92,9 +92,11 @@
 <li><a href="#_2">特性</a></li>
 </ul>
 </li>
-<li><a href="#_3">使用</a></li>
-<li><a href="#cat-exclude">cat exclude</a></li>
-<li><a href="#rsync-aaxhv-exclude-fromexcluded-mntbackup">rsync -aAXhv —exclude-from=excluded / /mnt/backup</a></li>
+<li><a href="#_3">使用</a><ul>
+<li><a href="#_4">常用实例</a></li>
+<li><a href="#_5">排除文件和目录列表</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </nav>
@@ -129,71 +131,102 @@ Rsync是一款通过网络备份重要数据的工具/软件。它同样是一�
 <ul>
 <li>语法</li>
 </ul>
-<p><span class="dquo">“</span>“
-rsync [<span class="caps">OPTION</span>] SRC_PATH/[SRC_FILE] DEST_PATH</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>- 选项
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rsync [OPTION] SRC_PATH/[SRC_FILE] DEST_PATH
 </pre></div>
 </td></tr></table>
-<p>-a 以archive模式操作、复制目录、符号连接 相当于-rlptgoD,是保留了所有人和所属组、时间戳、软链接、权限，并以递归模式运行。
+<ul>
+<li>选项</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span>-a 以archive模式操作、复制目录、符号连接 相当于-rlptgoD,是保留了所有人和所属组、时间戳、软链接、权限，并以递归模式运行。
 -l 是链接文件，意思是拷贝链接文件；-p 表示保持文件原有权限；-t 保持文件原有时间；-g 保持文件原有用户组；-o 保持文件原有属主；-D 相当于块设备文件；
 -r 是递归
 -z 传输时压缩；
 -P 传输进度；
 -v 传输时的进度等信息，和-P有点关系，自己试试。可以看文档；
 -e ssh的参数建立起加密的连接。
--n,—dry-run预览操作，不实际改变文件。
--u, —update仅仅进行更新，也就是跳过所有已经存在于<span class="caps">DST</span>，并且文件时间晚于要备份的文件。(不覆盖更新的文件)，注意两者机器的时钟的不同.
-—progress是指显示出详细的进度情况
-—existing 仅仅更新那些已经存在于<span class="caps">DST</span>的文件，而不备份那些新创建的文件
-—delete 删除那些<span class="caps">DST</span>中<span class="caps">SRC</span>没有的文件 —password-file=/password/path/file来指定密码文件，这样就可以在脚本中使用而无需交互式地输入验证密码了，这里需要注意的是这份密码文件权限属性要设得只有属主可读。</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>### 常用实例
+-n,--dry-run预览操作，不实际改变文件。
+-u, --update仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。(不覆盖更新的文件)，注意两者机器的时钟的不同.
+--progress是指显示出详细的进度情况
+--existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件
+--delete 删除那些DST中SRC没有的文件
+--password-file=/password/path/file来指定密码文件，这样就可以在脚本中使用而无需交互式地输入验证密码了，这里需要注意的是这份密码文件权限属性要设得只有属主可读。
+</pre></div>
+</td></tr></table>
+<h3 id="_4">常用实例<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<ul>
+<li>启用压缩</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rsync -zvr /home/aceking/ /backupdir
+</pre></div>
+</td></tr></table>
+<ul>
+<li>保留文件和文件夹的属性</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rsync -zva /home/aceking/ /backupdir
+</pre></div>
+</td></tr></table>
+<ul>
+<li>模拟运行查看结果，不实际操作</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rsync -zvan /home/aceking/ /backupdir
+</pre></div>
+</td></tr></table>
+<ul>
+<li>找出文件间的不同</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rsync -avzi /backupdir /home/aceking/ 
+</pre></div>
+</td></tr></table>
+<h3 id="_5">排除文件和目录列表<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<p>有时候，当我们做大量同步的时候，我们可能想要从同步的文件和目录中排除一个文件和目录的列表。一般来说，像设备文件和某些系统文件，或者像临时文件或者缓存文件这类占据不必要磁盘空间的文件是不合适同步的，这类文件是我们需要排除的。</p>
+<ul>
+<li>创建排除文件
+<code>--exclude-from</code>参数,创建一个名为<code>excluded</code>的文件（当然，你想取什么名都可以），将想要排除的文件夹或文件写入该文件，一行一个。例如，如果你想要对根分区进行完整的备份，你应该排除一些在启动时创建的设备目录和放置临时文件的目录：</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span># cat exclude
 
-- 启用压缩
-</pre></div>
-</td></tr></table>
-<p>rsync -zvr /home/aceking/ /backupdir</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>- 保留文件和文件夹的属性
-</pre></div>
-</td></tr></table>
-<p>rsync -zva /home/aceking/ /backupdir</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>- 模拟运行查看结果，不实际操作
-</pre></div>
-</td></tr></table>
-<p>rsync -zvan /home/aceking/ /backupdir</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>- 找出文件间的不同
-</pre></div>
-</td></tr></table>
-<p>rsync -avzi /backupdir /home/aceking/ </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>### 排除文件和目录列表
+/dev/*
+/proc/*
+/sys/*
+/tmp/*
+/run/*
+/mnt/*
+/media/*
+/lost+found
 
-有时候，当我们做大量同步的时候，我们可能想要从同步的文件和目录中排除一个文件和目录的列表。一般来说，像设备文件和某些系统文件，或者像临时文件或者缓存文件这类占据不必要磁盘空间的文件是不合适同步的，这类文件是我们需要排除的。
-
-- 创建排除文件
-`--exclude-from`参数,创建一个名为`excluded`的文件（当然，你想取什么名都可以），将想要排除的文件夹或文件写入该文件，一行一个。例如，如果你想要对根分区进行完整的备份，你应该排除一些在启动时创建的设备目录和放置临时文件的目录：
+# rsync -aAXhv --exclude-from=excluded / /mnt/backup
 </pre></div>
 </td></tr></table>
-<h1 id="cat-exclude">cat exclude<a class="headerlink" href="#cat-exclude" title="Permanent link">¶</a></h1>
-<p>/dev/<em>
-/proc/</em>
-/sys/<em>
-/tmp/</em>
-/run/<em>
-/mnt/</em>
-/media/* /lost+found</p>
-<h1 id="rsync-aaxhv-exclude-fromexcluded-mntbackup">rsync -aAXhv —exclude-from=excluded / /mnt/backup<a class="headerlink" href="#rsync-aaxhv-exclude-fromexcluded-mntbackup" title="Permanent link">¶</a></h1>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>- 从命令行排除文件
-`--exclude`参数,目录列表`{"/var/cache","/var/tmp"}`
+<ul>
+<li>从命令行排除文件
+<code>--exclude</code>参数,目录列表<code>{"/var/cache","/var/tmp"}</code></li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rsync -aAXhv --exclude={"/var/cache","/var/tmp"} /var /home/adrian/var
 </pre></div>
 </td></tr></table>
-<p>rsync -aAXhv —exclude={“/var/cache”,”/var/tmp”} /var /home/adrian/var “`</p>
             <section>
     <p id="post-share-links">
     Share on:
@@ -246,11 +279,11 @@ rsync [<span class="caps">OPTION</span>] SRC_PATH/[SRC_FILE] DEST_PATH</p>
 <section>
     <h2>Keep Reading</h2>
 <ul class="related-posts-list">
-<li><a href="http://wonux.github.io/apps-pastebin.html" title="直接粘贴代码到网络上:command-line pastebins">直接粘贴代码到网络上:command-line pastebins</a></li>
-<li><a href="http://wonux.github.io/apps-rfkill.html" title="RFKill软开关蓝牙及无线功能 — 解决无线网络连接失败问题">RFKill软开关蓝牙及无线功能 — 解决无线网络连接失败问题</a></li>
-<li><a href="http://wonux.github.io/apps-vifm.html" title="vi风格控制台文件管理器 — vifm 配置使用">vi风格控制台文件管理器 — vifm 配置使用</a></li>
-<li><a href="http://wonux.github.io/apps-vim.html" title="Vim常用技巧">Vim常用技巧</a></li>
-<li><a href="http://wonux.github.io/git-empty-branch.html" title="Git创建空白新分支">Git创建空白新分支</a></li>
+<li><a href="http://wonux.github.io/apps-scrot.html" title="Linux下截图工具：scrot 从入门到精通">Linux下截图工具：scrot 从入门到精通</a></li>
+<li><a href="http://wonux.github.io/git-hexo.html" title="Hexo + Github 搭建静态个人博客">Hexo + Github 搭建静态个人博客</a></li>
+<li><a href="http://wonux.github.io/apps-rtorrent.html" title="Linux BT下载软件 — Rtorrent 配置使用">Linux BT下载软件 — Rtorrent 配置使用</a></li>
+<li><a href="http://wonux.github.io/apps-firefox-vimperator.html" title="firefox神器：vimperator插件">firefox神器：vimperator插件</a></li>
+<li><a href="http://wonux.github.io/git-remote.html" title="Git同时提交到多个远程仓库">Git同时提交到多个远程仓库</a></li>
 </ul>
 <hr />
 </section>
