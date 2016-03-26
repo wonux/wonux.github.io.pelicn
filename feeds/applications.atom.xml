@@ -89,7 +89,98 @@ pacman -S python2-pip
 [4]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;p&gt;github主页： &lt;a href="https://github.com/turingou/douban.fm"&gt;douban.fm&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="music"></category><category term="python"></category></entry><entry><title>Shell终端收听音乐—网易云音乐命令行版</title><link href="http://wonux.github.io/apps-musicbox.html" rel="alternate"></link><updated>2016-02-29T12:45:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-18:apps-musicbox.html</id><summary type="html">
+&lt;p&gt;github主页： &lt;a href="https://github.com/turingou/douban.fm"&gt;douban.fm&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="music"></category><category term="python"></category></entry><entry><title>RSync实现文件备份同步</title><link href="http://wonux.github.io/apps-rsync.html" rel="alternate"></link><updated>2016-02-03T17:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-27:apps-rsync.html</id><summary type="html">
+&lt;h2 id="rsync"&gt;rsync介绍&lt;a class="headerlink" href="#rsync" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;rsync&lt;/code&gt; , Remote Synchronize 顾名思意它是一款实现远程同步功能的软件，可通过&lt;span class="caps"&gt;LAN&lt;/span&gt;/&lt;span class="caps"&gt;WAN&lt;/span&gt;快速同步多台主机间的文件。它在同步文件的同时，可以保持原来文件的权限、时间、软硬链接等附加信息。Rsync使用所谓的 “Rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快，而且可以通过ssh方式来传输文件，这样其保密性也非常好，另外它还是免费的软件。
+Rsync是一款通过网络备份重要数据的工具/软件。它同样是一个在类Unix和Window系统上通过网络在系统间同步文件夹和文件的网络协议。Rsync可以复制或者显示目录并复制文件。Rsync默认监听&lt;span class="caps"&gt;TCP&lt;/span&gt; 873端口，通过远程shell如rsh和ssh复制文件。Rsync必须在远程和本地系统上都安装。&lt;/p&gt;
+&lt;h3 id="rsync_1"&gt;rsync优点&lt;a class="headerlink" href="#rsync_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;速度：最初会在本地和远程之间拷贝所有内容。下次，只会传输发生改变的块或者字节。&lt;/li&gt;
+&lt;li&gt;安全：传输可以通过ssh协议加密数据。&lt;/li&gt;
+&lt;li&gt;低带宽：rsync可以在两端压缩和解压数据块。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_1"&gt;缺点&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;单向同步，不支持双向传输&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_2"&gt;特性&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;可以镜像更新整个目录树和文件系统。&lt;/li&gt;
+&lt;li&gt;有选择性的保持符号链链、硬链接、文件属于、权限、设备以及时间等；&lt;/li&gt;
+&lt;li&gt;对于安装来说，无任何特殊权限要求；&lt;/li&gt;
+&lt;li&gt;对于多个文件来说，内部流水线减少文件等待的延时；&lt;/li&gt;
+&lt;li&gt;用rsh、ssh 或直接端口做为传输入端口；&lt;/li&gt;
+&lt;li&gt;支持匿名rsync 同步文件，是理想的镜像工具；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="_3"&gt;使用&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;语法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class="dquo"&gt;“&lt;/span&gt;“
+rsync [&lt;span class="caps"&gt;OPTION&lt;/span&gt;] SRC_PATH/[SRC_FILE] DEST_PATH&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 选项
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;-a 以archive模式操作、复制目录、符号连接 相当于-rlptgoD,是保留了所有人和所属组、时间戳、软链接、权限，并以递归模式运行。
+-l 是链接文件，意思是拷贝链接文件；-p 表示保持文件原有权限；-t 保持文件原有时间；-g 保持文件原有用户组；-o 保持文件原有属主；-D 相当于块设备文件；
+-r 是递归
+-z 传输时压缩；
+-P 传输进度；
+-v 传输时的进度等信息，和-P有点关系，自己试试。可以看文档；
+-e ssh的参数建立起加密的连接。
+-n,—dry-run预览操作，不实际改变文件。
+-u, —update仅仅进行更新，也就是跳过所有已经存在于&lt;span class="caps"&gt;DST&lt;/span&gt;，并且文件时间晚于要备份的文件。(不覆盖更新的文件)，注意两者机器的时钟的不同.
+—progress是指显示出详细的进度情况
+—existing 仅仅更新那些已经存在于&lt;span class="caps"&gt;DST&lt;/span&gt;的文件，而不备份那些新创建的文件
+—delete 删除那些&lt;span class="caps"&gt;DST&lt;/span&gt;中&lt;span class="caps"&gt;SRC&lt;/span&gt;没有的文件 —password-file=/password/path/file来指定密码文件，这样就可以在脚本中使用而无需交互式地输入验证密码了，这里需要注意的是这份密码文件权限属性要设得只有属主可读。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;### 常用实例
+
+- 启用压缩
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rsync -zvr /home/aceking/ /backupdir&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 保留文件和文件夹的属性
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rsync -zva /home/aceking/ /backupdir&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 模拟运行查看结果，不实际操作
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rsync -zvan /home/aceking/ /backupdir&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 找出文件间的不同
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rsync -avzi /backupdir /home/aceking/ &lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;### 排除文件和目录列表
+
+有时候，当我们做大量同步的时候，我们可能想要从同步的文件和目录中排除一个文件和目录的列表。一般来说，像设备文件和某些系统文件，或者像临时文件或者缓存文件这类占据不必要磁盘空间的文件是不合适同步的，这类文件是我们需要排除的。
+
+- 创建排除文件
+`--exclude-from`参数,创建一个名为`excluded`的文件（当然，你想取什么名都可以），将想要排除的文件夹或文件写入该文件，一行一个。例如，如果你想要对根分区进行完整的备份，你应该排除一些在启动时创建的设备目录和放置临时文件的目录：
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h1 id="cat-exclude"&gt;cat exclude&lt;a class="headerlink" href="#cat-exclude" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;/dev/&lt;em&gt;
+/proc/&lt;/em&gt;
+/sys/&lt;em&gt;
+/tmp/&lt;/em&gt;
+/run/&lt;em&gt;
+/mnt/&lt;/em&gt;
+/media/* /lost+found&lt;/p&gt;
+&lt;h1 id="rsync-aaxhv-exclude-fromexcluded-mntbackup"&gt;rsync -aAXhv —exclude-from=excluded / /mnt/backup&lt;a class="headerlink" href="#rsync-aaxhv-exclude-fromexcluded-mntbackup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 从命令行排除文件
+`--exclude`参数,目录列表`{"/var/cache","/var/tmp"}`
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rsync -aAXhv —exclude={“/var/cache”,”/var/tmp”} /var /home/adrian/var “`&lt;/p&gt;</summary><category term="apps"></category><category term="sync"></category></entry><entry><title>Shell终端收听音乐—网易云音乐命令行版</title><link href="http://wonux.github.io/apps-musicbox.html" rel="alternate"></link><updated>2016-02-29T12:45:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-18:apps-musicbox.html</id><summary type="html">
 &lt;h2 id="musicbox"&gt;Musicbox：网易云音乐命令行版本&lt;a class="headerlink" href="#musicbox" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;高品质网易云音乐命令行版本，简洁优雅，丝般顺滑，基于Python编写。
 这款命令行的客户端使用 Python 构建，以 mpg123 作为播放后端：&lt;/p&gt;
@@ -118,4 +209,1245 @@ pacman -S mpg123
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;&lt;a href="https://github.com/darknessomi/musicbox"&gt;更多详情参考位于 Github 上的项目&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;参考： &lt;a href="https://linuxtoy.org/archives/musicbox-neteasemusic-in-terminal.html"&gt;Musicbox：网易云音乐命令行版本&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="music"></category><category term="python"></category></entry></feed>
+&lt;p&gt;参考： &lt;a href="https://linuxtoy.org/archives/musicbox-neteasemusic-in-terminal.html"&gt;Musicbox：网易云音乐命令行版本&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="music"></category><category term="python"></category></entry><entry><title>Vim常用技巧</title><link href="http://wonux.github.io/apps-vim.html" rel="alternate"></link><updated>2016-01-07T16:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-07:apps-vim.html</id><summary type="html">
+&lt;h2 id="vim"&gt;使用vim教程&lt;a class="headerlink" href="#vim" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vimtutor
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;它会复制一份教程文件,你可以放心练习,不用担心破坏原来的内容.&lt;/p&gt;
+&lt;h2 id="_1"&gt;求助&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;:help&lt;/code&gt;
+&lt;code&gt;:help + 相关内容&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="vim_1"&gt;vim三种工作模式&lt;a class="headerlink" href="#vim_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Normal模式: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Insert模式: &lt;code&gt;i&lt;/code&gt; &lt;code&gt;a&lt;/code&gt; &lt;code&gt;o&lt;/code&gt; 
+i:光标前 I:光标行首
+a:光标后 A:光标行末
+o:光标下新行 O:光标上新行&lt;/li&gt;
+&lt;li&gt;末行模式: &lt;code&gt;:&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_2"&gt;定位&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;h&lt;/code&gt; &lt;code&gt;j&lt;/code&gt; &lt;code&gt;k&lt;/code&gt; &lt;code&gt;l&lt;/code&gt;
+&lt;code&gt;0&lt;/code&gt; &lt;code&gt;^&lt;/code&gt;  ^行首非空字符  0行首字符
+&lt;code&gt;$&lt;/code&gt; 末字符
+&lt;code&gt;w&lt;/code&gt; &lt;code&gt;W&lt;/code&gt; &lt;code&gt;b&lt;/code&gt; &lt;code&gt;B&lt;/code&gt; &lt;code&gt;e&lt;/code&gt; &lt;code&gt;E&lt;/code&gt;
+&lt;code&gt;Enter&lt;/code&gt; 移至下行首
+&lt;code&gt;gg&lt;/code&gt; &lt;code&gt;G&lt;/code&gt; &lt;code&gt;8G&lt;/code&gt;
+&lt;code&gt;50%&lt;/code&gt;
+&lt;code&gt;H&lt;/code&gt; &lt;code&gt;M&lt;/code&gt; &lt;code&gt;L&lt;/code&gt;
+&lt;code&gt;zz&lt;/code&gt; &lt;code&gt;zt&lt;/code&gt; &lt;code&gt;zb&lt;/code&gt;
+&lt;code&gt;f&lt;/code&gt;
+&lt;code&gt;F&lt;/code&gt;
+&lt;code&gt;/&lt;/code&gt;
+&lt;code&gt;?&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Ctrl + d&lt;/code&gt;  下滚半页
+&lt;code&gt;Ctrl + u&lt;/code&gt;  上滚半页
+&lt;code&gt;Ctrl + f&lt;/code&gt;   下滚一页
+&lt;code&gt;Ctrl + b&lt;/code&gt;  上滚一页&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt;
+&lt;code&gt;dw&lt;/code&gt; &lt;code&gt;de&lt;/code&gt; &lt;code&gt;db&lt;/code&gt; &lt;code&gt;d$&lt;/code&gt;
+&lt;code&gt;dd&lt;/code&gt; &lt;code&gt;D&lt;/code&gt; &lt;code&gt;3dd&lt;/code&gt;
+&lt;code&gt;: 5,10d&lt;/code&gt;
+J&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;u&lt;/code&gt; &lt;code&gt;U&lt;/code&gt; &lt;code&gt;Ctrl + R&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yy&lt;/code&gt;
+&lt;code&gt;p&lt;/code&gt;
+&lt;code&gt;P&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:wq&lt;/code&gt; &lt;code&gt;:x&lt;/code&gt; &lt;code&gt;zz&lt;/code&gt;
+&lt;code&gt;:q&lt;/code&gt; &lt;code&gt;:q!&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="_3"&gt;查询信息&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;当前位围置
+&lt;code&gt;Ctrl + G&lt;/code&gt;
+&lt;code&gt;:set number&lt;/code&gt; &lt;code&gt;:set nonumber&lt;/code&gt;
+&lt;code&gt;:set ruler&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="apps"></category><category term="vi"></category><category term="vim"></category></entry><entry><title>firefox神器：vimperator插件</title><link href="http://wonux.github.io/apps-firefox-vimperator.html" rel="alternate"></link><updated>2015-12-27T14:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-26:apps-firefox-vimperator.html</id><summary type="html">
+&lt;h2 id="_1"&gt;介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Vimperator是一个Firefox浏览器扩展，能够使Firefox浏览器像Vim一样高效工作。在安装上 Vimperator之后，无论是 Firefox 的外观，还是 Firefox 的行为，都像极Vim。Vimperator还具有类似键盘绑定的功能，这使你能够灵活地使用热键来完成各种操作。不过，如果你想使用好它，必须确认你要有使用vim的经验，如同vim一样，vimperator也有多种模式，它也是致力于抛弃鼠标，使手指不用离开键盘就能完成大部分工作，事实也证明这样做确实很高效，但前提是你要习惯这种工作方式。&lt;/p&gt;
+&lt;h2 id="hint"&gt;&lt;span class="caps"&gt;HINT&lt;/span&gt;模式&lt;a class="headerlink" href="#hint" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;这个模式算是用于极度的命令行爱好者或者鼠标坏掉的用户，hint模式就是为当前页面所有的链接标上序号，然后只要敲击键盘选择对应的链接即可，你的手完全不需要离开键盘去摸鼠标——我个人很喜欢这种方式。
+最基本的用法就是在页面按&lt;code&gt;f/F&lt;/code&gt;，然后根据显示的数字来选择一下，链接就打开了。f会原页面打开，F则会在新页面打开。 当然，还可以用‘;{mode}{hint}’来实现更多复杂的操作，但是对我来讲前面的就已经足够了，细节可以参考帮助文档。&lt;/p&gt;
+&lt;h2 id="firefox"&gt;firefox系统功能&lt;a class="headerlink" href="#firefox" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;vimperator命令提供了firefox各种功能入口,常用的如下:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;:dialog – To access some of Firefox's many dialog windows
+:bmarks – Vimperator provides a new interface to bookmarks
+:history – display a colorized, scrollable and clickable list of the locations in history.
+:emenu – Access the Firefox menus through the Vimperator command line.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_2"&gt;打开网页&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-- o :o :open
+:o[pen] [arg1], [arg2], …
+o
+O    Show an :open prompt containing the current URL.
+:tabopen[!] [arg1], [arg2], …       [!], 后台打开,不切换到新标签
+-- t :t :tabopen :tabnew
+t
+T    Show a :tabopen prompt containing the current URL.
+-- w :winopen :wopen
+:wino[pen][!] [arg1], [arg2], …
+w
+W
+p    Open (put) a URL based on the current clipboard contents in the current buffer.
+P
+gP    Works like P but inverts the 'activate' option.
+
+y    Yank current location to the clipboard. 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;使用搜索引擎关键字搜索
+&lt;code&gt;:open baidu keywords&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设置搜索引擎关键字:&lt;code&gt;dialog searchengines&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_3"&gt;历史导航&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-- H &amp;lt;C-o&amp;gt; CTRL-O :ba :back
+:[count]ba[ck] [url]
+:ba[ck][!]    [!] goes to the beginning of the browser history.
+-- L &amp;lt;C-i&amp;gt; CTRL-i :fo :fw :forward
+:[count]fo[rward] [url]
+:fo[rward]!
+----------
+:ju[mps]    List all jumps aka current tab's history aka session history.
+gh    Go home. Opens the homepage in the current tab.
+gH
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;标签页操作&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;我个人是非常喜欢使用&lt;span class="caps"&gt;VIM&lt;/span&gt;的Buffer操作的，简单快捷，精准。 而vimperator则是非常忠实的再现了这一特性，唯一不同的就是，这里的Buffer就相当于Tab。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-- B :tabs :ls :files :buffers
+:buffers [filter]    Show a list of buffers.    %当前标签 #上一个标签
+-- b :b :buffer    
+[count]b    Go to the specified buffer from the buffer list.
+[count]gb    Repeat last :buffer! command.
+[count]gt    Go to the next tab.
+[count]gT    Go to the previous tab.
+[count]d    Delete current buffer tab.
+:tabo[nly]    Close all other tabs.
+-- u :u :undo
+[count]u    Undo closing of a tab.
+-- :undoa :undoall
+:undoa[ll]    Undo closing of all closed tabs. Firefox存储10个最近关闭的标签(包括重启firefox).
+d – close the active tab (delete the buffer)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_5"&gt;刷新网页&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;r    Force reloading of the current web page.
+R   Force reloading of the current web page skipping the cache.
+:re[load][!]    Reload current web page.If [!] is given, skip the cache.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_6"&gt;退出&lt;a class="headerlink" href="#_6" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-- :q :quit
+:q[uit]    Quit current tab. The session is not stored.
+-- :qa :qall :quita :quitall
+:quita[ll]    Quit Vimperator. Quit Vimperator, no matter how many tabs/windows are open. The session is not stored.
+-- :wc :wclose :winc :winclose
+:winc[lose]    Close window.
+-- :winon :winonly
+:winon[ly]    Close all other windows.
+--:xa : xall  :wq :wqa :wqall
+:xa[ll]     Save the session and quit. 
+ZQ    Quit and don't save the session. Works like :qall.
+ZZ    Quit and save the session.Works like :xall.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="buffer"&gt;Buffer&lt;a class="headerlink" href="#buffer" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id="motion-commands"&gt;Motion commands&lt;a class="headerlink" href="#motion-commands" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-- &amp;lt;Home&amp;gt; gg
+[count]gg    Go to the top.   [count] scrolls to [count]%.
+-- &amp;lt;End&amp;gt; G
+[count]G    Go to the end.   [count] scrolls to [count]%. 
+{count}%    Scroll to {count} percent of the document.
+-- &amp;lt;Left&amp;gt; h
+[count]h    Scroll to the left.   [count], times to move to the left.
+-- &amp;lt;Right&amp;gt; l
+[count]l    Scroll to the right. [count], times to move to the right.
+-- &amp;lt;C-e&amp;gt; &amp;lt;Down&amp;gt; j
+[count]j    Scroll document down.  [count], times to move to the down.
+-- &amp;lt;C-y&amp;gt; &amp;lt;Up&amp;gt; k
+[count]k    Scroll document up.  [count], times to move to the up.
+
+-- &amp;lt;C-d&amp;gt;    Scroll window down to half a page in the buffer. 
+-- &amp;lt;C-u&amp;gt;    Scroll window up to half a page in the buffer. 
+-- &amp;lt;S-Space&amp;gt; &amp;lt;PageUp&amp;gt; &amp;lt;C-b&amp;gt;
+[count]&amp;lt;C-b&amp;gt;    Scroll up a full page. Scroll window [count] pages upwards.
+-- &amp;lt;Space&amp;gt; &amp;lt;PageDown&amp;gt; &amp;lt;C-f&amp;gt;
+[count]&amp;lt;C-f&amp;gt;    Scroll down a full page. Scroll window [count] pages downwards.
+
+[count]gi    Focus last used input field or first input field. 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="zooming"&gt;Zooming&lt;a class="headerlink" href="#zooming" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[count]zi    Enlarge text zoom of current web page. Mnemonic: zoom in.
+[count]zI    Enlarge full zoom of current web page. Mnemonic: zoom in.
+[count]zo    Reduce text zoom of current web page. Mnemonic: zoom out.
+[count]zO    Reduce full zoom of current web page. Mnemonic: zoom out.
+[count]zm    Enlarge text zoom by a larger amount. Mnemonic: zoom more.
+[count]zM    Enlarge full zoom by a larger amount. Mnemonic: zoom more.
+[count]zr    Reduce text zoom by a larger amount. Mnemonic: zoom reduce.
+[count]zR    Reduce full zoom by a larger amount. Mnemonic: zoom reduce.
+[count]zz    Set text zoom value of current web page. [count] 30% to 300% default 100%.
+[count]zZ    Set full zoom value of current web page. [count] 30% to 300% default 100%.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="copying-text"&gt;Copying text&lt;a class="headerlink" href="#copying-text" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;y    Yank current location to the clipboard. 
+Y    Copy currently selected text to the system clipboard
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="apps"></category><category term="vi"></category><category term="firefox"></category></entry><entry><title>vi风格pdf阅读器推荐：Zathura</title><link href="http://wonux.github.io/apps-zathura.html" rel="alternate"></link><updated>2015-12-24T10:06:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-24:apps-zathura.html</id><summary type="html">
+&lt;h2 id="_1"&gt;介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Zathura是一款新的 &lt;span class="caps"&gt;PDF&lt;/span&gt; 查看器 ，它相当轻巧，界面简约（与 Apvlv 很相似），且可以定制（如按键绑定、默认窗口大小等 ）,支持vim风格快捷键。除了 &lt;span class="caps"&gt;PDF&lt;/span&gt; 查看器所具有的一般功能之外，Zathura 还包括搜索、表单编辑、可点击链接、导出图像等其他功能。&lt;/p&gt;
+&lt;h3 id="_2"&gt;快捷键&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gg
+G
+j/k/h/l
+J/K  翻一页
+Tab 打开/关闭index（一般是目录）
+o 打开另外的文件
+f Follow a link on the page
+m 标记位置（用过vim的都知道的。。）
+' 跳转到标记位置
+[0-9]+G 到指定页
+a 放大页面到合适大小
+s 放大页面到窗口宽度
+F5 Toggle fullscreen mode
+^n Toggle statusbar visibility
+^m Toggle inputbar visibility
+^q 退出
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_3"&gt;常用命令：&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;:bmark xxx  创建书签
+:blist 打开bookmark
+:q 退出
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="apps"></category><category term="vi"></category><category term="pdf"></category></entry><entry><title>vi风格控制台文件管理器 — vifm 配置使用</title><link href="http://wonux.github.io/apps-vifm.html" rel="alternate"></link><updated>2015-12-23T08:54:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-22:apps-vifm.html</id><summary type="html">
+&lt;h2 id="_1"&gt;介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;vifm是Linux下一个基于ncurses的控制台文件管理器，我很少使用文件管理器，要用一下，就拿出vifm来。图形界面的文件管理器我不喜欢用，控制台下有人叫做mc的，功能很强大，但快捷键实在用不习惯，还经常和Terminal下的快捷键冲突，找来找去也只找到vifm这个还勉强可用，快捷键模拟vi，符合我的习惯。
+vifm最主要的特点是模拟vi的快捷键，例如要复制某个文件，按yy，然后到目的文件夹，按p。要移动文件，将yy换成dd就可以了。直接重命名，则按cw。另外，删除文件并不是直接删除，而是移到分区根目录的&lt;code&gt;.vifm-Trash/&lt;/code&gt;中，所以不小心删错了，还可以找回来。比较常用的命令有：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;j,k     上下移动
+h,l     在父/子目录之间移动
+gg     移动到文件列表首行
+G      移动到文件列表末行
+M     移动到窗口中间
+H,L   移动到窗口首末文件
+gh     返回上级目录
+gl,Enter     进入目录或打开文件
+[count]dd,d[count]d     删除文件(放入回收站)
+[count]DD,D[count]D   删除文件(不放回收站)
+[count]yy,[count]Y,y[count]y     复制文件
+p       粘贴文件
+u       undo last change
+Space,Tab     在两个panel之间切换
+/     查找文件
+m[a-zA-Z0-9]     标记文件
+'[a-zA-Z0-9]     移到标记所在文件
+za     切换隐藏文件显隐
+zo     显示隐藏文件
+zm     不显示隐藏文件
+:fil regex     隐藏匹配regex的文件
+zO     显示被:fil命令过滤的文件
+zM     隐藏被:fil命令过滤的文件
+cp     更改文件属性权限
+cw    文件/文件夹重命名
+cW   文件/文件夹重命名,不包含扩展名
+ga     计算文件夹大小
+!prog     执行系统命令, %f可以用来当前选中文件名
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="vifm"&gt;配置vifm&lt;a class="headerlink" href="#vifm" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="_2"&gt;配置文件&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Vifm creates and populates a &lt;code&gt;.vifm/&lt;/code&gt; folder in your home directory containing the following:
+&lt;code&gt;vifmrc&lt;/code&gt; - a well commented configuration file that can be edited to suit your working style.
+ &lt;code&gt;vifm-help.txt&lt;/code&gt; - the help text
+&lt;code&gt;vifminfo&lt;/code&gt; - bookmarks and trash contents - it is not recommended to edit this file by hand
+&lt;code&gt;Trash/ directory&lt;/code&gt; - self explanatory
+&lt;code&gt;colors/ directory&lt;/code&gt; - color schemes
+&lt;code&gt;Default&lt;/code&gt; - well commented default color scheme - can be copied to create user-created color schemes&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To get started, read the information avaliable in:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/usr/share/vifm/vifm.txt
+/usr/share/vifm/vifm-help.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_3"&gt;用户自定命令&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;用户可以根据自己习惯配置自定义命令,如创建cp, mv命令用于将一个面板中选中的文件复制/移动到另一个面板中去。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;command! cp cp -r %f %D
+command! mv mv -r %f %D
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;" :com[mand][!] command_name action
+" The following macros can be used in a command
+" %a is replaced with the user arguments.
+" %c the current file under the cursor.
+" %C the current file under the cursor in the other directory.
+" %f the current selected file, or files.
+" %F the current selected file, or files in the other directory.
+" %b same as %f %F.
+" %d the current directory name.
+" %D the other window directory name.
+" %m run the command in a menu window
+
+command! df df -h %m 2&amp;gt; /dev/null
+command! diff vim -d %f %F
+command! zip zip -r %f.zip %f
+command! run !! ./%f
+command! make !!make %a
+command! mkcd :mkdir %a | cd %a
+command! vgrep vim "+grep %a"
+command! reload :write | restart
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其中%a是一个特殊值，表示输入的参数，类似的%f表示当前选中的文件, %F表示在另一个面板中选中的文件，%d表示当前目录，%D表示另一个面板的当前目录。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="mkcd-move-copy"&gt;集成命令:&lt;code&gt;mkcd&lt;/code&gt; &lt;code&gt;move&lt;/code&gt; &lt;code&gt;copy&lt;/code&gt;&lt;a class="headerlink" href="#mkcd-move-copy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="_4"&gt;文件默认打开方式&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;vifm可以定义文件默认打开方式，这些都在&lt;code&gt;~/.vifm/vifmrc&lt;/code&gt;中配置。使用&lt;code&gt;file[x]type&lt;/code&gt;定义文件的默认打开方式：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; " Pdf
+filextype *.pdf zathura %c %i &amp;amp;, apvlv %c, xpdf %c
+fileviewer *.pdf pdftotext -nopgbrk %c -
+" Image
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+        \ {View in feh}
+        \ feh -FZ %d --start-at %d/%c 2&amp;gt;/dev/null
+        \ {View in sxiv}
+        \ sxiv,
+        \ {View in gpicview}
+        \ gpicview %c,
+        \ {View in shotwell}
+        \ shotwell,
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
+" Office files
+" filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &amp;amp;
+fileviewer *.doc catdoc %c
+fileviewer *.docx, docx2txt.pl %f -
+filextype *.doc,*.docx wps %f &amp;amp;
+filextype *.xls,*.xlsx et %f &amp;amp;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;参考:&lt;a href="https://wiki.archlinux.org/index.php/Vifm"&gt;https://wiki.archlinux.org/index.php/Vifm&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="vi"></category><category term="file-manager"></category></entry><entry><title>Linux BT下载软件 — Rtorrent 配置使用</title><link href="http://wonux.github.io/apps-rtorrent.html" rel="alternate"></link><updated>2015-12-18T16:13:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-16:apps-rtorrent.html</id><summary type="html">
+&lt;h3 id="rtorrent"&gt;rtorrent介绍&lt;a class="headerlink" href="#rtorrent" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;rtorrent是Linux下的bt下载软件,由于支持&lt;span class="caps"&gt;DHT&lt;/span&gt;网络,可以很好的于迅雷和Bitcomet的用户进行资源共享,所以很适合国内网络环境,下载速度极快.&lt;/p&gt;
+&lt;h3 id="_1"&gt;配置：&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;因安装过程不自动生成配置文件，要手动在用户根目录新建&lt;code&gt;~/.rtorrent.rc&lt;/code&gt;文件。 其内容大体如下：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#最小允许peer数
+min_peers = 3
+#最大允许peer数
+max_peers = 500
+#最大同时上传用户数
+max_uploads = 10
+#最大下载950k/s  光纤用户使用,adsl请酌情修改
+download_rate = 950
+#最大上传200k/s  光纤用户使用,adsl请酌情修改
+upload_rate = 200
+
+#下载目录
+directory = ~/Downloads
+#下载历史目录（此目录中包括下载进度信息和DHT节点缓存）
+session = ~/Downloads/session
+#（配置自动监视,把bt种子扔进～/Downloads/torrents目录就自动下载）
+schedule = watch_directory,5,5,load_start=~/Downloads/torrents/*.torrent
+#（配置自动监视,把bt种子从～/Downloads/torrents目录拿走就自动停止下载）
+schedule = untied_directory,5,5,stop_untied=
+#硬盘空间低于100M就自动停止一切下载）
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+#（在总上传量达到200M的情况下上传/下载率达到200%,或者在总上传量不足200M情况下上传/下载率达到2000%,则停止上传）
+# schedule = ratio,60,60,"stop_on_ratio=200,200M,2000"
+
+#bt监听端口
+port_range = 9400-9500
+#随机从上面范围内选择端口
+port_random = yes
+######开启DHT######
+dht = on
+#DHT所用的UDP端口
+dht_port = 9501   
+#种子交换功能
+peer_exchange = yes
+
+#（上传缓存,每个种子10M,小内存用户请酌情修改）
+send_buffer_size = 10M
+#（下载缓存,每个种子20M,小内存用户请酌情修改）
+receive_buffer_size = 20M
+#(修改编码以避免中文乱码）
+encoding_list=UTF-8
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_2"&gt;使用：&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;启动：命令行输入rtorrent 即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gentoo ~ # rtorrent
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rtorrent就会自动下载~/Downloads/torrents目录下面的所有bt种子.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;添加和删除 torrents：
+&lt;code&gt;回退键&lt;/code&gt;    用 &lt;span class="caps"&gt;URL&lt;/span&gt; 或者文件路径添加，采用 tab 键查看目录内容并自动完成，支持通配符，例如: ~/torrent/*
+&lt;code&gt;回车键&lt;/code&gt;     和回退键一样，但是添加的 torrent 保持非激活( inactive )状态 (用 ^s 激活)
+&lt;code&gt;^o&lt;/code&gt;     对选择的 torrent 设置新的下载目录，仅仅对还没有被激活过的 torrent
+&lt;code&gt;^s&lt;/code&gt;     开始下载，先运行 hash ，除非已经做过
+&lt;code&gt;^d&lt;/code&gt;     停止激活的下载，或者删除一个停止的下载
+&lt;code&gt;^r&lt;/code&gt;     初始化 torrent 的 hash 检查
+&lt;code&gt;a/s/d&lt;/code&gt;    增加上传带宽 1/5/50 &lt;span class="caps"&gt;KB&lt;/span&gt;.
+&lt;code&gt;z/x/c&lt;/code&gt;     降低上传带宽 1/5/50 &lt;span class="caps"&gt;KB&lt;/span&gt;.
+&lt;code&gt;A/S/D&lt;/code&gt;     增加下载带宽 1/5/50 &lt;span class="caps"&gt;KB&lt;/span&gt;.
+&lt;code&gt;Z/X/C&lt;/code&gt;     降低下载带宽 1/5/50 &lt;span class="caps"&gt;KB&lt;/span&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意： ^s 和 ^q 在 shell 里面经常用来控制屏幕的暂停，这会和 rTorrent 发生冲突，用 stty -a 来检查是否已经被使用，删除的办法是：
+&lt;code&gt;stty stop undef&lt;/code&gt;
+&lt;code&gt;stty start undef&lt;/code&gt;
+before running rTorrent (or reattaching to screen) to leave them undefined. You could also replace undef with some other code — ^p, say. ^d also usually sends end-of-file but ncurses passes this through to rTorrent. stty eof undef if you are worried.
+To fix this, you may also toggle the flow control in screen with ^a ^f until screen displays “-flow” in the bottom left corner.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;退出： &lt;code&gt;CTRL+q&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="global-keys"&gt;Global Keys&lt;a class="headerlink" href="#global-keys" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;主屏幕视图操作
+&lt;code&gt;^q&lt;/code&gt;             关闭 rTorrent，再按一次，强行关闭
+&lt;code&gt;上下&lt;/code&gt;      选择 torrent
+&lt;code&gt;右键&lt;/code&gt;     切换到下载视图
+&lt;code&gt;左键&lt;/code&gt;     回到前一个屏幕
+&lt;code&gt;^r&lt;/code&gt;    检查 hash
+&lt;code&gt;+/-&lt;/code&gt;     修改优先度
+&lt;code&gt;l&lt;/code&gt;    查看日志，空格退出
+&lt;code&gt;1&lt;/code&gt;     显示所有下载
+&lt;code&gt;2&lt;/code&gt;     显示所有下载，按文件名排序
+&lt;code&gt;3&lt;/code&gt;    显示开始的下载
+&lt;code&gt;4&lt;/code&gt;     显示停止的下载
+&lt;code&gt;5&lt;/code&gt;     显示完成的下载
+&lt;code&gt;6&lt;/code&gt;     显示未完成的下载
+&lt;code&gt;7&lt;/code&gt;     显示正在 hash 的下载
+&lt;code&gt;8&lt;/code&gt;     显示正在做种的下载&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载视图
+&lt;code&gt;right&lt;/code&gt;    Switch to selected view
+&lt;code&gt;left&lt;/code&gt;     Switch to view selection or back to main view
+&lt;code&gt;1/2&lt;/code&gt;     Adjust max uploads.
+&lt;code&gt;3/4&lt;/code&gt;     Adjust min peers.
+&lt;code&gt;5/6&lt;/code&gt;     Adjust max peers.
+&lt;code&gt;p&lt;/code&gt;             Display peer info
+&lt;code&gt;o&lt;/code&gt;             Display torrent info
+&lt;code&gt;i&lt;/code&gt;             Display file list
+&lt;code&gt;u&lt;/code&gt;             Display tracker list
+&lt;code&gt;t/T&lt;/code&gt;       Initiate tracker request. Use capital T to force the request, ignoring the “min interval” set by the tracker.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Peer list View Keys
+&lt;code&gt;left&lt;/code&gt;     Switch to view selection
+&lt;code&gt;right&lt;/code&gt;     Show peer details
+&lt;code&gt;*&lt;/code&gt;     Snub peer (stop uploading to this peer)
+&lt;code&gt;k&lt;/code&gt;     Kick peer (disconnect from peer)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;File list View Keys
+&lt;code&gt;left&lt;/code&gt;     Switch to view selection
+&lt;code&gt;right&lt;/code&gt;     Show file details
+&lt;code&gt;space&lt;/code&gt;     Change the file priority; applies recursively when done on a directory
+&lt;code&gt;*&lt;/code&gt;     Change the priority of all files
+&lt;code&gt;/&lt;/code&gt;    Collapse directories. While collapsed, press right to expand the selected directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tracker list View Keys
+&lt;code&gt;left&lt;/code&gt;     Switch to view selection
+&lt;code&gt;*&lt;/code&gt;             Enable/disable tracker
+&lt;code&gt;space&lt;/code&gt;     Rotate trackers in a group&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="apps"></category><category term="torrent"></category></entry><entry><title>openbox设置透明效果</title><link href="http://wonux.github.io/apps-openbox-tranparent.html" rel="alternate"></link><updated>2015-05-14T11:13:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-05-13:apps-openbox-tranparent.html</id><summary type="html">
+&lt;h2 id="x"&gt;X窗口下的透明效果设置&lt;a class="headerlink" href="#x" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;使用&lt;code&gt;transset&lt;/code&gt; + &lt;code&gt;devilspie&lt;/code&gt; + &lt;code&gt;xcompmgr&lt;/code&gt;设置透明效果。&lt;/p&gt;
+&lt;p&gt;X窗口下没有现成的工具，但可以借助于Xcompmgr和transset。 在运行Xcompmgr之后，就可以用transset来设置窗口透明度了。&lt;/p&gt;
+&lt;h3 id="transset"&gt;&lt;code&gt;transset&lt;/code&gt;设置透明度&lt;a class="headerlink" href="#transset" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;opacity&lt;/code&gt;变量：0～1。0表示完全透明，1表示不透明。如果不指定opacity参数，默认值是0.75&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;transset --help
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;查看用法&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;options:
+    -h, —help           display this message
+    -t, —toggle         force toggle of opacity
+    -c, —click          select by clicking on window  (default)
+    -p, —point          select the window currently under the cursor
+    -a, —actual         select the actual window
+    -n, —name &lt;span class="caps"&gt;NAME&lt;/span&gt;      select by name, &lt;span class="caps"&gt;NAME&lt;/span&gt; is matched as regular expression
+    —no-regex           don’t use regular expression for matching name
+    -i, —id             select by window id
+        —inc            increase by the given opacity
+        —dec            decrease by given opacity
+    -m, —min &lt;span class="caps"&gt;OPACITY&lt;/span&gt;    minimum possible opacity  (default = 0)
+    -x, —max &lt;span class="caps"&gt;OPACITY&lt;/span&gt;    maximum possible opacity  (default = 1)
+    -v, —verbose        print some debug info
+    -V, —version        print version number&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="xcompmgr"&gt;&lt;code&gt;xcompmgr&lt;/code&gt;显示透明效果&lt;a class="headerlink" href="#xcompmgr" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;xcompmgr
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;但是，&lt;code&gt;transset&lt;/code&gt;是一个命令行工具，如何与窗口系统结合起来，开机启动就显示透明效果呢。下面介绍两种使用方式。&lt;/p&gt;
+&lt;h3 id="devilspie"&gt;结合&lt;code&gt;devilspie&lt;/code&gt;的使用&lt;a class="headerlink" href="#devilspie" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;devilspie支持自动绑定某类窗口，即窗口启动时会触发后台devilspie程序的相应行为。devilspie的配置文件在~/.devilspie/目录中，比如随便建立一个文件opacity.ds。内容为&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;( if
+  ( or
+    ( contains ( window_class ) "Gvim" )
+    ( contains ( application_name ) "sakura" )
+    ( contains ( application_name ) "tilda" )
+  )
+  ( begin
+    ( spawn_async (str "transset -t -i " (window_xid)  ))
+  )
+  )
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;应该比较好理解，当启动Gvim， sakura 或 tilda 时设置其透明度为0.75。如执行&lt;code&gt;devilspie -a&lt;/code&gt;，然后启动那个应用，它的属性就会在devilspie的输出中显示出来。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意，xcompmgr和devilspie的启动不一定要放在.xinitrc中，只要在X启动之前执行即可，比如在openbox环境中，加入autostart.sh也是可以的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="openbox"&gt;openbox下的使用&lt;a class="headerlink" href="#openbox" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;修改~/.config/openbox/rc.xml中的&lt;context name="”Titlebar”"&gt;项下面的鼠标绑定内容。&lt;/context&gt;&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;context&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;”Titlebar”&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="c"&gt;&amp;lt;!-- 使用transset-df设置窗口透明效果 --&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;mousebind&lt;/span&gt; &lt;span class="na"&gt;button=&lt;/span&gt;&lt;span class="s"&gt;"C-Middle"&lt;/span&gt; &lt;span class="na"&gt;action=&lt;/span&gt;&lt;span class="s"&gt;"Click"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;action&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;"Execute"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;execute&amp;gt;&lt;/span&gt;transset-df -p&lt;span class="nt"&gt;&amp;lt;/execute&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/action&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/mousebind&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;mousebind&lt;/span&gt; &lt;span class="na"&gt;button=&lt;/span&gt;&lt;span class="s"&gt;"C-Up"&lt;/span&gt; &lt;span class="na"&gt;action=&lt;/span&gt;&lt;span class="s"&gt;"Click"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;action&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;"Execute"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;execute&amp;gt;&lt;/span&gt;transset-df -p --inc 0.2 &lt;span class="nt"&gt;&amp;lt;/execute&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/action&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/mousebind&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;mousebind&lt;/span&gt; &lt;span class="na"&gt;button=&lt;/span&gt;&lt;span class="s"&gt;"C-Down"&lt;/span&gt; &lt;span class="na"&gt;action=&lt;/span&gt;&lt;span class="s"&gt;"Click"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;action&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;"Execute"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;execute&amp;gt;&lt;/span&gt;transset-df -p -m 0.2 --dec 0.2&lt;span class="nt"&gt;&amp;lt;/execute&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/action&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/mousebind&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;这样，你就可以在窗口标题栏上按Ctrl+中键切换透明度了，Ctrl+向上滚动增加透明度，Ctrl+向下滚动减少透明度。&lt;/p&gt;</summary><category term="apps"></category><category term="xorg"></category><category term="openbox"></category></entry><entry><title>Linux系统维护 — chroot</title><link href="http://wonux.github.io/apps-chroot.html" rel="alternate"></link><updated>2015-01-04T14:29:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-25:apps-chroot.html</id><summary type="html">
+&lt;h2 id="chroot"&gt;chroot简介&lt;a class="headerlink" href="#chroot" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;chroot，即 change root directory (更改 root 目录)。在 linux 系统中，系统默认的目录结构都是以 &lt;code&gt;/&lt;/code&gt;，即是以根 (root) 开始的。而在使用 chroot 之后，系统的目录结构将以指定的位置作为 &lt;code&gt;/&lt;/code&gt; 位置。
+chroot是在unix系统的一个操作，针对正在运作的软件进程和它的子进程，改变它外显的根目录。一个运行在这个环境下，经由chroot设置根目录的程序，它不能够对这个指定根目录之外的文件进行访问动作，不能读取，也不能更改它的内容。
+由chroot创造出的那个根目录，叫做“chroot监狱”（chroot jail，或chroot prison）。&lt;/p&gt;
+&lt;h2 id="chroot_1"&gt;为何使用 chroot&lt;a class="headerlink" href="#chroot_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;在经过 chroot 之后，系统读取到的目录和文件将不在是旧系统根下的而是新根下(即被指定的新的位置)的目录结构和文件，因此它带来的好处大致有以下3个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;增加了系统的安全性，限制了用户的权力；
+在经过 chroot 之后，在新根下将访问不到旧系统的根目录结构和文件，这样就增强了系统的安全性。这个一般是在登录 (login) 前使用 chroot，以此达到用户不能访问一些特定的文件。&lt;/li&gt;
+&lt;li&gt;建立一个与原系统隔离的系统目录结构，方便用户的开发；
+使用 chroot 后，系统读取的是新根下的目录和文件，这是一个与原系统根下文件不相关的目录结构。在这个新的环境中，可以用来测试软件的静态编译以及一些与系统不相关的独立开发。&lt;/li&gt;
+&lt;li&gt;切换系统的根目录位置，引导 Linux 系统启动以及急救系统等。
+chroot 的作用就是切换系统的根位置，而这个作用最为明显的是在系统初始引导磁盘的处理过程中使用，从初始 &lt;span class="caps"&gt;RAM&lt;/span&gt; 磁盘 (initrd) 切换系统的根位置并执行真正的 init。另外，当系统出现一些问题时，我们也可以使用 chroot 来切换到一个临时的系统。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="chroot_2"&gt;chroot 的使用&lt;a class="headerlink" href="#chroot_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;下面以Gentoo、Arch为例，说明chroot过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;确定chroot的目标目录：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果LiveCD环境，挂载系统所在根分区&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount  /dev/sdx /mnt/gentoo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;挂载/proc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount -t proc none /mnt/gentoo/proc/
+或
+mount -t proc proc /mnt/gentoo/proc/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;挂载/sys,/dev/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount --rbind /sys /mnt/gentoo/sys/
+mount --rbind /dev /mnt/gentoo/dev/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;可选：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount --rbind /tmp /mnt/gentoo/tmp   (gentoo)
+mount  --rbind  /run /mnt/arch/run (arch)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;复制&lt;span class="caps"&gt;DNS&lt;/span&gt;信息：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cp /etc/resolv.conf etc/resolv.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;chroot&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chroot /mnt/gentoo /bin/bash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;更新环境变量：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;env-update     (gentoo)
+source /etc/profile
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Optionally, create a unique prompt to be able to differentiate your chroot environment:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;export PS1="(chroot) &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PS1&lt;/span&gt;&lt;span class="x"&gt;"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="_1"&gt;结束语&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;在 Linux 系统初始引导的过程中，通常都有使用 chroot。但是 chroot 的好处不仅于此，它还增加了系统的安全性等。&lt;/p&gt;</summary><category term="apps"></category><category term="chroot"></category></entry><entry><title>文件系统配置启动挂载：fstab文件详解</title><link href="http://wonux.github.io/apps-fstab.html" rel="alternate"></link><updated>2015-02-10T11:13:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-25:apps-fstab.html</id><summary type="html">
+&lt;h3 id="fstab"&gt;fstab文件介绍&lt;a class="headerlink" href="#fstab" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;fstab文件包含了你的电脑上的存储设备及其文件系统的信息。它是决定一个硬盘（分区）被怎样使用或者说整合到整个系统中的文件。具体来说：用fstab可以自动挂载各种文件系统格式的硬盘、分区、可移动设备和远程设备等。对于Windows与Linux双操作系统用户，用fstab挂载&lt;span class="caps"&gt;FAT&lt;/span&gt;格式和&lt;span class="caps"&gt;NTFS&lt;/span&gt;格式的分区，可以在Linux中共享windows系统下的资源。&lt;/p&gt;
+&lt;p&gt;这个文件的全路径是&lt;code&gt;/etc/fstab&lt;/code&gt;。它只是一个文本文件，你能够用你喜欢的编辑器打开它，但是必须是root用户才能编辑它。同时fsck、mount、umount的等命令都利用该程序。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/etc/fstab&lt;/code&gt; 是启动时的配置文件，不过，实际 filesystem 的挂载是记录到 &lt;code&gt;/etc/mtab&lt;/code&gt; 与 &lt;code&gt;/proc/mounts&lt;/code&gt; 这两个文件当中的。每次我们在更动 filesystem 的挂载时，也会同时更动这两个文件喔！&lt;/p&gt;
+&lt;h3 id="_1"&gt;系统挂载的一些限制&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;根目录 / 是必须挂载的﹐而且一定要先于其它 mount point 被挂载进来。&lt;/li&gt;
+&lt;li&gt;其它 mount point 必须为已创建的目录﹐可任意指定﹐但一定要遵守必须的系统目录架构原则&lt;/li&gt;
+&lt;li&gt;所有 mount point 在同一时间之内﹐只能挂载一次。&lt;/li&gt;
+&lt;li&gt;所有 partition 在同一时间之内﹐只能挂载一次。&lt;/li&gt;
+&lt;li&gt;如若进行卸除﹐您必须先将工作目录移到 mount point(及其子目录) 之外。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_2"&gt;文件各字段解释&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# &amp;lt;fs&amp;gt;            &amp;lt;mountpoint&amp;gt;    &amp;lt;type&amp;gt;        &amp;lt;opts&amp;gt;        &amp;lt;dump/pass&amp;gt;
+
+# NOTE: If your BOOT partition is ReiserFS, add the notail option to opts.
+
+/dev/sda10        /boot            ext4        noauto,noatime    1 2
+/dev/sda6         /                ext4        noatime           0 1
+/dev/sda9         none             swap        sw                0 0
+/dev/cdrom        /mnt/cdrom       auto        noauto,ro         0 0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;其实 /etc/fstab (filesystem table) 就是将我们利用 mount 命令进行挂载时， 将所有的选项与参数写入到这个文件中就是了。除此之外， /etc/fstab 还加入了 dump 这个备份用命令的支持！ 与启动时是否进行文件系统检验 fsck 等命令有关。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;file systems=""&gt; 挂载设备 : 不是我们通常理解的文件系统，而是指设备（硬盘及其分区，&lt;span class="caps"&gt;DVD&lt;/span&gt;光驱等）。它告知我们设备（分区）的名字，这是你在命令行中挂载（mount）、卸载（umount）设备时要用到的。&lt;/file&gt;&lt;/li&gt;
+&lt;li&gt;&lt;mountpoint&gt; 挂载点：告诉我们设备挂载到哪里。&lt;/mountpoint&gt;&lt;/li&gt;
+&lt;li&gt;&lt;type&gt; 文件系统类型：Linux支持许多文件系统。 要得到一个完整的支持名单查找mount man-page。典型 的名字包括这些：ext2, ext3, reiserfs, xfs, jfs,iso9660, vfat, ntfs, swap和auto, ‘auto’ 不是一个文件系统，而是让mount命令自动判断文件类型，特别对于可移动设备，软盘，&lt;span class="caps"&gt;DVD&lt;/span&gt;驱动器，这样做是很有必要的，因为可能每次挂载的文件类型不一致。&lt;/type&gt;&lt;/li&gt;
+&lt;li&gt;&lt;opts&gt; 文件系统参数：这部分是最有用的设置！！！ 它能使你所挂载的设备在开机时自动加载、使中文显示不出现乱码、限制对挂载分区读写权限。它是与mount命令的用法相关的，要想得到一个完整的列表，参考mount manpage.&lt;/opts&gt;&lt;/li&gt;
+&lt;li&gt;&lt;dump&gt; 备份命令：dump utility用来决定是否做备份的.  dump会检查entry并用数字来决定是否对这个文件系统进行备份。允许的数字是0和1。如果是0，dump就会忽略这个文件系统，如果是1，dump就会作一个备份。大部分的用户是没有安装dump的，所以对他们而言&lt;dump&gt;这个entry应该写为0。&lt;/dump&gt;&lt;/dump&gt;&lt;/li&gt;
+&lt;li&gt;&lt;pass&gt; 是否以fsck检验扇区：启动的过程中，系统默认会以fsck检验我们的 filesystem 是否完整 (clean)。 不过，某些 filesystem 是不需要检验的，例如内存置换空间 (swap) ，或者是特殊文件系统例如 /proc 与 /sys 等等。fsck会检查这个头目下的数字来决定检查文件系统的顺序，允许的数字是0, 1, 和2。0 是不要检验， 1 表示最早检验(一般只有根目录会配置为 1)， 2 也是要检验，不过1会比较早被检验啦！一般来说,根目录配置为1,其他的要检验的filesystem都配置为 2 就好了。&lt;/pass&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_3"&gt;&lt;opts&gt;常用参数：&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/opts&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;noatime&lt;/code&gt; 关闭atime特性，提高性能，这是一个很老的特性，放心关闭，还能减少loadcycle&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;defaults&lt;/code&gt; 使用默认设置。等于rw,suid,dev,exec,auto,nouser,async，具体含义看下面的解释。&lt;/li&gt;
+&lt;li&gt;自动与手动挂载:
+&lt;code&gt;auto&lt;/code&gt; 在启动或在终端中输入mount -a时自动挂载
+&lt;code&gt;noauto&lt;/code&gt; 设备（分区）只能手动挂载&lt;/li&gt;
+&lt;li&gt;读写权限:
+&lt;code&gt;ro&lt;/code&gt; 挂载为只读权限
+&lt;code&gt;rw&lt;/code&gt; 挂载为读写权限&lt;/li&gt;
+&lt;li&gt;可执行:
+&lt;code&gt;exec&lt;/code&gt; 是一个默认设置项，它使在那个分区中的可执行的二进制文件能够执行
+&lt;code&gt;noexec&lt;/code&gt; 二进制文件不允许执行。千万不要在你的root分区中用这个选项！！！&lt;/li&gt;
+&lt;li&gt;I/O同步:
+&lt;code&gt;sync&lt;/code&gt; 所有的I/O将以同步方式进行
+&lt;code&gt;async&lt;/code&gt; 所有的I/O将以非同步方式进行&lt;/li&gt;
+&lt;li&gt;户挂载权限:
+&lt;code&gt;user&lt;/code&gt; 允许任何用户挂载设备。 Implies noexec,nosuid,nodev unless overridden.
+&lt;code&gt;nouser&lt;/code&gt; 只允许root用户挂载。这是默认设置。&lt;/li&gt;
+&lt;li&gt;临时文件执行权限：
+&lt;code&gt;suid&lt;/code&gt; Permit the operation of suid, and sgid bits. They are mostly used to allow users on a computer system to execute binary executables with temporarily elevated privileges in order to perform a specific task.
+&lt;code&gt;nosuid&lt;/code&gt; Blocks the operation of suid, and sgid bits.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_4"&gt;重启系统&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;重启系统，或在终端中输入&lt;code&gt;mount -a&lt;/code&gt;就可以看到修改后的效果了。&lt;/p&gt;</summary><category term="apps"></category><category term="fstab"></category><category term="config"></category></entry><entry><title>Mplayer使用及快捷键</title><link href="http://wonux.github.io/apps-mplayer.html" rel="alternate"></link><updated>2015-12-16T11:13:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-29:apps-mplayer.html</id><summary type="html">
+&lt;p&gt;MPlayer 是我在 Linux 系统中用到的相当好的媒体播放程序，它因支持播放广泛的音／视频文件格式而著称。本文所要探讨的，除却一般的使用方法之外，更包括一些鲜为人知的提示和诀窍。相信在阅读此文后，你的多媒体播放体验将会增色不少。&lt;/p&gt;
+&lt;h3 id="_1"&gt;配置文件&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;配置文件是&lt;code&gt;/etc/mplayer/mplayer.conf&lt;/code&gt;和&lt;code&gt;~/.mplayer/config&lt;/code&gt;
+常用配置:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#subcp=cp936
+#font=/usr/share/fonts/wqy-zenhei/wqy-zenhei.ttc
+slang = "chs,eng"
+sub-fuzziness=1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_2"&gt;使用方法&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;简单实例:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mplayer -sub subtitle.srt -subcp cp936 -font /usr/share/fonts/wqy-zenhei/wqy-zenhei.ttc movie.avi
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;播放文件
+使用 MPlayer 播放媒体文件最简单的方式是：
+&lt;code&gt;mplayer &amp;lt;somefile&amp;gt;&lt;/code&gt;
+MPlayer 会自动检测文件的类型并加以播放，如果是音频文件，则会在命令行中显示该播放文件的状态信息；而假如是视频文件的话，则会打开一个新的播放窗口。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;选择播放进度
+&lt;code&gt;−ss &amp;lt;时间&amp;gt;&lt;/code&gt; 参数指定的时间位置.示例:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mplayer &amp;lt;somefile&amp;gt; −ss 56    ###搜索到56秒处
+mplayer &amp;lt;somefile&amp;gt; −ss 01:10:00    ###搜索到1小时10分钟处
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;倒退与快进
+在播放文件的时候，你可以通过以下三组快捷键来对播放进程进行倒退与快进操作：
+左方向键和右方向键：分别执行倒退 10 秒和快进 10 秒操作
+下方向键和上方向键：分别执行倒退 1 分钟和快进 1 分钟操作
+下翻页键和上翻页键：分别执行倒退 10 分钟和快进 10 分钟操作&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;播放 &lt;span class="caps"&gt;DVD&lt;/span&gt;
+虽然 MPlayer 不支持 &lt;span class="caps"&gt;DVD&lt;/span&gt; 菜单，但是却能够播放 &lt;span class="caps"&gt;DVD&lt;/span&gt;。你可以这样播放 &lt;span class="caps"&gt;DVD&lt;/span&gt;：
+&lt;code&gt;mplayer dvd://&amp;lt;titlenumber&amp;gt;&lt;/code&gt;
+你需要使用实际的数字来替换 &lt;titlenumber&gt;，如 1、2、3 等。&lt;/titlenumber&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_3"&gt;使用字幕&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;当播放电影文件时，你可以指定字幕文件(idx,sub字幕文件)：
+&lt;code&gt;mplayer -sub &amp;lt;somesubtitlefile&amp;gt; &amp;lt;somefile&amp;gt;&lt;/code&gt;
+&lt;code&gt;mplayer -sub-paths &amp;lt;somesubpaths&amp;gt; &amp;lt;somefile&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;中文字幕乱码问题
+使用ass文件字幕需要加&lt;code&gt;-ass&lt;/code&gt;
+参数:−ass (仅适用于FreeType)打开&lt;span class="caps"&gt;SSA&lt;/span&gt;/&lt;span class="caps"&gt;ASS&lt;/span&gt;字幕提供。 通过此选项, libass 将用于 &lt;span class="caps"&gt;SSA&lt;/span&gt;/&lt;span class="caps"&gt;ASS&lt;/span&gt; 外部字幕和 Matroska 轨迹。
+&lt;code&gt;mplayer &amp;lt;somefile&amp;gt; -sub-paths &amp;lt;somesubpaths&amp;gt; -ass&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一般网上下载的字幕文件都是cp936的编码格式。如果不是，可以用iconv转换。比如utf8的转换成cp936的，命令如下：
+&lt;code&gt;iconv -f utf8 -t cp936 -o name_of_movie.cp936.srt name_of_movie.utf8.srt&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;让mplayer自动识别字幕文件并加载
+最简单的就是修改字幕文件，使其与电影同名（不包括最后的扩展名）。
+其实我们可以用下面的方法让mplayer更智能的。在配置文件&lt;code&gt;~/.mplayer/config&lt;/code&gt;中加入下面两行：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;slang = "chs,cht,eng"
+sub-fuzziness=1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;−sub-fuzziness &amp;lt;模式&amp;gt;
+搜寻字幕时调整匹配模糊度:
+0 精确匹配;1 装载所有包含电影名称的字幕;2 装载当前目录的所有字幕。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_4"&gt;有用的快捷键&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;以下是 MPlayer 中一些有用的快捷键：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;f－当播放视频时，在全屏和窗口模式之间切换。你也可以在命令行中使用 -fs 选项，以便让 MPlayer 开始在全屏模式中播放。
+o－在播放视频时切换 OSD（OnScreen Display）模式。
+p 或 Space－暂停／继续播放。
+q 或 Esc－退出 MPlayer。在 GUI 模式时，Esc 不会退出，仅停止播放。
+/ 和 * 或 9 和 0－减小或增大音量。
+m－静音切换。
+T（通常是 Shift + t）－播放窗口置顶切换。
+b 和 j－在可用的字幕间循环。
+x 和 z－调整字幕的延迟时间。
+I（Shift + i）－显示播放电影的文件名称。
+1 和 2－调整对比度。
+3 和 4－调整亮度。
+5 和 6－调整色度。
+7 和 8－调整饱和度。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="apps"></category><category term="video"></category></entry><entry><title>RFKill软开关蓝牙及无线功能 — 解决无线网络连接失败问题</title><link href="http://wonux.github.io/apps-rfkill.html" rel="alternate"></link><updated>2016-02-02T17:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-22:apps-rfkill.html</id><summary type="html">
+&lt;h2 id="_1"&gt;介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;​​​​​​​多​​​​​​​计​​​​​​​算​​​​​​​机​​​​​​​系​​​​​​​统​​​​​​​包​​​​​​​含​​​​​​​无​​​​​​​线​​​​​​​电​​​​​​​传​​​​​​​输​​​​​​​，其​​​​​​​中​​​​​​​包​​​​​​​括​​​​​​​ Wi-Fi、​​​​​​​蓝​​​​​​​牙​​​​​​​和​​​​​​​ 3G 设​​​​​​​备​​​​​​​。​​​​​​​这​​​​​​​些​​​​​​​设​​​​​​​备​​​​​​​消​​​​​​​耗​​​​​​​电​​​​​​​源​​​​​​​，在​​​​​​​不​​​​​​​使​​​​​​​用​​​​​​​这​​​​​​​些​​​​​​​设​​​​​​​备​​​​​​​时​​​​​​​是​​​​​​​一​​​​​​​种​​​​​​​浪​​​​​​​费​​​​​​​。​​​​​​​
+RFKill 是​​​​​​​ Linux 内​​​​​​​核​​​​​​​中​​​​​​​的​​​​​​​一​​​​​​​个​​​​​​​子​​​​​​​系​​​​​​​统​​​​​​​，它​​​​​​​可​​​​​​​提​​​​​​​供​​​​​​​一​​​​​​​个​​​​​​​界​​​​​​​面​​​​​​​，在​​​​​​​此​​​​​​​界​​​​​​​面​​​​​​​中​​​​​​​可​​​​​​​查​​​​​​​询​​​​​​​、​​​​​​​激​​​​​​​活​​​​​​​并​​​​​​​取​​​​​​​消​​​​​​​激​​​​​​​活​​​​​​​计​​​​​​​算​​​​​​​机​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​的​​​​​​​无​​​​​​​线​​​​​​​电​​​​​​​传​​​​​​​输​​​​​​​。​​​​​​​当​​​​​​​取​​​​​​​消​​​​​​​激​​​​​​​活​​​​​​​传​​​​​​​输​​​​​​​时​​​​​​​，可​​​​​​​使​​​​​​​其​​​​​​​处​​​​​​​于​​​​​​​可​​​​​​​被​​​​​​​软​​​​​​​件​​​​​​​重​​​​​​​新​​​​​​​激​​​​​​​活​​​​​​​的​​​​​​​状​​​​​​​态​​​​​​​（软​​​​​​​锁​​​​​​​定​​​​​​​）或​​​​​​​者​​​​​​​将​​​​​​​其​​​​​​​放​​​​​​​在​​​​​​​软​​​​​​​件​​​​​​​无​​​​​​​法​​​​​​​重​​​​​​​新​​​​​​​激​​​​​​​活​​​​​​​的​​​​​​​位​​​​​​​置​​​​​​​（硬​​​​​​​锁​​​​​​​定​​​​​​​）。​​​​​​​
+RFKill 核​​​​​​​为​​​​​​​子​​​​​​​系​​​​​​​统​​​​​​​提​​​​​​​供​​​​​​​应​​​​​​​用​​​​​​​程​​​​​​​序​​​​​​​编​​​​​​​程​​​​​​​界​​​​​​​面​​​​​​​（&lt;span class="caps"&gt;API&lt;/span&gt;）。​​​​​​​内​​​​​​​核​​​​​​​驱​​​​​​​动​​​​​​​程​​​​​​​序​​​​​​​被​​​​​​​设​​​​​​​计​​​​​​​为​​​​​​​支​​​​​​​持​​​​​​​ RFKill 使​​​​​​​用​​​​​​​这​​​​​​​个​​​​​​​ &lt;span class="caps"&gt;API&lt;/span&gt; 注​​​​​​​册​​​​​​​内​​​​​​​核​​​​​​​，并​​​​​​​包​​​​​​​含​​​​​​​启​​​​​​​用​​​​​​​和​​​​​​​禁​​​​​​​用​​​​​​​这​​​​​​​个​​​​​​​设​​​​​​​备​​​​​​​的​​​​​​​方​​​​​​​法​​​​​​​。​​​​​​​另​​​​​​​外​​​​​​​，RFKill 核​​​​​​​提​​​​​​​供​​​​​​​用​​​​​​​户​​​​​​​程​​​​​​​序​​​​​​​可​​​​​​​解​​​​​​​读​​​​​​​的​​​​​​​通​​​​​​​知​​​​​​​以​​​​​​​及​​​​​​​用​​​​​​​户​​​​​​​程​​​​​​​序​​​​​​​查​​​​​​​询​​​​​​​传​​​​​​​输​​​​​​​状​​​​​​​态​​​​​​​的​​​​​​​方​​​​​​​法​​​​​​​。​​​​​​​
+RFKill 界​​​​​​​面​​​​​​​位​​​​​​​于​​​​​​​ /dev/rfkill，其​​​​​​​中​​​​​​​包​​​​​​​含​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​所​​​​​​​有​​​​​​​无​​​​​​​线​​​​​​​电​​​​​​​传​​​​​​​输​​​​​​​的​​​​​​​当​​​​​​​前​​​​​​​状​​​​​​​态​​​​​​​。​​​​​​​每​​​​​​​个​​​​​​​设​​​​​​​备​​​​​​​都​​​​​​​在​​​​​​​ sysfs 中​​​​​​​注​​​​​​​册​​​​​​​当​​​​​​​前​​​​​​​ RFKill 状​​​​​​​态​​​​​​​。​​​​​​​另​​​​​​​外​​​​​​​，在​​​​​​​启​​​​​​​用​​​​​​​了​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​中​​​​​​​每​​​​​​​当​​​​​​​状​​​​​​​态​​​​​​​更​​​​​​​改​​​​​​​时​​​​​​​，RFKill 会​​​​​​​发​​​​​​​出​​​​​​​ uevents。​​​​​​​
+Rfkill 是​​​​​​​一​​​​​​​个​​​​​​​命​​​​​​​令​​​​​​​行​​​​​​​工​​​​​​​具​​​​​​​，您​​​​​​​可​​​​​​​使​​​​​​​用​​​​​​​它​​​​​​​查​​​​​​​询​​​​​​​和​​​​​​​更​​​​​​​改​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​启​​​​​​​用​​​​​​​了​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​。​​​​​​​要​​​​​​​获​​​​​​​得​​​​​​​这​​​​​​​个​​​​​​​工​​​​​​​具​​​​​​​，请​​​​​​​安​​​​​​​装​​​​​​​ &lt;code&gt;rfkill&lt;/code&gt; 软​​​​​​​件​​​​​​​包​​​​​​​。​​​​​​​&lt;/p&gt;
+&lt;h2 id="_2"&gt;使用&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="_3"&gt;获​​​​​​​得​​​​​​​设​​​​​​​备​​​​​​​列​​​​​​​表&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;使​​​​​​​用​​​​​​​命​​​​​​​令​​​​​​​ rfkill list 获​​​​​​​得​​​​​​​设​​​​​​​备​​​​​​​列​​​​​​​表​​​​​​​，每​​​​​​​个​​​​​​​都​​​​​​​包​​​​​​​含​​​​​​​与​​​​​​​之​​​​​​​关​​​​​​​联​​​​​​​的​​​​​​​索​​​​​​​引​​​​​​​号​​​​​​​，从​​​​​​​ 0 开​​​​​​​始​​​​​​​。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rfkill list
+0: phy0: Wireless LAN
+    Soft blocked: yes
+    Hard blocked: yes
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;停用设备&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;​​​​​​​​​​​​​​可​​​​​​​以​​​​​​​使​​​​​​​用​​​​​​​​​​​​​​​​​索​​​​​​​引​​​​​​​号​​​​​​​让​​​​​​​ rfkill 停​​​​​​​止​​​​​​​使​​​​​​​用​​​​​​​或​​​​​​​者​​​​​​​使​​​​​​​用​​​​​​​某​​​​​​​个​​​​​​​设​​​​​​​备​​​​​​​。例​​​​​​​如​​​​​​​，停​​​​​​​用​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​第​​​​​​​一​​​​​​​个​​​​​​​启​​​​​​​用​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​​​​​​​​：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rfkill block 0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;​​​​​​还​​​​​​​可​​​​​​​以​​​​​​​使​​​​​​​用​​​​​​​ rfkill 阻​​​​​​​断​​​​​​​某​​​​​​​一​​​​​​​类​​​​​​​设​​​​​​​备​​​​​​​​​​​​​​。​​​​​​​例​​​​​​​如，停​​​​​​​用​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​的​​​​​​​所​​​​​​​有​​​​​​​ Wi-Fi 设​​​​​​​备​​​​​​​：​​&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rfkill block wifi
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;或​​​​​​​者​​​​​​​停​​​​​​​止​​​​​​​使​​​​​​​用所​​​​​​​有​​​​​​​启​​​​​​​用​​​​​​​了​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rfkill block all
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_5"&gt;重​​​​​​​新​​​​​​​使​​​​​​​用​​​​​​​设​​​​​​​备&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;要​​​​​​​重​​​​​​​新​​​​​​​使​​​​​​​用​​​​​​​设​​​​​​​备​​​​​​​，请​​​​​​​运​​​​​​​行​​​​​​​ rfkill unblock，而​​​​​​​不​​​​​​​是​​​​​​​ rfkill block。​​​​​​​&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rfkill unblock wifi
+rfkill all
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;要​​​​​​​获​​​​​​​得​​​​​​​ rfkill 可​​​​​​​停​​​​​​​用​​​​​​​的​​​​​​​完​​​​​​​整​​​​​​​设​​​​​​​备​​​​​​​类​​​​​​​别​​​​​​​列​​​​​​​表​​​​​​​，请​​​​​​​运​​​​​​​行​​​​​​​ rfkill help。​​​​​​​ &lt;/p&gt;
+&lt;p&gt;参考： &lt;a href="https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/6/html/Power_Management_Guide/RFKill.html"&gt;https://access.redhat.com/documentation/zh-&lt;span class="caps"&gt;CN&lt;/span&gt;/Red_Hat_Enterprise_Linux/6/html/Power_Management_Guide/RFKill.html&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="network"></category><category term="wireless"></category></entry><entry><title>直接粘贴代码到网络上:command-line pastebins</title><link href="http://wonux.github.io/apps-pastebin.html" rel="alternate"></link><updated>2015-05-22T17:29:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-09-16:apps-pastebin.html</id><summary type="html">
+&lt;h3 id="_1"&gt;软件作用&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;直接把管道里面的文字内容传到网站上面，然后反馈一个地址可以读取内容。&lt;/p&gt;
+&lt;h3 id="_2"&gt;同类软件&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;wgetpaste&lt;/li&gt;
+&lt;li&gt;dpaste&lt;/li&gt;
+&lt;li&gt;pastebin&lt;/li&gt;
+&lt;li&gt;pasteie&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_3"&gt;用法&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;介绍wgetpaste为例：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GENTOO ~ # cat /etc/portage/make.conf | wgetpaste
+Your paste can be seen here: https://bpaste.net/show/bf4077579512
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;常见问题&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id="pastebin"&gt;pastebin服务源无法访问&lt;a class="headerlink" href="#pastebin" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;解决办法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;列出可用的pastebin服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GENTOO ~ # wgetpaste -S
+Services supported: (case sensitive):
+   Name:        | Url:
+   =============|=================
+   *bpaste      | https://bpaste.net/
+    ca          | http://pastebin.ca/
+    codepad     | http://codepad.org/
+    dpaste      | http://dpaste.com/
+    gists       | https://api.github.com/gists
+    lugons      | https://paste.lugons.org/
+    poundpython | http://paste.pound-python.org/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;默认使用bpate&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;切换可用的pastebin服务，如dpaste&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat /etc /portage/make.conf | wgetpaste  -s dpaste
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="apps"></category><category term="pastebin"></category></entry><entry><title>MPD+MPC+Conky 听音乐</title><link href="http://wonux.github.io/apps-mpd.html" rel="alternate"></link><updated>2015-05-25T10:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-09-09:apps-mpd.html</id><summary type="html">
+&lt;h2 id="mpdmpc"&gt;&lt;span class="caps"&gt;MPD&lt;/span&gt;、&lt;span class="caps"&gt;MPC&lt;/span&gt;介绍：&lt;a class="headerlink" href="#mpdmpc" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;为何选用&lt;span class="caps"&gt;MPD&lt;/span&gt;+&lt;span class="caps"&gt;MPC&lt;/span&gt;？
+在Linux下有很多不错的音乐播放器，强大的如amarok，简单的如bmp，而我更喜欢mpc（需要安装&lt;span class="caps"&gt;MPD&lt;/span&gt;），简洁是我选择它的理由。每次开机自动打开守护程序MusicPD（简称mpd），这如同一个潜在的点歌器，终端下用mpc就能选听自己喜欢的歌曲，不需要任何界面，也不必为音乐播放器单开一个桌面。
+mpc和conky结合，可以做出开机音乐；mpc和remind结合用音乐来提醒某些事情。守护程序mpd就像一个功能强大的点歌器，你可以轻松地选择你喜爱的歌手、专辑，毫不逊于&lt;span class="caps"&gt;GUI&lt;/span&gt;的音乐播放器。 我们还可以用conky在桌面上显示mpd的情况，显示歌曲名，显示歌手名，显示播放进程等，设计我们自己的音乐播放器，够酷吧。&lt;/li&gt;
+&lt;li&gt;&lt;span class="caps"&gt;MPD&lt;/span&gt;
+&lt;span class="caps"&gt;MPD&lt;/span&gt; (Music Player Daemon) ：它跟常见的大多数播放器都很不同，是一个C／S结构的音乐播放器。&lt;span class="caps"&gt;MPD&lt;/span&gt; 作为一个守护程序运行于后台, 通过各种各样的client软件来控制播放动作、播放列表等， 占用很少的资源，从一开始使用我便喜欢上了这种方式。
+这是一个可以在后台播放音乐的东东，非常节省资源，而且和X无关，在终端下一样能播放。而且可以用过各种各样的&lt;span class="caps"&gt;MPC&lt;/span&gt;前端来进行控制。
+&lt;span class="caps"&gt;MPD&lt;/span&gt;的优点很多，配置简单但是功能丰富。比如，可以选择音频设备，选择mixer设备，选择&lt;span class="caps"&gt;ID3&lt;/span&gt;编码等等。最大的好处就是音乐播放和管理前台分离，这样既可以使用mpc这个最简单的&lt;span class="caps"&gt;MPD&lt;/span&gt;客户端控制播放，也可以用&lt;span class="caps"&gt;GMPC&lt;/span&gt;和QMPDClient这样的强大&lt;span class="caps"&gt;MPD&lt;/span&gt;客户端进行音乐管理。&lt;/li&gt;
+&lt;li&gt;&lt;span class="caps"&gt;MPC&lt;/span&gt; 一个命令行下的Mpd客户端。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="mpd"&gt;安装&lt;span class="caps"&gt;MPD&lt;/span&gt;&lt;a class="headerlink" href="#mpd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge mpd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="mpd_1"&gt;配置&lt;span class="caps"&gt;MPD&lt;/span&gt;&lt;a class="headerlink" href="#mpd_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;mpd的系统级配置文件是&lt;code&gt;/etc/mpd.conf&lt;/code&gt;;用户级配置文件是&lt;code&gt;~/.config/mpd/mpd.conf&lt;/code&gt; 或 &lt;code&gt;~/.mpdconf&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;编辑&lt;code&gt;mpd.conf&lt;/code&gt;：
+&lt;span class="caps"&gt;MPD&lt;/span&gt;设置有几个地方：
+1、&lt;span class="caps"&gt;MPD&lt;/span&gt;的音乐目录和进程需要存放一些数据库等文件的目录；
+2、&lt;span class="caps"&gt;MPD&lt;/span&gt;的执行用户；
+3、&lt;span class="caps"&gt;MPD&lt;/span&gt;的输出和混音器选择；
+4、&lt;span class="caps"&gt;MPD&lt;/span&gt;的&lt;span class="caps"&gt;ID3&lt;/span&gt;编码.&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;music_directory "/var/lib/mpd/music" 
+playlist_directory "/var/lib/mpd/playlists" 
+db_file "/var/lib/mpd/database" 
+log_file "/var/lib/mpd/log" 
+state_file "/var/lib/mpd/state" 
+user "mpd" 
+bind_to_address "localhost" 
+bind_to_address "/var/lib/mpd/socket" 
+input { plugin "curl" }
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;mpd默认配置使用mpd用户，默认的&lt;code&gt;~&lt;/code&gt;目录是&lt;code&gt;/var/lib/mpd/&lt;/code&gt;.要添加mpd用户对&lt;code&gt;/var/lib/mpd/&lt;/code&gt;目录相应的权限。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="mpd_2"&gt;使用&lt;span class="caps"&gt;MPD&lt;/span&gt;&lt;a class="headerlink" href="#mpd_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;启动mpd守护进程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/etc/init.d/mpd start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;开机启动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rc-update add mpd default
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="mpd-clients"&gt;&lt;span class="caps"&gt;MPD&lt;/span&gt; Clients&lt;a class="headerlink" href="#mpd-clients" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;mpc&lt;/li&gt;
+&lt;li&gt;vimpc&lt;/li&gt;
+&lt;li&gt;gmpc&lt;/li&gt;
+&lt;li&gt;glurp&lt;/li&gt;
+&lt;li&gt;ario&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="mpc"&gt;&lt;span class="caps"&gt;MPC&lt;/span&gt;&lt;a class="headerlink" href="#mpc" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;mpc的常用参数：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mpc add 添加歌曲到播放列表
+mpc listall|mpc add 可以把所有歌曲都添加到当前的播放列表
+mpc listall 可以列出所有的歌曲
+mpc playlist 查看当前播放列表
+mpc 查看当前播放歌曲的信息
+mpc play 播放
+mpc pause 暂停
+mpc stop 停止
+mpc next 播放下一首
+mpc prev 播放前一首
+mpc repeat on 启用重复播放
+mpc random on 启用随机播放
+mpc play 18 播放列表中第18首
+mpc search filename 可以按文件名查找
+mpc search artist 可以按歌手查找
+mpc search title 可以按歌曲名查找
+音量调节：
+mpc volume +20
+mpc volume -20
+mpc的更多选项可以看mpc的帮助。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="conky"&gt;Conky&lt;a class="headerlink" href="#conky" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;强大的Linux系统监控及桌面美化应用，在这里不详细介绍，自己Google，Wiki。&lt;/p&gt;</summary><category term="apps"></category><category term="music"></category></entry><entry><title>Linux下截图工具：scrot 从入门到精通</title><link href="http://wonux.github.io/apps-scrot.html" rel="alternate"></link><updated>2015-02-10T16:29:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-05-06:apps-scrot.html</id><summary type="html">
+&lt;h3 id="_1"&gt;简介：&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;scrot 主要用在命令行下，它使用 imlib2 库来抓取并保存图像。scrot 的使用格式为：scrot [options] [file]。&lt;/p&gt;
+&lt;h3 id="_2"&gt;一般用法：&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;就一般而言，使用 scrot 可以抓取整个桌面、某个指定的窗口、以及选择的矩形区域。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;抓取桌面：scrot desktop.png，该命令将当前的整个桌面抓取下来，并保存为 desktop.png 文件。可以在当前的目录中找到此图像文件。&lt;/li&gt;
+&lt;li&gt;抓取窗口：scrot -bs window.png，选项 b 使 scrot 在抓取窗口时一同将外边框抓取下来，而 s 选项则让用户选择所要抓取的是何窗口。&lt;/li&gt;
+&lt;li&gt;抓取区域：scrot -s rectangle.png，在执行此命令后，使用鼠标拖曳的矩形区域将被 scrot 抓取下来。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_3"&gt;高级使用&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;对于普通的抓取使用 scrot 的基础便足以应付了。但在某些特殊情况之下，使用 scrot 抓取图像需要讲究一些技巧。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;延时抓取：scrot -cd 10 menu.png，此命令中的 d 选项用于延时抓取图像，其后的 10 代表延时 10 秒；前面的选项 c 显示倒计时。在抓取菜单或是命令提示时，该技巧将充分展示其魔力。&lt;/li&gt;
+&lt;li&gt;生成缩图：scrot -t 50% thumb.png，这个命令在抓取图像的同时生成该图像的缩略图。选项 t 将打开此功能，其后的 50% 为原图的缩放百分比。&lt;/li&gt;
+&lt;li&gt;更改品质：scrot -q 70 quality.jpg，此命令中的 q 选项用于更改所抓图像的品质，其数值介于 1-100 之间，默认为 75。数值越大，意味着图像品质越高；同时，图像的压缩率也就越低，占用空间越大。&lt;/li&gt;
+&lt;li&gt;操作抓图：scrot action.png -e ‘mv $f ~/images/’，该命令将抓取的图像移动到 ~/images/ 目录。显然，操作图像的功能由 e 选项开启，其中的 $f 代表原图的路径／文件名。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以上示例皆指定了需要保存的抓图的文件名称。实际上，如果不指定名称，那么 scrot 在抓取图像后会自动使用当前的日期时间、宽度高度的组合来生成文件名称。&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="apps"></category><category term="image"></category></entry></feed>

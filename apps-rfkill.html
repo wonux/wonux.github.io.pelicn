@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="孤逐王" />
+        <meta name="copyright" content="孤逐王" />
+
+        <meta name="description" content="" />
+        <meta name="twitter:creator" content="@wonux">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="apps, network, wireless, Applications, " />
+
+<meta property="og:title" content="RFKill软开关蓝牙及无线功能 — 解决无线网络连接失败问题 "/>
+<meta property="og:url" content="http://wonux.github.io/apps-rfkill.html" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="Wonux Blog" />
+<meta property="og:article:author" content="孤逐王" />
+<meta property="og:article:published_time" content="2014-10-22T15:07:00+08:00" />
+<meta property="" content="2016-02-02T17:19:00+08:00" />
+<meta name="twitter:title" content="RFKill软开关蓝牙及无线功能 — 解决无线网络连接失败问题 ">
+<meta name="twitter:description" content="">
+<meta property="og:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>RFKill软开关蓝牙及无线功能 — 解决无线网络连接失败问题  · Wonux Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?1697810b">
+        <link rel="shortcut icon" href="http://wonux.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://wonux.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://wonux.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://wonux.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://wonux.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://wonux.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://wonux.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://wonux.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="http://wonux.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Wonux Blog - Full Atom Feed" />
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+    </head>
+    <body class="tex2jax_ignore">
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <div class="span1"></div>
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://wonux.github.io/"><span class=site-name><span style="color:black;">Wonux</span> <span style="color:#AA1032;">Blog</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://wonux.github.io">Home</a></li>
+                            <li ><a href="http://wonux.github.io/about.html">About</a></li>
+                            <li ><a href="http://wonux.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://wonux.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://wonux.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://wonux.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://wonux.github.io/apps-rfkill.html"> RFKill软开关蓝牙及无线功能 &#8212;&nbsp;解决无线网络连接失败问题  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#_1">介绍</a></li>
+<li><a href="#_2">使用</a><ul>
+<li><a href="#_3">获​​​​​​​得​​​​​​​设​​​​​​​备​​​​​​​列​​​​​​​表</a></li>
+<li><a href="#_4">停用设备</a></li>
+<li><a href="#_5">重​​​​​​​新​​​​​​​使​​​​​​​用​​​​​​​设​​​​​​​备</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h2 id="_1">介绍<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>​​​​​​​多​​​​​​​计​​​​​​​算​​​​​​​机​​​​​​​系​​​​​​​统​​​​​​​包​​​​​​​含​​​​​​​无​​​​​​​线​​​​​​​电​​​​​​​传​​​​​​​输​​​​​​​，其​​​​​​​中​​​​​​​包​​​​​​​括​​​​​​​ Wi-Fi、​​​​​​​蓝​​​​​​​牙​​​​​​​和​​​​​​​ 3G 设​​​​​​​备​​​​​​​。​​​​​​​这​​​​​​​些​​​​​​​设​​​​​​​备​​​​​​​消​​​​​​​耗​​​​​​​电​​​​​​​源​​​​​​​，在​​​​​​​不​​​​​​​使​​​​​​​用​​​​​​​这​​​​​​​些​​​​​​​设​​​​​​​备​​​​​​​时​​​​​​​是​​​​​​​一​​​​​​​种​​​​​​​浪​​​​​​​费​​​​​​​。​​​​​​​
+RFKill 是​​​​​​​ Linux 内​​​​​​​核​​​​​​​中​​​​​​​的​​​​​​​一​​​​​​​个​​​​​​​子​​​​​​​系​​​​​​​统​​​​​​​，它​​​​​​​可​​​​​​​提​​​​​​​供​​​​​​​一​​​​​​​个​​​​​​​界​​​​​​​面​​​​​​​，在​​​​​​​此​​​​​​​界​​​​​​​面​​​​​​​中​​​​​​​可​​​​​​​查​​​​​​​询​​​​​​​、​​​​​​​激​​​​​​​活​​​​​​​并​​​​​​​取​​​​​​​消​​​​​​​激​​​​​​​活​​​​​​​计​​​​​​​算​​​​​​​机​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​的​​​​​​​无​​​​​​​线​​​​​​​电​​​​​​​传​​​​​​​输​​​​​​​。​​​​​​​当​​​​​​​取​​​​​​​消​​​​​​​激​​​​​​​活​​​​​​​传​​​​​​​输​​​​​​​时​​​​​​​，可​​​​​​​使​​​​​​​其​​​​​​​处​​​​​​​于​​​​​​​可​​​​​​​被​​​​​​​软​​​​​​​件​​​​​​​重​​​​​​​新​​​​​​​激​​​​​​​活​​​​​​​的​​​​​​​状​​​​​​​态​​​​​​​（软​​​​​​​锁​​​​​​​定​​​​​​​）或​​​​​​​者​​​​​​​将​​​​​​​其​​​​​​​放​​​​​​​在​​​​​​​软​​​​​​​件​​​​​​​无​​​​​​​法​​​​​​​重​​​​​​​新​​​​​​​激​​​​​​​活​​​​​​​的​​​​​​​位​​​​​​​置​​​​​​​（硬​​​​​​​锁​​​​​​​定​​​​​​​）。​​​​​​​
+RFKill 核​​​​​​​为​​​​​​​子​​​​​​​系​​​​​​​统​​​​​​​提​​​​​​​供​​​​​​​应​​​​​​​用​​​​​​​程​​​​​​​序​​​​​​​编​​​​​​​程​​​​​​​界​​​​​​​面​​​​​​​（<span class="caps">API</span>）。​​​​​​​内​​​​​​​核​​​​​​​驱​​​​​​​动​​​​​​​程​​​​​​​序​​​​​​​被​​​​​​​设​​​​​​​计​​​​​​​为​​​​​​​支​​​​​​​持​​​​​​​ RFKill 使​​​​​​​用​​​​​​​这​​​​​​​个​​​​​​​ <span class="caps">API</span> 注​​​​​​​册​​​​​​​内​​​​​​​核​​​​​​​，并​​​​​​​包​​​​​​​含​​​​​​​启​​​​​​​用​​​​​​​和​​​​​​​禁​​​​​​​用​​​​​​​这​​​​​​​个​​​​​​​设​​​​​​​备​​​​​​​的​​​​​​​方​​​​​​​法​​​​​​​。​​​​​​​另​​​​​​​外​​​​​​​，RFKill 核​​​​​​​提​​​​​​​供​​​​​​​用​​​​​​​户​​​​​​​程​​​​​​​序​​​​​​​可​​​​​​​解​​​​​​​读​​​​​​​的​​​​​​​通​​​​​​​知​​​​​​​以​​​​​​​及​​​​​​​用​​​​​​​户​​​​​​​程​​​​​​​序​​​​​​​查​​​​​​​询​​​​​​​传​​​​​​​输​​​​​​​状​​​​​​​态​​​​​​​的​​​​​​​方​​​​​​​法​​​​​​​。​​​​​​​
+RFKill 界​​​​​​​面​​​​​​​位​​​​​​​于​​​​​​​ /dev/rfkill，其​​​​​​​中​​​​​​​包​​​​​​​含​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​所​​​​​​​有​​​​​​​无​​​​​​​线​​​​​​​电​​​​​​​传​​​​​​​输​​​​​​​的​​​​​​​当​​​​​​​前​​​​​​​状​​​​​​​态​​​​​​​。​​​​​​​每​​​​​​​个​​​​​​​设​​​​​​​备​​​​​​​都​​​​​​​在​​​​​​​ sysfs 中​​​​​​​注​​​​​​​册​​​​​​​当​​​​​​​前​​​​​​​ RFKill 状​​​​​​​态​​​​​​​。​​​​​​​另​​​​​​​外​​​​​​​，在​​​​​​​启​​​​​​​用​​​​​​​了​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​中​​​​​​​每​​​​​​​当​​​​​​​状​​​​​​​态​​​​​​​更​​​​​​​改​​​​​​​时​​​​​​​，RFKill 会​​​​​​​发​​​​​​​出​​​​​​​ uevents。​​​​​​​
+Rfkill 是​​​​​​​一​​​​​​​个​​​​​​​命​​​​​​​令​​​​​​​行​​​​​​​工​​​​​​​具​​​​​​​，您​​​​​​​可​​​​​​​使​​​​​​​用​​​​​​​它​​​​​​​查​​​​​​​询​​​​​​​和​​​​​​​更​​​​​​​改​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​启​​​​​​​用​​​​​​​了​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​。​​​​​​​要​​​​​​​获​​​​​​​得​​​​​​​这​​​​​​​个​​​​​​​工​​​​​​​具​​​​​​​，请​​​​​​​安​​​​​​​装​​​​​​​ <code>rfkill</code> 软​​​​​​​件​​​​​​​包​​​​​​​。​​​​​​​</p>
+<h2 id="_2">使用<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<h3 id="_3">获​​​​​​​得​​​​​​​设​​​​​​​备​​​​​​​列​​​​​​​表<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<p>使​​​​​​​用​​​​​​​命​​​​​​​令​​​​​​​ rfkill list 获​​​​​​​得​​​​​​​设​​​​​​​备​​​​​​​列​​​​​​​表​​​​​​​，每​​​​​​​个​​​​​​​都​​​​​​​包​​​​​​​含​​​​​​​与​​​​​​​之​​​​​​​关​​​​​​​联​​​​​​​的​​​​​​​索​​​​​​​引​​​​​​​号​​​​​​​，从​​​​​​​ 0 开​​​​​​​始​​​​​​​。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rfkill list
+0: phy0: Wireless LAN
+    Soft blocked: yes
+    Hard blocked: yes
+</pre></div>
+</td></tr></table>
+<h3 id="_4">停用设备<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<p>​​​​​​​​​​​​​​可​​​​​​​以​​​​​​​使​​​​​​​用​​​​​​​​​​​​​​​​​索​​​​​​​引​​​​​​​号​​​​​​​让​​​​​​​ rfkill 停​​​​​​​止​​​​​​​使​​​​​​​用​​​​​​​或​​​​​​​者​​​​​​​使​​​​​​​用​​​​​​​某​​​​​​​个​​​​​​​设​​​​​​​备​​​​​​​。例​​​​​​​如​​​​​​​，停​​​​​​​用​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​第​​​​​​​一​​​​​​​个​​​​​​​启​​​​​​​用​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​​​​​​​​：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rfkill block 0
+</pre></div>
+</td></tr></table>
+<p>​​​​​​还​​​​​​​可​​​​​​​以​​​​​​​使​​​​​​​用​​​​​​​ rfkill 阻​​​​​​​断​​​​​​​某​​​​​​​一​​​​​​​类​​​​​​​设​​​​​​​备​​​​​​​​​​​​​​。​​​​​​​例​​​​​​​如，停​​​​​​​用​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​的​​​​​​​所​​​​​​​有​​​​​​​ Wi-Fi 设​​​​​​​备​​​​​​​：​​</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rfkill block wifi
+</pre></div>
+</td></tr></table>
+<p>或​​​​​​​者​​​​​​​停​​​​​​​止​​​​​​​使​​​​​​​用所​​​​​​​有​​​​​​​启​​​​​​​用​​​​​​​了​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rfkill block all
+</pre></div>
+</td></tr></table>
+<h3 id="_5">重​​​​​​​新​​​​​​​使​​​​​​​用​​​​​​​设​​​​​​​备<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<p>要​​​​​​​重​​​​​​​新​​​​​​​使​​​​​​​用​​​​​​​设​​​​​​​备​​​​​​​，请​​​​​​​运​​​​​​​行​​​​​​​ rfkill unblock，而​​​​​​​不​​​​​​​是​​​​​​​ rfkill block。​​​​​​​</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>rfkill unblock wifi
+rfkill all
+</pre></div>
+</td></tr></table>
+<p>要​​​​​​​获​​​​​​​得​​​​​​​ rfkill 可​​​​​​​停​​​​​​​用​​​​​​​的​​​​​​​完​​​​​​​整​​​​​​​设​​​​​​​备​​​​​​​类​​​​​​​别​​​​​​​列​​​​​​​表​​​​​​​，请​​​​​​​运​​​​​​​行​​​​​​​ rfkill help。​​​​​​​ </p>
+<p>参考： <a href="https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/6/html/Power_Management_Guide/RFKill.html">https://access.redhat.com/documentation/zh-<span class="caps">CN</span>/Red_Hat_Enterprise_Linux/6/html/Power_Management_Guide/RFKill.html</a></p>
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="http://twitter.com/home?status=RFKill%E8%BD%AF%E5%BC%80%E5%85%B3%E8%93%9D%E7%89%99%E5%8F%8A%E6%97%A0%E7%BA%BF%E5%8A%9F%E8%83%BD%20%E2%80%94%C2%A0%E8%A7%A3%E5%86%B3%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98%20http%3A//wonux.github.io/apps-rfkill.html" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/apps-rfkill.html" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/apps-rfkill.html" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=RFKill%E8%BD%AF%E5%BC%80%E5%85%B3%E8%93%9D%E7%89%99%E5%8F%8A%E6%97%A0%E7%BA%BF%E5%8A%9F%E8%83%BD%20%E2%80%94%C2%A0%E8%A7%A3%E5%86%B3%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98&amp;body=http%3A//wonux.github.io/apps-rfkill.html" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            <section>
+<p id="comment-message">Comments Below: </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://wonux.github.io/apps-rfkill.html#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'wonux';
+        var disqus_identifier = 'http://wonux.github.io/apps-rfkill.html';
+    var disqus_url = 'http://wonux.github.io/apps-rfkill.html';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Keep Reading</h2>
+<ul class="related-posts-list">
+<li><a href="http://wonux.github.io/apps-pastebin.html" title="直接粘贴代码到网络上:command-line pastebins">直接粘贴代码到网络上:command-line pastebins</a></li>
+<li><a href="http://wonux.github.io/arch-wireless.html" title="Arch无线网络网络管理">Arch无线网络网络管理</a></li>
+<li><a href="http://wonux.github.io/gentoo-wpa-supplicant.html" title="Gentoo无线网络配置 — wpa_supplicant">Gentoo无线网络配置 — wpa_supplicant</a></li>
+<li><a href="http://wonux.github.io/apps-vim.html" title="Vim常用技巧">Vim常用技巧</a></li>
+<li><a href="http://wonux.github.io/apps-rsync.html" title="RSync实现文件备份同步">RSync实现文件备份同步</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://wonux.github.io/arch-wireless.html" title="Previous: Arch无线网络网络管理">Arch无线网络网络管理</a></li>
+                <li class="next-article"><a href="http://wonux.github.io/gentoo-xorg-failed.html" title="Next: Gentoo Xorg:Failed to load module “……” 问题">Gentoo Xorg:Failed to load module “……” 问题</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-10-22T15:07:00+08:00">Oct 22, 2014</time>
+
+<h4>Last Updated</h4>
+<time datetime="2016-02-02T17:19:00+08:00">Feb 2, 2016</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="http://wonux.github.io/categories.html#applications-ref">Applications</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://wonux.github.io/tags.html#apps-ref">apps
+                    <span>23</span>
+</a></li>
+                <li><a href="http://wonux.github.io/tags.html#network-ref">network
+                    <span>7</span>
+</a></li>
+                <li><a href="http://wonux.github.io/tags.html#wireless-ref">wireless
+                    <span>3</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://weibo.com/wonux" title="My Weibo Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-weibo sidebar-social-links"></i></a>
+    <a href="https://github.com/wonux" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://douban.com/people/wonux" title="My Book Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-book sidebar-social-links"></i></a>
+    <a href="mailto:wonux@qq.com" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Wonux Blog "</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://weibo.com/wonux" property="cc:attributionName" rel="cc:attributionURL">Ace King</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'wonux';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

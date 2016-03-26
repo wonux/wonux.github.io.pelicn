@@ -1,5 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Wonux Blog</title><link href="http://wonux.github.io/" rel="alternate"></link><link href="http://wonux.github.io/feeds/all.atom.xml" rel="self"></link><id>http://wonux.github.io/</id><updated>2016-02-29T12:45:00+08:00</updated><entry><title>Shell终端收听音乐—豆瓣FM命令行版</title><link href="http://wonux.github.io/apps-doubanfm.html" rel="alternate"></link><updated>2016-02-29T12:32:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-02-29:apps-doubanfm.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Wonux Blog</title><link href="http://wonux.github.io/" rel="alternate"></link><link href="http://wonux.github.io/feeds/all.atom.xml" rel="self"></link><id>http://wonux.github.io/</id><updated>2016-03-26T15:19:00+08:00</updated><entry><title>Git创建空白新分支</title><link href="http://wonux.github.io/git-empty-branch.html" rel="alternate"></link><updated>2016-03-26T15:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-03-24:git-empty-branch.html</id><summary type="html">
+&lt;p&gt;有时候需要在项目中创建一个空白的新分支，来开发测试与当前分支内容无关的内容。向分支提交一个初始的空commit，保证完全复位。&lt;/p&gt;
+&lt;h3 id="_1"&gt;创建并切换新分支&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git branch &amp;lt;new_branch&amp;gt;
+git checkout &amp;lt;new_branch&amp;gt;
+git rm --cached -r . 
+git clean -f -d
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="commit"&gt;创建空的commit&lt;a class="headerlink" href="#commit" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git commit --allow-empty -m "[empty] initial commit"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_2"&gt;推送新分支&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git push origin &amp;lt;new_branch&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="apps"></category><category term="git"></category></entry><entry><title>Git同时提交到多个远程仓库</title><link href="http://wonux.github.io/git-remote.html" rel="alternate"></link><updated>2016-03-06T12:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-03-06:git-remote.html</id><summary type="html">
+&lt;p&gt;在已经习惯使用git同步写代码，github无疑是最的托管平台，但是国内由于“你懂的”原因，速度很慢，有时无法访问，于是想把自己的代码同步到多个不同的远程仓库备份。&lt;/p&gt;
+&lt;h3 id="_1"&gt;我的主要仓库:&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;[github] https://github.com/wonux.test.git  主仓库
+[oschina] https://git.oschina.net/wonux/test.git 国内常用仓库&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;另外，国内还有coding(原来的gitcafe合并到了coding),csdn code等。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_2"&gt;添加同名多个远程仓库&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;添加一个remote,这里是all,也可以是别的名字(如origin)&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git remote add all https://github.com/wonux.test.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;再添加另一个:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git remote set-url --add all https://git.oschina.net/wonux/test.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;重复向同一个远程仓库名字添加需要&lt;code&gt;set-url --add&lt;/code&gt;参数&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果有多个,按照上面这一个命令进行添加.&lt;/p&gt;
+&lt;h3 id="_3"&gt;向多远程仓库推送代码&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git push all --all
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;这样就会一次提交到多个库了,上面命令输出如下:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt;
+&lt;span class="n"&gt;Username&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com': wonux&lt;/span&gt;
+&lt;span class="n"&gt;Password&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//wonux@github.com': &lt;/span&gt;
+&lt;span class="n"&gt;Counting&lt;/span&gt; &lt;span class="nl"&gt;objects&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;68&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Delta&lt;/span&gt; &lt;span class="n"&gt;compression&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="n"&gt;threads&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Compressing&lt;/span&gt; &lt;span class="nl"&gt;objects&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Writing&lt;/span&gt; &lt;span class="nl"&gt;objects&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;68&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;68&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mf"&gt;72.16&lt;/span&gt; &lt;span class="n"&gt;KiB&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Total&lt;/span&gt; &lt;span class="mi"&gt;68&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;delta&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;reused&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;delta&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/wonux/test.git&lt;/span&gt;
+ &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;      &lt;span class="n"&gt;master&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;span class="n"&gt;Username&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//git.oschina.net': wonux&lt;/span&gt;
+&lt;span class="n"&gt;Password&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//wonux@git.oschina.net': &lt;/span&gt;
+&lt;span class="n"&gt;Counting&lt;/span&gt; &lt;span class="nl"&gt;objects&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;68&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Delta&lt;/span&gt; &lt;span class="n"&gt;compression&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="n"&gt;threads&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Compressing&lt;/span&gt; &lt;span class="nl"&gt;objects&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Writing&lt;/span&gt; &lt;span class="nl"&gt;objects&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;68&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;68&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mf"&gt;72.16&lt;/span&gt; &lt;span class="n"&gt;KiB&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Total&lt;/span&gt; &lt;span class="mi"&gt;68&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;delta&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;reused&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;delta&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//git.oschina.net/wonux/test.git&lt;/span&gt;
+ &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;      &lt;span class="n"&gt;master&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;记住不要忘记&lt;code&gt;--all&lt;/code&gt;参数，如果不加&lt;code&gt;--all&lt;/code&gt;，则无法推送，提示：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;git&lt;/span&gt; &lt;span class="nt"&gt;push&lt;/span&gt; &lt;span class="nt"&gt;all&lt;/span&gt;
+&lt;span class="nt"&gt;warning&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;push&lt;/span&gt;&lt;span class="nc"&gt;.default&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;unset&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;its&lt;/span&gt; &lt;span class="nt"&gt;implicit&lt;/span&gt; &lt;span class="nt"&gt;value&lt;/span&gt; &lt;span class="nt"&gt;has&lt;/span&gt; &lt;span class="nt"&gt;changed&lt;/span&gt; &lt;span class="nt"&gt;in&lt;/span&gt;
+&lt;span class="nt"&gt;Git&lt;/span&gt; &lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt; &lt;span class="nt"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'matching'&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="s1"&gt;'simple'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;To&lt;/span&gt; &lt;span class="nt"&gt;squelch&lt;/span&gt; &lt;span class="nt"&gt;this&lt;/span&gt; &lt;span class="nt"&gt;message&lt;/span&gt;
+&lt;span class="nt"&gt;and&lt;/span&gt; &lt;span class="nt"&gt;maintain&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;traditional&lt;/span&gt; &lt;span class="nt"&gt;behavior&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;use&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+
+  &lt;span class="nt"&gt;git&lt;/span&gt; &lt;span class="nt"&gt;config&lt;/span&gt; &lt;span class="nt"&gt;--global&lt;/span&gt; &lt;span class="nt"&gt;push&lt;/span&gt;&lt;span class="nc"&gt;.default&lt;/span&gt; &lt;span class="nt"&gt;matching&lt;/span&gt;
+
+&lt;span class="nt"&gt;To&lt;/span&gt; &lt;span class="nt"&gt;squelch&lt;/span&gt; &lt;span class="nt"&gt;this&lt;/span&gt; &lt;span class="nt"&gt;message&lt;/span&gt; &lt;span class="nt"&gt;and&lt;/span&gt; &lt;span class="nt"&gt;adopt&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;new&lt;/span&gt; &lt;span class="nt"&gt;behavior&lt;/span&gt; &lt;span class="nt"&gt;now&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;use&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+
+  &lt;span class="nt"&gt;git&lt;/span&gt; &lt;span class="nt"&gt;config&lt;/span&gt; &lt;span class="nt"&gt;--global&lt;/span&gt; &lt;span class="nt"&gt;push&lt;/span&gt;&lt;span class="nc"&gt;.default&lt;/span&gt; &lt;span class="nt"&gt;simple&lt;/span&gt;
+
+&lt;span class="nt"&gt;When&lt;/span&gt; &lt;span class="nt"&gt;push&lt;/span&gt;&lt;span class="nc"&gt;.default&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;set&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="s1"&gt;'matching'&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;git&lt;/span&gt; &lt;span class="nt"&gt;will&lt;/span&gt; &lt;span class="nt"&gt;push&lt;/span&gt; &lt;span class="nt"&gt;local&lt;/span&gt; &lt;span class="nt"&gt;branches&lt;/span&gt;
+&lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;remote&lt;/span&gt; &lt;span class="nt"&gt;branches&lt;/span&gt; &lt;span class="nt"&gt;that&lt;/span&gt; &lt;span class="nt"&gt;already&lt;/span&gt; &lt;span class="nt"&gt;exist&lt;/span&gt; &lt;span class="nt"&gt;with&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;same&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+
+&lt;span class="nt"&gt;Since&lt;/span&gt; &lt;span class="nt"&gt;Git&lt;/span&gt; &lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;Git&lt;/span&gt; &lt;span class="nt"&gt;defaults&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;more&lt;/span&gt; &lt;span class="nt"&gt;conservative&lt;/span&gt; &lt;span class="s1"&gt;'simple'&lt;/span&gt;
+&lt;span class="nt"&gt;behavior&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;which&lt;/span&gt; &lt;span class="nt"&gt;only&lt;/span&gt; &lt;span class="nt"&gt;pushes&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;current&lt;/span&gt; &lt;span class="nt"&gt;branch&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;corresponding&lt;/span&gt;
+&lt;span class="nt"&gt;remote&lt;/span&gt; &lt;span class="nt"&gt;branch&lt;/span&gt; &lt;span class="nt"&gt;that&lt;/span&gt; &lt;span class="s1"&gt;'git pull'&lt;/span&gt; &lt;span class="nt"&gt;uses&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;update&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;current&lt;/span&gt; &lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+
+&lt;span class="nt"&gt;See&lt;/span&gt; &lt;span class="s1"&gt;'git help config'&lt;/span&gt; &lt;span class="nt"&gt;and&lt;/span&gt; &lt;span class="nt"&gt;search&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="s1"&gt;'push.default'&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;further&lt;/span&gt; &lt;span class="nt"&gt;information&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="s1"&gt;'simple'&lt;/span&gt; &lt;span class="nt"&gt;mode&lt;/span&gt; &lt;span class="nt"&gt;was&lt;/span&gt; &lt;span class="nt"&gt;introduced&lt;/span&gt; &lt;span class="nt"&gt;in&lt;/span&gt; &lt;span class="nt"&gt;Git&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="nc"&gt;.7.11&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;Use&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;similar&lt;/span&gt; &lt;span class="nt"&gt;mode&lt;/span&gt;
+&lt;span class="s1"&gt;'current'&lt;/span&gt; &lt;span class="nt"&gt;instead&lt;/span&gt; &lt;span class="nt"&gt;of&lt;/span&gt; &lt;span class="s1"&gt;'simple'&lt;/span&gt; &lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="nt"&gt;you&lt;/span&gt; &lt;span class="nt"&gt;sometimes&lt;/span&gt; &lt;span class="nt"&gt;use&lt;/span&gt; &lt;span class="nt"&gt;older&lt;/span&gt; &lt;span class="nt"&gt;versions&lt;/span&gt; &lt;span class="nt"&gt;of&lt;/span&gt; &lt;span class="nt"&gt;Git&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+
+&lt;span class="nt"&gt;fatal&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;unable&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;access&lt;/span&gt; &lt;span class="s1"&gt;'https://github.com/wonux/test.git/'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Couldn&lt;/span&gt;&lt;span class="s1"&gt;'t resolve host '&lt;/span&gt;&lt;span class="nt"&gt;github&lt;/span&gt;&lt;span class="nc"&gt;.com&lt;/span&gt;&lt;span class="err"&gt;'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;分析配置文件&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;在操作完上面的添加命令后，如果我们打开&lt;code&gt;.git/config&lt;/code&gt;文件,我们可以看到这样的配置: &lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[remote "all"]&lt;/span&gt;
+    &lt;span class="na"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;https://github.com/wonux/test.git&lt;/span&gt;
+&lt;span class="s"&gt;    fetch = +refs/heads/*:refs/remotes/all/*&lt;/span&gt;
+&lt;span class="s"&gt;    url = https://git.oschina.net/wonux/test.git&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;因此，直接在&lt;code&gt;.git/config&lt;/code&gt;文件中添加：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[remote "all"]&lt;/span&gt;
+    &lt;span class="na"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;https://github.com/wonux/test.git&lt;/span&gt;
+&lt;span class="s"&gt;    fetch = +refs/heads/*:refs/remotes/all/*&lt;/span&gt;
+&lt;span class="s"&gt;    url = ……&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;有多少个远程库,就配置多少个url即可. 从这里可以看出,第一种方法生成的配置中还有一个fetch配置,这个配置可以完全去掉.&lt;/p&gt;</summary><category term="apps"></category><category term="git"></category></entry><entry><title>Shell终端收听音乐—豆瓣FM命令行版</title><link href="http://wonux.github.io/apps-doubanfm.html" rel="alternate"></link><updated>2016-02-29T12:32:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-02-29:apps-doubanfm.html</id><summary type="html">
 &lt;h2 id="doubanfm"&gt;douban.fm&lt;a class="headerlink" href="#doubanfm" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Terminal-based douban.fm inspired by &lt;a href="https://github.com/turingou/douban.fm"&gt;douban.fm&lt;/a&gt;.该版本版基于Python2.*&lt;/p&gt;
 &lt;h3 id="python2"&gt;安装Python2.*&lt;a class="headerlink" href="#python2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -267,7 +420,98 @@ urxvtd --quiet --opendisplay --fork  ==  urxvtc
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;参考：
 &lt;a href="https://wiki.gentoo.org/wiki/Rxvt-unicode"&gt;https://wiki.gentoo.org/wiki/Rxvt-unicode&lt;/a&gt;
-&lt;a href="https://wiki.archlinux.org/index.php/Rxvt-unicode"&gt;https://wiki.archlinux.org/index.php/Rxvt-unicode&lt;/a&gt;&lt;/p&gt;</summary><category term="gentoo"></category><category term="arch"></category><category term="apps"></category></entry><entry><title>Arch安装KDE5</title><link href="http://wonux.github.io/arch-kde.html" rel="alternate"></link><updated>2016-02-02T11:22:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-25:arch-kde.html</id><summary type="html">
+&lt;a href="https://wiki.archlinux.org/index.php/Rxvt-unicode"&gt;https://wiki.archlinux.org/index.php/Rxvt-unicode&lt;/a&gt;&lt;/p&gt;</summary><category term="gentoo"></category><category term="arch"></category><category term="apps"></category></entry><entry><title>RSync实现文件备份同步</title><link href="http://wonux.github.io/apps-rsync.html" rel="alternate"></link><updated>2016-02-03T17:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-27:apps-rsync.html</id><summary type="html">
+&lt;h2 id="rsync"&gt;rsync介绍&lt;a class="headerlink" href="#rsync" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;rsync&lt;/code&gt; , Remote Synchronize 顾名思意它是一款实现远程同步功能的软件，可通过&lt;span class="caps"&gt;LAN&lt;/span&gt;/&lt;span class="caps"&gt;WAN&lt;/span&gt;快速同步多台主机间的文件。它在同步文件的同时，可以保持原来文件的权限、时间、软硬链接等附加信息。Rsync使用所谓的 “Rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快，而且可以通过ssh方式来传输文件，这样其保密性也非常好，另外它还是免费的软件。
+Rsync是一款通过网络备份重要数据的工具/软件。它同样是一个在类Unix和Window系统上通过网络在系统间同步文件夹和文件的网络协议。Rsync可以复制或者显示目录并复制文件。Rsync默认监听&lt;span class="caps"&gt;TCP&lt;/span&gt; 873端口，通过远程shell如rsh和ssh复制文件。Rsync必须在远程和本地系统上都安装。&lt;/p&gt;
+&lt;h3 id="rsync_1"&gt;rsync优点&lt;a class="headerlink" href="#rsync_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;速度：最初会在本地和远程之间拷贝所有内容。下次，只会传输发生改变的块或者字节。&lt;/li&gt;
+&lt;li&gt;安全：传输可以通过ssh协议加密数据。&lt;/li&gt;
+&lt;li&gt;低带宽：rsync可以在两端压缩和解压数据块。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_1"&gt;缺点&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;单向同步，不支持双向传输&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_2"&gt;特性&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;可以镜像更新整个目录树和文件系统。&lt;/li&gt;
+&lt;li&gt;有选择性的保持符号链链、硬链接、文件属于、权限、设备以及时间等；&lt;/li&gt;
+&lt;li&gt;对于安装来说，无任何特殊权限要求；&lt;/li&gt;
+&lt;li&gt;对于多个文件来说，内部流水线减少文件等待的延时；&lt;/li&gt;
+&lt;li&gt;用rsh、ssh 或直接端口做为传输入端口；&lt;/li&gt;
+&lt;li&gt;支持匿名rsync 同步文件，是理想的镜像工具；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="_3"&gt;使用&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;语法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class="dquo"&gt;“&lt;/span&gt;“
+rsync [&lt;span class="caps"&gt;OPTION&lt;/span&gt;] SRC_PATH/[SRC_FILE] DEST_PATH&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 选项
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;-a 以archive模式操作、复制目录、符号连接 相当于-rlptgoD,是保留了所有人和所属组、时间戳、软链接、权限，并以递归模式运行。
+-l 是链接文件，意思是拷贝链接文件；-p 表示保持文件原有权限；-t 保持文件原有时间；-g 保持文件原有用户组；-o 保持文件原有属主；-D 相当于块设备文件；
+-r 是递归
+-z 传输时压缩；
+-P 传输进度；
+-v 传输时的进度等信息，和-P有点关系，自己试试。可以看文档；
+-e ssh的参数建立起加密的连接。
+-n,—dry-run预览操作，不实际改变文件。
+-u, —update仅仅进行更新，也就是跳过所有已经存在于&lt;span class="caps"&gt;DST&lt;/span&gt;，并且文件时间晚于要备份的文件。(不覆盖更新的文件)，注意两者机器的时钟的不同.
+—progress是指显示出详细的进度情况
+—existing 仅仅更新那些已经存在于&lt;span class="caps"&gt;DST&lt;/span&gt;的文件，而不备份那些新创建的文件
+—delete 删除那些&lt;span class="caps"&gt;DST&lt;/span&gt;中&lt;span class="caps"&gt;SRC&lt;/span&gt;没有的文件 —password-file=/password/path/file来指定密码文件，这样就可以在脚本中使用而无需交互式地输入验证密码了，这里需要注意的是这份密码文件权限属性要设得只有属主可读。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;### 常用实例
+
+- 启用压缩
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rsync -zvr /home/aceking/ /backupdir&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 保留文件和文件夹的属性
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rsync -zva /home/aceking/ /backupdir&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 模拟运行查看结果，不实际操作
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rsync -zvan /home/aceking/ /backupdir&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 找出文件间的不同
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rsync -avzi /backupdir /home/aceking/ &lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;### 排除文件和目录列表
+
+有时候，当我们做大量同步的时候，我们可能想要从同步的文件和目录中排除一个文件和目录的列表。一般来说，像设备文件和某些系统文件，或者像临时文件或者缓存文件这类占据不必要磁盘空间的文件是不合适同步的，这类文件是我们需要排除的。
+
+- 创建排除文件
+`--exclude-from`参数,创建一个名为`excluded`的文件（当然，你想取什么名都可以），将想要排除的文件夹或文件写入该文件，一行一个。例如，如果你想要对根分区进行完整的备份，你应该排除一些在启动时创建的设备目录和放置临时文件的目录：
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h1 id="cat-exclude"&gt;cat exclude&lt;a class="headerlink" href="#cat-exclude" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;/dev/&lt;em&gt;
+/proc/&lt;/em&gt;
+/sys/&lt;em&gt;
+/tmp/&lt;/em&gt;
+/run/&lt;em&gt;
+/mnt/&lt;/em&gt;
+/media/* /lost+found&lt;/p&gt;
+&lt;h1 id="rsync-aaxhv-exclude-fromexcluded-mntbackup"&gt;rsync -aAXhv —exclude-from=excluded / /mnt/backup&lt;a class="headerlink" href="#rsync-aaxhv-exclude-fromexcluded-mntbackup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- 从命令行排除文件
+`--exclude`参数,目录列表`{"/var/cache","/var/tmp"}`
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rsync -aAXhv —exclude={“/var/cache”,”/var/tmp”} /var /home/adrian/var “`&lt;/p&gt;</summary><category term="apps"></category><category term="sync"></category></entry><entry><title>Arch安装KDE5</title><link href="http://wonux.github.io/arch-kde.html" rel="alternate"></link><updated>2016-02-02T11:22:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-25:arch-kde.html</id><summary type="html">
 &lt;h2 id="plasma-desktop"&gt;plasma desktop&lt;a class="headerlink" href="#plasma-desktop" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Install the &lt;code&gt;plasma-meta&lt;/code&gt; meta-package or the &lt;code&gt;plasma&lt;/code&gt; group. Alternatively, for a more minimal Plasma installation, install the &lt;code&gt;plasma-desktop&lt;/code&gt; package.&lt;/p&gt;
 &lt;h2 id="sddm"&gt;sddm&lt;a class="headerlink" href="#sddm" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -315,7 +559,671 @@ pacman -S mpg123
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;&lt;a href="https://github.com/darknessomi/musicbox"&gt;更多详情参考位于 Github 上的项目&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;参考： &lt;a href="https://linuxtoy.org/archives/musicbox-neteasemusic-in-terminal.html"&gt;Musicbox：网易云音乐命令行版本&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="music"></category><category term="python"></category></entry><entry><title>Gentoo解决windows txt文件中文乱码问题 — 文件编码介绍</title><link href="http://wonux.github.io/gentoo-file-encode.html" rel="alternate"></link><updated>2015-12-10T09:30:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-10:gentoo-file-encode.html</id><summary type="html">
+&lt;p&gt;参考： &lt;a href="https://linuxtoy.org/archives/musicbox-neteasemusic-in-terminal.html"&gt;Musicbox：网易云音乐命令行版本&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="music"></category><category term="python"></category></entry><entry><title>Vim常用技巧</title><link href="http://wonux.github.io/apps-vim.html" rel="alternate"></link><updated>2016-01-07T16:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2016-01-07:apps-vim.html</id><summary type="html">
+&lt;h2 id="vim"&gt;使用vim教程&lt;a class="headerlink" href="#vim" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vimtutor
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;它会复制一份教程文件,你可以放心练习,不用担心破坏原来的内容.&lt;/p&gt;
+&lt;h2 id="_1"&gt;求助&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;:help&lt;/code&gt;
+&lt;code&gt;:help + 相关内容&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="vim_1"&gt;vim三种工作模式&lt;a class="headerlink" href="#vim_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Normal模式: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Insert模式: &lt;code&gt;i&lt;/code&gt; &lt;code&gt;a&lt;/code&gt; &lt;code&gt;o&lt;/code&gt; 
+i:光标前 I:光标行首
+a:光标后 A:光标行末
+o:光标下新行 O:光标上新行&lt;/li&gt;
+&lt;li&gt;末行模式: &lt;code&gt;:&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_2"&gt;定位&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;h&lt;/code&gt; &lt;code&gt;j&lt;/code&gt; &lt;code&gt;k&lt;/code&gt; &lt;code&gt;l&lt;/code&gt;
+&lt;code&gt;0&lt;/code&gt; &lt;code&gt;^&lt;/code&gt;  ^行首非空字符  0行首字符
+&lt;code&gt;$&lt;/code&gt; 末字符
+&lt;code&gt;w&lt;/code&gt; &lt;code&gt;W&lt;/code&gt; &lt;code&gt;b&lt;/code&gt; &lt;code&gt;B&lt;/code&gt; &lt;code&gt;e&lt;/code&gt; &lt;code&gt;E&lt;/code&gt;
+&lt;code&gt;Enter&lt;/code&gt; 移至下行首
+&lt;code&gt;gg&lt;/code&gt; &lt;code&gt;G&lt;/code&gt; &lt;code&gt;8G&lt;/code&gt;
+&lt;code&gt;50%&lt;/code&gt;
+&lt;code&gt;H&lt;/code&gt; &lt;code&gt;M&lt;/code&gt; &lt;code&gt;L&lt;/code&gt;
+&lt;code&gt;zz&lt;/code&gt; &lt;code&gt;zt&lt;/code&gt; &lt;code&gt;zb&lt;/code&gt;
+&lt;code&gt;f&lt;/code&gt;
+&lt;code&gt;F&lt;/code&gt;
+&lt;code&gt;/&lt;/code&gt;
+&lt;code&gt;?&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Ctrl + d&lt;/code&gt;  下滚半页
+&lt;code&gt;Ctrl + u&lt;/code&gt;  上滚半页
+&lt;code&gt;Ctrl + f&lt;/code&gt;   下滚一页
+&lt;code&gt;Ctrl + b&lt;/code&gt;  上滚一页&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt;
+&lt;code&gt;dw&lt;/code&gt; &lt;code&gt;de&lt;/code&gt; &lt;code&gt;db&lt;/code&gt; &lt;code&gt;d$&lt;/code&gt;
+&lt;code&gt;dd&lt;/code&gt; &lt;code&gt;D&lt;/code&gt; &lt;code&gt;3dd&lt;/code&gt;
+&lt;code&gt;: 5,10d&lt;/code&gt;
+J&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;u&lt;/code&gt; &lt;code&gt;U&lt;/code&gt; &lt;code&gt;Ctrl + R&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yy&lt;/code&gt;
+&lt;code&gt;p&lt;/code&gt;
+&lt;code&gt;P&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:wq&lt;/code&gt; &lt;code&gt;:x&lt;/code&gt; &lt;code&gt;zz&lt;/code&gt;
+&lt;code&gt;:q&lt;/code&gt; &lt;code&gt;:q!&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="_3"&gt;查询信息&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;当前位围置
+&lt;code&gt;Ctrl + G&lt;/code&gt;
+&lt;code&gt;:set number&lt;/code&gt; &lt;code&gt;:set nonumber&lt;/code&gt;
+&lt;code&gt;:set ruler&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="apps"></category><category term="vi"></category><category term="vim"></category></entry><entry><title>firefox神器：vimperator插件</title><link href="http://wonux.github.io/apps-firefox-vimperator.html" rel="alternate"></link><updated>2015-12-27T14:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-26:apps-firefox-vimperator.html</id><summary type="html">
+&lt;h2 id="_1"&gt;介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Vimperator是一个Firefox浏览器扩展，能够使Firefox浏览器像Vim一样高效工作。在安装上 Vimperator之后，无论是 Firefox 的外观，还是 Firefox 的行为，都像极Vim。Vimperator还具有类似键盘绑定的功能，这使你能够灵活地使用热键来完成各种操作。不过，如果你想使用好它，必须确认你要有使用vim的经验，如同vim一样，vimperator也有多种模式，它也是致力于抛弃鼠标，使手指不用离开键盘就能完成大部分工作，事实也证明这样做确实很高效，但前提是你要习惯这种工作方式。&lt;/p&gt;
+&lt;h2 id="hint"&gt;&lt;span class="caps"&gt;HINT&lt;/span&gt;模式&lt;a class="headerlink" href="#hint" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;这个模式算是用于极度的命令行爱好者或者鼠标坏掉的用户，hint模式就是为当前页面所有的链接标上序号，然后只要敲击键盘选择对应的链接即可，你的手完全不需要离开键盘去摸鼠标——我个人很喜欢这种方式。
+最基本的用法就是在页面按&lt;code&gt;f/F&lt;/code&gt;，然后根据显示的数字来选择一下，链接就打开了。f会原页面打开，F则会在新页面打开。 当然，还可以用‘;{mode}{hint}’来实现更多复杂的操作，但是对我来讲前面的就已经足够了，细节可以参考帮助文档。&lt;/p&gt;
+&lt;h2 id="firefox"&gt;firefox系统功能&lt;a class="headerlink" href="#firefox" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;vimperator命令提供了firefox各种功能入口,常用的如下:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;:dialog – To access some of Firefox's many dialog windows
+:bmarks – Vimperator provides a new interface to bookmarks
+:history – display a colorized, scrollable and clickable list of the locations in history.
+:emenu – Access the Firefox menus through the Vimperator command line.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_2"&gt;打开网页&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-- o :o :open
+:o[pen] [arg1], [arg2], …
+o
+O    Show an :open prompt containing the current URL.
+:tabopen[!] [arg1], [arg2], …       [!], 后台打开,不切换到新标签
+-- t :t :tabopen :tabnew
+t
+T    Show a :tabopen prompt containing the current URL.
+-- w :winopen :wopen
+:wino[pen][!] [arg1], [arg2], …
+w
+W
+p    Open (put) a URL based on the current clipboard contents in the current buffer.
+P
+gP    Works like P but inverts the 'activate' option.
+
+y    Yank current location to the clipboard. 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;使用搜索引擎关键字搜索
+&lt;code&gt;:open baidu keywords&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设置搜索引擎关键字:&lt;code&gt;dialog searchengines&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_3"&gt;历史导航&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-- H &amp;lt;C-o&amp;gt; CTRL-O :ba :back
+:[count]ba[ck] [url]
+:ba[ck][!]    [!] goes to the beginning of the browser history.
+-- L &amp;lt;C-i&amp;gt; CTRL-i :fo :fw :forward
+:[count]fo[rward] [url]
+:fo[rward]!
+----------
+:ju[mps]    List all jumps aka current tab's history aka session history.
+gh    Go home. Opens the homepage in the current tab.
+gH
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;标签页操作&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;我个人是非常喜欢使用&lt;span class="caps"&gt;VIM&lt;/span&gt;的Buffer操作的，简单快捷，精准。 而vimperator则是非常忠实的再现了这一特性，唯一不同的就是，这里的Buffer就相当于Tab。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-- B :tabs :ls :files :buffers
+:buffers [filter]    Show a list of buffers.    %当前标签 #上一个标签
+-- b :b :buffer    
+[count]b    Go to the specified buffer from the buffer list.
+[count]gb    Repeat last :buffer! command.
+[count]gt    Go to the next tab.
+[count]gT    Go to the previous tab.
+[count]d    Delete current buffer tab.
+:tabo[nly]    Close all other tabs.
+-- u :u :undo
+[count]u    Undo closing of a tab.
+-- :undoa :undoall
+:undoa[ll]    Undo closing of all closed tabs. Firefox存储10个最近关闭的标签(包括重启firefox).
+d – close the active tab (delete the buffer)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_5"&gt;刷新网页&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;r    Force reloading of the current web page.
+R   Force reloading of the current web page skipping the cache.
+:re[load][!]    Reload current web page.If [!] is given, skip the cache.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_6"&gt;退出&lt;a class="headerlink" href="#_6" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-- :q :quit
+:q[uit]    Quit current tab. The session is not stored.
+-- :qa :qall :quita :quitall
+:quita[ll]    Quit Vimperator. Quit Vimperator, no matter how many tabs/windows are open. The session is not stored.
+-- :wc :wclose :winc :winclose
+:winc[lose]    Close window.
+-- :winon :winonly
+:winon[ly]    Close all other windows.
+--:xa : xall  :wq :wqa :wqall
+:xa[ll]     Save the session and quit. 
+ZQ    Quit and don't save the session. Works like :qall.
+ZZ    Quit and save the session.Works like :xall.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="buffer"&gt;Buffer&lt;a class="headerlink" href="#buffer" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id="motion-commands"&gt;Motion commands&lt;a class="headerlink" href="#motion-commands" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-- &amp;lt;Home&amp;gt; gg
+[count]gg    Go to the top.   [count] scrolls to [count]%.
+-- &amp;lt;End&amp;gt; G
+[count]G    Go to the end.   [count] scrolls to [count]%. 
+{count}%    Scroll to {count} percent of the document.
+-- &amp;lt;Left&amp;gt; h
+[count]h    Scroll to the left.   [count], times to move to the left.
+-- &amp;lt;Right&amp;gt; l
+[count]l    Scroll to the right. [count], times to move to the right.
+-- &amp;lt;C-e&amp;gt; &amp;lt;Down&amp;gt; j
+[count]j    Scroll document down.  [count], times to move to the down.
+-- &amp;lt;C-y&amp;gt; &amp;lt;Up&amp;gt; k
+[count]k    Scroll document up.  [count], times to move to the up.
+
+-- &amp;lt;C-d&amp;gt;    Scroll window down to half a page in the buffer. 
+-- &amp;lt;C-u&amp;gt;    Scroll window up to half a page in the buffer. 
+-- &amp;lt;S-Space&amp;gt; &amp;lt;PageUp&amp;gt; &amp;lt;C-b&amp;gt;
+[count]&amp;lt;C-b&amp;gt;    Scroll up a full page. Scroll window [count] pages upwards.
+-- &amp;lt;Space&amp;gt; &amp;lt;PageDown&amp;gt; &amp;lt;C-f&amp;gt;
+[count]&amp;lt;C-f&amp;gt;    Scroll down a full page. Scroll window [count] pages downwards.
+
+[count]gi    Focus last used input field or first input field. 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="zooming"&gt;Zooming&lt;a class="headerlink" href="#zooming" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[count]zi    Enlarge text zoom of current web page. Mnemonic: zoom in.
+[count]zI    Enlarge full zoom of current web page. Mnemonic: zoom in.
+[count]zo    Reduce text zoom of current web page. Mnemonic: zoom out.
+[count]zO    Reduce full zoom of current web page. Mnemonic: zoom out.
+[count]zm    Enlarge text zoom by a larger amount. Mnemonic: zoom more.
+[count]zM    Enlarge full zoom by a larger amount. Mnemonic: zoom more.
+[count]zr    Reduce text zoom by a larger amount. Mnemonic: zoom reduce.
+[count]zR    Reduce full zoom by a larger amount. Mnemonic: zoom reduce.
+[count]zz    Set text zoom value of current web page. [count] 30% to 300% default 100%.
+[count]zZ    Set full zoom value of current web page. [count] 30% to 300% default 100%.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="copying-text"&gt;Copying text&lt;a class="headerlink" href="#copying-text" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;y    Yank current location to the clipboard. 
+Y    Copy currently selected text to the system clipboard
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="apps"></category><category term="vi"></category><category term="firefox"></category></entry><entry><title>vi风格pdf阅读器推荐：Zathura</title><link href="http://wonux.github.io/apps-zathura.html" rel="alternate"></link><updated>2015-12-24T10:06:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-24:apps-zathura.html</id><summary type="html">
+&lt;h2 id="_1"&gt;介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Zathura是一款新的 &lt;span class="caps"&gt;PDF&lt;/span&gt; 查看器 ，它相当轻巧，界面简约（与 Apvlv 很相似），且可以定制（如按键绑定、默认窗口大小等 ）,支持vim风格快捷键。除了 &lt;span class="caps"&gt;PDF&lt;/span&gt; 查看器所具有的一般功能之外，Zathura 还包括搜索、表单编辑、可点击链接、导出图像等其他功能。&lt;/p&gt;
+&lt;h3 id="_2"&gt;快捷键&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gg
+G
+j/k/h/l
+J/K  翻一页
+Tab 打开/关闭index（一般是目录）
+o 打开另外的文件
+f Follow a link on the page
+m 标记位置（用过vim的都知道的。。）
+' 跳转到标记位置
+[0-9]+G 到指定页
+a 放大页面到合适大小
+s 放大页面到窗口宽度
+F5 Toggle fullscreen mode
+^n Toggle statusbar visibility
+^m Toggle inputbar visibility
+^q 退出
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_3"&gt;常用命令：&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;:bmark xxx  创建书签
+:blist 打开bookmark
+:q 退出
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="apps"></category><category term="vi"></category><category term="pdf"></category></entry><entry><title>vi风格控制台文件管理器 — vifm 配置使用</title><link href="http://wonux.github.io/apps-vifm.html" rel="alternate"></link><updated>2015-12-23T08:54:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-22:apps-vifm.html</id><summary type="html">
+&lt;h2 id="_1"&gt;介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;vifm是Linux下一个基于ncurses的控制台文件管理器，我很少使用文件管理器，要用一下，就拿出vifm来。图形界面的文件管理器我不喜欢用，控制台下有人叫做mc的，功能很强大，但快捷键实在用不习惯，还经常和Terminal下的快捷键冲突，找来找去也只找到vifm这个还勉强可用，快捷键模拟vi，符合我的习惯。
+vifm最主要的特点是模拟vi的快捷键，例如要复制某个文件，按yy，然后到目的文件夹，按p。要移动文件，将yy换成dd就可以了。直接重命名，则按cw。另外，删除文件并不是直接删除，而是移到分区根目录的&lt;code&gt;.vifm-Trash/&lt;/code&gt;中，所以不小心删错了，还可以找回来。比较常用的命令有：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;j,k     上下移动
+h,l     在父/子目录之间移动
+gg     移动到文件列表首行
+G      移动到文件列表末行
+M     移动到窗口中间
+H,L   移动到窗口首末文件
+gh     返回上级目录
+gl,Enter     进入目录或打开文件
+[count]dd,d[count]d     删除文件(放入回收站)
+[count]DD,D[count]D   删除文件(不放回收站)
+[count]yy,[count]Y,y[count]y     复制文件
+p       粘贴文件
+u       undo last change
+Space,Tab     在两个panel之间切换
+/     查找文件
+m[a-zA-Z0-9]     标记文件
+'[a-zA-Z0-9]     移到标记所在文件
+za     切换隐藏文件显隐
+zo     显示隐藏文件
+zm     不显示隐藏文件
+:fil regex     隐藏匹配regex的文件
+zO     显示被:fil命令过滤的文件
+zM     隐藏被:fil命令过滤的文件
+cp     更改文件属性权限
+cw    文件/文件夹重命名
+cW   文件/文件夹重命名,不包含扩展名
+ga     计算文件夹大小
+!prog     执行系统命令, %f可以用来当前选中文件名
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="vifm"&gt;配置vifm&lt;a class="headerlink" href="#vifm" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="_2"&gt;配置文件&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Vifm creates and populates a &lt;code&gt;.vifm/&lt;/code&gt; folder in your home directory containing the following:
+&lt;code&gt;vifmrc&lt;/code&gt; - a well commented configuration file that can be edited to suit your working style.
+ &lt;code&gt;vifm-help.txt&lt;/code&gt; - the help text
+&lt;code&gt;vifminfo&lt;/code&gt; - bookmarks and trash contents - it is not recommended to edit this file by hand
+&lt;code&gt;Trash/ directory&lt;/code&gt; - self explanatory
+&lt;code&gt;colors/ directory&lt;/code&gt; - color schemes
+&lt;code&gt;Default&lt;/code&gt; - well commented default color scheme - can be copied to create user-created color schemes&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To get started, read the information avaliable in:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/usr/share/vifm/vifm.txt
+/usr/share/vifm/vifm-help.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_3"&gt;用户自定命令&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;用户可以根据自己习惯配置自定义命令,如创建cp, mv命令用于将一个面板中选中的文件复制/移动到另一个面板中去。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;command! cp cp -r %f %D
+command! mv mv -r %f %D
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;" :com[mand][!] command_name action
+" The following macros can be used in a command
+" %a is replaced with the user arguments.
+" %c the current file under the cursor.
+" %C the current file under the cursor in the other directory.
+" %f the current selected file, or files.
+" %F the current selected file, or files in the other directory.
+" %b same as %f %F.
+" %d the current directory name.
+" %D the other window directory name.
+" %m run the command in a menu window
+
+command! df df -h %m 2&amp;gt; /dev/null
+command! diff vim -d %f %F
+command! zip zip -r %f.zip %f
+command! run !! ./%f
+command! make !!make %a
+command! mkcd :mkdir %a | cd %a
+command! vgrep vim "+grep %a"
+command! reload :write | restart
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其中%a是一个特殊值，表示输入的参数，类似的%f表示当前选中的文件, %F表示在另一个面板中选中的文件，%d表示当前目录，%D表示另一个面板的当前目录。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="mkcd-move-copy"&gt;集成命令:&lt;code&gt;mkcd&lt;/code&gt; &lt;code&gt;move&lt;/code&gt; &lt;code&gt;copy&lt;/code&gt;&lt;a class="headerlink" href="#mkcd-move-copy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="_4"&gt;文件默认打开方式&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;vifm可以定义文件默认打开方式，这些都在&lt;code&gt;~/.vifm/vifmrc&lt;/code&gt;中配置。使用&lt;code&gt;file[x]type&lt;/code&gt;定义文件的默认打开方式：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; " Pdf
+filextype *.pdf zathura %c %i &amp;amp;, apvlv %c, xpdf %c
+fileviewer *.pdf pdftotext -nopgbrk %c -
+" Image
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+        \ {View in feh}
+        \ feh -FZ %d --start-at %d/%c 2&amp;gt;/dev/null
+        \ {View in sxiv}
+        \ sxiv,
+        \ {View in gpicview}
+        \ gpicview %c,
+        \ {View in shotwell}
+        \ shotwell,
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
+" Office files
+" filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &amp;amp;
+fileviewer *.doc catdoc %c
+fileviewer *.docx, docx2txt.pl %f -
+filextype *.doc,*.docx wps %f &amp;amp;
+filextype *.xls,*.xlsx et %f &amp;amp;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;参考:&lt;a href="https://wiki.archlinux.org/index.php/Vifm"&gt;https://wiki.archlinux.org/index.php/Vifm&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="vi"></category><category term="file-manager"></category></entry><entry><title>Linux BT下载软件 — Rtorrent 配置使用</title><link href="http://wonux.github.io/apps-rtorrent.html" rel="alternate"></link><updated>2015-12-18T16:13:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-16:apps-rtorrent.html</id><summary type="html">
+&lt;h3 id="rtorrent"&gt;rtorrent介绍&lt;a class="headerlink" href="#rtorrent" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;rtorrent是Linux下的bt下载软件,由于支持&lt;span class="caps"&gt;DHT&lt;/span&gt;网络,可以很好的于迅雷和Bitcomet的用户进行资源共享,所以很适合国内网络环境,下载速度极快.&lt;/p&gt;
+&lt;h3 id="_1"&gt;配置：&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;因安装过程不自动生成配置文件，要手动在用户根目录新建&lt;code&gt;~/.rtorrent.rc&lt;/code&gt;文件。 其内容大体如下：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#最小允许peer数
+min_peers = 3
+#最大允许peer数
+max_peers = 500
+#最大同时上传用户数
+max_uploads = 10
+#最大下载950k/s  光纤用户使用,adsl请酌情修改
+download_rate = 950
+#最大上传200k/s  光纤用户使用,adsl请酌情修改
+upload_rate = 200
+
+#下载目录
+directory = ~/Downloads
+#下载历史目录（此目录中包括下载进度信息和DHT节点缓存）
+session = ~/Downloads/session
+#（配置自动监视,把bt种子扔进～/Downloads/torrents目录就自动下载）
+schedule = watch_directory,5,5,load_start=~/Downloads/torrents/*.torrent
+#（配置自动监视,把bt种子从～/Downloads/torrents目录拿走就自动停止下载）
+schedule = untied_directory,5,5,stop_untied=
+#硬盘空间低于100M就自动停止一切下载）
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+#（在总上传量达到200M的情况下上传/下载率达到200%,或者在总上传量不足200M情况下上传/下载率达到2000%,则停止上传）
+# schedule = ratio,60,60,"stop_on_ratio=200,200M,2000"
+
+#bt监听端口
+port_range = 9400-9500
+#随机从上面范围内选择端口
+port_random = yes
+######开启DHT######
+dht = on
+#DHT所用的UDP端口
+dht_port = 9501   
+#种子交换功能
+peer_exchange = yes
+
+#（上传缓存,每个种子10M,小内存用户请酌情修改）
+send_buffer_size = 10M
+#（下载缓存,每个种子20M,小内存用户请酌情修改）
+receive_buffer_size = 20M
+#(修改编码以避免中文乱码）
+encoding_list=UTF-8
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_2"&gt;使用：&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;启动：命令行输入rtorrent 即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gentoo ~ # rtorrent
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;rtorrent就会自动下载~/Downloads/torrents目录下面的所有bt种子.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;添加和删除 torrents：
+&lt;code&gt;回退键&lt;/code&gt;    用 &lt;span class="caps"&gt;URL&lt;/span&gt; 或者文件路径添加，采用 tab 键查看目录内容并自动完成，支持通配符，例如: ~/torrent/*
+&lt;code&gt;回车键&lt;/code&gt;     和回退键一样，但是添加的 torrent 保持非激活( inactive )状态 (用 ^s 激活)
+&lt;code&gt;^o&lt;/code&gt;     对选择的 torrent 设置新的下载目录，仅仅对还没有被激活过的 torrent
+&lt;code&gt;^s&lt;/code&gt;     开始下载，先运行 hash ，除非已经做过
+&lt;code&gt;^d&lt;/code&gt;     停止激活的下载，或者删除一个停止的下载
+&lt;code&gt;^r&lt;/code&gt;     初始化 torrent 的 hash 检查
+&lt;code&gt;a/s/d&lt;/code&gt;    增加上传带宽 1/5/50 &lt;span class="caps"&gt;KB&lt;/span&gt;.
+&lt;code&gt;z/x/c&lt;/code&gt;     降低上传带宽 1/5/50 &lt;span class="caps"&gt;KB&lt;/span&gt;.
+&lt;code&gt;A/S/D&lt;/code&gt;     增加下载带宽 1/5/50 &lt;span class="caps"&gt;KB&lt;/span&gt;.
+&lt;code&gt;Z/X/C&lt;/code&gt;     降低下载带宽 1/5/50 &lt;span class="caps"&gt;KB&lt;/span&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意： ^s 和 ^q 在 shell 里面经常用来控制屏幕的暂停，这会和 rTorrent 发生冲突，用 stty -a 来检查是否已经被使用，删除的办法是：
+&lt;code&gt;stty stop undef&lt;/code&gt;
+&lt;code&gt;stty start undef&lt;/code&gt;
+before running rTorrent (or reattaching to screen) to leave them undefined. You could also replace undef with some other code — ^p, say. ^d also usually sends end-of-file but ncurses passes this through to rTorrent. stty eof undef if you are worried.
+To fix this, you may also toggle the flow control in screen with ^a ^f until screen displays “-flow” in the bottom left corner.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;退出： &lt;code&gt;CTRL+q&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="global-keys"&gt;Global Keys&lt;a class="headerlink" href="#global-keys" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;主屏幕视图操作
+&lt;code&gt;^q&lt;/code&gt;             关闭 rTorrent，再按一次，强行关闭
+&lt;code&gt;上下&lt;/code&gt;      选择 torrent
+&lt;code&gt;右键&lt;/code&gt;     切换到下载视图
+&lt;code&gt;左键&lt;/code&gt;     回到前一个屏幕
+&lt;code&gt;^r&lt;/code&gt;    检查 hash
+&lt;code&gt;+/-&lt;/code&gt;     修改优先度
+&lt;code&gt;l&lt;/code&gt;    查看日志，空格退出
+&lt;code&gt;1&lt;/code&gt;     显示所有下载
+&lt;code&gt;2&lt;/code&gt;     显示所有下载，按文件名排序
+&lt;code&gt;3&lt;/code&gt;    显示开始的下载
+&lt;code&gt;4&lt;/code&gt;     显示停止的下载
+&lt;code&gt;5&lt;/code&gt;     显示完成的下载
+&lt;code&gt;6&lt;/code&gt;     显示未完成的下载
+&lt;code&gt;7&lt;/code&gt;     显示正在 hash 的下载
+&lt;code&gt;8&lt;/code&gt;     显示正在做种的下载&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载视图
+&lt;code&gt;right&lt;/code&gt;    Switch to selected view
+&lt;code&gt;left&lt;/code&gt;     Switch to view selection or back to main view
+&lt;code&gt;1/2&lt;/code&gt;     Adjust max uploads.
+&lt;code&gt;3/4&lt;/code&gt;     Adjust min peers.
+&lt;code&gt;5/6&lt;/code&gt;     Adjust max peers.
+&lt;code&gt;p&lt;/code&gt;             Display peer info
+&lt;code&gt;o&lt;/code&gt;             Display torrent info
+&lt;code&gt;i&lt;/code&gt;             Display file list
+&lt;code&gt;u&lt;/code&gt;             Display tracker list
+&lt;code&gt;t/T&lt;/code&gt;       Initiate tracker request. Use capital T to force the request, ignoring the “min interval” set by the tracker.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Peer list View Keys
+&lt;code&gt;left&lt;/code&gt;     Switch to view selection
+&lt;code&gt;right&lt;/code&gt;     Show peer details
+&lt;code&gt;*&lt;/code&gt;     Snub peer (stop uploading to this peer)
+&lt;code&gt;k&lt;/code&gt;     Kick peer (disconnect from peer)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;File list View Keys
+&lt;code&gt;left&lt;/code&gt;     Switch to view selection
+&lt;code&gt;right&lt;/code&gt;     Show file details
+&lt;code&gt;space&lt;/code&gt;     Change the file priority; applies recursively when done on a directory
+&lt;code&gt;*&lt;/code&gt;     Change the priority of all files
+&lt;code&gt;/&lt;/code&gt;    Collapse directories. While collapsed, press right to expand the selected directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tracker list View Keys
+&lt;code&gt;left&lt;/code&gt;     Switch to view selection
+&lt;code&gt;*&lt;/code&gt;             Enable/disable tracker
+&lt;code&gt;space&lt;/code&gt;     Rotate trackers in a group&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="apps"></category><category term="torrent"></category></entry><entry><title>Gentoo解决windows txt文件中文乱码问题 — 文件编码介绍</title><link href="http://wonux.github.io/gentoo-file-encode.html" rel="alternate"></link><updated>2015-12-10T09:30:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-12-10:gentoo-file-encode.html</id><summary type="html">
 &lt;h3 id="linuxwindows"&gt;Linux与Windows系统语言编码区别&lt;a class="headerlink" href="#linuxwindows" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;在Linux操作系统下，我们有时打开在windows下的txt文件，发现在windows下能正常显示的txt文件出现了中文乱码。 出现这种情况的原因为两种操作系统的中文字符编码方式（压缩方式）不同，在windows环境中中文字符编码一般为gbk，而在linux环境中为utf8，这就导致了在windows下能正常显示txt文件在linux环境下打开呈现了乱码状态。&lt;/p&gt;
 &lt;h3 id="_1"&gt;系统编码设置&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -512,7 +1420,961 @@ It’s a good idea to use dhclient from &lt;a href=""&gt;net-misc/dhcp&lt;/a&gt;
 &lt;a href="https://wiki.gentoo.org/wiki/Network_management_using_DHCPCD/OpenRC_message"&gt;Network_management_using_DHCPCD/OpenRC_message&lt;/a&gt;
 &lt;a href="https://wiki.gentoo.org/wiki/Netifrc"&gt;Netifrc &lt;/a&gt;
 &lt;a href="https://wiki.gentoo.org/wiki/Network_management_using_DHCPCD"&gt;Network management using &lt;span class="caps"&gt;DHCPCD&lt;/span&gt; &lt;/a&gt;
-&lt;a href="https://wiki.gentoo.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt;&lt;/p&gt;</summary><category term="gentoo"></category><category term="network"></category></entry><entry><title>Gentoo无线网络配置 — wpa_supplicant</title><link href="http://wonux.github.io/gentoo-wpa-supplicant.html" rel="alternate"></link><updated>2015-02-10T13:39:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-01-04:gentoo-wpa-supplicant.html</id><summary type="html">
+&lt;a href="https://wiki.gentoo.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt;&lt;/p&gt;</summary><category term="gentoo"></category><category term="network"></category></entry><entry><title>Pelican-Elegant Mac风格主题配置</title><link href="http://wonux.github.io/git-pelican-elegant.html" rel="alternate"></link><updated>2015-05-15T17:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-05-14:git-pelican-elegant.html</id><summary type="html">
+&lt;h2 id="_1"&gt;简介&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;elegant是Mac风格的优秀主题，简单，专注文章本身。
+A responsive, minimal, and stylish theme for Pelican：&lt;a href="https://github.com/talha131/pelican-elegant"&gt;https://github.com/talha131/pelican-elegant&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="_2"&gt;配置&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;elegant插件需要的依赖：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install beautifulsoup4
+pip install webassets
+pip install cssmin
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;详细设置：&lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;http://oncrashreboot.com/elegant-best-pelican-theme-features&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="_3"&gt;预览&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;我的博客效果：&lt;a href="http://wonux.github.io/"&gt;http://wonux.github.io&lt;/a&gt;
+我的开源配置：&lt;a href="https://github.com/wonux/wonux.git"&gt;https://github.com/wonux&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Thanks to：
+&lt;a href="http://www.gocalf.com/blog/"&gt;http://www.gocalf.com/blog/&lt;/a&gt;
+&lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;http://oncrashreboot.com/elegant-best-pelican-theme-features&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="apps"></category><category term="pelican"></category><category term="blog"></category><category term="git"></category></entry><entry><title>openbox设置透明效果</title><link href="http://wonux.github.io/apps-openbox-tranparent.html" rel="alternate"></link><updated>2015-05-14T11:13:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-05-13:apps-openbox-tranparent.html</id><summary type="html">
+&lt;h2 id="x"&gt;X窗口下的透明效果设置&lt;a class="headerlink" href="#x" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;使用&lt;code&gt;transset&lt;/code&gt; + &lt;code&gt;devilspie&lt;/code&gt; + &lt;code&gt;xcompmgr&lt;/code&gt;设置透明效果。&lt;/p&gt;
+&lt;p&gt;X窗口下没有现成的工具，但可以借助于Xcompmgr和transset。 在运行Xcompmgr之后，就可以用transset来设置窗口透明度了。&lt;/p&gt;
+&lt;h3 id="transset"&gt;&lt;code&gt;transset&lt;/code&gt;设置透明度&lt;a class="headerlink" href="#transset" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;opacity&lt;/code&gt;变量：0～1。0表示完全透明，1表示不透明。如果不指定opacity参数，默认值是0.75&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;transset --help
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;查看用法&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;options:
+    -h, —help           display this message
+    -t, —toggle         force toggle of opacity
+    -c, —click          select by clicking on window  (default)
+    -p, —point          select the window currently under the cursor
+    -a, —actual         select the actual window
+    -n, —name &lt;span class="caps"&gt;NAME&lt;/span&gt;      select by name, &lt;span class="caps"&gt;NAME&lt;/span&gt; is matched as regular expression
+    —no-regex           don’t use regular expression for matching name
+    -i, —id             select by window id
+        —inc            increase by the given opacity
+        —dec            decrease by given opacity
+    -m, —min &lt;span class="caps"&gt;OPACITY&lt;/span&gt;    minimum possible opacity  (default = 0)
+    -x, —max &lt;span class="caps"&gt;OPACITY&lt;/span&gt;    maximum possible opacity  (default = 1)
+    -v, —verbose        print some debug info
+    -V, —version        print version number&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="xcompmgr"&gt;&lt;code&gt;xcompmgr&lt;/code&gt;显示透明效果&lt;a class="headerlink" href="#xcompmgr" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;xcompmgr
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;但是，&lt;code&gt;transset&lt;/code&gt;是一个命令行工具，如何与窗口系统结合起来，开机启动就显示透明效果呢。下面介绍两种使用方式。&lt;/p&gt;
+&lt;h3 id="devilspie"&gt;结合&lt;code&gt;devilspie&lt;/code&gt;的使用&lt;a class="headerlink" href="#devilspie" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;devilspie支持自动绑定某类窗口，即窗口启动时会触发后台devilspie程序的相应行为。devilspie的配置文件在~/.devilspie/目录中，比如随便建立一个文件opacity.ds。内容为&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;( if
+  ( or
+    ( contains ( window_class ) "Gvim" )
+    ( contains ( application_name ) "sakura" )
+    ( contains ( application_name ) "tilda" )
+  )
+  ( begin
+    ( spawn_async (str "transset -t -i " (window_xid)  ))
+  )
+  )
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;应该比较好理解，当启动Gvim， sakura 或 tilda 时设置其透明度为0.75。如执行&lt;code&gt;devilspie -a&lt;/code&gt;，然后启动那个应用，它的属性就会在devilspie的输出中显示出来。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意，xcompmgr和devilspie的启动不一定要放在.xinitrc中，只要在X启动之前执行即可，比如在openbox环境中，加入autostart.sh也是可以的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="openbox"&gt;openbox下的使用&lt;a class="headerlink" href="#openbox" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;修改~/.config/openbox/rc.xml中的&lt;context name="”Titlebar”"&gt;项下面的鼠标绑定内容。&lt;/context&gt;&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;context&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;”Titlebar”&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="c"&gt;&amp;lt;!-- 使用transset-df设置窗口透明效果 --&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;mousebind&lt;/span&gt; &lt;span class="na"&gt;button=&lt;/span&gt;&lt;span class="s"&gt;"C-Middle"&lt;/span&gt; &lt;span class="na"&gt;action=&lt;/span&gt;&lt;span class="s"&gt;"Click"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;action&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;"Execute"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;execute&amp;gt;&lt;/span&gt;transset-df -p&lt;span class="nt"&gt;&amp;lt;/execute&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/action&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/mousebind&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;mousebind&lt;/span&gt; &lt;span class="na"&gt;button=&lt;/span&gt;&lt;span class="s"&gt;"C-Up"&lt;/span&gt; &lt;span class="na"&gt;action=&lt;/span&gt;&lt;span class="s"&gt;"Click"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;action&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;"Execute"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;execute&amp;gt;&lt;/span&gt;transset-df -p --inc 0.2 &lt;span class="nt"&gt;&amp;lt;/execute&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/action&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/mousebind&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;mousebind&lt;/span&gt; &lt;span class="na"&gt;button=&lt;/span&gt;&lt;span class="s"&gt;"C-Down"&lt;/span&gt; &lt;span class="na"&gt;action=&lt;/span&gt;&lt;span class="s"&gt;"Click"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;action&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;"Execute"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;execute&amp;gt;&lt;/span&gt;transset-df -p -m 0.2 --dec 0.2&lt;span class="nt"&gt;&amp;lt;/execute&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/action&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/mousebind&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;这样，你就可以在窗口标题栏上按Ctrl+中键切换透明度了，Ctrl+向上滚动增加透明度，Ctrl+向下滚动减少透明度。&lt;/p&gt;</summary><category term="apps"></category><category term="xorg"></category><category term="openbox"></category></entry><entry><title>Pelican + Github 搭建静态个人博客</title><link href="http://wonux.github.io/git-pelican.html" rel="alternate"></link><updated>2015-05-14T18:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-05-06:git-pelican.html</id><summary type="html">
+&lt;h2 id="_1"&gt;前言&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;一直以来都希望拥有属于自己的个人博客，随性发点信息，写点技术感想，记录自己的生活，重要的是不受广告的影响、不被河蟹、不会担心有一天被莫名其妙地消失。&lt;/p&gt;
+&lt;p&gt;之前看过一篇&lt;a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html"&gt;文章&lt;/a&gt;：“像黑客一样写博客”，一下子就被这种简单的方式深深的吸引住了。你只需要一个称手的文本编辑器（Markdown编辑器），再配合终端的git命令就&lt;span class="caps"&gt;OK&lt;/span&gt;了，其余的都不用管了，交给第三方去。几条简单的命令就可以发布博客。&lt;/p&gt;
+&lt;p&gt;优点：
+- 直接使用Markdown写文章
+- 全站静态化，根据Markdown生成文章的静态页面
+- 直接在Terminal把文章push到Github上即可，有版本管理真好，然后加之Github Page的支持，虽然有一些些小问题，比如缓存，但瑕不掩瑜
+- 整个写作过程和写代码的过程是一致的，符合码农的行为习惯，也就是所谓的“像黑客一样写博客”&lt;/p&gt;
+&lt;p&gt;本博客是在Gentoo Linux环境下搭建完成，托管到Github Pages。
+效果见我的博客:&lt;a href="http://wonux.github.io"&gt;http://wonux.github.io&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="_2"&gt;知识储备&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;搭建博客的工具选用了Pelican，Pelican是一个用Python语言编写的静态网站生成器，支持使用restructuredText和Markdown写文章，配置灵活，扩展性强，有许多优秀的主题和插件可供使用。Pelican 的Github地址是：&lt;a href="https://github.com/getpelican/pelican"&gt;https://github.com/getpelican/pelican&lt;/a&gt;;主页：&lt;a href="http://blog.getpelican.com/"&gt;http://blog.getpelican.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;搭建过程中涉及如下技术知识，不过你不必害怕，只是使用它们的开源框架而已，并不需要自己编码，点击可以了解它们是如何的强大，当然你也可以略过它们，后面遇到时再进行了解。 假如你不能打开它们，原因你懂的，请爬墙解决~&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Github:&lt;a href="https://github.com/"&gt;https://github.com/&lt;/a&gt;
+Github Ppages:&lt;a href="http://pages.github.com/"&gt;http://pages.github.com/&lt;/a&gt;
+git:&lt;a href="http://git-scm.com/"&gt;http://git-scm.com/&lt;/a&gt;
+python:&lt;a href="http://www.python.org/"&gt;http://www.python.org/&lt;/a&gt;
+pip:&lt;a href="https://pypi.python.org/pypi"&gt;https://pypi.python.org/pypi&lt;/a&gt;
+pelican:&lt;a href="http://blog.getpelican.com/"&gt;http://blog.getpelican.com/&lt;/a&gt;
+markdown:&lt;a href="http://daringfireball.net/projects/markdown/syntax"&gt;http://daringfireball.net/projects/markdown/syntax&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="pelican"&gt;搭建Pelican环境&lt;a class="headerlink" href="#pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="gitpip"&gt;安装git,pip&lt;a class="headerlink" href="#gitpip" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge --ask dev-cvs/git
+emerge --ask dev-python/pip
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="virtualenvpelican"&gt;使用virtualenv工具创建pelican虚拟环境&lt;a class="headerlink" href="#virtualenvpelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge --ask virtualenv  ## or  pip install virtualenv
+virtualenv ~/virtualenvs/pelican
+cd ~/virtualenvs/pelican
+source bin/activate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="pelican_1"&gt;安装pelican&lt;a class="headerlink" href="#pelican_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install pelican
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="markdowntypogrify"&gt;安装markdown,typogrify&lt;a class="headerlink" href="#markdowntypogrify" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install Markdown
+pip install typogrify
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="_3"&gt;搭建博客站点&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir blog //创建文件夹，名称可根据自己喜欢定
+cd blog
+pelican-quickstart
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;&lt;code&gt;pelican-quickstart&lt;/code&gt;执行命令后，会提示输入博客的配置项，除了少数几个必填以外，其它都可以选择默认，而且都可以在pelicanconf.py文件中进行更改，所以你可以随意选择。 命令成功执行后，会出现pelican的框架，如下所示&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;blog/
+├── content                # 存放输入的markdown或RST源文件
+│   └── (pages)            # 存放手工创建的静态页面，可选
+│   └── (posts)            # 存放手工创建的文章，可选
+├── output                 # 存放最终生成的静态博客
+├── develop_server.sh      # 测试服务器
+├── Makefile               # 管理博客的Makefile
+├── pelicanconf.py         # 配置文件
+└── publishconf.py         # 发布文件，可删除
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;选择博客主题&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;回到&lt;code&gt;blog&lt;/code&gt;目录下，按如下步骤下载pelican官方主题，从里面挑选出自己喜欢的主题吧，大多数主题预览界面你可以打开这个网页&lt;a href="http://pelicanthemes.com/"&gt;主题预览&lt;/a&gt;进行查看。不过如今pelican又新出了很多主题，所以你需看看&lt;a href="https://github.com/getpelican/pelican-themes"&gt;pelican主题开源库&lt;/a&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;克隆主题到本地&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/getpelican/pelican-themes.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;使用主题
+打开&lt;code&gt;pelicanconf.py&lt;/code&gt;配置文件，更改或添加&lt;span class="caps"&gt;THEME&lt;/span&gt;为自己喜欢的主题，例如本博客所挑选的elegant，更多的配置含义请关注&lt;a href="http://docs.getpelican.com/en/3.5.0/index.html"&gt;官方文档&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;THEME = 'pelican-themes/pelican-elegant'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_5"&gt;添加评论系统&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;开启个人博客的原因在于分享知识，分享就需要交流，评论模块当然少不了。大多数主题默认支持Disqus。在&lt;a href="https://disqus.com/"&gt;Disqus&lt;/a&gt;上申请帐号，按照流程Disqus会分配给你站点的Shortname，记牢Shortname，如果忘了请进入admin/settings中查看。然后同理，在&lt;code&gt;pelicanconf.py&lt;/code&gt;添加
+国内也可以选择&lt;a href="http://duoshuo.com"&gt;多说&lt;/a&gt;和&lt;a href="http://www.uyan.cc"&gt;友言&lt;/a&gt;.&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;DISQUS_SITENAME = Shortname
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_6"&gt;书写文章&lt;a class="headerlink" href="#_6" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;完成上述博客主体搭建后，使用markdownpad创建一个.md文件，保存于content文件夹中（或自己加入posts文件夹）。
+Metadata syntax for Markdown posts should follow this pattern:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Title&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;My&lt;/span&gt; &lt;span class="kd"&gt;super&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;
+&lt;span class="n"&gt;Date&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2010&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;03&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;
+&lt;span class="n"&gt;Modified&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2010&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;05&lt;/span&gt; &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;
+&lt;span class="n"&gt;Category&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;
+&lt;span class="n"&gt;Tags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;publishing&lt;/span&gt;
+&lt;span class="n"&gt;Slug&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kd"&gt;super&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;
+&lt;span class="n"&gt;Authors&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Alexis&lt;/span&gt; &lt;span class="n"&gt;Metaireau&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Conan&lt;/span&gt; &lt;span class="n"&gt;Doyle&lt;/span&gt;
+&lt;span class="n"&gt;Summary&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Short&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;feeds&lt;/span&gt;
+
+&lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt; &lt;span class="kd"&gt;super&lt;/span&gt; &lt;span class="n"&gt;blog&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_7"&gt;发布博客站点&lt;a class="headerlink" href="#_7" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://docs.getpelican.com/en/3.5.0/publish.html#publish-your-site"&gt;Publish your site&lt;/a&gt;
+有三种方法可以发布博客：
+- pelican命令
+- make 
+详细用法查看&lt;code&gt;Makefile&lt;/code&gt;文件
+- fabric&lt;/p&gt;
+&lt;h4 id="_8"&gt;生成博客站点&lt;a class="headerlink" href="#_8" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://docs.getpelican.com/en/3.5.0/publish.html#site-generation"&gt;Site generation&lt;/a&gt;&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pelican /path/to/your/content/ [-s path/to/your/settings.py]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;或&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;生成的站点放在&lt;code&gt;output/&lt;/code&gt;目录下。&lt;/p&gt;
+&lt;h4 id="_9"&gt;预览生成的站点&lt;a class="headerlink" href="#_9" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;For Python 2, run:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd output
+python -m SimpleHTTPServer
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;For Python 3, run:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd output
+python -m http.server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;或&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make serve
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;浏览&lt;a href="http://localhost:8000/"&gt;http://localhost:8000/&lt;/a&gt;地址预览效果.&lt;/p&gt;
+&lt;h4 id="_10"&gt;部署博客站点&lt;a class="headerlink" href="#_10" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://docs.getpelican.com/en/3.5.0/publish.html#deployment"&gt;Deployment&lt;/a&gt;
+原理：将&lt;code&gt;output&lt;/code&gt;目录下生成的站点部署到自己的github pages.&lt;/p&gt;
+&lt;h4 id="_11"&gt;自动化操作&lt;a class="headerlink" href="#_11" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Fabric&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install Fabric
+fab build
+fab regenerate
+fab serve
+fab publish
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Make&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make html
+make regenerate
+make serve
+make devserver
+make stopserver
+./develop_server.sh stop
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;备注：发布的简单流程：&lt;code&gt;pelican content&lt;/code&gt;生成页面至&lt;code&gt;output&lt;/code&gt;目录，然后&lt;code&gt;git push&lt;/code&gt;将&lt;code&gt;output&lt;/code&gt;目录推送到github站点的&lt;code&gt;gh-pages&lt;/code&gt;分支，即可自动渲生成染博客。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_12"&gt;预览我的博客效果&lt;a class="headerlink" href="#_12" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://wonux.github.io"&gt;http://wonux.github.io&lt;/a&gt;
+&lt;a href="http://wonux.coding.me"&gt;http://wonux.coding.me&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考资料：
+&lt;a href="http://www.xycoding.com/articles/2013/11/21/blog-create/"&gt;http://www.xycoding.com/articles/2013/11/21/blog-create/&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="pelican"></category><category term="blog"></category><category term="git"></category><category term="python"></category></entry><entry><title>UNIX基础 — 安装应用程序: Packages 和 Ports</title><link href="http://wonux.github.io/freebsd-apps.html" rel="alternate"></link><updated>2015-05-05T08:52:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-05-04:freebsd-apps.html</id><summary type="html">
+&lt;h2 id="packages-and-ports"&gt;Packages and Ports&lt;a class="headerlink" href="#packages-and-ports" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="_1"&gt;概述&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;FreeBSD 将许多系统工具捆绑作为基本系统的一部分。另外，FreeBSD 提供了两种补充的技术来安装第三方软件：FreeBSD Ports Collection，从源代码安装； packages，从预编译的二进制版本安装。这两种方法都可以用于从本地介质， 或从网上直接安装您喜欢的应用程序的最新版本。&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;UNIX&lt;/span&gt;®系统典型的安装第三方软件的步骤包括：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1、下载这个软件，软件的发布可能是源代码格式，或是一个二进制包。
+2、从默认的发行格式解压软件，通常是用compress, gzip,或bzip2压缩过tar包。
+3、阅读相关文档，了解如何安装。 (通常文件名是INSTALL或README， 或在doc/ 目录下的一些文档)
+4、如果软件是以源代码形式发布的，那就需要编译它。可能需要编辑一个 Makefile文件, 或运行 configure脚本。
+5、测试和安装软件。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;FreeBSD的package是包含了一个应用的所有命令、全部的配置文件和文档的预编译好的副本 。package可以使用pkg命令来操作。 FreeBSD的port是一个可以自动从源代码编译成应用程序的文件集合。这些文件包含了自动下载、解开、打补丁、编译、安装应用的所有必要的信息。&lt;/p&gt;
+&lt;p&gt;pots系统也可以用于生成被包管理命令维护的packages。
+packages 和 ports 都可以自动处理依赖库。&lt;/p&gt;
+&lt;p&gt;这两种技术是很相似，packages 和 ports有各自的强项，根据需要选择哪种方法安装一个特定的软件。&lt;/p&gt;
+&lt;p&gt;Package优点
+- 一个压缩的 package 通常要比一个压缩的包含源代码的应用程序小得多。
+- package 不需要进行额外的编译时间。 对于大型应用程序如 Mozilla， &lt;span class="caps"&gt;KDE&lt;/span&gt; 或 &lt;span class="caps"&gt;GNOME&lt;/span&gt; 来说这显得尤为重要， 特别是在您的系统资源比较差的情况下。
+- package不需要理解任何在FreeBSD上编译软件的详细过程。&lt;/p&gt;
+&lt;p&gt;Port优点：
+- package 在编译时通常使用比较保守的选项，这是为了保证它们能够运行在大多数的系统上。通过从 port 安装，可以细微调整编译选项来产生适合于处理器的代码。
+- 一些软件包已经把与它们相关的能做和不能做的事情的选项都编译进去了。从 port 中安装时，不一定要接受默认的选项， 可以自己来设置。
+- 一些软件的许可条件禁止采用二进制形式发行。 它们必须以源代码形式发布，终端用户编译。
+- 一些人不信任二进制发行形式。 至少有了源代码， (理论上) 可以亲自阅读它，寻找潜在的问题。
+- 如果要自己对软件打补丁，您就需要有源代码。&lt;/p&gt;
+&lt;h3 id="_2"&gt;查找软件&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;FreeBSD中可用的应用程序正在不断地增长着。有很多方法可以查找需要安装的软件。
+- FreeBSD站点上维护着一个最新的的可搜索当前所有可用应用程序的列表，在 &lt;a href="http://www.freebsd.org/ports/index.html"&gt;http://www.FreeBSD.org/ports/&lt;/a&gt;。ports可以通过程序名称或软件分类来搜索。
+- Dan Langille维护着网站 FreshPorts，&lt;a href="http://www.FreshPorts.org/"&gt;http://www.FreshPorts.org/&lt;/a&gt;。 FreshPort提供综合搜索工具，追踪ports中应用的变化。注册用户可以创建自定义检视列表，当有任何程序被升级时，他们就会发 email 提醒您。
+- 如果不确定想要的应用程序的名字，可以尝试在 &lt;a href="http://www.sourceforge.net/"&gt;SourceForge.net&lt;/a&gt; or &lt;a href="http://www.github.com/"&gt;GitHub.com&lt;/a&gt;这些网站中查找，然后回到 &lt;a href="http://www.freebsd.org/ports/index.html"&gt;FreeBSD site&lt;/a&gt;主站查看应用是否被port进去了（ be ported）。
+- 查找二进制包仓库（binary package repository）
+pkg search xxx
+pkg search -o xxx
+- Ports集（Ports Collection）安装后，有几种方法可以查询本地ports树。查找一个port属于哪个category：
+&lt;code&gt;whereis lsof&lt;/code&gt;
+lsof: /usr/ports/sysutils/lsof
+&lt;code&gt;echo /usr/ports/*/*lsof*&lt;/code&gt;
+/usr/ports/sysutils/lsof
+- 另外一个查找软件的方法是用Ports Collection内嵌的搜索机制。要使用这个搜索机制, 需要先cd到/usr/ports目录下面，然后运行&lt;code&gt;make search name=program-name&lt;/code&gt;，program-name是要查找的软件名。例如：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# cd /usr/ports
+# make search name=lsof
+Port:   lsof-4.88.d,8
+Path:   /usr/ports/sysutils/lsof
+Info:   Lists information about open files (similar to fstat(1))
+Maint:  ler@lerctr.org
+Index:  sysutils
+B-deps:
+R-deps: 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：内嵌搜索机制使用索引信息文件. 如果显示消息：the &lt;span class="caps"&gt;INDEX&lt;/span&gt; is required, 执行&lt;code&gt;make fetchindex&lt;/code&gt;下载最新的索引文件. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;显示精简信息，使用quicksearch特性：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# cd /usr/ports
+# make quicksearch name=lsof
+Port:   lsof-4.88.d,8
+Path:   /usr/ports/sysutils/lsof
+Info:   Lists information about open files (similar to fstat(1))
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;为了更深入的搜索，还可以用 &lt;code&gt;make search key=string&lt;/code&gt;， string就是想搜索的部分内容。 它将搜索port的名字、 注释， 描述和从属关系， 如果不知道您想搜索的程序名字， 可以利用它搜索一些关键主题来找到需要的。 当使用search或quicksearch时，搜索的关键字不区分大小写。&lt;/p&gt;
+&lt;h3 id="pkg"&gt;使用pkg进行二进制包管理&lt;a class="headerlink" href="#pkg" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;pkg是FreeBSD传统的包管理工具的下一代替代者。它提供了很多特性，使处理二进制包更快，更简单。
+pkg不是替代像 &lt;a href="http://www.freebsd.org/cgi/url.cgi?ports/ports-mgmt/portmaster/pkg-descr"&gt;ports-mgmt/portmaster&lt;/a&gt; 或 &lt;a href="http://www.freebsd.org/cgi/url.cgi?ports/ports-mgmt/portupgrade/pkg-descr"&gt;ports-mgmt/portupgrade&lt;/a&gt;这样的port管理工具，这些工具既可以使用二进制方式又可以通过ports集方式安装第三方软件，而pkg只安装二进制包。&lt;/p&gt;
+&lt;h4 id="pkg_1"&gt;安装pkg&lt;a class="headerlink" href="#pkg_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;从FreeBSD 8.4之后的版本包括了一个用于下载安装pkg（包括使用手册）的引导程序。（bootstrap utility）
+- To bootstrap the system, run:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/usr/sbin/pkg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="pkg_2"&gt;pkg常用命令&lt;a class="headerlink" href="#pkg_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;查看已安装软件包信息
+&lt;code&gt;pkg info&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装和移除软件包
+&lt;code&gt;pkg install&lt;/code&gt;和&lt;code&gt;pkg delete&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;更新已安装软件包
+&lt;code&gt;pkg version&lt;/code&gt;
+&lt;code&gt;pkg upgrade&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;审核已安装软件包
+&lt;code&gt;pkg audit -F&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自动移除孤立依赖
+&lt;code&gt;pkg autoremove&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;移除陈旧package包
+&lt;code&gt;pkg clean&lt;/code&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;pkg默认在一个缓存目录（PKG_CACHEDIR）存储二进制包，当使用pkg upgrade更新包时，旧的版本不会自动移除。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="ports-collection"&gt;使用Ports Collection&lt;a class="headerlink" href="#ports-collection" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ports Collection ── 本质上是 /usr/ports 目录下的一堆 Makefile、 Patches（补丁）和描述文件，这些文件用于在FreeBSD系统中编译和安装应用。&lt;/p&gt;
+&lt;h4 id="ports-collection_1"&gt;安装Ports Collection&lt;a class="headerlink" href="#ports-collection_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Portsnap Method
+FreeBSD的base system包含Portsnap. 这是一个获得Ports Collection的快速易用的工具也是对大多数用户推荐的方法。
+1、下载压缩的 Ports 套件快照到 /var/db/portsnap：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portsnap fetch
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;2、如果是首次运行 Portsnap，则需要将快照释放到 /usr/ports： &lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portsnap extract
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;3、更新 /usr/ports：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portsnap fetch
+portsnap update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当使用fetch选项时，extract、update选项可以连续运行：
+&lt;code&gt;portsnap fetch update&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Subversion Method
+如果需要更多的控制ports tree或者本地更改需要维护，  Subversion可以用于获得Ports Collection。
+1、在检测ports tree之前Subversion必须安装。如果ports tree已经存在：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /usr/ports/devel/subversion
+make install clean
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果ports tree不可用：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pkg install subversion
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;2、Check out a copy of the ports tree. 使用离你最近的Subversion mirror替换&lt;code&gt;svn0.us-east.FreeBSD.org&lt;/code&gt;&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;svn checkout https://svn0.us-east.FreeBSD.org/ports/head /usr/ports
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;3、As needed, update /usr/ports after the initial Subversion checkout:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;svn update /usr/ports
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="port-skeleton"&gt;Port Skeleton&lt;a class="headerlink" href="#port-skeleton" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;port skeleton 是让一个程序在 FreeBSD 上简洁地编译并安装的所需文件的最小组合。 每个 port skeleton 包含：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Makefile&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="n"&gt;Makefile&lt;/span&gt; &lt;span class="err"&gt;包括好几个部分，&lt;/span&gt; &lt;span class="err"&gt;指出应用程序是如何编译以及将被安装在系统的哪些地方。&lt;/span&gt; 
+&lt;span class="n"&gt;distinfo&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;这个文件包括这些信息：这些文件用来对下载后的文件校验和进行检查&lt;/span&gt;   &lt;span class="err"&gt;，来确保在下载过程中文件没有被破坏。&lt;/span&gt;  
+&lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="o"&gt;/:&lt;/span&gt; &lt;span class="err"&gt;这个目录包括在&lt;/span&gt;&lt;span class="n"&gt;FreeBSD&lt;/span&gt;&lt;span class="err"&gt;系统上编译和安装程序需要用到的补丁。这些补丁基本上都是些小文件，指出特定文件作了哪些修正。它们都是纯文本的的格式，基本上是这样的&lt;/span&gt; &lt;span class="err"&gt;“删除第&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="err"&gt;行”&lt;/span&gt; &lt;span class="err"&gt;或&lt;/span&gt; &lt;span class="err"&gt;“将第&lt;/span&gt; &lt;span class="mi"&gt;26&lt;/span&gt; &lt;span class="err"&gt;行改为这样&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="err"&gt;”，补丁文件也被称作&lt;/span&gt; &lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="n"&gt;diffs&lt;/span&gt;&lt;span class="err"&gt;”，他们由&lt;/span&gt;&lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="err"&gt;程序生成。&lt;/span&gt;
+&lt;span class="err"&gt;这个目录也包含了在编译&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="err"&gt;时要用到的其它文件。&lt;/span&gt;
+&lt;span class="n"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;descr&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;这是一个提供更多细节，有软件的多行描述。&lt;/span&gt;
+&lt;span class="n"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;plist&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;这是即将被安装的所有文件的列表。它告诉&lt;/span&gt; &lt;span class="n"&gt;ports&lt;/span&gt; &lt;span class="err"&gt;系统在卸载时需要删除哪些文件。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;port里面包含着如何编译源代码的指令，但不包含真正的源代码。ports中这个程序源代码标示文件叫 “distfile”,构建port的过程中会自动存储已经下载的源码到/usr/ports/distfiles.&lt;/p&gt;
+&lt;h4 id="ports"&gt;安装Ports&lt;a class="headerlink" href="#ports" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;使用Ports Collection编译安装port，需要连接网络和超级用户特权。如果没有网络，则需要将 distfile 手工放到 /usr/ports/distfiles 中。
+- 首先进入要安装 port 的目录：
+&lt;code&gt;cd /usr/ports/sysutils/lsof&lt;/code&gt;
+- &lt;code&gt;make install&lt;/code&gt;
+- &lt;code&gt;make clean&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;编译port的时候可以使用&lt;code&gt;make install clean&lt;/code&gt;节省步骤。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id="ports_1"&gt;移除已安装的Ports&lt;a class="headerlink" href="#ports_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;已经安装的ports可以使用&lt;code&gt;pkg delete&lt;/code&gt;命令卸载。
+也可以在ports目录，使用&lt;code&gt;make deinstall&lt;/code&gt;命令&lt;/p&gt;
+&lt;h4 id="ports_2"&gt;升级Ports&lt;a class="headerlink" href="#ports_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;列出可以更新版本的ports：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pkg version -l "&amp;lt;"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Important:
+Before attempting an upgrade, read /usr/ports/&lt;span class="caps"&gt;UPDATING&lt;/span&gt; from the top of the file to the date closest to the last time ports were upgraded or the system was installed. This file describes various issues and additional steps users may encounter and need to perform when updating a port, including such things as file format changes, changes in locations of configuration files, or any incompatibilities with previous versions. Make note of any instructions which match any of the ports that need upgrading and follow these instructions when performing the upgrade.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;执行Ports升级，使用Portmaster或者Portupgrade.
+- Upgrading Ports Using Portmaster
+&lt;a href="http://www.freebsd.org/cgi/url.cgi?ports/ports-mgmt/portmaster/pkg-descr"&gt;ports-mgmt/portmaster&lt;/a&gt;package（或称port），是推荐的升级已安装Ports的工具，它被设计为随FreeBSD系统使用而不需要依赖其他ports的工具。它用/var/db/pkg/中的信息决定哪些ports需要升级。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /usr/ports/ports-mgmt/portmaster
+make install clean
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;Portmaster 把 ports 分成4类：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Root ports (不依赖其他的 ports，也不被依赖)
+Trunk ports (不依赖其他的 ports，但是被其他的 ports 依赖)
+Branch ports (依赖于其他的 ports，同时也被依赖)
+Leaf ports (依赖于其他的 ports，但不被依赖)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;可以使用 -L 选项列出所有已安装的 ports 和查找存在更新的 ports：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portmaster -L
+===&amp;gt;&amp;gt;&amp;gt; Root ports (No dependencies, not depended on)
+===&amp;gt;&amp;gt;&amp;gt; ispell-3.2.06_18
+===&amp;gt;&amp;gt;&amp;gt; screen-4.0.3
+        ===&amp;gt;&amp;gt;&amp;gt; New version available: screen-4.0.3_1
+===&amp;gt;&amp;gt;&amp;gt; tcpflow-0.21_1
+===&amp;gt;&amp;gt;&amp;gt; 7 root ports
+...
+===&amp;gt;&amp;gt;&amp;gt; Branch ports (Have dependencies, are depended on)
+===&amp;gt;&amp;gt;&amp;gt; apache22-2.2.3
+        ===&amp;gt;&amp;gt;&amp;gt; New version available: apache22-2.2.8
+...
+===&amp;gt;&amp;gt;&amp;gt; Leaf ports (Have dependencies, not depended on)
+===&amp;gt;&amp;gt;&amp;gt; automake-1.9.6_2
+===&amp;gt;&amp;gt;&amp;gt; bash-3.1.17
+        ===&amp;gt;&amp;gt;&amp;gt; New version available: bash-3.2.33
+...
+===&amp;gt;&amp;gt;&amp;gt; 32 leaf ports
+===&amp;gt;&amp;gt;&amp;gt; 137 total installed ports
+        ===&amp;gt;&amp;gt;&amp;gt; 83 have new versions available
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;可以使用这个简单的命令升级所有已安装的 ports：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portmaster -a
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果你在升级的过程中发现了错误，你可以使用 -f 选项升级/重新编译所有的 ports：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portmaster -af
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;同样你也可以使用 Portmaster 往系统里安装新的 ports，升级所有的依赖关系之后并安装新的 port：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portmaster shells/bash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意:
+Portmaster 默认在删除一个现有的 port 前会做一个备份包。如果新的版本能够被成功安装， Portmaster 将删除备份。 使用 -b 后 Portmaster 便不会自动删除备份。加上 -i 选项之后 Portmaster 将进入互动模式， 在升级每个 port 以前提示你给予确认。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Upgrading Ports Using Portupgrade
+portupgrade 工具是设计来简化升级已安装的 port 的操作的。 它通过 &lt;a href="http://www.freebsd.org/cgi/url.cgi?ports/ports-mgmt/portupgrade/pkg-descr"&gt;ports-mgmt/portupgrade&lt;/a&gt; port 来提供。它安装一系列用于ports管理的应用。然而，它依赖于ruby。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /usr/ports/ports-mgmt/portupgrade
+make install clean
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;在每次升级之前，推荐使用 &lt;code&gt;pkgdb -F&lt;/code&gt; 命令来扫描已安装的 port 的列表， 并修正其所报告的不一致。
+运行portupgrade -a升级系统中所安装的所有过时的 ports。 如果您希望在每个升级操作时得到确认， 应指定 -i 参数。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portupgrade -ai
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果您只希望升级某个特定的应用程序， 而非全部可用的 port，应使用portupgrade pkgname。 指定 -R 参数非常重要，portupgrade将首先升级指定程序所需要的所有ports。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portupgrade -R firefox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;要使用预编译的 package 而不是 ports 来进行安装， 需要指定 -P。 如果指定了这个选项， portupgrade 会搜索 PKG_PATH 中指定的本地目录， 如果没有找到， 则从远程站点下载。 如果本地没有找到， 而且远程站点也没有成功地下载预编译包， 则 portupgrade 将使用 ports。 要禁止使用 port， 可以指定 -&lt;span class="caps"&gt;PP&lt;/span&gt;。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portupgrade -PP gnome2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="ports-and-disk-space"&gt;Ports and Disk Space&lt;a class="headerlink" href="#ports-and-disk-space" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;在通过 ports 编译和安装软件之后，您应记得清理临时的 work 目录， 其方法是使用 make clean 命令。 
+- If Portmaster is used to install a port, it will automatically remove this directory unless -K is specified. 
+- If Portupgrade is installed, this command will remove all work directories found within the local copy of the Ports Collection:
+&lt;code&gt;portsclean -C&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;另外,许多过时的源码文件被收集在目录 /usr/ports/distfiles 中. 如果安装了Portupgrade, 下列命令将删除那些不被其他port引用的过时的distfiles。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portsclean -D
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;使用Portupgrade移除所有的不被系统其他port引用的distfiles:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portsclean -DD
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果安装了Portmaster,使用:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portmaster --clean-distfiles
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;除了这些命令之外,  &lt;a href=""&gt;ports-mgmt/pkg_cutleaves&lt;/a&gt; package（or port）自动完成移除已安装但不再使用的ports的任务。&lt;/p&gt;</summary><category term="unix"></category><category term="ports"></category><category term="package"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — Manual Pages</title><link href="http://wonux.github.io/freebsd-man.html" rel="alternate"></link><updated>2015-04-30T16:59:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-30:freebsd-man.html</id><summary type="html">
+&lt;h2 id="_1"&gt;联机手册&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Manual Pages&lt;/p&gt;
+&lt;p&gt;最详细的使用说明文档莫过于 FreeBSD 里的联机手册了。 几乎每一个程序都会附上一份简短说明， 以介绍这个程序的的基本功能以及参数的用法。 我们能通过 man 命令来阅读这些说明。 联机手册根据主题，分成下列章节:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1、    用户命令。
+2、    系统调用以及错误代码。
+3、    C 库文件里的函数说明。
+4、    设备驱动程序。
+5、    文件格式。
+6、    游戏以及其他娱乐。
+7、    各种资讯。
+8、    系统维护以及命令。
+9、    内核开发情况。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="man"&gt;&lt;code&gt;man&lt;/code&gt;命令使用&lt;a class="headerlink" href="#man" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;加章节数字 例如查看chmod用户命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;man 1 chmod
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;搜索功能
+&lt;code&gt;-k&lt;/code&gt;选项加关键字,或使用&lt;code&gt;/&lt;/code&gt;搜索&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;man -k mail
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="gnu-info"&gt;&lt;span class="caps"&gt;GNU&lt;/span&gt; Info 文件&lt;a class="headerlink" href="#gnu-info" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;FreeBSD许多应用软件以及实用工具来自Free软件基金会(&lt;span class="caps"&gt;FSF&lt;/span&gt;)。 作为手册的扩充，这些程序提供了一种更具有活力的超文档说明info， 您可用info命令来阅读他们。&lt;/p&gt;</summary><category term="unix"></category><category term="man"></category><category term="freebsd"></category></entry><entry><title>UNIX基础—Shells</title><link href="http://wonux.github.io/freebsd-shells.html" rel="alternate"></link><updated>2015-04-27T21:21:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-26:freebsd-shells.html</id><summary type="html">
+&lt;h2 id="shells"&gt;Shells&lt;a class="headerlink" href="#shells" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Shell提供了一个和操作系统交互的命令行接口。shell的主要功能就是从输入取得命令然后去执行。FreeBSD内含了一些shell，包括:Bourne shell（sh）、 extended C shell（tcsh）。 其他shell也可在FreeBSD的Ports得到，例如:zsh和bash。 &lt;/p&gt;
+&lt;h3 id="shell"&gt;Shell的特点：&lt;a class="headerlink" href="#shell" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;文件名补全&lt;/li&gt;
+&lt;li&gt;使用环境变量
+Common Environment Variables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Variable    Description
+USER    Current logged in user's name.
+PATH    Colon-separated list of directories to search for binaries.
+DISPLAY Network name of the Xorg display to connect to, if available.
+SHELL   The current shell.
+TERM    The name of the user's type of terminal. Used to determine the capabilities of the terminal.
+TERMCAP Database entry of the terminal escape codes to perform various terminal functions.
+OSTYPE  Type of operating system.
+MACHTYPE    The system's CPU architecture.
+EDITOR  The user's preferred text editor.
+PAGER   The user's preferred utility for viewing text one page at a time.
+MANPATH Colon-separated list of directories to search for manual pages.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;怎样设置环境变量：不同的shell有不同的方法。
+- 在tcsh和csh这样的C-Style shell，使用&lt;code&gt;setenv&lt;/code&gt;设置环境变量
+- 在sh和bash这样的Bourne shell，使用, &lt;code&gt;export&lt;/code&gt;设置环境变量&lt;/p&gt;
+&lt;p&gt;例如：设置或改变&lt;span class="caps"&gt;EDITOR&lt;/span&gt;环境变量，将&lt;span class="caps"&gt;EDITOR&lt;/span&gt;设为/usr/local/bin/vim. 在csh或tcsh下&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;setenv EDITOR /usr/local/bin/vim
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;在sh或bash下&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;export EDITOR="/usr/local/bin/vim"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;命令行中在环境变量前加一个$字符，可以取得环境变量查看当前设置。
+shell里有许多特别的字符代表着特别的内容，我们把叫做meta-characters。最常用的就是&lt;code&gt;*&lt;/code&gt;字符，它可代表文件名的任何字符。为了防止shell去分析这些特别字符， 我们可在它之前加一个&lt;code&gt;\&lt;/code&gt;字符去说明它只是普通字符。&lt;/p&gt;
+&lt;h3 id="shell_1"&gt;改变Shell&lt;a class="headerlink" href="#shell_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;改变Shell的最简单方法是使用 chsh 命令。 
+- 执行 chsh 将根据&lt;span class="caps"&gt;EDITOR&lt;/span&gt; 环境变量进入到那个编辑器，假如没有设定，就会进入vi编辑器。 请改变“Shell:”这行对应值。
+- 可使用chsh 的-s选项， 这样就能设置您的shell却又不用编辑器。假如想把shell改为bash:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chsh -s /usr/local/bin/bash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意:新的shell必须在&lt;code&gt;/etc/shells&lt;/code&gt;文件里列出。 如果从ports里安装一个shell，应该默认自动添加到这个文件了。如果没有添加，用下面的命令添加：&lt;code&gt;echo "/usr/local/bin/bash" &amp;gt;&amp;gt; /etc/shells&lt;/code&gt; ，然后从新运行&lt;code&gt;chsh&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="shell_2"&gt;Shell高级技巧&lt;a class="headerlink" href="#shell_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Advanced Shell Techniques&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;重定向：&lt;code&gt;&amp;gt;&lt;/code&gt; &lt;code&gt;&amp;lt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;管道：&lt;code&gt;|&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="unix"></category><category term="shell"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — 进程和守护进程</title><link href="http://wonux.github.io/freebsd-process.html" rel="alternate"></link><updated>2015-04-26T14:24:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-26:freebsd-process.html</id><summary type="html">
+&lt;h2 id="_1"&gt;进程和守护进程&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Processes and Daemons&lt;/p&gt;
+&lt;h3 id="processes"&gt;进程（Processes）&lt;a class="headerlink" href="#processes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;FreeBSD 是一个多任务操作系统。 这就意味着好像一次可以运行一个以上的程序。 每个占用一定时间运行的程序就叫 进程 (process)。 你运行的每一个命令会至少启动一个新进程，还有很多一直运行着的系统进程， 用以维持系统的正常运作。
+每个进程用来标识的一个编号就叫 进程&lt;span class="caps"&gt;ID&lt;/span&gt;（&lt;span class="caps"&gt;PID&lt;/span&gt;）。而且，就像文件那样，每个进程也有所属用户和所属组。 所属用户和所属组使用在这方面:确定这个进程可以打开那些文件和那些设备， 从而在初期使用文件的权限。 多数的进程都有一个父进程， 而进程是依靠父进程来启动的。 例如，假如您把命令输入到shell里那shell是一个进程，而您运行的各个命令同样是进程， 那么，shell就是您各个运行进程的父进程。 而这方面有一个例外的进程就叫&lt;code&gt;init&lt;/code&gt;。&lt;code&gt;init&lt;/code&gt;是系统启动时第一个启动的进程，所以他的&lt;span class="caps"&gt;PID&lt;/span&gt;始终是1， 而init在FreeBSD起动时由内核自动启动。&lt;/p&gt;
+&lt;p&gt;查看系统上运行的进程，有两个命令非常有用:&lt;code&gt;ps&lt;/code&gt;和&lt;code&gt;top&lt;/code&gt;。
+ps命令作用是以静态列表显示当前运行进程， 显示&lt;span class="caps"&gt;PID&lt;/span&gt;，占用内存，它们启动的命令行。而top命令则是显示所有运行进程，并在以秒计的短时内更新数据，目的是交互地查看计算机正在运行的任务。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ps最有用的一个选项就是auxww。a选项显示出所有运行进程的内容， 而不仅仅是您的进程。u选项显示出进程所归属的用户名字以及内存使用，x选项显示出后台进程。 而ww选项表示为 ps 把每个进程的整个命令行全部显示完， 而不是由于命令行过长就把它从屏幕上截去。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="daemons"&gt;守护进程（Daemons）&lt;a class="headerlink" href="#daemons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;一些程序在运行中不需要连续的用户输入，一有机会就从终端里分离到后台去。我们把那些程序叫 守护进程。
+守护进程的程序命名有一个惯例，在最后加一个 “d”。 &lt;span class="caps"&gt;BIND&lt;/span&gt; 是伯克利互联网域名服务 (而实际执行的程序名称则是 named)， Apache web server的程序就叫 httpd， 在行式打印机上的打印守护进程就是 lpd。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;杀死进程（ Killing Processes）
+有时可能会需要与进程进行通讯。 而 信号 则是其中的一种通讯机制。 可以发送信号给进程来与它进行通信， 不同的信号都有自己的数字编号,其中一些有特殊的含义， 其它的则可以被应用程序自己进行解释。
+有两个信号可以停止进程:&lt;span class="caps"&gt;SIGTERM&lt;/span&gt; 和 &lt;span class="caps"&gt;SIGKILL&lt;/span&gt;。&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="unix"></category><category term="process"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — 磁盘组织</title><link href="http://wonux.github.io/freebsd-disk.html" rel="alternate"></link><updated>2015-04-23T17:36:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-23:freebsd-disk.html</id><summary type="html">
+&lt;h2 id="_1"&gt;磁盘组织&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;FreeBSD 查找文件的最小单位是文件名。 而文件名区分大小写，不凭文件扩展名去识别这个文件是 程序、 文档， 或是其他格式的数据。
+在文件系统里目录和文件的作用是存储数据。 每一个文件系统都有且只有一个顶级目录 根目录， 这个根目录则可以容纳其他目录。&lt;/p&gt;
+&lt;h3 id="slice"&gt;Slice&lt;a class="headerlink" href="#slice" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;FreeBSD将硬盘分成slices（片段），对应Windows系统的“分区”，Slices 有其编号， 从1到4，最多四个。Slices再分成分区（partitions）。Slice 编号在设备名后面， 并有一个 s 前缀， 从 1 开始。 每个磁盘上只能有四个物理的 slices， 但您可以在物理 slice 中使用适当的类型来创建逻辑 slice。 这些扩展 slice 编号从 5 开始。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分区的术语 &lt;br/&gt;
+FreeBSD将硬盘分成最多四个slice（片段），FreeBSD的开机区必须在这些slice其中之一。每一个slice上又可以分成最多8个 partition（分区）,分别称为a,b,c,d,e,f,g,h，传统上a,b,c,d分区有特殊的意义，a表示root分区，b表示swap分 区，c表示整个slice，d表示整个硬盘。&lt;/li&gt;
+&lt;li&gt;分区的顺序
+文件系统是和分区一一对应的。因为FreeBSD的&lt;span class="caps"&gt;UNIX&lt;/span&gt;传统，每一个分区使用一个从 a 到 h 的字母来表示。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;a分区：通常指定为根文件系统。
+b分区：通常指定为交换分区。
+c分区：通常它和所在的 slice 大小相同。 c 分区上工作时必定会影响到事整个 slice (举个例子，坏块扫描器)。 您通常不愿意在这个partition建立文件系统。
+d分区：d曾经有特殊的含义，不过这种意义在现时的系统上已不再适用，因此 d 可以和任何其它普通的分区一样使用了。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;只有c内定位整个slice，其他都可自由使用，但一般还是遵循传统观念，即a:root，b:swap，efgh:其他使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;磁盘设备的代码
+一个磁盘名字是用磁盘类型代码和编号来标识的， 它不像slices，磁盘的编号是由0开始的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SATA 和 IDE 磁盘    ada或ad
+SCSI磁盘和USB存储设备    da 
+SATA and IDE CD-ROM光驱   cd或acd
+SCSI CD-ROM光驱    cd
+软驱    fd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;在安装FreeBSD时，您首先要配置好磁盘slices， 然后在FreeBSD使用的slice上建立partitions。 并在每个partition上建立一个文件系统(或交换分区)， 和指定文件系统的挂接位置。&lt;/p&gt;</summary><category term="unix"></category><category term="disk"></category><category term="slice"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — 权限</title><link href="http://wonux.github.io/freebsd-permission.html" rel="alternate"></link><updated>2015-04-23T15:52:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-23:freebsd-permission.html</id><summary type="html">
+&lt;h2 id="_1"&gt;权限&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Permissions&lt;/p&gt;
+&lt;p&gt;FreeBSD使用传统的&lt;span class="caps"&gt;UNIX&lt;/span&gt;®系统的基本权限。在&lt;span class="caps"&gt;UNIX&lt;/span&gt;®系统中，基本权限分配了三种访问类型：读、写、执行。权限可以用字母r、w、x表示；也可以用二进制数表示，按rwx的顺序，x值1，w值2，r值4。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0       ---
+1       --x
+2       -w-
+3       -wx
+4       r--
+5       r-x
+6       rw-
+7       rwx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用命令ls的-l参数可以显示出文件的所属者、 所属组和其他人等属性。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_2"&gt;权限的符号化表示&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Symbolic Permissions&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Option      Letter  Represents
+(who)        u        User
+(who)        g        Group owner
+(who)        o        Other
+(who)        a        All (“world”)
+(action)         +      Adding permissions
+(action)         -        Removing permissions
+(action)         =      Explicitly set permissions
+(permissions)   r   Read
+(permissions)   w   Write
+(permissions)   x   Execute
+(permissions)   t   Sticky bit
+(permissions)   s   Set UID or GID
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="freebsd"&gt;FreeBSD文件标志&lt;a class="headerlink" href="#freebsd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;FreeBSD File Flags&lt;/p&gt;
+&lt;p&gt;FreeBSD 还支持使用 “文件标志”。这些标志为文件提供了进一步的安全控制机制，但这些控制并不适用于目录。这些文件标志提供了针对文件的进一步控制， 帮助确保即使是 root 用户也无法删除或修改文件。&lt;/p&gt;
+&lt;h3 id="setuidsetgidsticky"&gt;setuid、setgid和sticky 权限&lt;a class="headerlink" href="#setuidsetgidsticky" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;除了前面已经讨论过的那些权限之外，还有三个管理员应该知道的权限配置。它们是setuid、setgid和 sticky。这些配置对于一些 &lt;span class="caps"&gt;UNIX&lt;/span&gt;® 操作而言很重要， 因为它们能提供一些一般情况下不会授予普通用户的功能。&lt;/p&gt;</summary><category term="unix"></category><category term="permission"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — 用户和基本账户管理</title><link href="http://wonux.github.io/freebsd-account.html" rel="alternate"></link><updated>2015-04-22T17:33:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-22:freebsd-account.html</id><summary type="html">
+&lt;h2 id="_1"&gt;账户类型&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="_2"&gt;系统账户&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;系统账户运行服务。
+系统用户是那些要使用诸如&lt;span class="caps"&gt;DNS&lt;/span&gt;、 邮件， web等服务的用户。 使用帐户的原因就是安全； 如果所有的用户都由超级用户来运行， 那它们就可以不受约束地做任何事情。
+典型的系统帐户包括daemon、operator、bind(供 域名服务 使用)、news， 以及www。
+nobody是普通的没有特权的系统用户。 然而， 大多数与用户联系很密切的服务是使用nobody的， 记的这点非常重要， 这样可能使用户变的非常有特权。&lt;/p&gt;
+&lt;h3 id="_3"&gt;用户账户&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;用户帐户是让真实的用户访问系统的主要方式， 这些帐户把用户和环境隔离， 能阻止用户损坏系统和其他用户， 在不影响其他用户的情况之下定制自己的环境。
+- 用户名（User name）
+用户名在login: 提示符的后面键入。 用户名对于一台计算机来讲是唯一的。用户名通常需要8个或更少的小写字母。
+- 口令（Password）
+每个帐户都有一个口令与它对应。 口令可以是空的， 这样不需要口令就可以访问系统。 这通常不是一个好主意； 每个帐户都应该有口令。
+- 用户&lt;span class="caps"&gt;ID&lt;/span&gt; (&lt;span class="caps"&gt;UID&lt;/span&gt;)
+&lt;span class="caps"&gt;UID&lt;/span&gt;是系统用来识别用户的数字，推荐使用65535之内的&lt;span class="caps"&gt;UID&lt;/span&gt;，防止有些软件发生兼容性的问题。FreeBSD在内部使用&lt;span class="caps"&gt;UID&lt;/span&gt;来识别用户。任何您指定一个用户名的命令FreeBSD 都会把它转换成&lt;span class="caps"&gt;UID&lt;/span&gt;。 这意味着您可以用不同的用户名使用多个帐户， 但它们的&lt;span class="caps"&gt;UID&lt;/span&gt;是一样的。 FreeBSD 会把这些帐户认定是同一个用户。
+- 组&lt;span class="caps"&gt;ID&lt;/span&gt; (&lt;span class="caps"&gt;GID&lt;/span&gt;)
+&lt;span class="caps"&gt;GID&lt;/span&gt;是用来识别用户所在的组的数字，组是一种基于用户&lt;span class="caps"&gt;GID&lt;/span&gt;而不是它们的&lt;span class="caps"&gt;UID&lt;/span&gt;的用来控制用户访问资源的机制。 这可以减少一些配置文件的大小。 一个用户也可以属于多个组。推荐使用65535之内的&lt;span class="caps"&gt;GID&lt;/span&gt;。
+- 登录类（Login class）
+登录类是对组机制的扩展,当把系统分配给不同用户时,它提供了额外的灵活性.
+- 口令的定期更改（Password change time）
+默认情况下，FreeBSD 并不强制用户去改变他们的口令。您可以以用户为单位强制要求一些或所有的用户定期改变他们的口令。
+- 帐户的到期时间（Account expiry time）
+默认情况下FreeBSD不会自动完成帐户过期操作。如果您正在创建帐户，您应该知道一个帐户的有效使用期限。例如，在学校里您会为每个学生建立一个帐户，您可以指定它们何时过期。帐户过期后，虽然帐户的目录和文件仍然存在，但帐户已经不能继续使用了。
+- 用户的全名（User’s full name）
+用户名可以唯一地识别FreeBSD的帐户，但它不会反映用户的全名。这些信息可能与帐户是相关的。
+- 主目录（Home directory）
+主目录是用户登录后启动的第一个目录的完全路径。通常的规则是把所有用户的主目录都放在 /home/username 下，或者 /usr/home/username 下。 用户将把他们的个人文件放在自己的主目录下，他们可以在那里创建任何目录.
+- 用户 shell Shell提供了用户用来操作系统的默认环境。有很多不同的shell，有经验的用户会根据他们的经验来选择自己喜好的shell。&lt;/p&gt;
+&lt;h3 id="_4"&gt;超级用户账户&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;超级用户帐户， 通常叫做 root，超级用户拥有无限制的权限管理系统。在收发邮件， 系统检查或编程这样的日常工作中， 尽量不要使用root权限。 普通的用户帐户不会由于出错而破坏系统， 所以要尽可能的使用普通帐户， 除非您需要额外的特权。&lt;/p&gt;
+&lt;p&gt;获取超级用户权限：
+- root用户登录，不推荐。
+- &lt;code&gt;su&lt;/code&gt;命令成为超级用户。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用su命令的用户，必须属于wheel组；如果运行su时指定了&lt;code&gt;-&lt;/code&gt;，用户将继承root用户的环境变量。
+运行完命令时，使用&lt;code&gt;exit&lt;/code&gt;命令离开超级用户账户，回到原来的用户权限。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;安装 &lt;code&gt;security/sudo&lt;/code&gt;软件包。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="_5"&gt;管理账户&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;FreeBSD提供很多不同的命令管理用户账户，最常用的命令概括如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;adduser 添加用户
+rmuser 删除用户
+chpass 修改用户数据库信息
+passwd 修改用户口令
+pw 强大灵活修改用户帐户的工具&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="unix"></category><category term="account"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — 控制台和终端</title><link href="http://wonux.github.io/freebsd-console.html" rel="alternate"></link><updated>2015-04-21T20:31:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-21:freebsd-console.html</id><summary type="html">
+&lt;h2 id="_1"&gt;虚拟控制台和终端&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Virtual Consoles and Terminals:&lt;/p&gt;
+&lt;p&gt;FreeBSD 虚拟控制台的默认配置为8个，但并不是硬性设置， 您可以很容易设置虚拟控制台的个数增多或减少。 虚拟控制台的的编号和设置在 &lt;code&gt;/etc/ttys&lt;/code&gt;文件里。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# name    getty                         type  status comments
+#
+ttyv0   "/usr/libexec/getty Pc"         xterm   on  secure
+# Virtual terminals
+ttyv1   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv2   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv3   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv4   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv5   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv6   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv7   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv8   "/usr/X11R6/bin/xdm -nodaemon"  xterm   off secure
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;FreeBSD 默认系统控制台是system console（ttyv0）,8个虚拟控制台virtual consoles (ttyv1 ~ ttyv8),(ttyv8)用于进入桌面环境。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;FreeBSD使用 Alt+F1 ~ Alt+F9键，切换多个虚拟控制台。从图形界面切换至其他虚拟控制台要使用Ctrl+Alt。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_2"&gt;单用户模式&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Single User Mode&lt;/p&gt;
+&lt;p&gt;单用户模式主要用于修复系统启动失败，或者重新设置root密码。在单用户模式中，网络和虚拟控制台不能使用，但是可以提供完整的root权限，而不需要root密码。&lt;/p&gt;
+&lt;p&gt;单用户模式的控制台也可以在&lt;code&gt;/etc/ttys&lt;/code&gt;文件中的设置。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# name  getty                           type  status  comments
+#
+# If console is marked "insecure", then init will ask for the root password
+# when going to single-user mode.
+console none                            unknown  off  secure
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可编辑把 secure 改为 insecure。 这样， 当用单用户进入 FreeBSD 时， 它仍然要求提供 root 用户的密码。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_3"&gt;改变控制台的显示模式&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Changing Console Video Modes&lt;/p&gt;
+&lt;p&gt;FreeBSD 控制台默认的显示模式可以被调整为 1024x768， 1280x1024， 或者任何你的显卡芯片和显示器所支持的其他尺寸。 要使用一个不同的显示模式，加载vesa模块：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;kldload vesa
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;使用&lt;code&gt;vidcontrol&lt;/code&gt;工具来检测硬件支持的显示模式。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vidcontrol -i mode
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;这个命令的输出是一份你的硬件所支持的显示模式列表。使用&lt;code&gt;vidcontrol&lt;/code&gt;命令来改变显示模式：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vidcontrol MODE_279
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果对于新的显示模式满意，那么可以把它加入到&lt;code&gt;/etc/rc.conf&lt;/code&gt;使机器在每次启动的时候都能生效.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;allscreens_flags=”MODE_279”&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="unix"></category><category term="console"></category><category term="tty"></category><category term="freebsd"></category></entry><entry><title>Gentoo无线网络配置 — wpa_supplicant</title><link href="http://wonux.github.io/gentoo-wpa-supplicant.html" rel="alternate"></link><updated>2015-02-10T13:39:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-01-04:gentoo-wpa-supplicant.html</id><summary type="html">
 &lt;h3 id="_1"&gt;安装&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;安装&lt;code&gt;net-wireless/wpa_supplicant&lt;/code&gt;包&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge --ask wpa_supplicant
@@ -662,7 +2524,153 @@ ln -s net.lo net.wlan0
 #开机启动
 rc-update add wlan0 default
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="network"></category><category term="wireless"></category><category term="wpa2"></category></entry><entry><title>Gentoo本地化中文设置—Locale系统介绍</title><link href="http://wonux.github.io/gentoo-locale.html" rel="alternate"></link><updated>2015-01-05T16:35:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-locale.html</id><summary type="html">
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="network"></category><category term="wireless"></category><category term="wpa2"></category></entry><entry><title>Linux系统维护 — chroot</title><link href="http://wonux.github.io/apps-chroot.html" rel="alternate"></link><updated>2015-01-04T14:29:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-25:apps-chroot.html</id><summary type="html">
+&lt;h2 id="chroot"&gt;chroot简介&lt;a class="headerlink" href="#chroot" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;chroot，即 change root directory (更改 root 目录)。在 linux 系统中，系统默认的目录结构都是以 &lt;code&gt;/&lt;/code&gt;，即是以根 (root) 开始的。而在使用 chroot 之后，系统的目录结构将以指定的位置作为 &lt;code&gt;/&lt;/code&gt; 位置。
+chroot是在unix系统的一个操作，针对正在运作的软件进程和它的子进程，改变它外显的根目录。一个运行在这个环境下，经由chroot设置根目录的程序，它不能够对这个指定根目录之外的文件进行访问动作，不能读取，也不能更改它的内容。
+由chroot创造出的那个根目录，叫做“chroot监狱”（chroot jail，或chroot prison）。&lt;/p&gt;
+&lt;h2 id="chroot_1"&gt;为何使用 chroot&lt;a class="headerlink" href="#chroot_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;在经过 chroot 之后，系统读取到的目录和文件将不在是旧系统根下的而是新根下(即被指定的新的位置)的目录结构和文件，因此它带来的好处大致有以下3个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;增加了系统的安全性，限制了用户的权力；
+在经过 chroot 之后，在新根下将访问不到旧系统的根目录结构和文件，这样就增强了系统的安全性。这个一般是在登录 (login) 前使用 chroot，以此达到用户不能访问一些特定的文件。&lt;/li&gt;
+&lt;li&gt;建立一个与原系统隔离的系统目录结构，方便用户的开发；
+使用 chroot 后，系统读取的是新根下的目录和文件，这是一个与原系统根下文件不相关的目录结构。在这个新的环境中，可以用来测试软件的静态编译以及一些与系统不相关的独立开发。&lt;/li&gt;
+&lt;li&gt;切换系统的根目录位置，引导 Linux 系统启动以及急救系统等。
+chroot 的作用就是切换系统的根位置，而这个作用最为明显的是在系统初始引导磁盘的处理过程中使用，从初始 &lt;span class="caps"&gt;RAM&lt;/span&gt; 磁盘 (initrd) 切换系统的根位置并执行真正的 init。另外，当系统出现一些问题时，我们也可以使用 chroot 来切换到一个临时的系统。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="chroot_2"&gt;chroot 的使用&lt;a class="headerlink" href="#chroot_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;下面以Gentoo、Arch为例，说明chroot过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;确定chroot的目标目录：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果LiveCD环境，挂载系统所在根分区&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount  /dev/sdx /mnt/gentoo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;挂载/proc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount -t proc none /mnt/gentoo/proc/
+或
+mount -t proc proc /mnt/gentoo/proc/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;挂载/sys,/dev/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount --rbind /sys /mnt/gentoo/sys/
+mount --rbind /dev /mnt/gentoo/dev/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;可选：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount --rbind /tmp /mnt/gentoo/tmp   (gentoo)
+mount  --rbind  /run /mnt/arch/run (arch)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;复制&lt;span class="caps"&gt;DNS&lt;/span&gt;信息：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cp /etc/resolv.conf etc/resolv.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;chroot&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chroot /mnt/gentoo /bin/bash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;更新环境变量：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;env-update     (gentoo)
+source /etc/profile
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Optionally, create a unique prompt to be able to differentiate your chroot environment:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;export PS1="(chroot) &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PS1&lt;/span&gt;&lt;span class="x"&gt;"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="_1"&gt;结束语&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;在 Linux 系统初始引导的过程中，通常都有使用 chroot。但是 chroot 的好处不仅于此，它还增加了系统的安全性等。&lt;/p&gt;</summary><category term="apps"></category><category term="chroot"></category></entry><entry><title>文件系统配置启动挂载：fstab文件详解</title><link href="http://wonux.github.io/apps-fstab.html" rel="alternate"></link><updated>2015-02-10T11:13:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-25:apps-fstab.html</id><summary type="html">
+&lt;h3 id="fstab"&gt;fstab文件介绍&lt;a class="headerlink" href="#fstab" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;fstab文件包含了你的电脑上的存储设备及其文件系统的信息。它是决定一个硬盘（分区）被怎样使用或者说整合到整个系统中的文件。具体来说：用fstab可以自动挂载各种文件系统格式的硬盘、分区、可移动设备和远程设备等。对于Windows与Linux双操作系统用户，用fstab挂载&lt;span class="caps"&gt;FAT&lt;/span&gt;格式和&lt;span class="caps"&gt;NTFS&lt;/span&gt;格式的分区，可以在Linux中共享windows系统下的资源。&lt;/p&gt;
+&lt;p&gt;这个文件的全路径是&lt;code&gt;/etc/fstab&lt;/code&gt;。它只是一个文本文件，你能够用你喜欢的编辑器打开它，但是必须是root用户才能编辑它。同时fsck、mount、umount的等命令都利用该程序。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/etc/fstab&lt;/code&gt; 是启动时的配置文件，不过，实际 filesystem 的挂载是记录到 &lt;code&gt;/etc/mtab&lt;/code&gt; 与 &lt;code&gt;/proc/mounts&lt;/code&gt; 这两个文件当中的。每次我们在更动 filesystem 的挂载时，也会同时更动这两个文件喔！&lt;/p&gt;
+&lt;h3 id="_1"&gt;系统挂载的一些限制&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;根目录 / 是必须挂载的﹐而且一定要先于其它 mount point 被挂载进来。&lt;/li&gt;
+&lt;li&gt;其它 mount point 必须为已创建的目录﹐可任意指定﹐但一定要遵守必须的系统目录架构原则&lt;/li&gt;
+&lt;li&gt;所有 mount point 在同一时间之内﹐只能挂载一次。&lt;/li&gt;
+&lt;li&gt;所有 partition 在同一时间之内﹐只能挂载一次。&lt;/li&gt;
+&lt;li&gt;如若进行卸除﹐您必须先将工作目录移到 mount point(及其子目录) 之外。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_2"&gt;文件各字段解释&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# &amp;lt;fs&amp;gt;            &amp;lt;mountpoint&amp;gt;    &amp;lt;type&amp;gt;        &amp;lt;opts&amp;gt;        &amp;lt;dump/pass&amp;gt;
+
+# NOTE: If your BOOT partition is ReiserFS, add the notail option to opts.
+
+/dev/sda10        /boot            ext4        noauto,noatime    1 2
+/dev/sda6         /                ext4        noatime           0 1
+/dev/sda9         none             swap        sw                0 0
+/dev/cdrom        /mnt/cdrom       auto        noauto,ro         0 0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;其实 /etc/fstab (filesystem table) 就是将我们利用 mount 命令进行挂载时， 将所有的选项与参数写入到这个文件中就是了。除此之外， /etc/fstab 还加入了 dump 这个备份用命令的支持！ 与启动时是否进行文件系统检验 fsck 等命令有关。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;file systems=""&gt; 挂载设备 : 不是我们通常理解的文件系统，而是指设备（硬盘及其分区，&lt;span class="caps"&gt;DVD&lt;/span&gt;光驱等）。它告知我们设备（分区）的名字，这是你在命令行中挂载（mount）、卸载（umount）设备时要用到的。&lt;/file&gt;&lt;/li&gt;
+&lt;li&gt;&lt;mountpoint&gt; 挂载点：告诉我们设备挂载到哪里。&lt;/mountpoint&gt;&lt;/li&gt;
+&lt;li&gt;&lt;type&gt; 文件系统类型：Linux支持许多文件系统。 要得到一个完整的支持名单查找mount man-page。典型 的名字包括这些：ext2, ext3, reiserfs, xfs, jfs,iso9660, vfat, ntfs, swap和auto, ‘auto’ 不是一个文件系统，而是让mount命令自动判断文件类型，特别对于可移动设备，软盘，&lt;span class="caps"&gt;DVD&lt;/span&gt;驱动器，这样做是很有必要的，因为可能每次挂载的文件类型不一致。&lt;/type&gt;&lt;/li&gt;
+&lt;li&gt;&lt;opts&gt; 文件系统参数：这部分是最有用的设置！！！ 它能使你所挂载的设备在开机时自动加载、使中文显示不出现乱码、限制对挂载分区读写权限。它是与mount命令的用法相关的，要想得到一个完整的列表，参考mount manpage.&lt;/opts&gt;&lt;/li&gt;
+&lt;li&gt;&lt;dump&gt; 备份命令：dump utility用来决定是否做备份的.  dump会检查entry并用数字来决定是否对这个文件系统进行备份。允许的数字是0和1。如果是0，dump就会忽略这个文件系统，如果是1，dump就会作一个备份。大部分的用户是没有安装dump的，所以对他们而言&lt;dump&gt;这个entry应该写为0。&lt;/dump&gt;&lt;/dump&gt;&lt;/li&gt;
+&lt;li&gt;&lt;pass&gt; 是否以fsck检验扇区：启动的过程中，系统默认会以fsck检验我们的 filesystem 是否完整 (clean)。 不过，某些 filesystem 是不需要检验的，例如内存置换空间 (swap) ，或者是特殊文件系统例如 /proc 与 /sys 等等。fsck会检查这个头目下的数字来决定检查文件系统的顺序，允许的数字是0, 1, 和2。0 是不要检验， 1 表示最早检验(一般只有根目录会配置为 1)， 2 也是要检验，不过1会比较早被检验啦！一般来说,根目录配置为1,其他的要检验的filesystem都配置为 2 就好了。&lt;/pass&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_3"&gt;&lt;opts&gt;常用参数：&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/opts&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;noatime&lt;/code&gt; 关闭atime特性，提高性能，这是一个很老的特性，放心关闭，还能减少loadcycle&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;defaults&lt;/code&gt; 使用默认设置。等于rw,suid,dev,exec,auto,nouser,async，具体含义看下面的解释。&lt;/li&gt;
+&lt;li&gt;自动与手动挂载:
+&lt;code&gt;auto&lt;/code&gt; 在启动或在终端中输入mount -a时自动挂载
+&lt;code&gt;noauto&lt;/code&gt; 设备（分区）只能手动挂载&lt;/li&gt;
+&lt;li&gt;读写权限:
+&lt;code&gt;ro&lt;/code&gt; 挂载为只读权限
+&lt;code&gt;rw&lt;/code&gt; 挂载为读写权限&lt;/li&gt;
+&lt;li&gt;可执行:
+&lt;code&gt;exec&lt;/code&gt; 是一个默认设置项，它使在那个分区中的可执行的二进制文件能够执行
+&lt;code&gt;noexec&lt;/code&gt; 二进制文件不允许执行。千万不要在你的root分区中用这个选项！！！&lt;/li&gt;
+&lt;li&gt;I/O同步:
+&lt;code&gt;sync&lt;/code&gt; 所有的I/O将以同步方式进行
+&lt;code&gt;async&lt;/code&gt; 所有的I/O将以非同步方式进行&lt;/li&gt;
+&lt;li&gt;户挂载权限:
+&lt;code&gt;user&lt;/code&gt; 允许任何用户挂载设备。 Implies noexec,nosuid,nodev unless overridden.
+&lt;code&gt;nouser&lt;/code&gt; 只允许root用户挂载。这是默认设置。&lt;/li&gt;
+&lt;li&gt;临时文件执行权限：
+&lt;code&gt;suid&lt;/code&gt; Permit the operation of suid, and sgid bits. They are mostly used to allow users on a computer system to execute binary executables with temporarily elevated privileges in order to perform a specific task.
+&lt;code&gt;nosuid&lt;/code&gt; Blocks the operation of suid, and sgid bits.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_4"&gt;重启系统&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;重启系统，或在终端中输入&lt;code&gt;mount -a&lt;/code&gt;就可以看到修改后的效果了。&lt;/p&gt;</summary><category term="apps"></category><category term="fstab"></category><category term="config"></category></entry><entry><title>Gentoo本地化中文设置—Locale系统介绍</title><link href="http://wonux.github.io/gentoo-locale.html" rel="alternate"></link><updated>2015-01-05T16:35:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-20:gentoo-locale.html</id><summary type="html">
 &lt;h3 id="locale"&gt;locale是什么？&lt;a class="headerlink" href="#locale" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;一份Locale是一组信息的集合，大多数程序利用它来确定特定的国家和语言设置。这些locale以及它们包含的数据是系统库的一部分，可以在大多数系统中的/usr/share/locale目录下找到。locale的名称通常命名为ab_CD的形式，其中ab是两个（或三个）字母的语言代号（在&lt;span class="caps"&gt;ISO&lt;/span&gt;-639中指定），&lt;span class="caps"&gt;CD&lt;/span&gt;是两个字母的国家代号（在&lt;span class="caps"&gt;ISO&lt;/span&gt;-3166中指定）。一些变量常常附加在locale名称的后面，例如en_GB.&lt;span class="caps"&gt;UTF&lt;/span&gt;-8或de_DE@euro。&lt;/p&gt;
 &lt;h3 id="locale_1"&gt;locale环境变量&lt;a class="headerlink" href="#locale_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -987,7 +2995,353 @@ nameserver 202.99.166.4
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;参考：
 http://en.gentoo-wiki.com/wiki/Portage
-http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=2&amp;amp;chap=1 http://www.gentoo.org/dyn/use-index.xml&lt;/p&gt;</summary><category term="gentoo"></category><category term="portage"></category><category term="use"></category></entry><entry><title>Gentoo Xorg:Failed to load module “……” 问题</title><link href="http://wonux.github.io/gentoo-xorg-failed.html" rel="alternate"></link><updated>2014-12-22T14:12:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-24:gentoo-xorg-failed.html</id><summary type="html">
+http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=2&amp;amp;chap=1 http://www.gentoo.org/dyn/use-index.xml&lt;/p&gt;</summary><category term="gentoo"></category><category term="portage"></category><category term="use"></category></entry><entry><title>Git子模块引用外部项目</title><link href="http://wonux.github.io/git-git-submodule.html" rel="alternate"></link><updated>2015-01-06T08:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-14:git-git-submodule.html</id><summary type="html">
+&lt;h2 id="gitsubmodule"&gt;Git子模块(submodule)简介&lt;a class="headerlink" href="#gitsubmodule" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;经常有这样的事情，当你在一个项目上工作时，你需要在其中使用另外一个项目。也许它是一个第三方开发的库或者是你独立开发和并在多个父项目中使用的。这个场景下一个常见的问题产生了：你想将两个项目单独处理但是又需要在其中一个中使用另外一个。
+子模块允许你将一个 Git 仓库当作另外一个Git仓库的子目录。这允许你克隆另外一个仓库到你的项目中并且保持你的提交相对独立。&lt;/p&gt;
+&lt;h2 id="git"&gt;Git子模块用法&lt;a class="headerlink" href="#git" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="_1"&gt;添加一个子模块&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;首先你要把外部的仓库克隆到你的子目录中。
+假设你想把&lt;code&gt;elegant&lt;/code&gt;项目加入到你的blog项目中，你通过&lt;code&gt;git submodule add&lt;/code&gt;将外部项目加为子模块：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd blog
+git submodule add https://github.com/wonux/pelican-elegant.git pelican-themes/elegant
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;现在你就在项目里的&lt;code&gt;pelican-themes/elegant&lt;/code&gt;子目录下有了一个&lt;code&gt;elegant&lt;/code&gt;项目。你可以进入那个子目录，进行变更，加入你自己的远程可写仓库来推送你的变更，从原始仓库拉取和归并等等。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;.gitmodules&lt;/code&gt;配置文件，保存了项目 &lt;span class="caps"&gt;URL&lt;/span&gt; 和你拉取到的本地子目录。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_2"&gt;克隆一个带子模块的项目&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;克隆你刚才创建子模块的项目。你将得到了包含子项目的目录，但里面没有文件：&lt;code&gt;elegant&lt;/code&gt;目录存在了，但是是空的。
+你必须运行两个命令：&lt;code&gt;git submodule init&lt;/code&gt;来初始化你的本地配置文件，&lt;code&gt;git submodule update&lt;/code&gt;来从那个项目拉取所有数据并检出你上层项目里所列的合适的提交。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd blog
+git submodule init pelican-themes/elegant
+git submodule update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;现在你的pacman子目录就处于你先前提交的确切状态了。&lt;/p&gt;
+&lt;p&gt;参考：
+&lt;a href="http://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97"&gt;Git-子模块&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="git"></category></entry><entry><title>Hexo + Github 搭建静态个人博客</title><link href="http://wonux.github.io/git-hexo.html" rel="alternate"></link><updated>2015-02-10T17:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-11-12:git-hexo.html</id><summary type="html">
+&lt;h2 id="hexo"&gt;Hexo简介&lt;a class="headerlink" href="#hexo" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Github上托管博客是使用jekyll搭建的，官方的Github Pages同样推荐使用它。我之前体验了一下jekyll，没有达到我想要的效果。于是寻找替代方案，搜索同类博客程序，我认识了hexo，hexo出自台湾大学生tommy351之手,是由Node.js驱动的一款快速、简单且功能强大的博客框架。Node.js是一个可以快速构建网络服务及应用的平台 。该平台的构建是基于Chrome’s JavaScript runtime，也就是说，实际上它是对Google V8引擎（应用于Google Chrome浏览器)进行了封装。V8引擎执行Javascript的速度非常快，性能非常好。Node对一些特殊用例进行了优化，提供了替代的&lt;span class="caps"&gt;API&lt;/span&gt;，使得V8在非浏览器环境下运行得更好。它和jekyll相比，更快，更轻量。&lt;/p&gt;
+&lt;h2 id="hexo_1"&gt;Hexo安装&lt;a class="headerlink" href="#hexo_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="git"&gt;安装git&lt;a class="headerlink" href="#git" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Linux 大多数Linux发行版已经默认安装了git,如果没有直接使用包管理工具安装.&lt;/li&gt;
+&lt;li&gt;Windows:
+&lt;a href="http://git-scm.com/download/"&gt;Git-Downloads&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="nodejs"&gt;安装node.js&lt;a class="headerlink" href="#nodejs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Gentoo package: &lt;code&gt;net-libs/nodejs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Arch: &lt;code&gt;nodejs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Windows: &lt;a href="http://nodejs.org/download/"&gt;node.js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="hexo_2"&gt;安装hexo&lt;a class="headerlink" href="#hexo_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;npm install hexo -g
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="hexo_3"&gt;配置Hexo&lt;a class="headerlink" href="#hexo_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;初始化博客根目录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hexo init blog
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;安装依赖包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;npm install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;安装之后，项目目录下出现如下文件结构：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;.
+├── _config.yml     全局配置文件
+├── package.json
+├── scaffolds
+├── scripts
+├── source           文章存放位置
+| ├── _drafts        草稿
+| └── _posts         文章
+└── themes
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_1"&gt;插件和主题&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;plugins: 插件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;添加插件的基本操作是：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;npm install &amp;lt;plugin-name&amp;gt; --save
+npm update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;然后修改blog根目录下的_config.yml，添加：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;plugins:
+- plugin-name
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;themes: &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;安装主题：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone &amp;lt;repository&amp;gt; themes/&amp;lt;theme-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;无论是插件还是主题在安装后都需要在根目录下_config.yml中修改plugins和theme的值以启用他们。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;本博客使用&lt;a href="https://github.com/A-limon/pacman"&gt;pacman&lt;/a&gt;主题，扁平化设计，响应速快，推荐使用。修改配置参考: &lt;a href="http://yangjian.me/workspace/introducing-pacman-theme/"&gt;http://yangjian.me/workspace/introducing-pacman-theme/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="_2"&gt;写文章&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;使用Markdown语法编辑文章。使用hexo new命令生成文章或者直接在_posts目录下直接创建文件，打开后先编辑文章头部信息，如下所示是本文的头部信息，以—-结尾。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;title: 使用Hexo搭建个人静态博客  #文章页面上的显示名称，可以任意修改，不会出现在URL中
+layout: post
+date: 2014-11-10 10:07:43  #文章生成时间，一般不改，当然也可以任意修改
+updated: 2014-11-12 13:24
+comments: true
+categories: 
+- Blog
+tags: 
+- hexo
+- blog
+---
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="_3"&gt;文章摘要&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;在需要显示摘要的地方添加如下代码即可：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;以上是摘要
+&amp;lt;!--more--&amp;gt;
+以下是余下全文
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="_4"&gt;文章中插入图片&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;使用markdown写文章，插入图片的格式为&lt;code&gt;![图片名称](链接地址)&lt;/code&gt;，这里要说的是链接地址怎么写。对于hexo，使用本地路径：在/source目录下新建一个img文件夹，将图片放入该文件夹下，插入图片时链接即为/img/图片名称。&lt;/p&gt;
+&lt;h3 id="_5"&gt;发布博客&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;这里的发布也是十分简单的，首先在github上创建名为yourname.github.io的repo，接着修改_config.yml中的deploy字段，最后执行hexo d(前提是你已经在github上添加了你本机的ssh key)，&lt;span class="caps"&gt;OK&lt;/span&gt;，现在通过yourname.github.io已经可以访问你的博客了。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;deploy&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;github&lt;/span&gt;
+&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;com&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;yourname&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;yourname&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;git&lt;/span&gt;
+&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果是博客主页以github项目的方式创建，分支选择gh-pages。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;或 多个平台同时发布&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;deploy&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;
+&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;gitcafe&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;gitcafe&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;com&lt;/span&gt;&lt;span class="sr"&gt;/yourname/&lt;/span&gt;&lt;span class="n"&gt;yourname&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;git&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;gh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt;
+  &lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;com&lt;/span&gt;&lt;span class="sr"&gt;/yourname/&lt;/span&gt;&lt;span class="n"&gt;yourname&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;git&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="hexo_4"&gt;Hexo使用&lt;a class="headerlink" href="#hexo_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="init"&gt;init 初始化博客&lt;a class="headerlink" href="#init" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hexo init [folder]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果目录不存在，将设置初始化当前目录&lt;/p&gt;
+&lt;h3 id="new"&gt;new 创建新文章&lt;a class="headerlink" href="#new" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hexo new [layout] &amp;lt;title&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;默认layout是post&lt;/p&gt;
+&lt;h3 id="generate"&gt;generate 生成静态网页文件&lt;a class="headerlink" href="#generate" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hexo generate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="publish"&gt;publish 发布草稿&lt;a class="headerlink" href="#publish" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hexo publish [layout] &amp;lt;filename&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="server"&gt;server 启动本地服务&lt;a class="headerlink" href="#server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hexo server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;搭建本地server，进行文章预览调试。
+浏览器输入http://localhost:4000 就可以看到效果。&lt;/p&gt;
+&lt;h3 id="deploy"&gt;deploy 发布博客&lt;a class="headerlink" href="#deploy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hexo deploy
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="clean"&gt;clean 清除缓存&lt;a class="headerlink" href="#clean" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hexo clean
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;清除缓存文件：Cleans the cache file (db.json) and generated files (public).&lt;/p&gt;
+&lt;h3 id="list"&gt;list 显示博客结构&lt;a class="headerlink" href="#list" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hexo list route
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;列出生成的所有博客文件路径&lt;/p&gt;
+&lt;h3 id="_6"&gt;常用命令&lt;a class="headerlink" href="#_6" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Hexo现在支持更加简单的命令格式了，比如：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hexo n == hexo new
+hexo g == hexo generate
+hexo p == hexo publish
+hexo s == hexo server
+hexo d == hexo deploy
+发布博客：
+hexo g -d
+或
+hexo d -g
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;参考：
+- &lt;a href="http://hexo.io/"&gt;hexo.io&lt;/a&gt;
+- &lt;a href="https://github.com/hexojs/hexo"&gt;hexo on github&lt;/a&gt;
+- &lt;a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html"&gt;搭建一个免费的，无限流量的Blog——github Pages和Jekyll入门&lt;/a&gt;
+- &lt;a href="http://yangjian.me/workspace/introducing-pacman-theme/"&gt;pacman主题介绍&lt;/a&gt;
+- &lt;a href="http://ibruce.info/2013/11/22/hexo-your-blog/"&gt;hexo你的博客&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="hexo"></category><category term="blog"></category><category term="git"></category></entry><entry><title>Mplayer使用及快捷键</title><link href="http://wonux.github.io/apps-mplayer.html" rel="alternate"></link><updated>2015-12-16T11:13:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-29:apps-mplayer.html</id><summary type="html">
+&lt;p&gt;MPlayer 是我在 Linux 系统中用到的相当好的媒体播放程序，它因支持播放广泛的音／视频文件格式而著称。本文所要探讨的，除却一般的使用方法之外，更包括一些鲜为人知的提示和诀窍。相信在阅读此文后，你的多媒体播放体验将会增色不少。&lt;/p&gt;
+&lt;h3 id="_1"&gt;配置文件&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;配置文件是&lt;code&gt;/etc/mplayer/mplayer.conf&lt;/code&gt;和&lt;code&gt;~/.mplayer/config&lt;/code&gt;
+常用配置:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#subcp=cp936
+#font=/usr/share/fonts/wqy-zenhei/wqy-zenhei.ttc
+slang = "chs,eng"
+sub-fuzziness=1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_2"&gt;使用方法&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;简单实例:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mplayer -sub subtitle.srt -subcp cp936 -font /usr/share/fonts/wqy-zenhei/wqy-zenhei.ttc movie.avi
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;播放文件
+使用 MPlayer 播放媒体文件最简单的方式是：
+&lt;code&gt;mplayer &amp;lt;somefile&amp;gt;&lt;/code&gt;
+MPlayer 会自动检测文件的类型并加以播放，如果是音频文件，则会在命令行中显示该播放文件的状态信息；而假如是视频文件的话，则会打开一个新的播放窗口。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;选择播放进度
+&lt;code&gt;−ss &amp;lt;时间&amp;gt;&lt;/code&gt; 参数指定的时间位置.示例:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mplayer &amp;lt;somefile&amp;gt; −ss 56    ###搜索到56秒处
+mplayer &amp;lt;somefile&amp;gt; −ss 01:10:00    ###搜索到1小时10分钟处
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;倒退与快进
+在播放文件的时候，你可以通过以下三组快捷键来对播放进程进行倒退与快进操作：
+左方向键和右方向键：分别执行倒退 10 秒和快进 10 秒操作
+下方向键和上方向键：分别执行倒退 1 分钟和快进 1 分钟操作
+下翻页键和上翻页键：分别执行倒退 10 分钟和快进 10 分钟操作&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;播放 &lt;span class="caps"&gt;DVD&lt;/span&gt;
+虽然 MPlayer 不支持 &lt;span class="caps"&gt;DVD&lt;/span&gt; 菜单，但是却能够播放 &lt;span class="caps"&gt;DVD&lt;/span&gt;。你可以这样播放 &lt;span class="caps"&gt;DVD&lt;/span&gt;：
+&lt;code&gt;mplayer dvd://&amp;lt;titlenumber&amp;gt;&lt;/code&gt;
+你需要使用实际的数字来替换 &lt;titlenumber&gt;，如 1、2、3 等。&lt;/titlenumber&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_3"&gt;使用字幕&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;当播放电影文件时，你可以指定字幕文件(idx,sub字幕文件)：
+&lt;code&gt;mplayer -sub &amp;lt;somesubtitlefile&amp;gt; &amp;lt;somefile&amp;gt;&lt;/code&gt;
+&lt;code&gt;mplayer -sub-paths &amp;lt;somesubpaths&amp;gt; &amp;lt;somefile&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;中文字幕乱码问题
+使用ass文件字幕需要加&lt;code&gt;-ass&lt;/code&gt;
+参数:−ass (仅适用于FreeType)打开&lt;span class="caps"&gt;SSA&lt;/span&gt;/&lt;span class="caps"&gt;ASS&lt;/span&gt;字幕提供。 通过此选项, libass 将用于 &lt;span class="caps"&gt;SSA&lt;/span&gt;/&lt;span class="caps"&gt;ASS&lt;/span&gt; 外部字幕和 Matroska 轨迹。
+&lt;code&gt;mplayer &amp;lt;somefile&amp;gt; -sub-paths &amp;lt;somesubpaths&amp;gt; -ass&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一般网上下载的字幕文件都是cp936的编码格式。如果不是，可以用iconv转换。比如utf8的转换成cp936的，命令如下：
+&lt;code&gt;iconv -f utf8 -t cp936 -o name_of_movie.cp936.srt name_of_movie.utf8.srt&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;让mplayer自动识别字幕文件并加载
+最简单的就是修改字幕文件，使其与电影同名（不包括最后的扩展名）。
+其实我们可以用下面的方法让mplayer更智能的。在配置文件&lt;code&gt;~/.mplayer/config&lt;/code&gt;中加入下面两行：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;slang = "chs,cht,eng"
+sub-fuzziness=1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;−sub-fuzziness &amp;lt;模式&amp;gt;
+搜寻字幕时调整匹配模糊度:
+0 精确匹配;1 装载所有包含电影名称的字幕;2 装载当前目录的所有字幕。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_4"&gt;有用的快捷键&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;以下是 MPlayer 中一些有用的快捷键：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;f－当播放视频时，在全屏和窗口模式之间切换。你也可以在命令行中使用 -fs 选项，以便让 MPlayer 开始在全屏模式中播放。
+o－在播放视频时切换 OSD（OnScreen Display）模式。
+p 或 Space－暂停／继续播放。
+q 或 Esc－退出 MPlayer。在 GUI 模式时，Esc 不会退出，仅停止播放。
+/ 和 * 或 9 和 0－减小或增大音量。
+m－静音切换。
+T（通常是 Shift + t）－播放窗口置顶切换。
+b 和 j－在可用的字幕间循环。
+x 和 z－调整字幕的延迟时间。
+I（Shift + i）－显示播放电影的文件名称。
+1 和 2－调整对比度。
+3 和 4－调整亮度。
+5 和 6－调整色度。
+7 和 8－调整饱和度。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="apps"></category><category term="video"></category></entry><entry><title>Gentoo Xorg:Failed to load module “……” 问题</title><link href="http://wonux.github.io/gentoo-xorg-failed.html" rel="alternate"></link><updated>2014-12-22T14:12:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-24:gentoo-xorg-failed.html</id><summary type="html">
 &lt;h3 id="_1"&gt;错误描述：&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;安装完xorg-server后，startx启动桌面环境，出现缺少模块错误。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1012,7 +3366,47 @@ http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=2&amp;amp;chap=1 ht
 Calculating dependencies  … done!
 [ebuild   R    ] x11-base/xorg-drivers-1.15  INPUT_DEVICES=”evdev keyboard mouse -acecad -aiptek -elographics -fpit -hyperpen -joystick -mutouch -penmount -synaptics -tslib -vmmouse -void -wacom” VIDEO_CARDS=”intel -apm -ast -chips -cirrus -dummy -epson -fbdev -fglrx (-freedreno) -geode -glint -i128 -i740 -mach64 -mga -modesetting -neomagic -nouveau -nv -nvidia (-omap) (-omapfb) -qxl -r128 -radeon -radeonsi -rendition -s3virge -savage -siliconmotion -sisusb (-sunbw2) (-suncg14) (-suncg3) (-suncg6) (-sunffb) (-sunleo) (-suntcx) -tdfx -tga -trident -tseng -v4l -vesa -via -virtualbox -vmware (-voodoo)” 0 kB&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;在VIDEO_CARDS中添加modesetting,fbdev,vesa即可。&lt;/p&gt;</summary><category term="gentoo"></category><category term="bugs"></category><category term="xorg"></category></entry><entry><title>Arch无线网络网络管理</title><link href="http://wonux.github.io/arch-wireless.html" rel="alternate"></link><updated>2016-02-02T11:32:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-22:arch-wireless.html</id><summary type="html">
+&lt;p&gt;在VIDEO_CARDS中添加modesetting,fbdev,vesa即可。&lt;/p&gt;</summary><category term="gentoo"></category><category term="bugs"></category><category term="xorg"></category></entry><entry><title>RFKill软开关蓝牙及无线功能 — 解决无线网络连接失败问题</title><link href="http://wonux.github.io/apps-rfkill.html" rel="alternate"></link><updated>2016-02-02T17:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-22:apps-rfkill.html</id><summary type="html">
+&lt;h2 id="_1"&gt;介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;​​​​​​​多​​​​​​​计​​​​​​​算​​​​​​​机​​​​​​​系​​​​​​​统​​​​​​​包​​​​​​​含​​​​​​​无​​​​​​​线​​​​​​​电​​​​​​​传​​​​​​​输​​​​​​​，其​​​​​​​中​​​​​​​包​​​​​​​括​​​​​​​ Wi-Fi、​​​​​​​蓝​​​​​​​牙​​​​​​​和​​​​​​​ 3G 设​​​​​​​备​​​​​​​。​​​​​​​这​​​​​​​些​​​​​​​设​​​​​​​备​​​​​​​消​​​​​​​耗​​​​​​​电​​​​​​​源​​​​​​​，在​​​​​​​不​​​​​​​使​​​​​​​用​​​​​​​这​​​​​​​些​​​​​​​设​​​​​​​备​​​​​​​时​​​​​​​是​​​​​​​一​​​​​​​种​​​​​​​浪​​​​​​​费​​​​​​​。​​​​​​​
+RFKill 是​​​​​​​ Linux 内​​​​​​​核​​​​​​​中​​​​​​​的​​​​​​​一​​​​​​​个​​​​​​​子​​​​​​​系​​​​​​​统​​​​​​​，它​​​​​​​可​​​​​​​提​​​​​​​供​​​​​​​一​​​​​​​个​​​​​​​界​​​​​​​面​​​​​​​，在​​​​​​​此​​​​​​​界​​​​​​​面​​​​​​​中​​​​​​​可​​​​​​​查​​​​​​​询​​​​​​​、​​​​​​​激​​​​​​​活​​​​​​​并​​​​​​​取​​​​​​​消​​​​​​​激​​​​​​​活​​​​​​​计​​​​​​​算​​​​​​​机​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​的​​​​​​​无​​​​​​​线​​​​​​​电​​​​​​​传​​​​​​​输​​​​​​​。​​​​​​​当​​​​​​​取​​​​​​​消​​​​​​​激​​​​​​​活​​​​​​​传​​​​​​​输​​​​​​​时​​​​​​​，可​​​​​​​使​​​​​​​其​​​​​​​处​​​​​​​于​​​​​​​可​​​​​​​被​​​​​​​软​​​​​​​件​​​​​​​重​​​​​​​新​​​​​​​激​​​​​​​活​​​​​​​的​​​​​​​状​​​​​​​态​​​​​​​（软​​​​​​​锁​​​​​​​定​​​​​​​）或​​​​​​​者​​​​​​​将​​​​​​​其​​​​​​​放​​​​​​​在​​​​​​​软​​​​​​​件​​​​​​​无​​​​​​​法​​​​​​​重​​​​​​​新​​​​​​​激​​​​​​​活​​​​​​​的​​​​​​​位​​​​​​​置​​​​​​​（硬​​​​​​​锁​​​​​​​定​​​​​​​）。​​​​​​​
+RFKill 核​​​​​​​为​​​​​​​子​​​​​​​系​​​​​​​统​​​​​​​提​​​​​​​供​​​​​​​应​​​​​​​用​​​​​​​程​​​​​​​序​​​​​​​编​​​​​​​程​​​​​​​界​​​​​​​面​​​​​​​（&lt;span class="caps"&gt;API&lt;/span&gt;）。​​​​​​​内​​​​​​​核​​​​​​​驱​​​​​​​动​​​​​​​程​​​​​​​序​​​​​​​被​​​​​​​设​​​​​​​计​​​​​​​为​​​​​​​支​​​​​​​持​​​​​​​ RFKill 使​​​​​​​用​​​​​​​这​​​​​​​个​​​​​​​ &lt;span class="caps"&gt;API&lt;/span&gt; 注​​​​​​​册​​​​​​​内​​​​​​​核​​​​​​​，并​​​​​​​包​​​​​​​含​​​​​​​启​​​​​​​用​​​​​​​和​​​​​​​禁​​​​​​​用​​​​​​​这​​​​​​​个​​​​​​​设​​​​​​​备​​​​​​​的​​​​​​​方​​​​​​​法​​​​​​​。​​​​​​​另​​​​​​​外​​​​​​​，RFKill 核​​​​​​​提​​​​​​​供​​​​​​​用​​​​​​​户​​​​​​​程​​​​​​​序​​​​​​​可​​​​​​​解​​​​​​​读​​​​​​​的​​​​​​​通​​​​​​​知​​​​​​​以​​​​​​​及​​​​​​​用​​​​​​​户​​​​​​​程​​​​​​​序​​​​​​​查​​​​​​​询​​​​​​​传​​​​​​​输​​​​​​​状​​​​​​​态​​​​​​​的​​​​​​​方​​​​​​​法​​​​​​​。​​​​​​​
+RFKill 界​​​​​​​面​​​​​​​位​​​​​​​于​​​​​​​ /dev/rfkill，其​​​​​​​中​​​​​​​包​​​​​​​含​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​所​​​​​​​有​​​​​​​无​​​​​​​线​​​​​​​电​​​​​​​传​​​​​​​输​​​​​​​的​​​​​​​当​​​​​​​前​​​​​​​状​​​​​​​态​​​​​​​。​​​​​​​每​​​​​​​个​​​​​​​设​​​​​​​备​​​​​​​都​​​​​​​在​​​​​​​ sysfs 中​​​​​​​注​​​​​​​册​​​​​​​当​​​​​​​前​​​​​​​ RFKill 状​​​​​​​态​​​​​​​。​​​​​​​另​​​​​​​外​​​​​​​，在​​​​​​​启​​​​​​​用​​​​​​​了​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​中​​​​​​​每​​​​​​​当​​​​​​​状​​​​​​​态​​​​​​​更​​​​​​​改​​​​​​​时​​​​​​​，RFKill 会​​​​​​​发​​​​​​​出​​​​​​​ uevents。​​​​​​​
+Rfkill 是​​​​​​​一​​​​​​​个​​​​​​​命​​​​​​​令​​​​​​​行​​​​​​​工​​​​​​​具​​​​​​​，您​​​​​​​可​​​​​​​使​​​​​​​用​​​​​​​它​​​​​​​查​​​​​​​询​​​​​​​和​​​​​​​更​​​​​​​改​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​启​​​​​​​用​​​​​​​了​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​。​​​​​​​要​​​​​​​获​​​​​​​得​​​​​​​这​​​​​​​个​​​​​​​工​​​​​​​具​​​​​​​，请​​​​​​​安​​​​​​​装​​​​​​​ &lt;code&gt;rfkill&lt;/code&gt; 软​​​​​​​件​​​​​​​包​​​​​​​。​​​​​​​&lt;/p&gt;
+&lt;h2 id="_2"&gt;使用&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="_3"&gt;获​​​​​​​得​​​​​​​设​​​​​​​备​​​​​​​列​​​​​​​表&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;使​​​​​​​用​​​​​​​命​​​​​​​令​​​​​​​ rfkill list 获​​​​​​​得​​​​​​​设​​​​​​​备​​​​​​​列​​​​​​​表​​​​​​​，每​​​​​​​个​​​​​​​都​​​​​​​包​​​​​​​含​​​​​​​与​​​​​​​之​​​​​​​关​​​​​​​联​​​​​​​的​​​​​​​索​​​​​​​引​​​​​​​号​​​​​​​，从​​​​​​​ 0 开​​​​​​​始​​​​​​​。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rfkill list
+0: phy0: Wireless LAN
+    Soft blocked: yes
+    Hard blocked: yes
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;停用设备&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;​​​​​​​​​​​​​​可​​​​​​​以​​​​​​​使​​​​​​​用​​​​​​​​​​​​​​​​​索​​​​​​​引​​​​​​​号​​​​​​​让​​​​​​​ rfkill 停​​​​​​​止​​​​​​​使​​​​​​​用​​​​​​​或​​​​​​​者​​​​​​​使​​​​​​​用​​​​​​​某​​​​​​​个​​​​​​​设​​​​​​​备​​​​​​​。例​​​​​​​如​​​​​​​，停​​​​​​​用​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​第​​​​​​​一​​​​​​​个​​​​​​​启​​​​​​​用​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​​​​​​​​：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rfkill block 0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;​​​​​​还​​​​​​​可​​​​​​​以​​​​​​​使​​​​​​​用​​​​​​​ rfkill 阻​​​​​​​断​​​​​​​某​​​​​​​一​​​​​​​类​​​​​​​设​​​​​​​备​​​​​​​​​​​​​​。​​​​​​​例​​​​​​​如，停​​​​​​​用​​​​​​​系​​​​​​​统​​​​​​​中​​​​​​​的​​​​​​​所​​​​​​​有​​​​​​​ Wi-Fi 设​​​​​​​备​​​​​​​：​​&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rfkill block wifi
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;或​​​​​​​者​​​​​​​停​​​​​​​止​​​​​​​使​​​​​​​用所​​​​​​​有​​​​​​​启​​​​​​​用​​​​​​​了​​​​​​​ RFKill 的​​​​​​​设​​​​​​​备​​​​​​​：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rfkill block all
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_5"&gt;重​​​​​​​新​​​​​​​使​​​​​​​用​​​​​​​设​​​​​​​备&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;要​​​​​​​重​​​​​​​新​​​​​​​使​​​​​​​用​​​​​​​设​​​​​​​备​​​​​​​，请​​​​​​​运​​​​​​​行​​​​​​​ rfkill unblock，而​​​​​​​不​​​​​​​是​​​​​​​ rfkill block。​​​​​​​&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rfkill unblock wifi
+rfkill all
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;要​​​​​​​获​​​​​​​得​​​​​​​ rfkill 可​​​​​​​停​​​​​​​用​​​​​​​的​​​​​​​完​​​​​​​整​​​​​​​设​​​​​​​备​​​​​​​类​​​​​​​别​​​​​​​列​​​​​​​表​​​​​​​，请​​​​​​​运​​​​​​​行​​​​​​​ rfkill help。​​​​​​​ &lt;/p&gt;
+&lt;p&gt;参考： &lt;a href="https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/6/html/Power_Management_Guide/RFKill.html"&gt;https://access.redhat.com/documentation/zh-&lt;span class="caps"&gt;CN&lt;/span&gt;/Red_Hat_Enterprise_Linux/6/html/Power_Management_Guide/RFKill.html&lt;/a&gt;&lt;/p&gt;</summary><category term="apps"></category><category term="network"></category><category term="wireless"></category></entry><entry><title>Arch无线网络网络管理</title><link href="http://wonux.github.io/arch-wireless.html" rel="alternate"></link><updated>2016-02-02T11:32:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-22:arch-wireless.html</id><summary type="html">
 &lt;h3 id="wifi-menu-dhcpcd"&gt;wifi-menu脚本 + dhcpcd&lt;a class="headerlink" href="#wifi-menu-dhcpcd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;</summary><category term="arch"></category><category term="network"></category><category term="wireless"></category></entry><entry><title>Arch软件管理 — Pacman常用命令</title><link href="http://wonux.github.io/arch-pacman.html" rel="alternate"></link><updated>2015-02-10T17:03:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-10-22:arch-pacman.html</id><summary type="html">
 &lt;p&gt;Pacman是Arch Linux 的包管理器。它将一个简单的二进制包格式和易用的构建系统结合了起来。不管软件包是来自官方的 Arch 库还是用户自己创建，Pacman 都能方便得管理。&lt;/p&gt;
 &lt;h3 id="_1"&gt;更新系统&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -1267,7 +3661,172 @@ reboot
 &lt;p&gt;有时因为系统镜像列表丢失或可读性不强，我们需要从官方网站下载按地区分类的镜像列表，很简单，执行如下命令：&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="arch"></category><category term="mirrors"></category></entry><entry><title>gcc-config:Active gcc profile is invalid 解决办法</title><link href="http://wonux.github.io/gentoo-gcc-invalid.html" rel="alternate"></link><updated>2014-11-14T17:36:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-09-02:gentoo-gcc-invalid.html</id><summary type="html">
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="arch"></category><category term="mirrors"></category></entry><entry><title>直接粘贴代码到网络上:command-line pastebins</title><link href="http://wonux.github.io/apps-pastebin.html" rel="alternate"></link><updated>2015-05-22T17:29:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-09-16:apps-pastebin.html</id><summary type="html">
+&lt;h3 id="_1"&gt;软件作用&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;直接把管道里面的文字内容传到网站上面，然后反馈一个地址可以读取内容。&lt;/p&gt;
+&lt;h3 id="_2"&gt;同类软件&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;wgetpaste&lt;/li&gt;
+&lt;li&gt;dpaste&lt;/li&gt;
+&lt;li&gt;pastebin&lt;/li&gt;
+&lt;li&gt;pasteie&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_3"&gt;用法&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;介绍wgetpaste为例：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GENTOO ~ # cat /etc/portage/make.conf | wgetpaste
+Your paste can be seen here: https://bpaste.net/show/bf4077579512
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="_4"&gt;常见问题&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id="pastebin"&gt;pastebin服务源无法访问&lt;a class="headerlink" href="#pastebin" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;解决办法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;列出可用的pastebin服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GENTOO ~ # wgetpaste -S
+Services supported: (case sensitive):
+   Name:        | Url:
+   =============|=================
+   *bpaste      | https://bpaste.net/
+    ca          | http://pastebin.ca/
+    codepad     | http://codepad.org/
+    dpaste      | http://dpaste.com/
+    gists       | https://api.github.com/gists
+    lugons      | https://paste.lugons.org/
+    poundpython | http://paste.pound-python.org/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;默认使用bpate&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;切换可用的pastebin服务，如dpaste&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat /etc /portage/make.conf | wgetpaste  -s dpaste
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="apps"></category><category term="pastebin"></category></entry><entry><title>MPD+MPC+Conky 听音乐</title><link href="http://wonux.github.io/apps-mpd.html" rel="alternate"></link><updated>2015-05-25T10:19:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-09-09:apps-mpd.html</id><summary type="html">
+&lt;h2 id="mpdmpc"&gt;&lt;span class="caps"&gt;MPD&lt;/span&gt;、&lt;span class="caps"&gt;MPC&lt;/span&gt;介绍：&lt;a class="headerlink" href="#mpdmpc" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;为何选用&lt;span class="caps"&gt;MPD&lt;/span&gt;+&lt;span class="caps"&gt;MPC&lt;/span&gt;？
+在Linux下有很多不错的音乐播放器，强大的如amarok，简单的如bmp，而我更喜欢mpc（需要安装&lt;span class="caps"&gt;MPD&lt;/span&gt;），简洁是我选择它的理由。每次开机自动打开守护程序MusicPD（简称mpd），这如同一个潜在的点歌器，终端下用mpc就能选听自己喜欢的歌曲，不需要任何界面，也不必为音乐播放器单开一个桌面。
+mpc和conky结合，可以做出开机音乐；mpc和remind结合用音乐来提醒某些事情。守护程序mpd就像一个功能强大的点歌器，你可以轻松地选择你喜爱的歌手、专辑，毫不逊于&lt;span class="caps"&gt;GUI&lt;/span&gt;的音乐播放器。 我们还可以用conky在桌面上显示mpd的情况，显示歌曲名，显示歌手名，显示播放进程等，设计我们自己的音乐播放器，够酷吧。&lt;/li&gt;
+&lt;li&gt;&lt;span class="caps"&gt;MPD&lt;/span&gt;
+&lt;span class="caps"&gt;MPD&lt;/span&gt; (Music Player Daemon) ：它跟常见的大多数播放器都很不同，是一个C／S结构的音乐播放器。&lt;span class="caps"&gt;MPD&lt;/span&gt; 作为一个守护程序运行于后台, 通过各种各样的client软件来控制播放动作、播放列表等， 占用很少的资源，从一开始使用我便喜欢上了这种方式。
+这是一个可以在后台播放音乐的东东，非常节省资源，而且和X无关，在终端下一样能播放。而且可以用过各种各样的&lt;span class="caps"&gt;MPC&lt;/span&gt;前端来进行控制。
+&lt;span class="caps"&gt;MPD&lt;/span&gt;的优点很多，配置简单但是功能丰富。比如，可以选择音频设备，选择mixer设备，选择&lt;span class="caps"&gt;ID3&lt;/span&gt;编码等等。最大的好处就是音乐播放和管理前台分离，这样既可以使用mpc这个最简单的&lt;span class="caps"&gt;MPD&lt;/span&gt;客户端控制播放，也可以用&lt;span class="caps"&gt;GMPC&lt;/span&gt;和QMPDClient这样的强大&lt;span class="caps"&gt;MPD&lt;/span&gt;客户端进行音乐管理。&lt;/li&gt;
+&lt;li&gt;&lt;span class="caps"&gt;MPC&lt;/span&gt; 一个命令行下的Mpd客户端。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="mpd"&gt;安装&lt;span class="caps"&gt;MPD&lt;/span&gt;&lt;a class="headerlink" href="#mpd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge mpd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="mpd_1"&gt;配置&lt;span class="caps"&gt;MPD&lt;/span&gt;&lt;a class="headerlink" href="#mpd_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;mpd的系统级配置文件是&lt;code&gt;/etc/mpd.conf&lt;/code&gt;;用户级配置文件是&lt;code&gt;~/.config/mpd/mpd.conf&lt;/code&gt; 或 &lt;code&gt;~/.mpdconf&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;编辑&lt;code&gt;mpd.conf&lt;/code&gt;：
+&lt;span class="caps"&gt;MPD&lt;/span&gt;设置有几个地方：
+1、&lt;span class="caps"&gt;MPD&lt;/span&gt;的音乐目录和进程需要存放一些数据库等文件的目录；
+2、&lt;span class="caps"&gt;MPD&lt;/span&gt;的执行用户；
+3、&lt;span class="caps"&gt;MPD&lt;/span&gt;的输出和混音器选择；
+4、&lt;span class="caps"&gt;MPD&lt;/span&gt;的&lt;span class="caps"&gt;ID3&lt;/span&gt;编码.&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;music_directory "/var/lib/mpd/music" 
+playlist_directory "/var/lib/mpd/playlists" 
+db_file "/var/lib/mpd/database" 
+log_file "/var/lib/mpd/log" 
+state_file "/var/lib/mpd/state" 
+user "mpd" 
+bind_to_address "localhost" 
+bind_to_address "/var/lib/mpd/socket" 
+input { plugin "curl" }
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;mpd默认配置使用mpd用户，默认的&lt;code&gt;~&lt;/code&gt;目录是&lt;code&gt;/var/lib/mpd/&lt;/code&gt;.要添加mpd用户对&lt;code&gt;/var/lib/mpd/&lt;/code&gt;目录相应的权限。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="mpd_2"&gt;使用&lt;span class="caps"&gt;MPD&lt;/span&gt;&lt;a class="headerlink" href="#mpd_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;启动mpd守护进程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/etc/init.d/mpd start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;开机启动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rc-update add mpd default
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="mpd-clients"&gt;&lt;span class="caps"&gt;MPD&lt;/span&gt; Clients&lt;a class="headerlink" href="#mpd-clients" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;mpc&lt;/li&gt;
+&lt;li&gt;vimpc&lt;/li&gt;
+&lt;li&gt;gmpc&lt;/li&gt;
+&lt;li&gt;glurp&lt;/li&gt;
+&lt;li&gt;ario&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="mpc"&gt;&lt;span class="caps"&gt;MPC&lt;/span&gt;&lt;a class="headerlink" href="#mpc" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;mpc的常用参数：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mpc add 添加歌曲到播放列表
+mpc listall|mpc add 可以把所有歌曲都添加到当前的播放列表
+mpc listall 可以列出所有的歌曲
+mpc playlist 查看当前播放列表
+mpc 查看当前播放歌曲的信息
+mpc play 播放
+mpc pause 暂停
+mpc stop 停止
+mpc next 播放下一首
+mpc prev 播放前一首
+mpc repeat on 启用重复播放
+mpc random on 启用随机播放
+mpc play 18 播放列表中第18首
+mpc search filename 可以按文件名查找
+mpc search artist 可以按歌手查找
+mpc search title 可以按歌曲名查找
+音量调节：
+mpc volume +20
+mpc volume -20
+mpc的更多选项可以看mpc的帮助。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="conky"&gt;Conky&lt;a class="headerlink" href="#conky" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;强大的Linux系统监控及桌面美化应用，在这里不详细介绍，自己Google，Wiki。&lt;/p&gt;</summary><category term="apps"></category><category term="music"></category></entry><entry><title>gcc-config:Active gcc profile is invalid 解决办法</title><link href="http://wonux.github.io/gentoo-gcc-invalid.html" rel="alternate"></link><updated>2014-11-14T17:36:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-09-02:gentoo-gcc-invalid.html</id><summary type="html">
 &lt;h3 id="_1"&gt;错误描述&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Gentoo软件安装错误,提示：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1577,7 +4136,27 @@ pacman -S xorg-twm xorg-xclock xterm
 &lt;p&gt;显示硬件时间则是：&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hwclock --show
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="clock"></category></entry><entry><title>Gentoo安装详解（五）—声卡设置</title><link href="http://wonux.github.io/gentoo-handbook-alsa.html" rel="alternate"></link><updated>2015-02-11T11:54:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-05:gentoo-handbook-alsa.html</id><summary type="html">
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="gentoo"></category><category term="clock"></category></entry><entry><title>Linux下截图工具：scrot 从入门到精通</title><link href="http://wonux.github.io/apps-scrot.html" rel="alternate"></link><updated>2015-02-10T16:29:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2014-05-06:apps-scrot.html</id><summary type="html">
+&lt;h3 id="_1"&gt;简介：&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;scrot 主要用在命令行下，它使用 imlib2 库来抓取并保存图像。scrot 的使用格式为：scrot [options] [file]。&lt;/p&gt;
+&lt;h3 id="_2"&gt;一般用法：&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;就一般而言，使用 scrot 可以抓取整个桌面、某个指定的窗口、以及选择的矩形区域。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;抓取桌面：scrot desktop.png，该命令将当前的整个桌面抓取下来，并保存为 desktop.png 文件。可以在当前的目录中找到此图像文件。&lt;/li&gt;
+&lt;li&gt;抓取窗口：scrot -bs window.png，选项 b 使 scrot 在抓取窗口时一同将外边框抓取下来，而 s 选项则让用户选择所要抓取的是何窗口。&lt;/li&gt;
+&lt;li&gt;抓取区域：scrot -s rectangle.png，在执行此命令后，使用鼠标拖曳的矩形区域将被 scrot 抓取下来。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="_3"&gt;高级使用&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;对于普通的抓取使用 scrot 的基础便足以应付了。但在某些特殊情况之下，使用 scrot 抓取图像需要讲究一些技巧。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;延时抓取：scrot -cd 10 menu.png，此命令中的 d 选项用于延时抓取图像，其后的 10 代表延时 10 秒；前面的选项 c 显示倒计时。在抓取菜单或是命令提示时，该技巧将充分展示其魔力。&lt;/li&gt;
+&lt;li&gt;生成缩图：scrot -t 50% thumb.png，这个命令在抓取图像的同时生成该图像的缩略图。选项 t 将打开此功能，其后的 50% 为原图的缩放百分比。&lt;/li&gt;
+&lt;li&gt;更改品质：scrot -q 70 quality.jpg，此命令中的 q 选项用于更改所抓图像的品质，其数值介于 1-100 之间，默认为 75。数值越大，意味着图像品质越高；同时，图像的压缩率也就越低，占用空间越大。&lt;/li&gt;
+&lt;li&gt;操作抓图：scrot action.png -e ‘mv $f ~/images/’，该命令将抓取的图像移动到 ~/images/ 目录。显然，操作图像的功能由 e 选项开启，其中的 $f 代表原图的路径／文件名。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以上示例皆指定了需要保存的抓图的文件名称。实际上，如果不指定名称，那么 scrot 在抓取图像后会自动使用当前的日期时间、宽度高度的组合来生成文件名称。&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="apps"></category><category term="image"></category></entry><entry><title>Gentoo安装详解（五）—声卡设置</title><link href="http://wonux.github.io/gentoo-handbook-alsa.html" rel="alternate"></link><updated>2015-02-11T11:54:00+08:00</updated><author><name>Ace King</name></author><id>tag:wonux.github.io,2014-05-05:gentoo-handbook-alsa.html</id><summary type="html">
 &lt;h3 id="_1"&gt;硬件检测&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;To choose the right driver, first detect the used audio controller. You can use lspci for this task:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;lspci | grep -i audio

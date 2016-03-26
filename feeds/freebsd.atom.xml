@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Wonux Blog</title><link href="http://wonux.github.io/" rel="alternate"></link><link href="http://wonux.github.io/feeds/freebsd.atom.xml" rel="self"></link><id>http://wonux.github.io/</id><updated>2015-05-05T08:52:00+08:00</updated><entry><title>UNIX基础 — 安装应用程序: Packages 和 Ports</title><link href="http://wonux.github.io/freebsd-apps.html" rel="alternate"></link><updated>2015-05-05T08:52:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-05-04:freebsd-apps.html</id><summary type="html">
+&lt;h2 id="packages-and-ports"&gt;Packages and Ports&lt;a class="headerlink" href="#packages-and-ports" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="_1"&gt;概述&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;FreeBSD 将许多系统工具捆绑作为基本系统的一部分。另外，FreeBSD 提供了两种补充的技术来安装第三方软件：FreeBSD Ports Collection，从源代码安装； packages，从预编译的二进制版本安装。这两种方法都可以用于从本地介质， 或从网上直接安装您喜欢的应用程序的最新版本。&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;UNIX&lt;/span&gt;®系统典型的安装第三方软件的步骤包括：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1、下载这个软件，软件的发布可能是源代码格式，或是一个二进制包。
+2、从默认的发行格式解压软件，通常是用compress, gzip,或bzip2压缩过tar包。
+3、阅读相关文档，了解如何安装。 (通常文件名是INSTALL或README， 或在doc/ 目录下的一些文档)
+4、如果软件是以源代码形式发布的，那就需要编译它。可能需要编辑一个 Makefile文件, 或运行 configure脚本。
+5、测试和安装软件。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;FreeBSD的package是包含了一个应用的所有命令、全部的配置文件和文档的预编译好的副本 。package可以使用pkg命令来操作。 FreeBSD的port是一个可以自动从源代码编译成应用程序的文件集合。这些文件包含了自动下载、解开、打补丁、编译、安装应用的所有必要的信息。&lt;/p&gt;
+&lt;p&gt;pots系统也可以用于生成被包管理命令维护的packages。
+packages 和 ports 都可以自动处理依赖库。&lt;/p&gt;
+&lt;p&gt;这两种技术是很相似，packages 和 ports有各自的强项，根据需要选择哪种方法安装一个特定的软件。&lt;/p&gt;
+&lt;p&gt;Package优点
+- 一个压缩的 package 通常要比一个压缩的包含源代码的应用程序小得多。
+- package 不需要进行额外的编译时间。 对于大型应用程序如 Mozilla， &lt;span class="caps"&gt;KDE&lt;/span&gt; 或 &lt;span class="caps"&gt;GNOME&lt;/span&gt; 来说这显得尤为重要， 特别是在您的系统资源比较差的情况下。
+- package不需要理解任何在FreeBSD上编译软件的详细过程。&lt;/p&gt;
+&lt;p&gt;Port优点：
+- package 在编译时通常使用比较保守的选项，这是为了保证它们能够运行在大多数的系统上。通过从 port 安装，可以细微调整编译选项来产生适合于处理器的代码。
+- 一些软件包已经把与它们相关的能做和不能做的事情的选项都编译进去了。从 port 中安装时，不一定要接受默认的选项， 可以自己来设置。
+- 一些软件的许可条件禁止采用二进制形式发行。 它们必须以源代码形式发布，终端用户编译。
+- 一些人不信任二进制发行形式。 至少有了源代码， (理论上) 可以亲自阅读它，寻找潜在的问题。
+- 如果要自己对软件打补丁，您就需要有源代码。&lt;/p&gt;
+&lt;h3 id="_2"&gt;查找软件&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;FreeBSD中可用的应用程序正在不断地增长着。有很多方法可以查找需要安装的软件。
+- FreeBSD站点上维护着一个最新的的可搜索当前所有可用应用程序的列表，在 &lt;a href="http://www.freebsd.org/ports/index.html"&gt;http://www.FreeBSD.org/ports/&lt;/a&gt;。ports可以通过程序名称或软件分类来搜索。
+- Dan Langille维护着网站 FreshPorts，&lt;a href="http://www.FreshPorts.org/"&gt;http://www.FreshPorts.org/&lt;/a&gt;。 FreshPort提供综合搜索工具，追踪ports中应用的变化。注册用户可以创建自定义检视列表，当有任何程序被升级时，他们就会发 email 提醒您。
+- 如果不确定想要的应用程序的名字，可以尝试在 &lt;a href="http://www.sourceforge.net/"&gt;SourceForge.net&lt;/a&gt; or &lt;a href="http://www.github.com/"&gt;GitHub.com&lt;/a&gt;这些网站中查找，然后回到 &lt;a href="http://www.freebsd.org/ports/index.html"&gt;FreeBSD site&lt;/a&gt;主站查看应用是否被port进去了（ be ported）。
+- 查找二进制包仓库（binary package repository）
+pkg search xxx
+pkg search -o xxx
+- Ports集（Ports Collection）安装后，有几种方法可以查询本地ports树。查找一个port属于哪个category：
+&lt;code&gt;whereis lsof&lt;/code&gt;
+lsof: /usr/ports/sysutils/lsof
+&lt;code&gt;echo /usr/ports/*/*lsof*&lt;/code&gt;
+/usr/ports/sysutils/lsof
+- 另外一个查找软件的方法是用Ports Collection内嵌的搜索机制。要使用这个搜索机制, 需要先cd到/usr/ports目录下面，然后运行&lt;code&gt;make search name=program-name&lt;/code&gt;，program-name是要查找的软件名。例如：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# cd /usr/ports
+# make search name=lsof
+Port:   lsof-4.88.d,8
+Path:   /usr/ports/sysutils/lsof
+Info:   Lists information about open files (similar to fstat(1))
+Maint:  ler@lerctr.org
+Index:  sysutils
+B-deps:
+R-deps: 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：内嵌搜索机制使用索引信息文件. 如果显示消息：the &lt;span class="caps"&gt;INDEX&lt;/span&gt; is required, 执行&lt;code&gt;make fetchindex&lt;/code&gt;下载最新的索引文件. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;显示精简信息，使用quicksearch特性：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# cd /usr/ports
+# make quicksearch name=lsof
+Port:   lsof-4.88.d,8
+Path:   /usr/ports/sysutils/lsof
+Info:   Lists information about open files (similar to fstat(1))
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;为了更深入的搜索，还可以用 &lt;code&gt;make search key=string&lt;/code&gt;， string就是想搜索的部分内容。 它将搜索port的名字、 注释， 描述和从属关系， 如果不知道您想搜索的程序名字， 可以利用它搜索一些关键主题来找到需要的。 当使用search或quicksearch时，搜索的关键字不区分大小写。&lt;/p&gt;
+&lt;h3 id="pkg"&gt;使用pkg进行二进制包管理&lt;a class="headerlink" href="#pkg" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;pkg是FreeBSD传统的包管理工具的下一代替代者。它提供了很多特性，使处理二进制包更快，更简单。
+pkg不是替代像 &lt;a href="http://www.freebsd.org/cgi/url.cgi?ports/ports-mgmt/portmaster/pkg-descr"&gt;ports-mgmt/portmaster&lt;/a&gt; 或 &lt;a href="http://www.freebsd.org/cgi/url.cgi?ports/ports-mgmt/portupgrade/pkg-descr"&gt;ports-mgmt/portupgrade&lt;/a&gt;这样的port管理工具，这些工具既可以使用二进制方式又可以通过ports集方式安装第三方软件，而pkg只安装二进制包。&lt;/p&gt;
+&lt;h4 id="pkg_1"&gt;安装pkg&lt;a class="headerlink" href="#pkg_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;从FreeBSD 8.4之后的版本包括了一个用于下载安装pkg（包括使用手册）的引导程序。（bootstrap utility）
+- To bootstrap the system, run:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/usr/sbin/pkg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="pkg_2"&gt;pkg常用命令&lt;a class="headerlink" href="#pkg_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;查看已安装软件包信息
+&lt;code&gt;pkg info&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装和移除软件包
+&lt;code&gt;pkg install&lt;/code&gt;和&lt;code&gt;pkg delete&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;更新已安装软件包
+&lt;code&gt;pkg version&lt;/code&gt;
+&lt;code&gt;pkg upgrade&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;审核已安装软件包
+&lt;code&gt;pkg audit -F&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自动移除孤立依赖
+&lt;code&gt;pkg autoremove&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;移除陈旧package包
+&lt;code&gt;pkg clean&lt;/code&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;pkg默认在一个缓存目录（PKG_CACHEDIR）存储二进制包，当使用pkg upgrade更新包时，旧的版本不会自动移除。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="ports-collection"&gt;使用Ports Collection&lt;a class="headerlink" href="#ports-collection" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ports Collection ── 本质上是 /usr/ports 目录下的一堆 Makefile、 Patches（补丁）和描述文件，这些文件用于在FreeBSD系统中编译和安装应用。&lt;/p&gt;
+&lt;h4 id="ports-collection_1"&gt;安装Ports Collection&lt;a class="headerlink" href="#ports-collection_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Portsnap Method
+FreeBSD的base system包含Portsnap. 这是一个获得Ports Collection的快速易用的工具也是对大多数用户推荐的方法。
+1、下载压缩的 Ports 套件快照到 /var/db/portsnap：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portsnap fetch
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;2、如果是首次运行 Portsnap，则需要将快照释放到 /usr/ports： &lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portsnap extract
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;3、更新 /usr/ports：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portsnap fetch
+portsnap update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当使用fetch选项时，extract、update选项可以连续运行：
+&lt;code&gt;portsnap fetch update&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Subversion Method
+如果需要更多的控制ports tree或者本地更改需要维护，  Subversion可以用于获得Ports Collection。
+1、在检测ports tree之前Subversion必须安装。如果ports tree已经存在：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /usr/ports/devel/subversion
+make install clean
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果ports tree不可用：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pkg install subversion
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;2、Check out a copy of the ports tree. 使用离你最近的Subversion mirror替换&lt;code&gt;svn0.us-east.FreeBSD.org&lt;/code&gt;&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;svn checkout https://svn0.us-east.FreeBSD.org/ports/head /usr/ports
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;3、As needed, update /usr/ports after the initial Subversion checkout:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;svn update /usr/ports
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="port-skeleton"&gt;Port Skeleton&lt;a class="headerlink" href="#port-skeleton" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;port skeleton 是让一个程序在 FreeBSD 上简洁地编译并安装的所需文件的最小组合。 每个 port skeleton 包含：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Makefile&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="n"&gt;Makefile&lt;/span&gt; &lt;span class="err"&gt;包括好几个部分，&lt;/span&gt; &lt;span class="err"&gt;指出应用程序是如何编译以及将被安装在系统的哪些地方。&lt;/span&gt; 
+&lt;span class="n"&gt;distinfo&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;这个文件包括这些信息：这些文件用来对下载后的文件校验和进行检查&lt;/span&gt;   &lt;span class="err"&gt;，来确保在下载过程中文件没有被破坏。&lt;/span&gt;  
+&lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="o"&gt;/:&lt;/span&gt; &lt;span class="err"&gt;这个目录包括在&lt;/span&gt;&lt;span class="n"&gt;FreeBSD&lt;/span&gt;&lt;span class="err"&gt;系统上编译和安装程序需要用到的补丁。这些补丁基本上都是些小文件，指出特定文件作了哪些修正。它们都是纯文本的的格式，基本上是这样的&lt;/span&gt; &lt;span class="err"&gt;“删除第&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="err"&gt;行”&lt;/span&gt; &lt;span class="err"&gt;或&lt;/span&gt; &lt;span class="err"&gt;“将第&lt;/span&gt; &lt;span class="mi"&gt;26&lt;/span&gt; &lt;span class="err"&gt;行改为这样&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="err"&gt;”，补丁文件也被称作&lt;/span&gt; &lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="n"&gt;diffs&lt;/span&gt;&lt;span class="err"&gt;”，他们由&lt;/span&gt;&lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="err"&gt;程序生成。&lt;/span&gt;
+&lt;span class="err"&gt;这个目录也包含了在编译&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="err"&gt;时要用到的其它文件。&lt;/span&gt;
+&lt;span class="n"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;descr&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;这是一个提供更多细节，有软件的多行描述。&lt;/span&gt;
+&lt;span class="n"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;plist&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;这是即将被安装的所有文件的列表。它告诉&lt;/span&gt; &lt;span class="n"&gt;ports&lt;/span&gt; &lt;span class="err"&gt;系统在卸载时需要删除哪些文件。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;port里面包含着如何编译源代码的指令，但不包含真正的源代码。ports中这个程序源代码标示文件叫 “distfile”,构建port的过程中会自动存储已经下载的源码到/usr/ports/distfiles.&lt;/p&gt;
+&lt;h4 id="ports"&gt;安装Ports&lt;a class="headerlink" href="#ports" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;使用Ports Collection编译安装port，需要连接网络和超级用户特权。如果没有网络，则需要将 distfile 手工放到 /usr/ports/distfiles 中。
+- 首先进入要安装 port 的目录：
+&lt;code&gt;cd /usr/ports/sysutils/lsof&lt;/code&gt;
+- &lt;code&gt;make install&lt;/code&gt;
+- &lt;code&gt;make clean&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;编译port的时候可以使用&lt;code&gt;make install clean&lt;/code&gt;节省步骤。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id="ports_1"&gt;移除已安装的Ports&lt;a class="headerlink" href="#ports_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;已经安装的ports可以使用&lt;code&gt;pkg delete&lt;/code&gt;命令卸载。
+也可以在ports目录，使用&lt;code&gt;make deinstall&lt;/code&gt;命令&lt;/p&gt;
+&lt;h4 id="ports_2"&gt;升级Ports&lt;a class="headerlink" href="#ports_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;列出可以更新版本的ports：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pkg version -l "&amp;lt;"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Important:
+Before attempting an upgrade, read /usr/ports/&lt;span class="caps"&gt;UPDATING&lt;/span&gt; from the top of the file to the date closest to the last time ports were upgraded or the system was installed. This file describes various issues and additional steps users may encounter and need to perform when updating a port, including such things as file format changes, changes in locations of configuration files, or any incompatibilities with previous versions. Make note of any instructions which match any of the ports that need upgrading and follow these instructions when performing the upgrade.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;执行Ports升级，使用Portmaster或者Portupgrade.
+- Upgrading Ports Using Portmaster
+&lt;a href="http://www.freebsd.org/cgi/url.cgi?ports/ports-mgmt/portmaster/pkg-descr"&gt;ports-mgmt/portmaster&lt;/a&gt;package（或称port），是推荐的升级已安装Ports的工具，它被设计为随FreeBSD系统使用而不需要依赖其他ports的工具。它用/var/db/pkg/中的信息决定哪些ports需要升级。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /usr/ports/ports-mgmt/portmaster
+make install clean
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;Portmaster 把 ports 分成4类：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Root ports (不依赖其他的 ports，也不被依赖)
+Trunk ports (不依赖其他的 ports，但是被其他的 ports 依赖)
+Branch ports (依赖于其他的 ports，同时也被依赖)
+Leaf ports (依赖于其他的 ports，但不被依赖)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;可以使用 -L 选项列出所有已安装的 ports 和查找存在更新的 ports：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portmaster -L
+===&amp;gt;&amp;gt;&amp;gt; Root ports (No dependencies, not depended on)
+===&amp;gt;&amp;gt;&amp;gt; ispell-3.2.06_18
+===&amp;gt;&amp;gt;&amp;gt; screen-4.0.3
+        ===&amp;gt;&amp;gt;&amp;gt; New version available: screen-4.0.3_1
+===&amp;gt;&amp;gt;&amp;gt; tcpflow-0.21_1
+===&amp;gt;&amp;gt;&amp;gt; 7 root ports
+...
+===&amp;gt;&amp;gt;&amp;gt; Branch ports (Have dependencies, are depended on)
+===&amp;gt;&amp;gt;&amp;gt; apache22-2.2.3
+        ===&amp;gt;&amp;gt;&amp;gt; New version available: apache22-2.2.8
+...
+===&amp;gt;&amp;gt;&amp;gt; Leaf ports (Have dependencies, not depended on)
+===&amp;gt;&amp;gt;&amp;gt; automake-1.9.6_2
+===&amp;gt;&amp;gt;&amp;gt; bash-3.1.17
+        ===&amp;gt;&amp;gt;&amp;gt; New version available: bash-3.2.33
+...
+===&amp;gt;&amp;gt;&amp;gt; 32 leaf ports
+===&amp;gt;&amp;gt;&amp;gt; 137 total installed ports
+        ===&amp;gt;&amp;gt;&amp;gt; 83 have new versions available
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;可以使用这个简单的命令升级所有已安装的 ports：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portmaster -a
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果你在升级的过程中发现了错误，你可以使用 -f 选项升级/重新编译所有的 ports：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portmaster -af
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;同样你也可以使用 Portmaster 往系统里安装新的 ports，升级所有的依赖关系之后并安装新的 port：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portmaster shells/bash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意:
+Portmaster 默认在删除一个现有的 port 前会做一个备份包。如果新的版本能够被成功安装， Portmaster 将删除备份。 使用 -b 后 Portmaster 便不会自动删除备份。加上 -i 选项之后 Portmaster 将进入互动模式， 在升级每个 port 以前提示你给予确认。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Upgrading Ports Using Portupgrade
+portupgrade 工具是设计来简化升级已安装的 port 的操作的。 它通过 &lt;a href="http://www.freebsd.org/cgi/url.cgi?ports/ports-mgmt/portupgrade/pkg-descr"&gt;ports-mgmt/portupgrade&lt;/a&gt; port 来提供。它安装一系列用于ports管理的应用。然而，它依赖于ruby。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /usr/ports/ports-mgmt/portupgrade
+make install clean
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;在每次升级之前，推荐使用 &lt;code&gt;pkgdb -F&lt;/code&gt; 命令来扫描已安装的 port 的列表， 并修正其所报告的不一致。
+运行portupgrade -a升级系统中所安装的所有过时的 ports。 如果您希望在每个升级操作时得到确认， 应指定 -i 参数。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portupgrade -ai
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果您只希望升级某个特定的应用程序， 而非全部可用的 port，应使用portupgrade pkgname。 指定 -R 参数非常重要，portupgrade将首先升级指定程序所需要的所有ports。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portupgrade -R firefox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;要使用预编译的 package 而不是 ports 来进行安装， 需要指定 -P。 如果指定了这个选项， portupgrade 会搜索 PKG_PATH 中指定的本地目录， 如果没有找到， 则从远程站点下载。 如果本地没有找到， 而且远程站点也没有成功地下载预编译包， 则 portupgrade 将使用 ports。 要禁止使用 port， 可以指定 -&lt;span class="caps"&gt;PP&lt;/span&gt;。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portupgrade -PP gnome2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h4 id="ports-and-disk-space"&gt;Ports and Disk Space&lt;a class="headerlink" href="#ports-and-disk-space" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;在通过 ports 编译和安装软件之后，您应记得清理临时的 work 目录， 其方法是使用 make clean 命令。 
+- If Portmaster is used to install a port, it will automatically remove this directory unless -K is specified. 
+- If Portupgrade is installed, this command will remove all work directories found within the local copy of the Ports Collection:
+&lt;code&gt;portsclean -C&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;另外,许多过时的源码文件被收集在目录 /usr/ports/distfiles 中. 如果安装了Portupgrade, 下列命令将删除那些不被其他port引用的过时的distfiles。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portsclean -D
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;使用Portupgrade移除所有的不被系统其他port引用的distfiles:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portsclean -DD
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果安装了Portmaster,使用:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;portmaster --clean-distfiles
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;除了这些命令之外,  &lt;a href=""&gt;ports-mgmt/pkg_cutleaves&lt;/a&gt; package（or port）自动完成移除已安装但不再使用的ports的任务。&lt;/p&gt;</summary><category term="unix"></category><category term="ports"></category><category term="package"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — Manual Pages</title><link href="http://wonux.github.io/freebsd-man.html" rel="alternate"></link><updated>2015-04-30T16:59:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-30:freebsd-man.html</id><summary type="html">
+&lt;h2 id="_1"&gt;联机手册&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Manual Pages&lt;/p&gt;
+&lt;p&gt;最详细的使用说明文档莫过于 FreeBSD 里的联机手册了。 几乎每一个程序都会附上一份简短说明， 以介绍这个程序的的基本功能以及参数的用法。 我们能通过 man 命令来阅读这些说明。 联机手册根据主题，分成下列章节:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1、    用户命令。
+2、    系统调用以及错误代码。
+3、    C 库文件里的函数说明。
+4、    设备驱动程序。
+5、    文件格式。
+6、    游戏以及其他娱乐。
+7、    各种资讯。
+8、    系统维护以及命令。
+9、    内核开发情况。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="man"&gt;&lt;code&gt;man&lt;/code&gt;命令使用&lt;a class="headerlink" href="#man" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;加章节数字 例如查看chmod用户命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;man 1 chmod
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;搜索功能
+&lt;code&gt;-k&lt;/code&gt;选项加关键字,或使用&lt;code&gt;/&lt;/code&gt;搜索&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;man -k mail
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 id="gnu-info"&gt;&lt;span class="caps"&gt;GNU&lt;/span&gt; Info 文件&lt;a class="headerlink" href="#gnu-info" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;FreeBSD许多应用软件以及实用工具来自Free软件基金会(&lt;span class="caps"&gt;FSF&lt;/span&gt;)。 作为手册的扩充，这些程序提供了一种更具有活力的超文档说明info， 您可用info命令来阅读他们。&lt;/p&gt;</summary><category term="unix"></category><category term="man"></category><category term="freebsd"></category></entry><entry><title>UNIX基础—Shells</title><link href="http://wonux.github.io/freebsd-shells.html" rel="alternate"></link><updated>2015-04-27T21:21:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-26:freebsd-shells.html</id><summary type="html">
+&lt;h2 id="shells"&gt;Shells&lt;a class="headerlink" href="#shells" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Shell提供了一个和操作系统交互的命令行接口。shell的主要功能就是从输入取得命令然后去执行。FreeBSD内含了一些shell，包括:Bourne shell（sh）、 extended C shell（tcsh）。 其他shell也可在FreeBSD的Ports得到，例如:zsh和bash。 &lt;/p&gt;
+&lt;h3 id="shell"&gt;Shell的特点：&lt;a class="headerlink" href="#shell" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;文件名补全&lt;/li&gt;
+&lt;li&gt;使用环境变量
+Common Environment Variables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Variable    Description
+USER    Current logged in user's name.
+PATH    Colon-separated list of directories to search for binaries.
+DISPLAY Network name of the Xorg display to connect to, if available.
+SHELL   The current shell.
+TERM    The name of the user's type of terminal. Used to determine the capabilities of the terminal.
+TERMCAP Database entry of the terminal escape codes to perform various terminal functions.
+OSTYPE  Type of operating system.
+MACHTYPE    The system's CPU architecture.
+EDITOR  The user's preferred text editor.
+PAGER   The user's preferred utility for viewing text one page at a time.
+MANPATH Colon-separated list of directories to search for manual pages.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;怎样设置环境变量：不同的shell有不同的方法。
+- 在tcsh和csh这样的C-Style shell，使用&lt;code&gt;setenv&lt;/code&gt;设置环境变量
+- 在sh和bash这样的Bourne shell，使用, &lt;code&gt;export&lt;/code&gt;设置环境变量&lt;/p&gt;
+&lt;p&gt;例如：设置或改变&lt;span class="caps"&gt;EDITOR&lt;/span&gt;环境变量，将&lt;span class="caps"&gt;EDITOR&lt;/span&gt;设为/usr/local/bin/vim. 在csh或tcsh下&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;setenv EDITOR /usr/local/bin/vim
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;在sh或bash下&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;export EDITOR="/usr/local/bin/vim"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;命令行中在环境变量前加一个$字符，可以取得环境变量查看当前设置。
+shell里有许多特别的字符代表着特别的内容，我们把叫做meta-characters。最常用的就是&lt;code&gt;*&lt;/code&gt;字符，它可代表文件名的任何字符。为了防止shell去分析这些特别字符， 我们可在它之前加一个&lt;code&gt;\&lt;/code&gt;字符去说明它只是普通字符。&lt;/p&gt;
+&lt;h3 id="shell_1"&gt;改变Shell&lt;a class="headerlink" href="#shell_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;改变Shell的最简单方法是使用 chsh 命令。 
+- 执行 chsh 将根据&lt;span class="caps"&gt;EDITOR&lt;/span&gt; 环境变量进入到那个编辑器，假如没有设定，就会进入vi编辑器。 请改变“Shell:”这行对应值。
+- 可使用chsh 的-s选项， 这样就能设置您的shell却又不用编辑器。假如想把shell改为bash:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chsh -s /usr/local/bin/bash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意:新的shell必须在&lt;code&gt;/etc/shells&lt;/code&gt;文件里列出。 如果从ports里安装一个shell，应该默认自动添加到这个文件了。如果没有添加，用下面的命令添加：&lt;code&gt;echo "/usr/local/bin/bash" &amp;gt;&amp;gt; /etc/shells&lt;/code&gt; ，然后从新运行&lt;code&gt;chsh&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="shell_2"&gt;Shell高级技巧&lt;a class="headerlink" href="#shell_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Advanced Shell Techniques&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;重定向：&lt;code&gt;&amp;gt;&lt;/code&gt; &lt;code&gt;&amp;lt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;管道：&lt;code&gt;|&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="unix"></category><category term="shell"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — 进程和守护进程</title><link href="http://wonux.github.io/freebsd-process.html" rel="alternate"></link><updated>2015-04-26T14:24:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-26:freebsd-process.html</id><summary type="html">
+&lt;h2 id="_1"&gt;进程和守护进程&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Processes and Daemons&lt;/p&gt;
+&lt;h3 id="processes"&gt;进程（Processes）&lt;a class="headerlink" href="#processes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;FreeBSD 是一个多任务操作系统。 这就意味着好像一次可以运行一个以上的程序。 每个占用一定时间运行的程序就叫 进程 (process)。 你运行的每一个命令会至少启动一个新进程，还有很多一直运行着的系统进程， 用以维持系统的正常运作。
+每个进程用来标识的一个编号就叫 进程&lt;span class="caps"&gt;ID&lt;/span&gt;（&lt;span class="caps"&gt;PID&lt;/span&gt;）。而且，就像文件那样，每个进程也有所属用户和所属组。 所属用户和所属组使用在这方面:确定这个进程可以打开那些文件和那些设备， 从而在初期使用文件的权限。 多数的进程都有一个父进程， 而进程是依靠父进程来启动的。 例如，假如您把命令输入到shell里那shell是一个进程，而您运行的各个命令同样是进程， 那么，shell就是您各个运行进程的父进程。 而这方面有一个例外的进程就叫&lt;code&gt;init&lt;/code&gt;。&lt;code&gt;init&lt;/code&gt;是系统启动时第一个启动的进程，所以他的&lt;span class="caps"&gt;PID&lt;/span&gt;始终是1， 而init在FreeBSD起动时由内核自动启动。&lt;/p&gt;
+&lt;p&gt;查看系统上运行的进程，有两个命令非常有用:&lt;code&gt;ps&lt;/code&gt;和&lt;code&gt;top&lt;/code&gt;。
+ps命令作用是以静态列表显示当前运行进程， 显示&lt;span class="caps"&gt;PID&lt;/span&gt;，占用内存，它们启动的命令行。而top命令则是显示所有运行进程，并在以秒计的短时内更新数据，目的是交互地查看计算机正在运行的任务。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ps最有用的一个选项就是auxww。a选项显示出所有运行进程的内容， 而不仅仅是您的进程。u选项显示出进程所归属的用户名字以及内存使用，x选项显示出后台进程。 而ww选项表示为 ps 把每个进程的整个命令行全部显示完， 而不是由于命令行过长就把它从屏幕上截去。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="daemons"&gt;守护进程（Daemons）&lt;a class="headerlink" href="#daemons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;一些程序在运行中不需要连续的用户输入，一有机会就从终端里分离到后台去。我们把那些程序叫 守护进程。
+守护进程的程序命名有一个惯例，在最后加一个 “d”。 &lt;span class="caps"&gt;BIND&lt;/span&gt; 是伯克利互联网域名服务 (而实际执行的程序名称则是 named)， Apache web server的程序就叫 httpd， 在行式打印机上的打印守护进程就是 lpd。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;杀死进程（ Killing Processes）
+有时可能会需要与进程进行通讯。 而 信号 则是其中的一种通讯机制。 可以发送信号给进程来与它进行通信， 不同的信号都有自己的数字编号,其中一些有特殊的含义， 其它的则可以被应用程序自己进行解释。
+有两个信号可以停止进程:&lt;span class="caps"&gt;SIGTERM&lt;/span&gt; 和 &lt;span class="caps"&gt;SIGKILL&lt;/span&gt;。&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="unix"></category><category term="process"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — 磁盘组织</title><link href="http://wonux.github.io/freebsd-disk.html" rel="alternate"></link><updated>2015-04-23T17:36:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-23:freebsd-disk.html</id><summary type="html">
+&lt;h2 id="_1"&gt;磁盘组织&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;FreeBSD 查找文件的最小单位是文件名。 而文件名区分大小写，不凭文件扩展名去识别这个文件是 程序、 文档， 或是其他格式的数据。
+在文件系统里目录和文件的作用是存储数据。 每一个文件系统都有且只有一个顶级目录 根目录， 这个根目录则可以容纳其他目录。&lt;/p&gt;
+&lt;h3 id="slice"&gt;Slice&lt;a class="headerlink" href="#slice" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;FreeBSD将硬盘分成slices（片段），对应Windows系统的“分区”，Slices 有其编号， 从1到4，最多四个。Slices再分成分区（partitions）。Slice 编号在设备名后面， 并有一个 s 前缀， 从 1 开始。 每个磁盘上只能有四个物理的 slices， 但您可以在物理 slice 中使用适当的类型来创建逻辑 slice。 这些扩展 slice 编号从 5 开始。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分区的术语 &lt;br/&gt;
+FreeBSD将硬盘分成最多四个slice（片段），FreeBSD的开机区必须在这些slice其中之一。每一个slice上又可以分成最多8个 partition（分区）,分别称为a,b,c,d,e,f,g,h，传统上a,b,c,d分区有特殊的意义，a表示root分区，b表示swap分 区，c表示整个slice，d表示整个硬盘。&lt;/li&gt;
+&lt;li&gt;分区的顺序
+文件系统是和分区一一对应的。因为FreeBSD的&lt;span class="caps"&gt;UNIX&lt;/span&gt;传统，每一个分区使用一个从 a 到 h 的字母来表示。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;a分区：通常指定为根文件系统。
+b分区：通常指定为交换分区。
+c分区：通常它和所在的 slice 大小相同。 c 分区上工作时必定会影响到事整个 slice (举个例子，坏块扫描器)。 您通常不愿意在这个partition建立文件系统。
+d分区：d曾经有特殊的含义，不过这种意义在现时的系统上已不再适用，因此 d 可以和任何其它普通的分区一样使用了。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;只有c内定位整个slice，其他都可自由使用，但一般还是遵循传统观念，即a:root，b:swap，efgh:其他使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;磁盘设备的代码
+一个磁盘名字是用磁盘类型代码和编号来标识的， 它不像slices，磁盘的编号是由0开始的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SATA 和 IDE 磁盘    ada或ad
+SCSI磁盘和USB存储设备    da 
+SATA and IDE CD-ROM光驱   cd或acd
+SCSI CD-ROM光驱    cd
+软驱    fd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;在安装FreeBSD时，您首先要配置好磁盘slices， 然后在FreeBSD使用的slice上建立partitions。 并在每个partition上建立一个文件系统(或交换分区)， 和指定文件系统的挂接位置。&lt;/p&gt;</summary><category term="unix"></category><category term="disk"></category><category term="slice"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — 权限</title><link href="http://wonux.github.io/freebsd-permission.html" rel="alternate"></link><updated>2015-04-23T15:52:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-23:freebsd-permission.html</id><summary type="html">
+&lt;h2 id="_1"&gt;权限&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Permissions&lt;/p&gt;
+&lt;p&gt;FreeBSD使用传统的&lt;span class="caps"&gt;UNIX&lt;/span&gt;®系统的基本权限。在&lt;span class="caps"&gt;UNIX&lt;/span&gt;®系统中，基本权限分配了三种访问类型：读、写、执行。权限可以用字母r、w、x表示；也可以用二进制数表示，按rwx的顺序，x值1，w值2，r值4。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0       ---
+1       --x
+2       -w-
+3       -wx
+4       r--
+5       r-x
+6       rw-
+7       rwx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用命令ls的-l参数可以显示出文件的所属者、 所属组和其他人等属性。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_2"&gt;权限的符号化表示&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Symbolic Permissions&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Option      Letter  Represents
+(who)        u        User
+(who)        g        Group owner
+(who)        o        Other
+(who)        a        All (“world”)
+(action)         +      Adding permissions
+(action)         -        Removing permissions
+(action)         =      Explicitly set permissions
+(permissions)   r   Read
+(permissions)   w   Write
+(permissions)   x   Execute
+(permissions)   t   Sticky bit
+(permissions)   s   Set UID or GID
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h3 id="freebsd"&gt;FreeBSD文件标志&lt;a class="headerlink" href="#freebsd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;FreeBSD File Flags&lt;/p&gt;
+&lt;p&gt;FreeBSD 还支持使用 “文件标志”。这些标志为文件提供了进一步的安全控制机制，但这些控制并不适用于目录。这些文件标志提供了针对文件的进一步控制， 帮助确保即使是 root 用户也无法删除或修改文件。&lt;/p&gt;
+&lt;h3 id="setuidsetgidsticky"&gt;setuid、setgid和sticky 权限&lt;a class="headerlink" href="#setuidsetgidsticky" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;除了前面已经讨论过的那些权限之外，还有三个管理员应该知道的权限配置。它们是setuid、setgid和 sticky。这些配置对于一些 &lt;span class="caps"&gt;UNIX&lt;/span&gt;® 操作而言很重要， 因为它们能提供一些一般情况下不会授予普通用户的功能。&lt;/p&gt;</summary><category term="unix"></category><category term="permission"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — 用户和基本账户管理</title><link href="http://wonux.github.io/freebsd-account.html" rel="alternate"></link><updated>2015-04-22T17:33:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-22:freebsd-account.html</id><summary type="html">
+&lt;h2 id="_1"&gt;账户类型&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="_2"&gt;系统账户&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;系统账户运行服务。
+系统用户是那些要使用诸如&lt;span class="caps"&gt;DNS&lt;/span&gt;、 邮件， web等服务的用户。 使用帐户的原因就是安全； 如果所有的用户都由超级用户来运行， 那它们就可以不受约束地做任何事情。
+典型的系统帐户包括daemon、operator、bind(供 域名服务 使用)、news， 以及www。
+nobody是普通的没有特权的系统用户。 然而， 大多数与用户联系很密切的服务是使用nobody的， 记的这点非常重要， 这样可能使用户变的非常有特权。&lt;/p&gt;
+&lt;h3 id="_3"&gt;用户账户&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;用户帐户是让真实的用户访问系统的主要方式， 这些帐户把用户和环境隔离， 能阻止用户损坏系统和其他用户， 在不影响其他用户的情况之下定制自己的环境。
+- 用户名（User name）
+用户名在login: 提示符的后面键入。 用户名对于一台计算机来讲是唯一的。用户名通常需要8个或更少的小写字母。
+- 口令（Password）
+每个帐户都有一个口令与它对应。 口令可以是空的， 这样不需要口令就可以访问系统。 这通常不是一个好主意； 每个帐户都应该有口令。
+- 用户&lt;span class="caps"&gt;ID&lt;/span&gt; (&lt;span class="caps"&gt;UID&lt;/span&gt;)
+&lt;span class="caps"&gt;UID&lt;/span&gt;是系统用来识别用户的数字，推荐使用65535之内的&lt;span class="caps"&gt;UID&lt;/span&gt;，防止有些软件发生兼容性的问题。FreeBSD在内部使用&lt;span class="caps"&gt;UID&lt;/span&gt;来识别用户。任何您指定一个用户名的命令FreeBSD 都会把它转换成&lt;span class="caps"&gt;UID&lt;/span&gt;。 这意味着您可以用不同的用户名使用多个帐户， 但它们的&lt;span class="caps"&gt;UID&lt;/span&gt;是一样的。 FreeBSD 会把这些帐户认定是同一个用户。
+- 组&lt;span class="caps"&gt;ID&lt;/span&gt; (&lt;span class="caps"&gt;GID&lt;/span&gt;)
+&lt;span class="caps"&gt;GID&lt;/span&gt;是用来识别用户所在的组的数字，组是一种基于用户&lt;span class="caps"&gt;GID&lt;/span&gt;而不是它们的&lt;span class="caps"&gt;UID&lt;/span&gt;的用来控制用户访问资源的机制。 这可以减少一些配置文件的大小。 一个用户也可以属于多个组。推荐使用65535之内的&lt;span class="caps"&gt;GID&lt;/span&gt;。
+- 登录类（Login class）
+登录类是对组机制的扩展,当把系统分配给不同用户时,它提供了额外的灵活性.
+- 口令的定期更改（Password change time）
+默认情况下，FreeBSD 并不强制用户去改变他们的口令。您可以以用户为单位强制要求一些或所有的用户定期改变他们的口令。
+- 帐户的到期时间（Account expiry time）
+默认情况下FreeBSD不会自动完成帐户过期操作。如果您正在创建帐户，您应该知道一个帐户的有效使用期限。例如，在学校里您会为每个学生建立一个帐户，您可以指定它们何时过期。帐户过期后，虽然帐户的目录和文件仍然存在，但帐户已经不能继续使用了。
+- 用户的全名（User’s full name）
+用户名可以唯一地识别FreeBSD的帐户，但它不会反映用户的全名。这些信息可能与帐户是相关的。
+- 主目录（Home directory）
+主目录是用户登录后启动的第一个目录的完全路径。通常的规则是把所有用户的主目录都放在 /home/username 下，或者 /usr/home/username 下。 用户将把他们的个人文件放在自己的主目录下，他们可以在那里创建任何目录.
+- 用户 shell Shell提供了用户用来操作系统的默认环境。有很多不同的shell，有经验的用户会根据他们的经验来选择自己喜好的shell。&lt;/p&gt;
+&lt;h3 id="_4"&gt;超级用户账户&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;超级用户帐户， 通常叫做 root，超级用户拥有无限制的权限管理系统。在收发邮件， 系统检查或编程这样的日常工作中， 尽量不要使用root权限。 普通的用户帐户不会由于出错而破坏系统， 所以要尽可能的使用普通帐户， 除非您需要额外的特权。&lt;/p&gt;
+&lt;p&gt;获取超级用户权限：
+- root用户登录，不推荐。
+- &lt;code&gt;su&lt;/code&gt;命令成为超级用户。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用su命令的用户，必须属于wheel组；如果运行su时指定了&lt;code&gt;-&lt;/code&gt;，用户将继承root用户的环境变量。
+运行完命令时，使用&lt;code&gt;exit&lt;/code&gt;命令离开超级用户账户，回到原来的用户权限。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;安装 &lt;code&gt;security/sudo&lt;/code&gt;软件包。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="_5"&gt;管理账户&lt;a class="headerlink" href="#_5" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;FreeBSD提供很多不同的命令管理用户账户，最常用的命令概括如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;adduser 添加用户
+rmuser 删除用户
+chpass 修改用户数据库信息
+passwd 修改用户口令
+pw 强大灵活修改用户帐户的工具&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="unix"></category><category term="account"></category><category term="freebsd"></category></entry><entry><title>UNIX基础 — 控制台和终端</title><link href="http://wonux.github.io/freebsd-console.html" rel="alternate"></link><updated>2015-04-21T20:31:00+08:00</updated><author><name>孤逐王</name></author><id>tag:wonux.github.io,2015-04-21:freebsd-console.html</id><summary type="html">
+&lt;h2 id="_1"&gt;虚拟控制台和终端&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Virtual Consoles and Terminals:&lt;/p&gt;
+&lt;p&gt;FreeBSD 虚拟控制台的默认配置为8个，但并不是硬性设置， 您可以很容易设置虚拟控制台的个数增多或减少。 虚拟控制台的的编号和设置在 &lt;code&gt;/etc/ttys&lt;/code&gt;文件里。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# name    getty                         type  status comments
+#
+ttyv0   "/usr/libexec/getty Pc"         xterm   on  secure
+# Virtual terminals
+ttyv1   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv2   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv3   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv4   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv5   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv6   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv7   "/usr/libexec/getty Pc"         xterm   on  secure
+ttyv8   "/usr/X11R6/bin/xdm -nodaemon"  xterm   off secure
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;FreeBSD 默认系统控制台是system console（ttyv0）,8个虚拟控制台virtual consoles (ttyv1 ~ ttyv8),(ttyv8)用于进入桌面环境。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;FreeBSD使用 Alt+F1 ~ Alt+F9键，切换多个虚拟控制台。从图形界面切换至其他虚拟控制台要使用Ctrl+Alt。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_2"&gt;单用户模式&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Single User Mode&lt;/p&gt;
+&lt;p&gt;单用户模式主要用于修复系统启动失败，或者重新设置root密码。在单用户模式中，网络和虚拟控制台不能使用，但是可以提供完整的root权限，而不需要root密码。&lt;/p&gt;
+&lt;p&gt;单用户模式的控制台也可以在&lt;code&gt;/etc/ttys&lt;/code&gt;文件中的设置。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# name  getty                           type  status  comments
+#
+# If console is marked "insecure", then init will ask for the root password
+# when going to single-user mode.
+console none                            unknown  off  secure
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可编辑把 secure 改为 insecure。 这样， 当用单用户进入 FreeBSD 时， 它仍然要求提供 root 用户的密码。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="_3"&gt;改变控制台的显示模式&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Changing Console Video Modes&lt;/p&gt;
+&lt;p&gt;FreeBSD 控制台默认的显示模式可以被调整为 1024x768， 1280x1024， 或者任何你的显卡芯片和显示器所支持的其他尺寸。 要使用一个不同的显示模式，加载vesa模块：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;kldload vesa
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;使用&lt;code&gt;vidcontrol&lt;/code&gt;工具来检测硬件支持的显示模式。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vidcontrol -i mode
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;这个命令的输出是一份你的硬件所支持的显示模式列表。使用&lt;code&gt;vidcontrol&lt;/code&gt;命令来改变显示模式：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vidcontrol MODE_279
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;如果对于新的显示模式满意，那么可以把它加入到&lt;code&gt;/etc/rc.conf&lt;/code&gt;使机器在每次启动的时候都能生效.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;allscreens_flags=”MODE_279”&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="unix"></category><category term="console"></category><category term="tty"></category><category term="freebsd"></category></entry></feed>

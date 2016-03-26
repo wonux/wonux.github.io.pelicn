@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="孤逐王" />
+        <meta name="copyright" content="孤逐王" />
+
+        <meta name="description" content="" />
+        <meta name="twitter:creator" content="@wonux">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="apps, pelican, blog, git, python, Git, " />
+
+<meta property="og:title" content="Pelican + Github 搭建静态个人博客 "/>
+<meta property="og:url" content="http://wonux.github.io/git-pelican.html" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="Wonux Blog" />
+<meta property="og:article:author" content="孤逐王" />
+<meta property="og:article:published_time" content="2015-05-06T16:45:00+08:00" />
+<meta property="" content="2015-05-14T18:19:00+08:00" />
+<meta name="twitter:title" content="Pelican + Github 搭建静态个人博客 ">
+<meta name="twitter:description" content="">
+<meta property="og:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>Pelican + Github 搭建静态个人博客  · Wonux Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="http://wonux.github.io/theme/css/style.min.css?1697810b">
+        <link rel="shortcut icon" href="http://wonux.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://wonux.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://wonux.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://wonux.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://wonux.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://wonux.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://wonux.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://wonux.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://wonux.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="http://wonux.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Wonux Blog - Full Atom Feed" />
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+    </head>
+    <body class="tex2jax_ignore">
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <div class="span1"></div>
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://wonux.github.io/"><span class=site-name><span style="color:black;">Wonux</span> <span style="color:#AA1032;">Blog</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://wonux.github.io">Home</a></li>
+                            <li ><a href="http://wonux.github.io/about.html">About</a></li>
+                            <li ><a href="http://wonux.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://wonux.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://wonux.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://wonux.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://wonux.github.io/git-pelican.html"> Pelican + Github&nbsp;搭建静态个人博客  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#_1">前言</a></li>
+<li><a href="#_2">知识储备</a></li>
+<li><a href="#pelican">搭建Pelican环境</a><ul>
+<li><a href="#gitpip">安装git,pip</a></li>
+<li><a href="#virtualenvpelican">使用virtualenv工具创建pelican虚拟环境</a></li>
+<li><a href="#pelican_1">安装pelican</a></li>
+<li><a href="#markdowntypogrify">安装markdown,typogrify</a></li>
+</ul>
+</li>
+<li><a href="#_3">搭建博客站点</a><ul>
+<li><a href="#_4">选择博客主题</a></li>
+<li><a href="#_5">添加评论系统</a></li>
+<li><a href="#_6">书写文章</a></li>
+<li><a href="#_7">发布博客站点</a><ul>
+<li><a href="#_8">生成博客站点</a></li>
+<li><a href="#_9">预览生成的站点</a></li>
+<li><a href="#_10">部署博客站点</a></li>
+<li><a href="#_11">自动化操作</a></li>
+</ul>
+</li>
+<li><a href="#_12">预览我的博客效果</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h2 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>一直以来都希望拥有属于自己的个人博客，随性发点信息，写点技术感想，记录自己的生活，重要的是不受广告的影响、不被河蟹、不会担心有一天被莫名其妙地消失。</p>
+<p>之前看过一篇<a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">文章</a>：“像黑客一样写博客”，一下子就被这种简单的方式深深的吸引住了。你只需要一个称手的文本编辑器（Markdown编辑器），再配合终端的git命令就<span class="caps">OK</span>了，其余的都不用管了，交给第三方去。几条简单的命令就可以发布博客。</p>
+<p>优点：
+- 直接使用Markdown写文章
+- 全站静态化，根据Markdown生成文章的静态页面
+- 直接在Terminal把文章push到Github上即可，有版本管理真好，然后加之Github Page的支持，虽然有一些些小问题，比如缓存，但瑕不掩瑜
+- 整个写作过程和写代码的过程是一致的，符合码农的行为习惯，也就是所谓的“像黑客一样写博客”</p>
+<p>本博客是在Gentoo Linux环境下搭建完成，托管到Github Pages。
+效果见我的博客:<a href="http://wonux.github.io">http://wonux.github.io</a></p>
+<h2 id="_2">知识储备<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>搭建博客的工具选用了Pelican，Pelican是一个用Python语言编写的静态网站生成器，支持使用restructuredText和Markdown写文章，配置灵活，扩展性强，有许多优秀的主题和插件可供使用。Pelican 的Github地址是：<a href="https://github.com/getpelican/pelican">https://github.com/getpelican/pelican</a>;主页：<a href="http://blog.getpelican.com/">http://blog.getpelican.com/</a></p>
+<p>搭建过程中涉及如下技术知识，不过你不必害怕，只是使用它们的开源框架而已，并不需要自己编码，点击可以了解它们是如何的强大，当然你也可以略过它们，后面遇到时再进行了解。 假如你不能打开它们，原因你懂的，请爬墙解决~</p>
+<blockquote>
+<p>Github:<a href="https://github.com/">https://github.com/</a>
+Github Ppages:<a href="http://pages.github.com/">http://pages.github.com/</a>
+git:<a href="http://git-scm.com/">http://git-scm.com/</a>
+python:<a href="http://www.python.org/">http://www.python.org/</a>
+pip:<a href="https://pypi.python.org/pypi">https://pypi.python.org/pypi</a>
+pelican:<a href="http://blog.getpelican.com/">http://blog.getpelican.com/</a>
+markdown:<a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></p>
+</blockquote>
+<h2 id="pelican">搭建Pelican环境<a class="headerlink" href="#pelican" title="Permanent link">¶</a></h2>
+<h3 id="gitpip">安装git,pip<a class="headerlink" href="#gitpip" title="Permanent link">¶</a></h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>emerge --ask dev-cvs/git
+emerge --ask dev-python/pip
+</pre></div>
+</td></tr></table>
+<h3 id="virtualenvpelican">使用virtualenv工具创建pelican虚拟环境<a class="headerlink" href="#virtualenvpelican" title="Permanent link">¶</a></h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>emerge --ask virtualenv  ## or  pip install virtualenv
+virtualenv ~/virtualenvs/pelican
+cd ~/virtualenvs/pelican
+source bin/activate
+</pre></div>
+</td></tr></table>
+<h3 id="pelican_1">安装pelican<a class="headerlink" href="#pelican_1" title="Permanent link">¶</a></h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>pip install pelican
+</pre></div>
+</td></tr></table>
+<h3 id="markdowntypogrify">安装markdown,typogrify<a class="headerlink" href="#markdowntypogrify" title="Permanent link">¶</a></h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>pip install Markdown
+pip install typogrify
+</pre></div>
+</td></tr></table>
+<h2 id="_3">搭建博客站点<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>mkdir blog //创建文件夹，名称可根据自己喜欢定
+cd blog
+pelican-quickstart
+</pre></div>
+</td></tr></table>
+<p><code>pelican-quickstart</code>执行命令后，会提示输入博客的配置项，除了少数几个必填以外，其它都可以选择默认，而且都可以在pelicanconf.py文件中进行更改，所以你可以随意选择。 命令成功执行后，会出现pelican的框架，如下所示</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span>blog/
+├── content                # 存放输入的markdown或RST源文件
+│   └── (pages)            # 存放手工创建的静态页面，可选
+│   └── (posts)            # 存放手工创建的文章，可选
+├── output                 # 存放最终生成的静态博客
+├── develop_server.sh      # 测试服务器
+├── Makefile               # 管理博客的Makefile
+├── pelicanconf.py         # 配置文件
+└── publishconf.py         # 发布文件，可删除
+</pre></div>
+</td></tr></table>
+<h3 id="_4">选择博客主题<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<p>回到<code>blog</code>目录下，按如下步骤下载pelican官方主题，从里面挑选出自己喜欢的主题吧，大多数主题预览界面你可以打开这个网页<a href="http://pelicanthemes.com/">主题预览</a>进行查看。不过如今pelican又新出了很多主题，所以你需看看<a href="https://github.com/getpelican/pelican-themes">pelican主题开源库</a>。</p>
+<ul>
+<li>克隆主题到本地</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>git clone https://github.com/getpelican/pelican-themes.git
+</pre></div>
+</td></tr></table>
+<ul>
+<li>使用主题
+打开<code>pelicanconf.py</code>配置文件，更改或添加<span class="caps">THEME</span>为自己喜欢的主题，例如本博客所挑选的elegant，更多的配置含义请关注<a href="http://docs.getpelican.com/en/3.5.0/index.html">官方文档</a>。</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>THEME = 'pelican-themes/pelican-elegant'
+</pre></div>
+</td></tr></table>
+<h3 id="_5">添加评论系统<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<p>开启个人博客的原因在于分享知识，分享就需要交流，评论模块当然少不了。大多数主题默认支持Disqus。在<a href="https://disqus.com/">Disqus</a>上申请帐号，按照流程Disqus会分配给你站点的Shortname，记牢Shortname，如果忘了请进入admin/settings中查看。然后同理，在<code>pelicanconf.py</code>添加
+国内也可以选择<a href="http://duoshuo.com">多说</a>和<a href="http://www.uyan.cc">友言</a>.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>DISQUS_SITENAME = Shortname
+</pre></div>
+</td></tr></table>
+<h3 id="_6">书写文章<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<p>完成上述博客主体搭建后，使用markdownpad创建一个.md文件，保存于content文件夹中（或自己加入posts文件夹）。
+Metadata syntax for Markdown posts should follow this pattern:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="kd">super</span> <span class="n">title</span>
+<span class="n">Date</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span>
+<span class="n">Modified</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">05</span> <span class="mi">19</span><span class="o">:</span><span class="mi">30</span>
+<span class="n">Category</span><span class="o">:</span> <span class="n">Python</span>
+<span class="n">Tags</span><span class="o">:</span> <span class="n">pelican</span><span class="o">,</span> <span class="n">publishing</span>
+<span class="n">Slug</span><span class="o">:</span> <span class="n">my</span><span class="o">-</span><span class="kd">super</span><span class="o">-</span><span class="n">post</span>
+<span class="n">Authors</span><span class="o">:</span> <span class="n">Alexis</span> <span class="n">Metaireau</span><span class="o">,</span> <span class="n">Conan</span> <span class="n">Doyle</span>
+<span class="n">Summary</span><span class="o">:</span> <span class="n">Short</span> <span class="n">version</span> <span class="k">for</span> <span class="n">index</span> <span class="n">and</span> <span class="n">feeds</span>
+
+<span class="n">This</span> <span class="k">is</span> <span class="n">the</span> <span class="n">content</span> <span class="n">of</span> <span class="n">my</span> <span class="kd">super</span> <span class="n">blog</span> <span class="n">post</span><span class="o">.</span>
+</pre></div>
+</td></tr></table>
+<h3 id="_7">发布博客站点<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<p><a href="http://docs.getpelican.com/en/3.5.0/publish.html#publish-your-site">Publish your site</a>
+有三种方法可以发布博客：
+- pelican命令
+- make 
+详细用法查看<code>Makefile</code>文件
+- fabric</p>
+<h4 id="_8">生成博客站点<a class="headerlink" href="#_8" title="Permanent link">¶</a></h4>
+<p><a href="http://docs.getpelican.com/en/3.5.0/publish.html#site-generation">Site generation</a></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>pelican /path/to/your/content/ [-s path/to/your/settings.py]
+</pre></div>
+</td></tr></table>
+<p>或</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>make html
+</pre></div>
+</td></tr></table>
+<p>生成的站点放在<code>output/</code>目录下。</p>
+<h4 id="_9">预览生成的站点<a class="headerlink" href="#_9" title="Permanent link">¶</a></h4>
+<p>For Python 2, run:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>cd output
+python -m SimpleHTTPServer
+</pre></div>
+</td></tr></table>
+<p>For Python 3, run:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>cd output
+python -m http.server
+</pre></div>
+</td></tr></table>
+<p>或</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>make serve
+</pre></div>
+</td></tr></table>
+<p>浏览<a href="http://localhost:8000/">http://localhost:8000/</a>地址预览效果.</p>
+<h4 id="_10">部署博客站点<a class="headerlink" href="#_10" title="Permanent link">¶</a></h4>
+<p><a href="http://docs.getpelican.com/en/3.5.0/publish.html#deployment">Deployment</a>
+原理：将<code>output</code>目录下生成的站点部署到自己的github pages.</p>
+<h4 id="_11">自动化操作<a class="headerlink" href="#_11" title="Permanent link">¶</a></h4>
+<ul>
+<li>Fabric</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>pip install Fabric
+fab build
+fab regenerate
+fab serve
+fab publish
+</pre></div>
+</td></tr></table>
+<ul>
+<li>Make</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>make html
+make regenerate
+make serve
+make devserver
+make stopserver
+./develop_server.sh stop
+</pre></div>
+</td></tr></table>
+<blockquote>
+<blockquote>
+<p>备注：发布的简单流程：<code>pelican content</code>生成页面至<code>output</code>目录，然后<code>git push</code>将<code>output</code>目录推送到github站点的<code>gh-pages</code>分支，即可自动渲生成染博客。</p>
+</blockquote>
+</blockquote>
+<h3 id="_12">预览我的博客效果<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
+<p><a href="http://wonux.github.io">http://wonux.github.io</a>
+<a href="http://wonux.coding.me">http://wonux.coding.me</a></p>
+<p>参考资料：
+<a href="http://www.xycoding.com/articles/2013/11/21/blog-create/">http://www.xycoding.com/articles/2013/11/21/blog-create/</a></p>
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="http://twitter.com/home?status=Pelican%20%2B%20Github%C2%A0%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%20http%3A//wonux.github.io/git-pelican.html" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="http://www.facebook.com/sharer/sharer.php?u=http%3A//wonux.github.io/git-pelican.html" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="https://plus.google.com/share?url=http%3A//wonux.github.io/git-pelican.html" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=Pelican%20%2B%20Github%C2%A0%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2&amp;body=http%3A//wonux.github.io/git-pelican.html" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            <section>
+<p id="comment-message">Comments Below: </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://wonux.github.io/git-pelican.html#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'wonux';
+        var disqus_identifier = 'http://wonux.github.io/git-pelican.html';
+    var disqus_url = 'http://wonux.github.io/git-pelican.html';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Keep Reading</h2>
+<ul class="related-posts-list">
+<li><a href="http://wonux.github.io/git-hexo.html" title="Hexo + Github 搭建静态个人博客">Hexo + Github 搭建静态个人博客</a></li>
+<li><a href="http://wonux.github.io/git-pelican-elegant.html" title="Pelican-Elegant Mac风格主题配置">Pelican-Elegant Mac风格主题配置</a></li>
+<li><a href="http://wonux.github.io/apps-doubanfm.html" title="Shell终端收听音乐—豆瓣FM命令行版">Shell终端收听音乐—豆瓣FM命令行版</a></li>
+<li><a href="http://wonux.github.io/git-remote.html" title="Git同时提交到多个远程仓库">Git同时提交到多个远程仓库</a></li>
+<li><a href="http://wonux.github.io/git-empty-branch.html" title="Git创建空白新分支">Git创建空白新分支</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://wonux.github.io/freebsd-apps.html" title="Previous: UNIX基础 — 安装应用程序: Packages 和 Ports">UNIX基础 — 安装应用程序: Packages 和 Ports</a></li>
+                <li class="next-article"><a href="http://wonux.github.io/apps-openbox-tranparent.html" title="Next: openbox设置透明效果">openbox设置透明效果</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2015-05-06T16:45:00+08:00">May 6, 2015</time>
+
+<h4>Last Updated</h4>
+<time datetime="2015-05-14T18:19:00+08:00">May 14, 2015</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="http://wonux.github.io/categories.html#git-ref">Git</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://wonux.github.io/tags.html#apps-ref">apps
+                    <span>23</span>
+</a></li>
+                <li><a href="http://wonux.github.io/tags.html#blog-ref">blog
+                    <span>3</span>
+</a></li>
+                <li><a href="http://wonux.github.io/tags.html#git-ref">git
+                    <span>6</span>
+</a></li>
+                <li><a href="http://wonux.github.io/tags.html#pelican-ref">pelican
+                    <span>2</span>
+</a></li>
+                <li><a href="http://wonux.github.io/tags.html#python-ref">python
+                    <span>3</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://weibo.com/wonux" title="My Weibo Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-weibo sidebar-social-links"></i></a>
+    <a href="https://github.com/wonux" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://douban.com/people/wonux" title="My Book Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-book sidebar-social-links"></i></a>
+    <a href="mailto:wonux@qq.com" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Wonux Blog "</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://weibo.com/wonux" property="cc:attributionName" rel="cc:attributionURL">Ace King</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'wonux';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
